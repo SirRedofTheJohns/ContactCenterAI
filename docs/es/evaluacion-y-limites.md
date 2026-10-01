@@ -8,6 +8,8 @@ La base v0.10 registró **249 comprobaciones deterministas** en nueve suites y b
 
 Usan relojes controlados y fallos inyectados. No prueban un tenant Genesys, la composición SQL Server completa, calidad bilingüe independiente ni carga de producción. Existe workflow del mismo comando; la evidencia de publicación registra si su ejecución remota realmente pasó.
 
+La extensión v0.11 añade 75 checks aislados y la regresión completa actual pasa 324. El [estado de canales](../progress/channels-v0.11.md) distingue HTTP simulado de aceptación real. El primer runner de CI remota no pudo iniciar por una restricción de plataforma/cuenta; pasar localmente no equivale a pasar en GitHub.
+
 ## Calidad de respuestas
 
 | Evidencia | Resultado | Interpretación |

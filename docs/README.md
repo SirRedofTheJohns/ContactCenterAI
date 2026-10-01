@@ -12,6 +12,8 @@ Las guías de entrada describen la demo actual en ambos idiomas. Los documentos 
 | Evidence and limits / Evidencia y límites | [Evaluation](en/evaluation-and-limits.md) | [Evaluación](es/evaluacion-y-limites.md) |
 | Interview / Entrevista | [Portfolio guide](en/portfolio.md) | [Portafolio](es/portafolio.md) |
 | WhatsApp and Telegram | [Integration design](integrations/channels.en.md) | [Diseño de integración](integrations/channels.es.md) |
+| Create provider resources / Crear recursos | [Channel setup](integrations/setup.en.md) | [Configurar canales](integrations/setup.es.md) |
+| Channel delivery / Entrega de canales | [v0.11 local evidence](progress/channels-v0.11.md) | [Estado bilingüe v0.11](progress/channels-v0.11.md) |
 
 Detailed sources / Fuentes técnicas:
 

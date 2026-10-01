@@ -6,6 +6,7 @@
     <Project Path="src/ContactCenterAI.Api/ContactCenterAI.Api.csproj" />
     <Project Path="src/ContactCenterAI.Worker/ContactCenterAI.Worker.csproj" />
     <Project Path="src/ContactCenterAI.Simulator/ContactCenterAI.Simulator.csproj" />
+    <Project Path="src/ContactCenterAI.Channels/ContactCenterAI.Channels.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/ContactCenterAI.FoundationChecks/ContactCenterAI.FoundationChecks.csproj" />
@@ -17,5 +18,6 @@
     <Project Path="tests/ContactCenterAI.LocalAiChecks/ContactCenterAI.LocalAiChecks.csproj" />
     <Project Path="tests/ContactCenterAI.RetrievalChecks/ContactCenterAI.RetrievalChecks.csproj" />
     <Project Path="tests/ContactCenterAI.OperationsChecks/ContactCenterAI.OperationsChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.ChannelChecks/ContactCenterAI.ChannelChecks.csproj" />
   </Folder>
 </Solution>

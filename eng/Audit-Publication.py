@@ -25,8 +25,9 @@ patterns = {
 }
 binary = {'.png', '.jpg', '.jpeg', '.gif', '.ico', '.pdf', '.pptx', '.woff', '.woff2'}
 known_local_secrets = []
-env_file = repo / 'deploy/local/.env'
-if env_file.exists():
+for env_file in [repo/'deploy/local/.env', repo/'deploy/channels/.env']:
+    if not env_file.exists():
+        continue
     for entry in env_file.read_text(encoding='utf-8-sig').splitlines():
         if '=' not in entry or entry.lstrip().startswith('#'):
             continue

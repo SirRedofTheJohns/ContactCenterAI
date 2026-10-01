@@ -41,12 +41,19 @@ public sealed partial class ConversationIngress(IOperationalStore store, TimePro
     {
         if (clientMessageId == Guid.Empty || string.IsNullOrWhiteSpace(text) || text.EnumerateRunes().Count() > 2000 || version < 1)
             throw new RequestRejected(400, "INVALID_REQUEST");
-        // Reject payment-like numbers and labelled CVV; do not persist a masked PAN.
+        var sanitized = SanitizeText(text);
+        return store.SubmitMessageAsync(actor, conversationId, clientMessageId, sanitized, Hash(text), version, clock.GetUtcNow(), cancellationToken);
+    }
+
+    public static string SanitizeText(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text) || text.EnumerateRunes().Count() > 2000)
+            throw new RequestRejected(400, "INVALID_REQUEST");
+        // The channel adapter uses the same policy; payment data never reaches its inbox.
         if (PaymentPattern().IsMatch(text)) throw new RequestRejected(400, "SENSITIVE_PAYMENT_DATA");
         var sanitized = EmailPattern().Replace(text, "[EMAIL]");
         sanitized = PhonePattern().Replace(sanitized, "[PHONE]");
-        sanitized = SecretPattern().Replace(sanitized, "[SECRET]");
-        return store.SubmitMessageAsync(actor, conversationId, clientMessageId, sanitized, Hash(text), version, clock.GetUtcNow(), cancellationToken);
+        return SecretPattern().Replace(sanitized, "[SECRET]");
     }
 
     public static string Hash(string value) => Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(value)));

@@ -4,6 +4,8 @@
 
 Diseño previo al código: [freeze](architecture-freeze-v0.11-channels.md), [ES](integrations/channels.es.md), [EN](integrations/channels.en.md), ADR-024 y contratos versionados. CH01: ledger/contratos/fixtures. CH02: Telegram privado polling/replies. CH03: Meta firmado/test number/túnel opcional. CH04: conocimiento Public y handoff mock. Partes locales Ready; live depende de credenciales/configuración/evidencia. CH05 vinculación de miembro y acciones privadas excluido y Not Ready. Sin modificación de mediciones, cuentas ni bases v0.10.
 
+Entrega 2026-10-01: CH01 y subsets locales de CH02–04 **Done / MockValidated**, 75 checks nuevos y 324 totales. [Evidencia](progress/channels-v0.11.md), [setup ES](integrations/setup.es.md) / [EN](integrations/setup.en.md). Publicación GitHub realizada; primer runner externo bloqueado antes de ejecutar. Live CH02/03 sigue abierto porque el dueño aún no creó bot/app/recursos. CH05 permanece excluido.
+
 Estimaciones S/M/L expresan tamaño relativo, no fechas. Orden M1→M5; M6 opcional. Aplicar Definition of Ready antes de cada ticket. Estado actual: **B01 CLOSED**, 12 checks offline, siete checks SQL/OIDC live y dos logins reales PASS. Diagnóstico detenido; retiro del certificado del perfil Windows original no confirmado tras cerrar el terminal, registrado como nota operativa. **B02 DONE en su scope estructural**, con cinco proyectos .NET, contratos y 21 checks PASS más arranque worker; [DoR/evidencia](progress/b02-foundation.md). B03/B04 son los siguientes slices y requieren sus propios gates. Ver [evidencia B01](progress/b01-runtime-identity.md).
 
 | Ticket | Slice y resultado revisable | Refs | Depende | Tamaño |

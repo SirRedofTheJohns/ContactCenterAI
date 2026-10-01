@@ -8,6 +8,8 @@ The v0.10 Release baseline recorded **249 deterministic checks** across nine sui
 
 These checks use controlled clocks and injected failures. They do not prove a live Genesys tenant, end-to-end SQL Server composition, independent bilingual answer quality, or production load. GitHub Actions has a workflow for the same command; publication evidence records whether a remote run actually passed.
 
+The v0.11 channel extension adds 75 isolated checks; the current full regression passes 324. [Channel delivery](../progress/channels-v0.11.md) distinguishes fake provider HTTP from live acceptance. The first remote CI runner could not start because of an account/platform restriction; local success is not a remote CI pass.
+
 ## Answer quality
 
 | Evidence | Results | Interpretation |

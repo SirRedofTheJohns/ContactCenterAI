@@ -32,7 +32,7 @@ The useful part is what happens around the model: the server checks permissions,
 | Operations | Small local operations panel, sanitized traces and a recorded backup/restore exercise |
 | Delivery | Locked dependencies, a GitHub Actions workflow and 249 deterministic checks in the v0.10 baseline |
 
-WhatsApp and Telegram are the next channel extension. Their [architecture, contracts, risks and implementation gates](docs/integrations/channels.en.md) are documented before channel code. Live provider verification is a separate gate; a mock does not prove a real connection.
+WhatsApp and Telegram now have a separate C# host for public ES/EN questions and a simulated human queue. Their [architecture](docs/integrations/channels.en.md) was frozen before code. The extension has **75 local channel checks**; the full regression passes **324 checks**. Real accounts are not connected yet. [Create your bot and Meta test setup](docs/integrations/setup.en.md) · [Delivery evidence](docs/progress/channels-v0.11.md).
 
 ## What the measurements mean
 
@@ -46,6 +46,7 @@ The demo uses SQLite and plain JavaScript. SQL Server, Qdrant, Angular and a liv
 - [How the system works](docs/en/engineering-guide.md)
 - [What this demonstrates for an AI Agent Developer role](docs/en/portfolio.md)
 - [Messaging integration design](docs/integrations/channels.en.md)
+- [Connect Telegram and WhatsApp from scratch](docs/integrations/setup.en.md)
 - [Requirements, decisions and historical evidence](docs/README.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../ContactCenterAI.Application/ContactCenterAI.Application.csproj" />
+    <ProjectReference Include="../ContactCenterAI.Infrastructure/ContactCenterAI.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

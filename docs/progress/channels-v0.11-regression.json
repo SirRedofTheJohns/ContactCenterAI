@@ -1,0 +1,30 @@
+{
+  "version": "0.11",
+  "result": "PASS",
+  "evidence": "Local deterministic regression; no live provider or model quality claim",
+  "sdk": "10.0.401",
+  "build": {
+    "configuration": "Release",
+    "warnings": 0,
+    "errors": 0,
+    "lockedRestore": true
+  },
+  "checksPassed": 324,
+  "previousBaseline": 249,
+  "channelChecks": 75,
+  "simulatedEvaluation": {
+    "cases": 40,
+    "pairs": 20,
+    "failures": 0
+  },
+  "channelReport": "channels-v0.11-checks.json",
+  "launcherPreparation": {
+    "isolatedFixture": true,
+    "disabledByDefault": true,
+    "randomVerifyTokenGenerated": true,
+    "windowsConfigurationAclProtected": true
+  },
+  "historicalEvidenceFilesPreserved": 75,
+  "runtimeLogSha256": "6c2a4eb4ba1acf273e0788b48e94a5fdb401cfc32e7969d8a78135cf58bd957b",
+  "generatedAtUtc": "2026-10-01T20:59:30.9521270+00:00"
+}

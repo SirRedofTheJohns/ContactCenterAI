@@ -1,6 +1,6 @@
 #requires -Version 7.2
 [CmdletBinding()]
-param([string]$DotNetExe, [switch]$InitializeLocks)
+param([string]$DotNetExe, [switch]$InitializeLocks, [string]$ArtifactsDirectory = '.local/build-verification')
 $ErrorActionPreference = 'Stop'
 $taskRepo = Split-Path -Parent $PSScriptRoot
 $taskWorkspace = Split-Path -Parent (Split-Path -Parent $taskRepo)
@@ -24,7 +24,8 @@ try {
     }
     $taskExpectedSdk = (Get-Content -LiteralPath (Join-Path $taskRepo 'global.json') -Raw | ConvertFrom-Json).sdk.version
     if ((& $DotNetExe --version) -cne $taskExpectedSdk) { throw 'DEMO_SDK_MISMATCH' }
-    $taskArtifacts = Join-Path $taskRepo '.local/build-verification'
+    $taskArtifacts = [System.IO.Path]::GetFullPath((Join-Path $taskRepo $ArtifactsDirectory))
+    if (-not $taskArtifacts.StartsWith(([System.IO.Path]::GetFullPath((Join-Path $taskRepo '.local')) + [System.IO.Path]::DirectorySeparatorChar), [System.StringComparison]::OrdinalIgnoreCase)) { throw 'DEMO_ARTIFACTS_PATH_REJECTED' }
     $taskRestore = @('restore', (Join-Path $taskRepo 'ContactCenterAI.slnx'), '--artifacts-path', $taskArtifacts, '--configfile', (Join-Path $taskRepo 'NuGet.Config'))
     if ($InitializeLocks) { $taskRestore += '--force-evaluate' } else { $taskRestore += '--locked-mode' }
     $taskFeed = Join-Path $taskWorkspace 'work/nuget-feed'
@@ -33,7 +34,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_RESTORE_FAILED' }
     & $DotNetExe build (Join-Path $taskRepo 'ContactCenterAI.slnx') --artifacts-path $taskArtifacts --no-restore -c Release
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_BUILD_FAILED' }
-    foreach ($taskSuite in @('DemoChecks','IngressChecks','SourceChecks','WorkflowChecks','AssistantChecks','LocalAiChecks','RetrievalChecks','OperationsChecks')) {
+    foreach ($taskSuite in @('DemoChecks','IngressChecks','SourceChecks','WorkflowChecks','AssistantChecks','LocalAiChecks','RetrievalChecks','OperationsChecks','ChannelChecks')) {
         & $DotNetExe (Join-Path $taskArtifacts ('bin/ContactCenterAI.'+$taskSuite+'/release/ContactCenterAI.'+$taskSuite+'.dll')) $taskRepo
         if ($LASTEXITCODE -ne 0) { throw ('DEMO_CHECKS_FAILED: '+$taskSuite) }
     }

@@ -32,7 +32,7 @@ Lo interesante está alrededor del modelo: el servidor comprueba los permisos, p
 | Operación | Panel local sencillo, trazas sanitizadas y ensayo registrado de copia/restauración |
 | Entrega | Dependencias fijadas, GitHub Actions y 249 comprobaciones deterministas en la base v0.10 |
 
-WhatsApp y Telegram son la siguiente extensión. Su [arquitectura, contratos, riesgos y condiciones](docs/integrations/channels.es.md) se documentan antes del código. Validar el proveedor real es una comprobación aparte; un mock no demuestra esa conexión.
+WhatsApp y Telegram ya tienen un host C# separado para preguntas públicas ES/EN y cola humana simulada. Su [arquitectura](docs/integrations/channels.es.md) se cerró antes del código. Pasan **75 comprobaciones locales de canales** y **324 en la regresión completa**. Aún no hay cuentas reales conectadas. [Crear tu bot y los recursos de prueba de Meta](docs/integrations/setup.es.md) · [Estado y evidencia](docs/progress/channels-v0.11.md).
 
 ## Cómo leer los resultados
 
@@ -46,6 +46,7 @@ La demo usa SQLite y JavaScript sencillo. SQL Server, Qdrant, Angular y un tenan
 - [Entender piezas y flujos](docs/es/guia-ingenieria.md)
 - [Relacionarlo con una vacante de AI Agent Developer](docs/es/portafolio.md)
 - [Diseño de mensajería](docs/integrations/channels.es.md)
+- [Conectar Telegram y WhatsApp desde cero](docs/integrations/setup.es.md)
 - [Requisitos, decisiones e historial](docs/README.md)
 - [Avisos de terceros](THIRD_PARTY_NOTICES.md)
 
