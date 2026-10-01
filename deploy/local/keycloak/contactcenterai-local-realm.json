@@ -1,0 +1,273 @@
+{
+  "realm": "contactcenterai-local",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "loginWithEmailAllowed": false,
+  "duplicateEmailsAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 900,
+  "ssoSessionMaxLifespan": 3600,
+  "roles": {
+    "realm": [
+      {
+        "name": "Customer",
+        "description": "Synthetic local portfolio role"
+      },
+      {
+        "name": "Agent",
+        "description": "Synthetic local portfolio role"
+      },
+      {
+        "name": "Supervisor",
+        "description": "Synthetic local portfolio role"
+      },
+      {
+        "name": "KnowledgeEditor",
+        "description": "Synthetic local portfolio role"
+      },
+      {
+        "name": "KnowledgeReviewer",
+        "description": "Synthetic local portfolio role"
+      },
+      {
+        "name": "OperationsAdmin",
+        "description": "Synthetic local portfolio role"
+      }
+    ]
+  },
+  "clientScopes": [
+    {
+      "name": "ccai-roles",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "ccai_role",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "claim.name": "ccai_role",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "contactcenterai-bff",
+      "name": "Local BFF compatibility client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "${CCAI_BFF_CLIENT_SECRET}",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": false,
+      "redirectUris": [
+        "https://localhost:7443/signin-oidc",
+        "https://localhost:7451/signin-oidc",
+        "http://127.0.0.1:7452/signin-oidc"
+      ],
+      "webOrigins": [
+        "https://localhost:7443"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "https://localhost:7443/signout-callback-oidc"
+      },
+      "defaultClientScopes": [
+        "ccai-roles"
+      ],
+      "optionalClientScopes": []
+    }
+  ],
+  "scopeMappings": [
+    {
+      "client": "contactcenterai-bff",
+      "roles": [
+        "Customer",
+        "Agent",
+        "Supervisor",
+        "KnowledgeEditor",
+        "KnowledgeReviewer",
+        "OperationsAdmin"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "10000000-0000-0000-0000-000000000001",
+      "username": "customer-a",
+      "enabled": true,
+      "realmRoles": [
+        "Customer"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "customer-a",
+      "email": "customer-a@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000002",
+      "username": "customer-b",
+      "enabled": true,
+      "realmRoles": [
+        "Customer"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "customer-b",
+      "email": "customer-b@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000003",
+      "username": "agent-assigned",
+      "enabled": true,
+      "realmRoles": [
+        "Agent"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "agent-assigned",
+      "email": "agent-assigned@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000004",
+      "username": "agent-unassigned",
+      "enabled": true,
+      "realmRoles": [
+        "Agent"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "agent-unassigned",
+      "email": "agent-unassigned@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000005",
+      "username": "supervisor",
+      "enabled": true,
+      "realmRoles": [
+        "Supervisor"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "supervisor",
+      "email": "supervisor@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000006",
+      "username": "knowledge-editor",
+      "enabled": true,
+      "realmRoles": [
+        "KnowledgeEditor"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "knowledge-editor",
+      "email": "knowledge-editor@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000007",
+      "username": "knowledge-reviewer",
+      "enabled": true,
+      "realmRoles": [
+        "KnowledgeReviewer"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "knowledge-reviewer",
+      "email": "knowledge-reviewer@example.invalid",
+      "emailVerified": true
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000008",
+      "username": "operations-admin",
+      "enabled": true,
+      "realmRoles": [
+        "OperationsAdmin"
+      ],
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "${CCAI_SYNTHETIC_USER_PASSWORD}",
+          "temporary": false
+        }
+      ],
+      "firstName": "Demo",
+      "lastName": "operations-admin",
+      "email": "operations-admin@example.invalid",
+      "emailVerified": true
+    }
+  ]
+}

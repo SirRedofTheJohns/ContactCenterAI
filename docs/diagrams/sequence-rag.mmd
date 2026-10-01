@@ -1,0 +1,27 @@
+sequenceDiagram
+  actor Customer
+  participant API
+  participant Access
+  participant Knowledge
+  participant Qdrant
+  participant SQL
+  participant LLM
+  Customer->>API: Ask public or authorized policy question
+  API->>Access: Verify principal or public scope
+  Access-->>API: Server-derived tenant and ACL
+  API->>Knowledge: Query with permitted scope and language
+  Knowledge->>Qdrant: Filter tenant, publication and ACL, return IDs
+  Qdrant-->>Knowledge: Candidate version and chunk IDs
+  Knowledge->>SQL: Revalidate ACL, validity, active version, load text
+  SQL-->>Knowledge: Only authorized evidence and citation IDs
+  alt Adequate non-conflicting evidence
+    Knowledge-->>API: Evidence set and allowed citations
+    API->>LLM: Minimal prompt with evidence treated as data
+    LLM-->>API: Draft answer and citation IDs
+    API->>Knowledge: Check references and factual coverage
+    Knowledge-->>API: Validated answer or reject
+    API-->>Customer: Grounded answer or safe abstention
+  else Missing or conflicting evidence
+    API-->>Customer: Abstain and offer human handoff
+  end
+

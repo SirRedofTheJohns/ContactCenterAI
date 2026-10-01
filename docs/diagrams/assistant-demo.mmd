@@ -1,0 +1,17 @@
+flowchart TD
+  Chat[Mensaje sanitizado] --> Inbox[Inbox y TurnJob durable]
+  Inbox --> Orchestrator[Orquestador C# con deadline y lease]
+  Orchestrator --> Model[Proveedor de intención simulado]
+  Model --> Gateway[JSON cerrado y allowlist]
+  Gateway --> FAQ[Retrieval léxico con ACL y vigencia]
+  Gateway --> Read[Leer reservas propias]
+  Gateway --> Preview[Crear oferta sin ejecutar]
+  Gateway --> Handoff[Solicitud durable de humano]
+  FAQ --> Cites[Citas revalidadas]
+  Read --> SafeResult[Hechos y plantilla ES o EN]
+  Preview --> SafeResult
+  Cites --> SafeResult
+  SafeResult --> Publish[Persistir solo con epoch y ownership actuales]
+  Handoff --> Adapter[Adapter neutral y mock con acknowledgment]
+  Adapter --> Human[HumanOwned y asignación local]
+  Human --> Context[Contexto desde ledger para agente autorizado]

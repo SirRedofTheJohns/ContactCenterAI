@@ -1,0 +1,60 @@
+{
+  "result": "PASS",
+  "metrics": {
+    "es": {
+      "success": 20,
+      "total": 20,
+      "rate": 1.0,
+      "wilson95": [
+        0.8389,
+        1.0
+      ]
+    },
+    "en": {
+      "success": 20,
+      "total": 20,
+      "rate": 1.0,
+      "wilson95": [
+        0.8389,
+        1.0
+      ]
+    }
+  },
+  "pairedSemantics": {
+    "success": 20,
+    "total": 20
+  },
+  "failures": [],
+  "deterministicChecks": [
+    {
+      "artifact": "demo-storage-evidence.json",
+      "passed": 17,
+      "hash": "70c1386a4e3aa6be5611d6cf7daf12f511286f3a7ce996e8150fd35403e198b8"
+    },
+    {
+      "artifact": "b03-b04-ingress-evidence.json",
+      "passed": 33,
+      "hash": "9bf60c2d3900254883a5592f0f34be71dccbe47184c01252a979e759dbfd830f"
+    },
+    {
+      "artifact": "b05-source-evidence.json",
+      "passed": 22,
+      "hash": "dce654c13834c8598c19c40188e5fcb5711c6cdfc4f0ce40a9351c3b7b541797"
+    },
+    {
+      "artifact": "b06-b07-evidence.json",
+      "passed": 25,
+      "hash": "ef2615f76c18d3fa35e77d9e8de62dce7ebff28471018dfd3609452dcbb584ac"
+    },
+    {
+      "artifact": "b08-b12-evidence.json",
+      "passed": 36,
+      "hash": "d673ea6625b4911237350256200844ae17b008d02a8785360e144219c20f52f1"
+    }
+  ],
+  "limitations": [
+    "Small public dataset maintained by one developer.",
+    "Scores measure a deterministic intent simulator, not LLM linguistic quality.",
+    "No claims of cloud latency, token cost, production safety certification or enterprise 200-case holdout."
+  ]
+}

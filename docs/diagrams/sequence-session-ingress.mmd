@@ -1,0 +1,25 @@
+sequenceDiagram
+  actor Customer
+  participant BFF
+  participant IdP
+  participant SQL
+  Customer->>BFF: HTTPS GET CSRF bootstrap
+  BFF-->>Customer: Antiforgery token and secure cookie
+  Customer->>BFF: POST anonymous session with Origin and CSRF
+  BFF->>SQL: Persist opaque guest session
+  BFF-->>Customer: HttpOnly Secure session cookie
+  Customer->>BFF: POST login with Origin and CSRF
+  BFF->>IdP: Authorization Code and PKCE S256
+  IdP-->>BFF: Validated callback with state and nonce
+  BFF->>SQL: Bind trusted issuer and subject; rotate session; adopt owned guest conversations
+  BFF-->>Customer: New cookie; no saved tokens
+  Customer->>BFF: POST conversation with new CSRF and idempotency key
+  BFF->>SQL: Revalidate active session and binding
+  BFF->>SQL: SERIALIZABLE conversation plus idempotency plus audit
+  SQL-->>BFF: Committed conversation ID
+  BFF-->>Customer: 201 and version
+  Customer->>BFF: POST message with If-Match and clientMessageId
+  BFF->>SQL: Revalidate owner or active assignment; deduplicate
+  BFF->>SQL: Commit sanitized message plus Pending inbox plus audit
+  SQL-->>BFF: Committed receipt
+  BFF-->>Customer: 202 Pending; no business success

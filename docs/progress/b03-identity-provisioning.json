@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T00:40:00.300182+00:00",
+  "exactProductCallback": "https://localhost:7451/signin-oidc",
+  "diagnosticCallbackPreserved": true,
+  "confidentialClient": true,
+  "directAccessGrant": false,
+  "pkce": "S256",
+  "wildcardRedirect": false,
+  "scope": "Local IdP client provisioning only; not product login roundtrip"
+}

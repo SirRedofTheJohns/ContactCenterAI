@@ -1,0 +1,207 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI private synthetic source",
+    "version": "0.3.0",
+    "description": "ADR-015: service-authenticated loopback only. Source clock/ownership/version/policy and persistent command receipts; not a public LLM tool."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:7453"
+    }
+  ],
+  "security": [
+    {
+      "ServiceKey": [],
+      "ServerMember": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ServiceKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Service-Key"
+      },
+      "ServerMember": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Member-Ref",
+        "description": "Delegated member from trusted middleware binding, not user input"
+      }
+    }
+  },
+  "paths": {
+    "/source/reservations": {
+      "get": {
+        "operationId": "sourceListReservations",
+        "responses": {
+          "200": {
+            "description": "Authoritative source result"
+          },
+          "401": {
+            "description": "Service credential required"
+          },
+          "403": {
+            "description": "Member context or Host rejected"
+          },
+          "404": {
+            "description": "Resource absent or foreign"
+          },
+          "409": {
+            "description": "Payload/version/policy conflict"
+          },
+          "422": {
+            "description": "Outside CP-001 policy"
+          },
+          "503": {
+            "description": "Source unavailable"
+          }
+        }
+      }
+    },
+    "/source/reservations/{reservationId}": {
+      "get": {
+        "operationId": "sourceReadReservation",
+        "responses": {
+          "200": {
+            "description": "Authoritative source result"
+          },
+          "401": {
+            "description": "Service credential required"
+          },
+          "403": {
+            "description": "Member context or Host rejected"
+          },
+          "404": {
+            "description": "Resource absent or foreign"
+          },
+          "409": {
+            "description": "Payload/version/policy conflict"
+          },
+          "422": {
+            "description": "Outside CP-001 policy"
+          },
+          "503": {
+            "description": "Source unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/source/commands/cancel": {
+      "post": {
+        "operationId": "sourceCancelInternal",
+        "responses": {
+          "200": {
+            "description": "Authoritative source result"
+          },
+          "401": {
+            "description": "Service credential required"
+          },
+          "403": {
+            "description": "Member context or Host rejected"
+          },
+          "404": {
+            "description": "Resource absent or foreign"
+          },
+          "409": {
+            "description": "Payload/version/policy conflict"
+          },
+          "422": {
+            "description": "Outside CP-001 policy"
+          },
+          "503": {
+            "description": "Source unavailable"
+          },
+          "400": {
+            "description": "Closed/invalid DTO; caller eligibility/clock not accepted"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "commandId",
+                  "reservationId",
+                  "expectedReservationVersion",
+                  "policyVersion"
+                ],
+                "properties": {
+                  "commandId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "reservationId": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "expectedReservationVersion": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "policyVersion": {
+                    "type": "string",
+                    "const": "CP-001:v1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Internal service only; never called by product UI in B05. Transition and Completed receipt committed atomically; replay checks hash before current version/clock revalidation."
+      }
+    },
+    "/source/commands/{commandId}": {
+      "get": {
+        "operationId": "sourceReadReceipt",
+        "responses": {
+          "200": {
+            "description": "Authoritative source result"
+          },
+          "401": {
+            "description": "Service credential required"
+          },
+          "403": {
+            "description": "Member context or Host rejected"
+          },
+          "404": {
+            "description": "Resource absent or foreign"
+          },
+          "409": {
+            "description": "Payload/version/policy conflict"
+          },
+          "422": {
+            "description": "Outside CP-001 policy"
+          },
+          "503": {
+            "description": "Source unavailable"
+          }
+        },
+        "parameters": [
+          {
+            "name": "commandId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

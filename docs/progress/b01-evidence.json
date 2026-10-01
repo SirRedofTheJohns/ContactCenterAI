@@ -1,0 +1,113 @@
+{
+  "date": "2026-09-30",
+  "ticket": "B01",
+  "state": "Closed",
+  "architectureFreeze": "ClosedV0.1",
+  "b02Ready": true,
+  "userDockerEvidence": {
+    "source": "User supplied PowerShell docker version",
+    "engine": "27.4.0",
+    "api": "1.47",
+    "context": "desktop-linux",
+    "serverPlatform": "linux/amd64",
+    "agentAccess": "StillDenied"
+  },
+  "sdk": "10.0.401",
+  "runtime": "10.0.12",
+  "build": {
+    "configuration": "Release",
+    "warnings": 0,
+    "errors": 0,
+    "result": "PASS"
+  },
+  "offlineCompatibility": {
+    "passed": 12,
+    "failed": 0,
+    "scope": "Diagnostic library/configuration and ephemeral JWT checks"
+  },
+  "composeConfig": "PASS",
+  "nugetDependencies": {
+    "resolved": 17,
+    "knownAdvisoryMatches": 0,
+    "source": "b01-dependencies.json",
+    "containerLayersScanned": false
+  },
+  "sqlConnection": {
+    "result": "PASS",
+    "source": "User supplied Continue-B01.cmd -CheckOnly -CompareSqlNetworking output",
+    "networking": "NativeDefault",
+    "encrypt": "Mandatory",
+    "endpoint": "127.0.0.1:14333",
+    "serverVersionAssertion": "16.x",
+    "editionAssertion": "Developer",
+    "exactPatchVersionRecorded": false
+  },
+  "sqlTcpIpv4": "AgentObservedReachable127.0.0.1:14333",
+  "keycloakImport": "Verified: two synthetic users authenticated with distinct expected subjects and Customer role",
+  "keycloakDiscovery": "PASS: exact issuer, S256 and fixed local RSA JWKS; user terminal evidence",
+  "interactiveLogin": {
+    "state": "PASS",
+    "requiredAccounts": [
+      "customer-a",
+      "customer-b"
+    ],
+    "helper": "eng/Start-B01Login.cmd",
+    "helperBuild": "PASS",
+    "expectedReport": "docs/progress/b01-login-evidence.json",
+    "reportExists": true,
+    "productAuthorizationTested": false,
+    "lastUserAttempt": "Agent completed both browser logins on existing user-started diagnostic",
+    "diagnosticRecord": "b01-https-diagnostic.json",
+    "correctedRealUserHttps": "PASS: latest user supplied terminal output",
+    "httpsPreflight": "PASS: validated HTTPS, anonymous proof denied with HTTP 401",
+    "currentAttemptCleanup": "Diagnostic stopped; original-profile certificate removal unverified",
+    "passwordRecoveryHelper": "eng/Copy-B01Password.cmd",
+    "source": "Agent-operated in-app browser; real local Keycloak and ASP.NET OIDC middleware",
+    "runId": "c8552a68-7d24-4c2f-bdf0-4c615a10aae6",
+    "verifiedAccounts": [
+      "customer-a",
+      "customer-b"
+    ]
+  },
+  "productImplementation": "B02FoundationVerified; no business handlers",
+  "liveGenesys": "NotExecuted",
+  "liveConnectivity": {
+    "result": "PASS",
+    "passed": 7,
+    "failed": 0,
+    "source": "User terminal output supplied on 2026-09-30",
+    "checks": [
+      "SQL Server 2022 Developer",
+      "OIDC HTTP 200",
+      "Exact issuer",
+      "PKCE S256",
+      "JWKS URL restricted to fixed issuer",
+      "Signing keys available",
+      "RSA signing key available"
+    ]
+  },
+  "agentRestrictions": {
+    "scope": "Previous restricted agent observations; not the user terminal result",
+    "dockerPipeAccess": "Denied",
+    "nativeSql": {
+      "phase": "SQL_CONNECT",
+      "number": 20,
+      "diagnostic": "CLIENT_ENCRYPTION_UNAVAILABLE"
+    },
+    "managedSqlDebugOnly": {
+      "phase": "SQL_CONNECT",
+      "nativeWin32Hex": "0x8009030E",
+      "diagnostic": "PRELOGIN_HANDSHAKE_FAILED"
+    },
+    "diagnosticHttps": "Previous listener started then stopped after TLS handshake failure"
+  },
+  "operationalCleanup": {
+    "userTerminalClosed": true,
+    "diagnosticShutdown": "Agent requested graceful shutdown using this run's workspace marker; TCP 7443 absent afterwards",
+    "certificateTrustRemoval": "Unverified: original terminal closed; restricted shell cannot inspect the desktop user's trust store",
+    "privateKeyDisposal": "Normal shutdown requested; temporary key deletion follows X509Certificate2 disposal; physical container deletion not audited",
+    "remainingNote": "Exact public localhost certificate removal requires the original Windows profile; maintenance note, not a failed compatibility check"
+  },
+  "b01Closed": true,
+  "b02ReadinessScope": "Foundation only; see B02 DoR before handlers"
+}

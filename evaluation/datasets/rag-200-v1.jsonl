@@ -1,0 +1,200 @@
+{"id": "rag-001-es", "pairId": "rag-001", "split": "dev", "language": "es", "text": "¿Qué requisitos tiene cancelar sin penalidad?", "actor": "customer", "goldDocument": "KB-CANCELLATION-ES"}
+{"id": "rag-001-en", "pairId": "rag-001", "split": "dev", "language": "en", "text": "What are the requirements for cancellation without penalty?", "actor": "customer", "goldDocument": "KB-CANCELLATION-EN"}
+{"id": "rag-002-es", "pairId": "rag-002", "split": "holdout", "language": "es", "text": "¿Qué establece CP-001?", "actor": "customer", "goldDocument": "KB-CANCELLATION-ES"}
+{"id": "rag-002-en", "pairId": "rag-002", "split": "holdout", "language": "en", "text": "What does CP-001 say?", "actor": "customer", "goldDocument": "KB-CANCELLATION-EN"}
+{"id": "rag-003-es", "pairId": "rag-003", "split": "dev", "language": "es", "text": "¿Cuáles son los servicios generales de la propiedad?", "actor": "customer", "goldDocument": "KB-SERVICES-ES"}
+{"id": "rag-003-en", "pairId": "rag-003", "split": "dev", "language": "en", "text": "What are the general property services?", "actor": "customer", "goldDocument": "KB-SERVICES-EN"}
+{"id": "rag-004-es", "pairId": "rag-004", "split": "holdout", "language": "es", "text": "¿Qué hora es el check-in y checkout normal?", "actor": "customer", "goldDocument": "KB-SERVICES-ES"}
+{"id": "rag-004-en", "pairId": "rag-004", "split": "holdout", "language": "en", "text": "What are the regular check-in and checkout times?", "actor": "customer", "goldDocument": "KB-SERVICES-EN"}
+{"id": "rag-005-es", "pairId": "rag-005", "split": "dev", "language": "es", "text": "¿Escribir otro miembro cambia mi acceso?", "actor": "customer", "goldDocument": "KB-IDENTITY-ES"}
+{"id": "rag-005-en", "pairId": "rag-005", "split": "dev", "language": "en", "text": "Does typing another member change my access?", "actor": "customer", "goldDocument": "KB-IDENTITY-EN"}
+{"id": "rag-006-es", "pairId": "rag-006", "split": "holdout", "language": "es", "text": "¿Cómo se comprueba mi identidad para reservas?", "actor": "customer", "goldDocument": "KB-IDENTITY-ES"}
+{"id": "rag-006-en", "pairId": "rag-006", "split": "holdout", "language": "en", "text": "How is my identity verified for bookings?", "actor": "customer", "goldDocument": "KB-IDENTITY-EN"}
+{"id": "rag-007-es", "pairId": "rag-007", "split": "dev", "language": "es", "text": "¿Aceptan números de tarjeta en la demo?", "actor": "customer", "goldDocument": "KB-PAYMENTS-ES"}
+{"id": "rag-007-en", "pairId": "rag-007", "split": "dev", "language": "en", "text": "Are card numbers accepted in this demo?", "actor": "customer", "goldDocument": "KB-PAYMENTS-EN"}
+{"id": "rag-008-es", "pairId": "rag-008", "split": "holdout", "language": "es", "text": "¿Procesan pagos y reembolsos?", "actor": "customer", "goldDocument": "KB-PAYMENTS-ES"}
+{"id": "rag-008-en", "pairId": "rag-008", "split": "holdout", "language": "en", "text": "Do you process payments and refunds?", "actor": "customer", "goldDocument": "KB-PAYMENTS-EN"}
+{"id": "rag-009-es", "pairId": "rag-009", "split": "dev", "language": "es", "text": "¿Cómo reconcilia un agente una operación desconocida?", "actor": "assigned-agent", "goldDocument": "KB-AGENT-ES"}
+{"id": "rag-009-en", "pairId": "rag-009", "split": "dev", "language": "en", "text": "How does an agent reconcile an unknown operation?", "actor": "assigned-agent", "goldDocument": "KB-AGENT-EN"}
+{"id": "rag-010-es", "pairId": "rag-010", "split": "holdout", "language": "es", "text": "¿Puede un agente reenviar un comando con ID nuevo?", "actor": "assigned-agent", "goldDocument": "KB-AGENT-ES"}
+{"id": "rag-010-en", "pairId": "rag-010", "split": "holdout", "language": "en", "text": "Can an agent resubmit a command with a new ID?", "actor": "assigned-agent", "goldDocument": "KB-AGENT-EN"}
+{"id": "rag-011-es", "pairId": "rag-011", "split": "dev", "language": "es", "text": "¿A qué hora puedo nadar?", "actor": "customer", "goldDocument": "KB-POOL-ES"}
+{"id": "rag-011-en", "pairId": "rag-011", "split": "dev", "language": "en", "text": "When can I swim?", "actor": "customer", "goldDocument": "KB-POOL-EN"}
+{"id": "rag-012-es", "pairId": "rag-012", "split": "holdout", "language": "es", "text": "¿Cuál es el horario de la piscina?", "actor": "customer", "goldDocument": "KB-POOL-ES"}
+{"id": "rag-012-en", "pairId": "rag-012", "split": "holdout", "language": "en", "text": "What are the swimming pool hours?", "actor": "customer", "goldDocument": "KB-POOL-EN"}
+{"id": "rag-013-es", "pairId": "rag-013", "split": "dev", "language": "es", "text": "¿Dónde dejo mi carro sin pagar?", "actor": "customer", "goldDocument": "KB-PARKING-ES"}
+{"id": "rag-013-en", "pairId": "rag-013", "split": "dev", "language": "en", "text": "Where can I leave my car for free?", "actor": "customer", "goldDocument": "KB-PARKING-EN"}
+{"id": "rag-014-es", "pairId": "rag-014", "split": "holdout", "language": "es", "text": "¿Ofrecen valet en el parking?", "actor": "customer", "goldDocument": "KB-PARKING-ES"}
+{"id": "rag-014-en", "pairId": "rag-014", "split": "holdout", "language": "en", "text": "Is valet available in the parking area?", "actor": "customer", "goldDocument": "KB-PARKING-EN"}
+{"id": "rag-015-es", "pairId": "rag-015", "split": "dev", "language": "es", "text": "¿Puedo alojarme con mi perrito?", "actor": "customer", "goldDocument": "KB-PETS-ES"}
+{"id": "rag-015-en", "pairId": "rag-015", "split": "dev", "language": "en", "text": "Can I stay with my small dog?", "actor": "customer", "goldDocument": "KB-PETS-EN"}
+{"id": "rag-016-es", "pairId": "rag-016", "split": "holdout", "language": "es", "text": "¿Qué tamaño de perro admiten?", "actor": "customer", "goldDocument": "KB-PETS-ES"}
+{"id": "rag-016-en", "pairId": "rag-016", "split": "holdout", "language": "en", "text": "What size dogs are accepted?", "actor": "customer", "goldDocument": "KB-PETS-EN"}
+{"id": "rag-017-es", "pairId": "rag-017", "split": "dev", "language": "es", "text": "Necesito un cuarto accesible para silla de ruedas", "actor": "customer", "goldDocument": "KB-ACCESSIBILITY-ES"}
+{"id": "rag-017-en", "pairId": "rag-017", "split": "dev", "language": "en", "text": "I need a room accessible by wheelchair", "actor": "customer", "goldDocument": "KB-ACCESSIBILITY-EN"}
+{"id": "rag-018-es", "pairId": "rag-018", "split": "holdout", "language": "es", "text": "¿Tienen habitaciones con baño adaptado?", "actor": "customer", "goldDocument": "KB-ACCESSIBILITY-ES"}
+{"id": "rag-018-en", "pairId": "rag-018", "split": "holdout", "language": "en", "text": "Do you have rooms with adapted bathrooms?", "actor": "customer", "goldDocument": "KB-ACCESSIBILITY-EN"}
+{"id": "rag-019-es", "pairId": "rag-019", "split": "dev", "language": "es", "text": "¿Hasta cuándo sirven la comida de la mañana?", "actor": "customer", "goldDocument": "KB-BREAKFAST-ES"}
+{"id": "rag-019-en", "pairId": "rag-019", "split": "dev", "language": "en", "text": "How late is the morning meal served?", "actor": "customer", "goldDocument": "KB-BREAKFAST-EN"}
+{"id": "rag-020-es", "pairId": "rag-020", "split": "holdout", "language": "es", "text": "¿Dónde desayunamos y a qué hora?", "actor": "customer", "goldDocument": "KB-BREAKFAST-ES"}
+{"id": "rag-020-en", "pairId": "rag-020", "split": "holdout", "language": "en", "text": "Where and when can we have breakfast?", "actor": "customer", "goldDocument": "KB-BREAKFAST-EN"}
+{"id": "rag-021-es", "pairId": "rag-021", "split": "dev", "language": "es", "text": "¿Cómo me conecto a internet?", "actor": "customer", "goldDocument": "KB-WIFI-ES"}
+{"id": "rag-021-en", "pairId": "rag-021", "split": "dev", "language": "en", "text": "How do I connect to the internet?", "actor": "customer", "goldDocument": "KB-WIFI-EN"}
+{"id": "rag-022-es", "pairId": "rag-022", "split": "holdout", "language": "es", "text": "¿Cuál es el nombre de la red Wi-Fi?", "actor": "customer", "goldDocument": "KB-WIFI-ES"}
+{"id": "rag-022-en", "pairId": "rag-022", "split": "holdout", "language": "en", "text": "What is the Wi-Fi network name?", "actor": "customer", "goldDocument": "KB-WIFI-EN"}
+{"id": "rag-023-es", "pairId": "rag-023", "split": "dev", "language": "es", "text": "¿Me recogen al aterrizar?", "actor": "customer", "goldDocument": "KB-AIRPORT-ES"}
+{"id": "rag-023-en", "pairId": "rag-023", "split": "dev", "language": "en", "text": "Can you pick me up after I land?", "actor": "customer", "goldDocument": "KB-AIRPORT-EN"}
+{"id": "rag-024-es", "pairId": "rag-024", "split": "holdout", "language": "es", "text": "¿Hay transporte propio desde el aeropuerto?", "actor": "customer", "goldDocument": "KB-AIRPORT-ES"}
+{"id": "rag-024-en", "pairId": "rag-024", "split": "holdout", "language": "en", "text": "Is there a hotel airport shuttle?", "actor": "customer", "goldDocument": "KB-AIRPORT-EN"}
+{"id": "rag-025-es", "pairId": "rag-025", "split": "dev", "language": "es", "text": "¿Puedo dejar mis maletas después de salir?", "actor": "customer", "goldDocument": "KB-LUGGAGE-ES"}
+{"id": "rag-025-en", "pairId": "rag-025", "split": "dev", "language": "en", "text": "Can I leave my bags after checkout?", "actor": "customer", "goldDocument": "KB-LUGGAGE-EN"}
+{"id": "rag-026-es", "pairId": "rag-026", "split": "holdout", "language": "es", "text": "¿Hasta qué hora guardan equipaje?", "actor": "customer", "goldDocument": "KB-LUGGAGE-ES"}
+{"id": "rag-026-en", "pairId": "rag-026", "split": "holdout", "language": "en", "text": "How late can luggage be stored?", "actor": "customer", "goldDocument": "KB-LUGGAGE-EN"}
+{"id": "rag-027-es", "pairId": "rag-027", "split": "dev", "language": "es", "text": "¿Puedo entregar el cuarto más tarde?", "actor": "customer", "goldDocument": "KB-LATE-CHECKOUT-ES"}
+{"id": "rag-027-en", "pairId": "rag-027", "split": "dev", "language": "en", "text": "Can I return the room later?", "actor": "customer", "goldDocument": "KB-LATE-CHECKOUT-EN"}
+{"id": "rag-028-es", "pairId": "rag-028", "split": "holdout", "language": "es", "text": "¿La salida tardía está garantizada?", "actor": "customer", "goldDocument": "KB-LATE-CHECKOUT-ES"}
+{"id": "rag-028-en", "pairId": "rag-028", "split": "holdout", "language": "en", "text": "Is late checkout guaranteed?", "actor": "customer", "goldDocument": "KB-LATE-CHECKOUT-EN"}
+{"id": "rag-029-es", "pairId": "rag-029", "split": "dev", "language": "es", "text": "¿Me dan habitación si llego temprano?", "actor": "customer", "goldDocument": "KB-EARLY-CHECKIN-ES"}
+{"id": "rag-029-en", "pairId": "rag-029", "split": "dev", "language": "en", "text": "Can I get a room if I arrive early?", "actor": "customer", "goldDocument": "KB-EARLY-CHECKIN-EN"}
+{"id": "rag-030-es", "pairId": "rag-030", "split": "holdout", "language": "es", "text": "¿Puedo entrar antes de las tres de la tarde?", "actor": "customer", "goldDocument": "KB-EARLY-CHECKIN-ES"}
+{"id": "rag-030-en", "pairId": "rag-030", "split": "holdout", "language": "en", "text": "Can I check in before three in the afternoon?", "actor": "customer", "goldDocument": "KB-EARLY-CHECKIN-EN"}
+{"id": "rag-031-es", "pairId": "rag-031", "split": "dev", "language": "es", "text": "¿Se permite fumar dentro del cuarto?", "actor": "customer", "goldDocument": "KB-SMOKING-ES"}
+{"id": "rag-031-en", "pairId": "rag-031", "split": "dev", "language": "en", "text": "May I smoke inside my room?", "actor": "customer", "goldDocument": "KB-SMOKING-EN"}
+{"id": "rag-032-es", "pairId": "rag-032", "split": "holdout", "language": "es", "text": "¿Dónde está el área para fumadores?", "actor": "customer", "goldDocument": "KB-SMOKING-ES"}
+{"id": "rag-032-en", "pairId": "rag-032", "split": "holdout", "language": "en", "text": "Where is the smoking area?", "actor": "customer", "goldDocument": "KB-SMOKING-EN"}
+{"id": "rag-033-es", "pairId": "rag-033", "split": "dev", "language": "es", "text": "¿Dónde puedo lavar mi ropa?", "actor": "customer", "goldDocument": "KB-LAUNDRY-ES"}
+{"id": "rag-033-en", "pairId": "rag-033", "split": "dev", "language": "en", "text": "Where can I have my clothes washed?", "actor": "customer", "goldDocument": "KB-LAUNDRY-EN"}
+{"id": "rag-034-es", "pairId": "rag-034", "split": "holdout", "language": "es", "text": "¿Qué horario tiene la lavandería?", "actor": "customer", "goldDocument": "KB-LAUNDRY-ES"}
+{"id": "rag-034-en", "pairId": "rag-034", "split": "holdout", "language": "en", "text": "What are the laundry service hours?", "actor": "customer", "goldDocument": "KB-LAUNDRY-EN"}
+{"id": "rag-035-es", "pairId": "rag-035", "split": "dev", "language": "es", "text": "¿Cuándo puedo entrenar con pesas?", "actor": "customer", "goldDocument": "KB-GYM-ES"}
+{"id": "rag-035-en", "pairId": "rag-035", "split": "dev", "language": "en", "text": "When can I work out with weights?", "actor": "customer", "goldDocument": "KB-GYM-EN"}
+{"id": "rag-036-es", "pairId": "rag-036", "split": "holdout", "language": "es", "text": "¿Qué horario tiene el gimnasio?", "actor": "customer", "goldDocument": "KB-GYM-ES"}
+{"id": "rag-036-en", "pairId": "rag-036", "split": "holdout", "language": "en", "text": "What are the gym opening hours?", "actor": "customer", "goldDocument": "KB-GYM-EN"}
+{"id": "rag-037-es", "pairId": "rag-037", "split": "dev", "language": "es", "text": "¿A qué hora debemos bajar la música?", "actor": "customer", "goldDocument": "KB-QUIET-ES"}
+{"id": "rag-037-en", "pairId": "rag-037", "split": "dev", "language": "en", "text": "When should we turn down the music?", "actor": "customer", "goldDocument": "KB-QUIET-EN"}
+{"id": "rag-038-es", "pairId": "rag-038", "split": "holdout", "language": "es", "text": "¿Cuándo empieza el horario de silencio?", "actor": "customer", "goldDocument": "KB-QUIET-ES"}
+{"id": "rag-038-en", "pairId": "rag-038", "split": "holdout", "language": "en", "text": "When do quiet hours start?", "actor": "customer", "goldDocument": "KB-QUIET-EN"}
+{"id": "rag-039-es", "pairId": "rag-039", "split": "dev", "language": "es", "text": "Dejé mi sombrero, ¿cómo lo reporto?", "actor": "customer", "goldDocument": "KB-LOST-ITEMS-ES"}
+{"id": "rag-039-en", "pairId": "rag-039", "split": "dev", "language": "en", "text": "I left my hat behind; how do I report it?", "actor": "customer", "goldDocument": "KB-LOST-ITEMS-EN"}
+{"id": "rag-040-es", "pairId": "rag-040", "split": "holdout", "language": "es", "text": "¿Con quién consulto un objeto perdido?", "actor": "customer", "goldDocument": "KB-LOST-ITEMS-ES"}
+{"id": "rag-040-en", "pairId": "rag-040", "split": "holdout", "language": "en", "text": "Who can help with a lost item?", "actor": "customer", "goldDocument": "KB-LOST-ITEMS-EN"}
+{"id": "rag-041-es", "pairId": "rag-041", "split": "dev", "language": "es", "text": "Soy alérgico a frutos secos, ¿a quién aviso?", "actor": "customer", "goldDocument": "KB-FOOD-ALLERGY-ES"}
+{"id": "rag-041-en", "pairId": "rag-041", "split": "dev", "language": "en", "text": "I am allergic to nuts; who should I tell?", "actor": "customer", "goldDocument": "KB-FOOD-ALLERGY-EN"}
+{"id": "rag-042-es", "pairId": "rag-042", "split": "holdout", "language": "es", "text": "¿Garantizan comida sin alérgenos?", "actor": "customer", "goldDocument": "KB-FOOD-ALLERGY-ES"}
+{"id": "rag-042-en", "pairId": "rag-042", "split": "holdout", "language": "en", "text": "Is allergen-free food guaranteed?", "actor": "customer", "goldDocument": "KB-FOOD-ALLERGY-EN"}
+{"id": "rag-043-es", "pairId": "rag-043", "split": "dev", "language": "es", "text": "¿Cómo solicito una cuna para mi bebé?", "actor": "customer", "goldDocument": "KB-CRIB-ES"}
+{"id": "rag-043-en", "pairId": "rag-043", "split": "dev", "language": "en", "text": "How do I request a cot for my baby?", "actor": "customer", "goldDocument": "KB-CRIB-EN"}
+{"id": "rag-044-es", "pairId": "rag-044", "split": "holdout", "language": "es", "text": "¿Garantizan una cuna en la habitación?", "actor": "customer", "goldDocument": "KB-CRIB-ES"}
+{"id": "rag-044-en", "pairId": "rag-044", "split": "holdout", "language": "en", "text": "Is a baby cot guaranteed in the room?", "actor": "customer", "goldDocument": "KB-CRIB-EN"}
+{"id": "rag-045-es", "pairId": "rag-045", "split": "dev", "language": "es", "text": "¿Cuándo limpian el cuarto?", "actor": "customer", "goldDocument": "KB-HOUSEKEEPING-ES"}
+{"id": "rag-045-en", "pairId": "rag-045", "split": "dev", "language": "en", "text": "When is my room cleaned?", "actor": "customer", "goldDocument": "KB-HOUSEKEEPING-EN"}
+{"id": "rag-046-es", "pairId": "rag-046", "split": "holdout", "language": "es", "text": "¿Cómo evito que entren a limpiar?", "actor": "customer", "goldDocument": "KB-HOUSEKEEPING-ES"}
+{"id": "rag-046-en", "pairId": "rag-046", "split": "holdout", "language": "en", "text": "How can I stop housekeeping from entering?", "actor": "customer", "goldDocument": "KB-HOUSEKEEPING-EN"}
+{"id": "rag-047-es", "pairId": "rag-047", "split": "dev", "language": "es", "text": "¿Dónde lleno mi botella de agua?", "actor": "customer", "goldDocument": "KB-WATER-ES"}
+{"id": "rag-047-en", "pairId": "rag-047", "split": "dev", "language": "en", "text": "Where can I fill my water bottle?", "actor": "customer", "goldDocument": "KB-WATER-EN"}
+{"id": "rag-048-es", "pairId": "rag-048", "split": "holdout", "language": "es", "text": "¿Dónde están los dispensadores de agua potable?", "actor": "customer", "goldDocument": "KB-WATER-ES"}
+{"id": "rag-048-en", "pairId": "rag-048", "split": "holdout", "language": "en", "text": "Where are the drinking water dispensers?", "actor": "customer", "goldDocument": "KB-WATER-EN"}
+{"id": "rag-049-es", "pairId": "rag-049", "split": "dev", "language": "es", "text": "¿A qué hora podemos cenar?", "actor": "customer", "goldDocument": "KB-RESTAURANT-ES"}
+{"id": "rag-049-en", "pairId": "rag-049", "split": "dev", "language": "en", "text": "What time can we have dinner?", "actor": "customer", "goldDocument": "KB-RESTAURANT-EN"}
+{"id": "rag-050-es", "pairId": "rag-050", "split": "holdout", "language": "es", "text": "¿Qué horario tiene el almuerzo?", "actor": "customer", "goldDocument": "KB-RESTAURANT-ES"}
+{"id": "rag-050-en", "pairId": "rag-050", "split": "holdout", "language": "en", "text": "What are the lunch service hours?", "actor": "customer", "goldDocument": "KB-RESTAURANT-EN"}
+{"id": "rag-051-es", "pairId": "rag-051", "split": "holdout", "language": "es", "text": "¿Tenemos playa privada?", "actor": "customer", "goldDocument": "KB-BEACH-ES"}
+{"id": "rag-051-en", "pairId": "rag-051", "split": "holdout", "language": "en", "text": "Do we have a private beach?", "actor": "customer", "goldDocument": "KB-BEACH-EN"}
+{"id": "rag-052-es", "pairId": "rag-052", "split": "holdout", "language": "es", "text": "¿Cuánto se camina hasta la playa?", "actor": "customer", "goldDocument": "KB-BEACH-ES"}
+{"id": "rag-052-en", "pairId": "rag-052", "split": "holdout", "language": "en", "text": "How far is the beach on foot?", "actor": "customer", "goldDocument": "KB-BEACH-EN"}
+{"id": "rag-053-es", "pairId": "rag-053", "split": "holdout", "language": "es", "text": "¿Dónde consigo una toalla para nadar?", "actor": "customer", "goldDocument": "KB-TOWELS-ES"}
+{"id": "rag-053-en", "pairId": "rag-053", "split": "holdout", "language": "en", "text": "Where can I get a towel for swimming?", "actor": "customer", "goldDocument": "KB-TOWELS-EN"}
+{"id": "rag-054-es", "pairId": "rag-054", "split": "holdout", "language": "es", "text": "¿Dónde devuelvo las toallas de piscina?", "actor": "customer", "goldDocument": "KB-TOWELS-ES"}
+{"id": "rag-054-en", "pairId": "rag-054", "split": "holdout", "language": "en", "text": "Where do I return pool towels?", "actor": "customer", "goldDocument": "KB-TOWELS-EN"}
+{"id": "rag-055-es", "pairId": "rag-055", "split": "holdout", "language": "es", "text": "¿Recepción atiende durante la madrugada?", "actor": "customer", "goldDocument": "KB-RECEPTION-ES"}
+{"id": "rag-055-en", "pairId": "rag-055", "split": "holdout", "language": "en", "text": "Is reception staffed overnight?", "actor": "customer", "goldDocument": "KB-RECEPTION-EN"}
+{"id": "rag-056-es", "pairId": "rag-056", "split": "holdout", "language": "es", "text": "¿La recepción cierra de noche?", "actor": "customer", "goldDocument": "KB-RECEPTION-ES"}
+{"id": "rag-056-en", "pairId": "rag-056", "split": "holdout", "language": "en", "text": "Does reception close at night?", "actor": "customer", "goldDocument": "KB-RECEPTION-EN"}
+{"id": "rag-057-es", "pairId": "rag-057", "split": "holdout", "language": "es", "text": "¿Cuántas personas caben en la sala de reunión?", "actor": "customer", "goldDocument": "KB-MEETING-ES"}
+{"id": "rag-057-en", "pairId": "rag-057", "split": "holdout", "language": "en", "text": "How many people fit in the meeting room?", "actor": "customer", "goldDocument": "KB-MEETING-EN"}
+{"id": "rag-058-es", "pairId": "rag-058", "split": "holdout", "language": "es", "text": "¿Cómo consulto disponibilidad para una reunión?", "actor": "customer", "goldDocument": "KB-MEETING-ES"}
+{"id": "rag-058-en", "pairId": "rag-058", "split": "holdout", "language": "en", "text": "How do I check meeting room availability?", "actor": "customer", "goldDocument": "KB-MEETING-EN"}
+{"id": "rag-059-es", "pairId": "rag-059", "split": "holdout", "language": "es", "text": "¿Qué voltaje y enchufes tienen?", "actor": "customer", "goldDocument": "KB-POWER-ES"}
+{"id": "rag-059-en", "pairId": "rag-059", "split": "holdout", "language": "en", "text": "What voltage and power sockets do you have?", "actor": "customer", "goldDocument": "KB-POWER-EN"}
+{"id": "rag-060-es", "pairId": "rag-060", "split": "holdout", "language": "es", "text": "¿Pueden garantizar un adaptador eléctrico?", "actor": "customer", "goldDocument": "KB-POWER-ES"}
+{"id": "rag-060-en", "pairId": "rag-060", "split": "holdout", "language": "en", "text": "Can you guarantee an electrical adapter?", "actor": "customer", "goldDocument": "KB-POWER-EN"}
+{"id": "rag-061-es", "pairId": "rag-061", "split": "holdout", "language": "es", "text": "¿Alquilan bicicletas para pasear?", "actor": "customer", "goldDocument": "KB-CYCLING-ES"}
+{"id": "rag-061-en", "pairId": "rag-061", "split": "holdout", "language": "en", "text": "Do you rent bicycles for sightseeing?", "actor": "customer", "goldDocument": "KB-CYCLING-EN"}
+{"id": "rag-062-es", "pairId": "rag-062", "split": "holdout", "language": "es", "text": "¿Dónde puedo guardar mi bicicleta?", "actor": "customer", "goldDocument": "KB-CYCLING-ES"}
+{"id": "rag-062-en", "pairId": "rag-062", "split": "holdout", "language": "en", "text": "Where can I store my bicycle?", "actor": "customer", "goldDocument": "KB-CYCLING-EN"}
+{"id": "rag-063-es", "pairId": "rag-063", "split": "holdout", "language": "es", "text": "Perdí mi llave del cuarto, ¿qué hago?", "actor": "customer", "goldDocument": "KB-KEYS-ES"}
+{"id": "rag-063-en", "pairId": "rag-063", "split": "holdout", "language": "en", "text": "I lost my room key; what should I do?", "actor": "customer", "goldDocument": "KB-KEYS-EN"}
+{"id": "rag-064-es", "pairId": "rag-064", "split": "holdout", "language": "es", "text": "¿El chat puede darme otra llave?", "actor": "customer", "goldDocument": "KB-KEYS-ES"}
+{"id": "rag-064-en", "pairId": "rag-064", "split": "holdout", "language": "en", "text": "Can chat issue a replacement room key?", "actor": "customer", "goldDocument": "KB-KEYS-EN"}
+{"id": "rag-065-es", "pairId": "rag-065", "split": "holdout", "language": "es", "text": "¿Hasta qué hora puede quedarse una visita?", "actor": "customer", "goldDocument": "KB-VISITORS-ES"}
+{"id": "rag-065-en", "pairId": "rag-065", "split": "holdout", "language": "en", "text": "How late may a visitor stay?", "actor": "customer", "goldDocument": "KB-VISITORS-EN"}
+{"id": "rag-066-es", "pairId": "rag-066", "split": "holdout", "language": "es", "text": "¿Dónde registro a un visitante?", "actor": "customer", "goldDocument": "KB-VISITORS-ES"}
+{"id": "rag-066-en", "pairId": "rag-066", "split": "holdout", "language": "en", "text": "Where do I register a visitor?", "actor": "customer", "goldDocument": "KB-VISITORS-EN"}
+{"id": "rag-067-es", "pairId": "rag-067", "split": "holdout", "language": "es", "text": "¿Cómo solicito el comprobante de estancia?", "actor": "customer", "goldDocument": "KB-INVOICE-ES"}
+{"id": "rag-067-en", "pairId": "rag-067", "split": "holdout", "language": "en", "text": "How do I request a receipt for my stay?", "actor": "customer", "goldDocument": "KB-INVOICE-EN"}
+{"id": "rag-068-es", "pairId": "rag-068", "split": "holdout", "language": "es", "text": "¿El chat puede emitir una factura fiscal?", "actor": "customer", "goldDocument": "KB-INVOICE-ES"}
+{"id": "rag-068-en", "pairId": "rag-068", "split": "holdout", "language": "en", "text": "Can chat issue a tax invoice?", "actor": "customer", "goldDocument": "KB-INVOICE-EN"}
+{"id": "rag-069-es", "pairId": "rag-069", "split": "holdout", "language": "es", "text": "¿Pueden cambiar las fechas de mi estadía?", "actor": "customer", "goldDocument": "KB-MODIFICATIONS-ES"}
+{"id": "rag-069-en", "pairId": "rag-069", "split": "holdout", "language": "en", "text": "Can you change the dates of my stay?", "actor": "customer", "goldDocument": "KB-MODIFICATIONS-EN"}
+{"id": "rag-070-es", "pairId": "rag-070", "split": "holdout", "language": "es", "text": "¿Quién puede cambiar los huéspedes de la reserva?", "actor": "customer", "goldDocument": "KB-MODIFICATIONS-ES"}
+{"id": "rag-070-en", "pairId": "rag-070", "split": "holdout", "language": "en", "text": "Who can change the guests on the booking?", "actor": "customer", "goldDocument": "KB-MODIFICATIONS-EN"}
+{"id": "rag-071-es", "pairId": "rag-071", "split": "holdout", "language": "es", "text": "¿En qué idiomas atienden?", "actor": "customer", "goldDocument": "KB-LANGUAGES-ES"}
+{"id": "rag-071-en", "pairId": "rag-071", "split": "holdout", "language": "en", "text": "Which languages do you support?", "actor": "customer", "goldDocument": "KB-LANGUAGES-EN"}
+{"id": "rag-072-es", "pairId": "rag-072", "split": "holdout", "language": "es", "text": "¿Cómo elijo inglés para la conversación?", "actor": "customer", "goldDocument": "KB-LANGUAGES-ES"}
+{"id": "rag-072-en", "pairId": "rag-072", "split": "holdout", "language": "en", "text": "How do I choose English for the conversation?", "actor": "customer", "goldDocument": "KB-LANGUAGES-EN"}
+{"id": "rag-073-es", "pairId": "rag-073", "split": "holdout", "language": "es", "text": "¿Puedo enviar mi pasaporte por aquí?", "actor": "customer", "goldDocument": "KB-PRIVACY-ES"}
+{"id": "rag-073-en", "pairId": "rag-073", "split": "holdout", "language": "en", "text": "May I send my passport here?", "actor": "customer", "goldDocument": "KB-PRIVACY-EN"}
+{"id": "rag-074-es", "pairId": "rag-074", "split": "holdout", "language": "es", "text": "¿Debo usar datos reales en esta demostración?", "actor": "customer", "goldDocument": "KB-PRIVACY-ES"}
+{"id": "rag-074-en", "pairId": "rag-074", "split": "holdout", "language": "en", "text": "Should I use real personal data in this demonstration?", "actor": "customer", "goldDocument": "KB-PRIVACY-EN"}
+{"id": "rag-075-es", "pairId": "rag-075", "split": "holdout", "language": "es", "text": "¿Qué pasa cuando reporto una respuesta incorrecta?", "actor": "customer", "goldDocument": "KB-FEEDBACK-ES"}
+{"id": "rag-075-en", "pairId": "rag-075", "split": "holdout", "language": "en", "text": "What happens when I flag an incorrect answer?", "actor": "customer", "goldDocument": "KB-FEEDBACK-EN"}
+{"id": "rag-076-es", "pairId": "rag-076", "split": "holdout", "language": "es", "text": "¿Mi comentario cambia las reglas automáticamente?", "actor": "customer", "goldDocument": "KB-FEEDBACK-ES"}
+{"id": "rag-076-en", "pairId": "rag-076", "split": "holdout", "language": "en", "text": "Does my feedback change the rules automatically?", "actor": "customer", "goldDocument": "KB-FEEDBACK-EN"}
+{"id": "rag-077-es", "pairId": "rag-077", "split": "holdout", "language": "es", "text": "¿Cómo confirma un agente la asignación interna?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-HANDOFF-ES"}
+{"id": "rag-077-en", "pairId": "rag-077", "split": "holdout", "language": "en", "text": "How does an agent confirm internal assignment?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-HANDOFF-EN"}
+{"id": "rag-078-es", "pairId": "rag-078", "split": "holdout", "language": "es", "text": "¿Qué evidencia requiere una transferencia aceptada?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-HANDOFF-ES"}
+{"id": "rag-078-en", "pairId": "rag-078", "split": "holdout", "language": "en", "text": "What evidence is needed for an accepted transfer?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-HANDOFF-EN"}
+{"id": "rag-079-es", "pairId": "rag-079", "split": "holdout", "language": "es", "text": "¿Qué debe contener el resumen interno para agentes?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-SUMMARY-ES"}
+{"id": "rag-079-en", "pairId": "rag-079", "split": "holdout", "language": "en", "text": "What should the internal agent summary contain?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-SUMMARY-EN"}
+{"id": "rag-080-es", "pairId": "rag-080", "split": "holdout", "language": "es", "text": "¿Cómo se presenta Unknown al agente?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-SUMMARY-ES"}
+{"id": "rag-080-en", "pairId": "rag-080", "split": "holdout", "language": "en", "text": "How is Unknown presented to the agent?", "actor": "assigned-agent", "goldDocument": "KB-INTERNAL-SUMMARY-EN"}
+{"id": "rag-081-es", "pairId": "rag-081", "split": "dev", "language": "es", "text": "¿Qué precio tienen los vuelos a Madrid?", "actor": "customer", "goldDocument": null}
+{"id": "rag-081-en", "pairId": "rag-081", "split": "dev", "language": "en", "text": "What is the price of flights to Madrid?", "actor": "customer", "goldDocument": null}
+{"id": "rag-082-es", "pairId": "rag-082", "split": "dev", "language": "es", "text": "¿Cuál es el tipo de cambio actual del dólar?", "actor": "customer", "goldDocument": null}
+{"id": "rag-082-en", "pairId": "rag-082", "split": "dev", "language": "en", "text": "What is the current dollar exchange rate?", "actor": "customer", "goldDocument": null}
+{"id": "rag-083-es", "pairId": "rag-083", "split": "dev", "language": "es", "text": "¿Qué acciones debo comprar hoy?", "actor": "customer", "goldDocument": null}
+{"id": "rag-083-en", "pairId": "rag-083", "split": "dev", "language": "en", "text": "Which stocks should I buy today?", "actor": "customer", "goldDocument": null}
+{"id": "rag-084-es", "pairId": "rag-084", "split": "dev", "language": "es", "text": "¿Cuál es la dosis de antibiótico para un bebé?", "actor": "customer", "goldDocument": null}
+{"id": "rag-084-en", "pairId": "rag-084", "split": "dev", "language": "en", "text": "What antibiotic dose should a baby take?", "actor": "customer", "goldDocument": null}
+{"id": "rag-085-es", "pairId": "rag-085", "split": "dev", "language": "es", "text": "¿Puedes redactar un contrato legal vinculante?", "actor": "customer", "goldDocument": null}
+{"id": "rag-085-en", "pairId": "rag-085", "split": "dev", "language": "en", "text": "Can you draft a binding legal contract?", "actor": "customer", "goldDocument": null}
+{"id": "rag-086-es", "pairId": "rag-086", "split": "holdout", "language": "es", "text": "¿Qué equipo ganó la liga de béisbol ayer?", "actor": "customer", "goldDocument": null}
+{"id": "rag-086-en", "pairId": "rag-086", "split": "holdout", "language": "en", "text": "Which team won the baseball league yesterday?", "actor": "customer", "goldDocument": null}
+{"id": "rag-087-es", "pairId": "rag-087", "split": "holdout", "language": "es", "text": "¿Quién será el presidente el próximo año?", "actor": "customer", "goldDocument": null}
+{"id": "rag-087-en", "pairId": "rag-087", "split": "holdout", "language": "en", "text": "Who will be president next year?", "actor": "customer", "goldDocument": null}
+{"id": "rag-088-es", "pairId": "rag-088", "split": "holdout", "language": "es", "text": "¿Cuánto vale bitcoin ahora mismo?", "actor": "customer", "goldDocument": null}
+{"id": "rag-088-en", "pairId": "rag-088", "split": "holdout", "language": "en", "text": "How much is bitcoin worth right now?", "actor": "customer", "goldDocument": null}
+{"id": "rag-089-es", "pairId": "rag-089", "split": "holdout", "language": "es", "text": "¿Cómo arreglo el motor de mi avión?", "actor": "customer", "goldDocument": null}
+{"id": "rag-089-en", "pairId": "rag-089", "split": "holdout", "language": "en", "text": "How do I repair my aircraft engine?", "actor": "customer", "goldDocument": null}
+{"id": "rag-090-es", "pairId": "rag-090", "split": "holdout", "language": "es", "text": "¿Qué algoritmo predice terremotos?", "actor": "customer", "goldDocument": null}
+{"id": "rag-090-en", "pairId": "rag-090", "split": "holdout", "language": "en", "text": "Which algorithm predicts earthquakes?", "actor": "customer", "goldDocument": null}
+{"id": "rag-091-es", "pairId": "rag-091", "split": "holdout", "language": "es", "text": "¿Dónde puedo comprar armas de fuego?", "actor": "customer", "goldDocument": null}
+{"id": "rag-091-en", "pairId": "rag-091", "split": "holdout", "language": "en", "text": "Where can I buy firearms?", "actor": "customer", "goldDocument": null}
+{"id": "rag-092-es", "pairId": "rag-092", "split": "holdout", "language": "es", "text": "¿Hay disponibilidad real en otro hotel de Londres?", "actor": "customer", "goldDocument": null}
+{"id": "rag-092-en", "pairId": "rag-092", "split": "holdout", "language": "en", "text": "Are rooms actually available at another hotel in London?", "actor": "customer", "goldDocument": null}
+{"id": "rag-093-es", "pairId": "rag-093", "split": "holdout", "language": "es", "text": "¿Cuáles son los precios de paquetes turísticos?", "actor": "customer", "goldDocument": null}
+{"id": "rag-093-en", "pairId": "rag-093", "split": "holdout", "language": "en", "text": "What are the prices of vacation packages?", "actor": "customer", "goldDocument": null}
+{"id": "rag-094-es", "pairId": "rag-094", "split": "holdout", "language": "es", "text": "¿Puedes consultar mi saldo bancario?", "actor": "customer", "goldDocument": null}
+{"id": "rag-094-en", "pairId": "rag-094", "split": "holdout", "language": "en", "text": "Can you check my bank balance?", "actor": "customer", "goldDocument": null}
+{"id": "rag-095-es", "pairId": "rag-095", "split": "holdout", "language": "es", "text": "¿Puedes devolver mi dinero de inmediato?", "actor": "customer", "goldDocument": null}
+{"id": "rag-095-en", "pairId": "rag-095", "split": "holdout", "language": "en", "text": "Can you refund my money immediately?", "actor": "customer", "goldDocument": null}
+{"id": "rag-096-es", "pairId": "rag-096", "split": "holdout", "language": "es", "text": "¿Qué visado exige Japón ahora?", "actor": "customer", "goldDocument": null}
+{"id": "rag-096-en", "pairId": "rag-096", "split": "holdout", "language": "en", "text": "Which visa does Japan currently require?", "actor": "customer", "goldDocument": null}
+{"id": "rag-097-es", "pairId": "rag-097", "split": "holdout", "language": "es", "text": "¿Cómo puedo demandar a una aerolínea?", "actor": "customer", "goldDocument": null}
+{"id": "rag-097-en", "pairId": "rag-097", "split": "holdout", "language": "en", "text": "How can I sue an airline?", "actor": "customer", "goldDocument": null}
+{"id": "rag-098-es", "pairId": "rag-098", "split": "holdout", "language": "es", "text": "¿Cuál es mi diagnóstico médico?", "actor": "customer", "goldDocument": null}
+{"id": "rag-098-en", "pairId": "rag-098", "split": "holdout", "language": "en", "text": "What is my medical diagnosis?", "actor": "customer", "goldDocument": null}
+{"id": "rag-099-es", "pairId": "rag-099", "split": "holdout", "language": "es", "text": "¿Cuándo cambia la tasa hipotecaria?", "actor": "customer", "goldDocument": null}
+{"id": "rag-099-en", "pairId": "rag-099", "split": "holdout", "language": "en", "text": "When does the mortgage rate change?", "actor": "customer", "goldDocument": null}
+{"id": "rag-100-es", "pairId": "rag-100", "split": "holdout", "language": "es", "text": "¿Cuándo sale el autobús público hacia la capital?", "actor": "customer", "goldDocument": null}
+{"id": "rag-100-en", "pairId": "rag-100", "split": "holdout", "language": "en", "text": "When does the public bus leave for the capital?", "actor": "customer", "goldDocument": null}

@@ -1,0 +1,32 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "ContactCenterAI dedicated Meta webhook", "version": "0.11", "description": "Only this surface may be tunneled. Telegram uses outbound long polling. No cookies, login, private product or admin routes."},
+  "servers": [{"url": "http://127.0.0.1:7454", "description": "Loopback behind optional public HTTPS tunnel"}],
+  "paths": {
+    "/health/live": {"get": {"responses": {"200": {"description": "Process alive; not provider readiness"}}}},
+    "/webhooks/whatsapp": {
+      "get": {
+        "description": "Subscription verification only. Constant-time verify-token comparison. Does not authenticate POST.",
+        "parameters": [
+          {"name": "hub.mode", "in": "query", "required": true, "schema": {"const": "subscribe"}},
+          {"name": "hub.verify_token", "in": "query", "required": true, "schema": {"type": "string", "maxLength": 256}},
+          {"name": "hub.challenge", "in": "query", "required": true, "schema": {"type": "string", "maxLength": 200}}
+        ],
+        "responses": {"200": {"description": "Exact challenge", "content": {"text/plain": {"schema": {"type": "string"}}}}, "403": {"description": "Verification rejected"}, "503": {"description": "Channel disabled"}}
+      },
+      "post": {
+        "description": "HMAC-SHA256 of raw bytes with app secret; body <=256 KiB/depth 32/max100 events. Fixed endpoint/recipient allowlist. Commit accepted or deliberately ignored inputs before acknowledgment.",
+        "parameters": [{"name": "X-Hub-Signature-256", "in": "header", "required": true, "schema": {"type": "string", "pattern": "^sha256=[a-fA-F0-9]{64}$"}}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object"}}}},
+        "responses": {
+          "200": {"description": "Durably accepted, duplicate or deliberately ignored; not an AI answer"},
+          "400": {"description": "Authenticated malformed input"},
+          "401": {"description": "Signature rejected"},
+          "413": {"description": "Body too large"},
+          "429": {"description": "Ingress limit"},
+          "503": {"description": "Channel disabled or durable storage unavailable"}
+        }
+      }
+    }
+  }
+}

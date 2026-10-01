@@ -1,0 +1,1680 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI synthetic local presentation",
+    "version": "0.8.0",
+    "description": "Local presentation: real intent, BGE-M3 retrieval, bounded evidence selection, deterministic source workflow and admin-only operational aggregates. Enterprise gates remain separate."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:7452"
+    }
+  ],
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "getLiveness",
+        "responses": {
+          "200": {
+            "description": "Process is running; does not imply dependency readiness",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Alive"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "getReadiness",
+        "responses": {
+          "200": {
+            "description": "Local operational dependencies ready; model and contact center are simulated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "profile",
+                    "modelProvider"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Ready"
+                    },
+                    "profile": {
+                      "type": "string",
+                      "const": "demo-assistant-v0.8"
+                    },
+                    "modelProvider": {
+                      "type": "string",
+                      "enum": [
+                        "simulated-intent-v1",
+                        "ollama:qwen3-vl@901cae732162:intent-local-v1"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Operational dependency unavailable; readiness failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    },
+    "/v1/session/csrf": {
+      "get": {
+        "operationId": "bootstrapCsrf",
+        "responses": {
+          "200": {
+            "description": "Antiforgery token; HttpOnly/Strict loopback HTTP CSRF cookie. No identity or conversation write."
+          },
+          "503": {
+            "description": "SQLite dependency unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        },
+        "security": [],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session": {
+      "get": {
+        "operationId": "readSession",
+        "responses": {
+          "200": {
+            "description": "Server-derived session and presentation label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "authenticated",
+                    "expiresAt",
+                    "displayName",
+                    "isEmployee",
+                    "isOperationsAdmin"
+                  ],
+                  "properties": {
+                    "authenticated": {
+                      "type": "boolean"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "displayName": {
+                      "type": "string"
+                    },
+                    "isEmployee": {
+                      "type": "boolean"
+                    },
+                    "isOperationsAdmin": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "503": {
+            "description": "SQLite dependency unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        },
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session/anonymous": {
+      "post": {
+        "operationId": "createAnonymousSession",
+        "responses": {
+          "201": {
+            "description": "Durable guest session and HttpOnly/Lax loopback HTTP cookie"
+          },
+          "200": {
+            "description": "Existing session returned"
+          },
+          "503": {
+            "description": "SQLite unavailable; no session accepted"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/login": {
+      "post": {
+        "operationId": "beginLogin",
+        "responses": {
+          "302": {
+            "description": "Redirect to fixed local IdP using Code+PKCE"
+          },
+          "503": {
+            "description": "Identity or SQLite unavailable"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/logout": {
+      "post": {
+        "operationId": "logoutLocalSession",
+        "responses": {
+          "204": {
+            "description": "SQLite session revoked and local cookie cleared"
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "503": {
+            "description": "Revocation could not be persisted"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/conversations": {
+      "post": {
+        "operationId": "createConversation",
+        "x-implementation": "implemented-candidate",
+        "description": "Anonymous public session allowed. Principal/tenant/ownership come from server session, never this payload.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConversation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Conversation persisted; opaque ID and version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationCreated"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Same idempotency key with different payload",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Origin, CSRF or action denied"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}/messages": {
+      "post": {
+        "operationId": "submitMessage",
+        "x-implementation": "implemented-candidate",
+        "description": "Owner/assigned employee only; 202 requires committed SQLite inbox. Never implies business success.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "description": "Strong ETag for current conversation version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Durably accepted; processing remains Pending",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Action/CSRF denied",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Absent or not visible resource",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Version or clientMessageId conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}": {
+      "get": {
+        "operationId": "readConversation",
+        "x-implementation": "implemented-candidate",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "description": "Own guest/customer conversation or exact active employee assignment. Foreign and absent resources share 404. Returns first 100 messages ordered by accepted version; no reservation details.",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanitized transcript and current version; ETag supplied"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "503": {
+            "description": "Operational store unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}/reservations": {
+      "get": {
+        "operationId": "listOwnReservations",
+        "description": "Verified Customer only; resource authorization first. MemberRef comes from server binding, never query/payload. No mutation.",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "conversationId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Own reservations, source version/status and CP-001 eligibility; no MemberRef returned"
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "403": {
+            "description": "Verified Customer required or local Host rejected"
+          },
+          "404": {
+            "description": "Resource absent or not authorized"
+          },
+          "503": {
+            "description": "Reservation source unavailable; no success fabricated"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{id}/cancellation-offers": {
+      "post": {
+        "summary": "Preview own cancellation, no mutation",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Preview own cancellation, no mutation"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewCancellation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/conversations/{id}/confirmations": {
+      "post": {
+        "summary": "Consume explicit confirm/reject with stable key and If-Match",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Consume explicit confirm/reject with stable key and If-Match"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          },
+          "200": {
+            "description": "Rejected offer; no source command"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmCancellation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/conversations/{id}/actions": {
+      "get": {
+        "summary": "Owned offers and operations",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned offers and operations"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/operations/{id}": {
+      "get": {
+        "summary": "Owned operation outcome from ledger",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned operation outcome from ledger"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/conversations/{id}/assistant": {
+      "get": {
+        "summary": "Persisted assistant turns and ownership/epoch/version",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Persisted assistant turns and ownership/epoch/version"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/conversations/{id}/handoff": {
+      "post": {
+        "summary": "Durable request, acknowledgment required",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Durable request, acknowledgment required"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/conversations/{id}/feedback": {
+      "post": {
+        "summary": "Record review without changing knowledge",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Record review without changing knowledge"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerFeedback"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/conversations/{id}/citations/{document}/{version}/{section}": {
+      "get": {
+        "summary": "Revalidate citation ACL/status/vigency/active version",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Revalidate citation ACL/status/vigency/active version"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "document",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "section",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/agent/conversations": {
+      "get": {
+        "summary": "Only assigned active interactions",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Only assigned active interactions"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v1/agent/conversations/{id}/context": {
+      "get": {
+        "summary": "Assigned context from verified facts",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assigned context from verified facts"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role or Origin/CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing/foreign resource"
+          },
+          "409": {
+            "description": "Version/offer/ownership/idempotency conflict"
+          },
+          "503": {
+            "description": "Dependency unavailable, no fabricated success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/knowledge/drafts": {
+      "post": {
+        "summary": "KnowledgeEditor creates PendingReview draft",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "KnowledgeEditor creates PendingReview draft"
+          },
+          "400": {
+            "description": "Invalid closed request"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role, separate reviewer, Origin or CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing resource"
+          },
+          "409": {
+            "description": "Version, policy text or publication conflict"
+          },
+          "503": {
+            "description": "Operational dependency unavailable"
+          }
+        },
+        "description": "Local presentation only; POST requires exact Origin and X-CSRF-TOKEN.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KnowledgeDraft"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/knowledge/{document}/versions/{version}/publish": {
+      "post": {
+        "summary": "Different KnowledgeReviewer publishes atomically",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Different KnowledgeReviewer publishes atomically"
+          },
+          "400": {
+            "description": "Invalid closed request"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role, separate reviewer, Origin or CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing resource"
+          },
+          "409": {
+            "description": "Version, policy text or publication conflict"
+          },
+          "503": {
+            "description": "Operational dependency unavailable"
+          }
+        },
+        "description": "Local presentation only; POST requires exact Origin and X-CSRF-TOKEN."
+      }
+    },
+    "/v1/knowledge/{document}/versions/{version}/revoke": {
+      "post": {
+        "summary": "KnowledgeReviewer revokes version",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "document",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "KnowledgeReviewer revokes version"
+          },
+          "400": {
+            "description": "Invalid closed request"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Role, separate reviewer, Origin or CSRF denied"
+          },
+          "404": {
+            "description": "Generic missing resource"
+          },
+          "409": {
+            "description": "Version, policy text or publication conflict"
+          },
+          "503": {
+            "description": "Operational dependency unavailable"
+          }
+        },
+        "description": "Local presentation only; POST requires exact Origin and X-CSRF-TOKEN."
+      }
+    },
+    "/v1/demo/profile": {
+      "get": {
+        "summary": "Public synthetic presentation mode; no identity/secrets",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Selected mode/provider",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "mode",
+                    "providerId",
+                    "factualAnswers",
+                    "contactCenter",
+                    "retrieval"
+                  ],
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "simulated",
+                        "local-llm"
+                      ]
+                    },
+                    "providerId": {
+                      "type": "string"
+                    },
+                    "factualAnswers": {
+                      "type": "string",
+                      "const": "governed-extracts-and-source-templates"
+                    },
+                    "contactCenter": {
+                      "type": "string",
+                      "const": "mock"
+                    },
+                    "retrieval": {
+                      "type": "string",
+                      "enum": [
+                        "semantic-reranked-local",
+                        "topic-fixture"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Loopback/Host denied"
+          }
+        }
+      }
+    },
+    "/v1/operations/status": {
+      "get": {
+        "summary": "Operational aggregates and bounded sanitized traces; OperationsAdmin only",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Server-authorized synthetic operational state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "operational",
+                    "telemetry"
+                  ],
+                  "properties": {
+                    "operational": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "commands",
+                        "pendingTurns",
+                        "knowledgeVariants",
+                        "indexedVariants",
+                        "semanticEnabled",
+                        "alerts"
+                      ],
+                      "properties": {
+                        "commands": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "pending",
+                            "submitted",
+                            "unknown",
+                            "completed",
+                            "rejected",
+                            "conflict",
+                            "humanReview"
+                          ],
+                          "properties": {
+                            "pending": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "submitted": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "unknown": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "completed": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "rejected": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "conflict": {
+                              "type": "integer",
+                              "minimum": 0
+                            },
+                            "humanReview": {
+                              "type": "integer",
+                              "minimum": 0
+                            }
+                          }
+                        },
+                        "pendingTurns": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "knowledgeVariants": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "indexedVariants": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "semanticEnabled": {
+                          "type": "boolean"
+                        },
+                        "alerts": {
+                          "type": "array",
+                          "maxItems": 3,
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "telemetry": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "scope",
+                        "total",
+                        "failed",
+                        "dropped",
+                        "recent"
+                      ],
+                      "properties": {
+                        "scope": {
+                          "type": "string"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "failed": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "dropped": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "recent": {
+                          "type": "array",
+                          "maxItems": 20,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "traceId",
+                              "spanId",
+                              "parentSpanId",
+                              "operation",
+                              "durationMs",
+                              "httpStatus",
+                              "language",
+                              "finishedAt"
+                            ],
+                            "properties": {
+                              "traceId": {
+                                "type": "string",
+                                "pattern": "^[0-9a-f]{32}$"
+                              },
+                              "spanId": {
+                                "type": "string",
+                                "pattern": "^[0-9a-f]{16}$"
+                              },
+                              "parentSpanId": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "operation": {
+                                "type": "string",
+                                "enum": [
+                                  "api.request",
+                                  "assistant.turn",
+                                  "knowledge.search",
+                                  "knowledge.rerank",
+                                  "source.read",
+                                  "source.cancel",
+                                  "source.receipt"
+                                ]
+                              },
+                              "durationMs": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "httpStatus": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ]
+                              },
+                              "language": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "enum": [
+                                  "es",
+                                  "en",
+                                  null
+                                ]
+                              },
+                              "finishedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Active session required"
+          },
+          "403": {
+            "description": "OperationsAdmin role required"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "correlationId",
+          "retryable"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      },
+      "CreateConversation": {
+        "type": "object",
+        "required": [
+          "language"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "type": "string",
+            "enum": [
+              "es",
+              "en"
+            ]
+          }
+        }
+      },
+      "ConversationCreated": {
+        "type": "object",
+        "required": [
+          "conversationId",
+          "version",
+          "ownership"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "conversationId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "ownership": {
+            "type": "string",
+            "enum": [
+              "AI"
+            ]
+          }
+        }
+      },
+      "SubmitMessage": {
+        "type": "object",
+        "required": [
+          "clientMessageId",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "clientMessageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        }
+      },
+      "MessageAccepted": {
+        "type": "object",
+        "required": [
+          "messageId",
+          "turnId",
+          "status",
+          "version"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "messageId": {
+            "type": "string"
+          },
+          "turnId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "Pending"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 2
+          }
+        }
+      },
+      "PreviewCancellation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reservationId"
+        ],
+        "properties": {
+          "reservationId": {
+            "type": "string",
+            "maxLength": 40
+          }
+        }
+      },
+      "ConfirmCancellation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "offerId",
+          "decision"
+        ],
+        "properties": {
+          "offerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "confirm",
+              "reject"
+            ]
+          }
+        }
+      },
+      "AnswerFeedback": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "turnId",
+          "reason"
+        ],
+        "properties": {
+          "turnId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "incorrect",
+              "missing",
+              "unclear"
+            ]
+          }
+        }
+      },
+      "KnowledgeDraft": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "documentId",
+          "version",
+          "language",
+          "topic",
+          "sectionId",
+          "title",
+          "content",
+          "classification",
+          "expiresAt"
+        ],
+        "properties": {
+          "documentId": {
+            "type": "string",
+            "description": "Must match KB-{TOPIC}-{LANGUAGE}"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 2
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "es",
+              "en"
+            ]
+          },
+          "topic": {
+            "type": "string",
+            "enum": [
+              "cancellation",
+              "services",
+              "identity",
+              "payments",
+              "agent"
+            ]
+          },
+          "sectionId": {
+            "type": "string",
+            "const": "overview"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "Public",
+              "Agent"
+            ]
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "A new reviewed version of an existing registered document with matching tenant/language/topic; CP-001 text remains locked to canonical policy. No arbitrary document registration."
+      }
+    },
+    "securitySchemes": {
+      "SessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ccai.demo.session",
+        "description": "Opaque HttpOnly/Lax cookie with active SQLite session lookup; no saved tokens. Secure is disabled only for this synthetic HTTP loopback profile."
+      },
+      "AntiCsrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-TOKEN",
+        "description": "Fetch GET /v1/session/csrf after every session rotation. Mutations also require exact HTTPS Origin."
+      }
+    },
+    "parameters": {
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    }
+  },
+  "x-implementation": "local-demo-v0.8"
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "fixture index/auth and embedding wire; not live quality",
+  "passed": 19,
+  "checks": [
+    "Fixture generation indexes only 80 approved language variants",
+    "Unchanged snapshot does not repeat embedding ingestion",
+    "Exact cosine selects an authorized matching fixture vector",
+    "Conversation language filters before ranking",
+    "Customer candidate set excludes internal evidence",
+    "Active generation persists across store restart",
+    "Other customer cannot search another conversation",
+    "Untrusted language is rejected",
+    "Oversized query rejected before inference",
+    "Revoked top document is not served by stale index",
+    "Revoked session is rejected before embedding",
+    "Unauthorized query does not spend inference budget",
+    "Invalid vector dimension/norm/finiteness rejected",
+    "Invalid vector dimension/norm/finiteness rejected",
+    "Invalid vector dimension/norm/finiteness rejected",
+    "Invalid vector dimension/norm/finiteness rejected",
+    "Embedding wire response validated and normalized",
+    "Empty batch rejected",
+    "Digest mismatch rejects before embedding POST"
+  ]
+}

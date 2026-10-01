@@ -1,0 +1,6 @@
+flowchart LR
+  Browser[Cliente autenticado] -->|Consultar reservas| API[BFF C#]
+  API -->|MemberRef servidor y clave de servicio| Source[Simulator C# separado]
+  API --> Operations[SQLite sesiones y conversaciones]
+  Source --> SourceDB[SQLite reservas y receipts separada]
+  Source --> Rules[CP-001 determinista y clock servidor]

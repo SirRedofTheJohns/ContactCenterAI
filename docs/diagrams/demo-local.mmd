@@ -1,0 +1,6 @@
+flowchart LR
+  Browser[Browser local] -->|HTTP 127.0.0.1:7452| BFF[BFF C# .NET demo]
+  BFF -->|Code and PKCE| IdP[Keycloak local]
+  IdP -->|Verified subject| BFF
+  BFF -->|Transactions and resource authorization| SQLite[SQLite local file]
+  Enterprise[Enterprise profile] --> SQL[SQL Server operational]

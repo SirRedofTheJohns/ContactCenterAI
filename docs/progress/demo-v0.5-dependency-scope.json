@@ -1,0 +1,61 @@
+{
+  "result": "PASS_RUNTIME_SCOPE_WITH_TEST_AUDIT_LIMITATIONS",
+  "observedAtUtc": "2026-10-01T04:53:53.480772+00:00",
+  "runtimeResolvedPackages": 31,
+  "runtimeVersionsInPriorOfficialAudit": true,
+  "testResolvedPackages": 40,
+  "testOnlyVersionsOutsidePriorAudit": [
+    {
+      "id": "microsoft.extensions.caching.abstractions",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "microsoft.extensions.caching.memory",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "microsoft.extensions.dependencyinjection.abstractions",
+      "version": "10.0.0",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "microsoft.extensions.logging.abstractions",
+      "version": "10.0.0",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "microsoft.extensions.options",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "microsoft.extensions.primitives",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "system.diagnostics.eventlog",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    },
+    {
+      "id": "system.threading.ratelimiting",
+      "version": "9.0.18",
+      "localArchiveMatchesLock": false,
+      "includedInPriorOfficialAudit": false
+    }
+  ],
+  "diagnosticResolvedPackages": 33,
+  "originalAudit": "b03-b04-dependencies.json",
+  "advisoryDataNotRefetched": true,
+  "limitation": "Eight test/diagnostic transitive versions were not covered by the prior audit. Local archive-to-lock hash matching is integrity evidence, not an official signature or fresh advisory check. SDK, OS, Python and container layers remain outside this inventory."
+}

@@ -1,0 +1,27 @@
+{
+  "recordedAtUtc": "2026-10-01T16:39:08.877126+00:00",
+  "result": "BLOCKED",
+  "scope": "Focused encrypted .NET SQL connection, observed using restricted ccai_app credential; no DDL, migrations or user data changes.",
+  "dockerEngineRunning": true,
+  "projectStackStartedThroughUI": true,
+  "keycloakExactIssuerAvailable": true,
+  "networkPermissionGranted": true,
+  "native": {
+    "sqlError": 20,
+    "safeMessage": "The instance of SQL Server requires encryption but this machine does not support it."
+  },
+  "managedDiagnostic": {
+    "sqlError": -2146893019,
+    "rootException": "Win32Exception",
+    "safeMessage": "No credentials are available in the security package"
+  },
+  "encryptMandatory": true,
+  "localSyntheticServerCertificateBaselinePreserved": true,
+  "runtimeDatabase": "SQLite remains the authorized working presentation adapter",
+  "globalCertificateOrSecuritySettingsChanged": false,
+  "credentialsExported": false,
+  "enterpriseSqlGateClosed": false,
+  "reproducer": "../../eng/Invoke-SqlAcceptance.ps1",
+  "reproducerSource": "../../spikes/SqlProductAcceptance/Program.cs",
+  "officialDiagnosticReference": "https://learn.microsoft.com/en-us/sql/connect/ado-net/appcontext-switches?view=sql-server-ver17"
+}

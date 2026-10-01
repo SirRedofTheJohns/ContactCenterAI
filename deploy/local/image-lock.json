@@ -1,0 +1,18 @@
+{
+  "sql": {
+    "tag": "mcr.microsoft.com/mssql/server:2022-latest",
+    "image": "mcr.microsoft.com/mssql/server@sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090",
+    "manifestDigest": "sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090",
+    "linuxAmd64Digest": "sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090",
+    "verifiedAtUtcDate": "2026-09-30",
+    "evidence": "Registry manifest retrieved over verified HTTPS; not pulled or executed"
+  },
+  "keycloak": {
+    "tag": "quay.io/keycloak/keycloak:26.7.5",
+    "image": "quay.io/keycloak/keycloak@sha256:37dbaf6f0722c9ec246335f36e1ef8b2e6cb960f7c27e0d8c615121a3d475a85",
+    "manifestDigest": "sha256:37dbaf6f0722c9ec246335f36e1ef8b2e6cb960f7c27e0d8c615121a3d475a85",
+    "linuxAmd64Digest": "sha256:6529db34610ce6328824218dce3bbe55c4ba4757bc5c8a09b5a4c746e28b6e9d",
+    "verifiedAtUtcDate": "2026-09-30",
+    "evidence": "Registry manifest retrieved over verified HTTPS; not pulled or executed"
+  }
+}

@@ -1,0 +1,479 @@
+{
+  "observedAtUtc": "2026-10-01T06:27:15.504085+00:00",
+  "scope": "locked runtime, tests and spike NuGet packages; not OS/Docker/Ollama/SDK vulnerability certification",
+  "hashMethod": "whole archive compared to .sha512; signature-excluded lock hash recomputed with SDK PackageArchiveReader; see canonical proof",
+  "officialNugetAdvisoriesQueried": true,
+  "sources": [
+    "https://api.nuget.org/v3/vulnerabilities/index.json",
+    "https://api.nuget.org/v3-vulnerabilities/2026.09.26.05.43.06/vulnerability.base.json",
+    "https://api.nuget.org/v3-vulnerabilities/2026.09.26.05.43.06/2026.10.01.05.43.32/vulnerability.update.json"
+  ],
+  "packages": [
+    {
+      "name": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+      "version": "10.0.12",
+      "contentHash": "UfkKr9EP+LBgnFfxwkfnZzta7XkalCroZWoxg2yW9dt8iPXO7bJYpcmyFIeM+FLcAlOKZeduP93XhuCcfWaYIQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "vKwQhIEt+yixm8411HGlkenZvzE06gAxL7k/HSoIKV8jEMT+S9xohKnfcDnBc30tXys08w21QmMsraSyI2kg7A==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.AspNetCore.TestHost",
+      "version": "10.0.12",
+      "contentHash": "bTHgbcjSrLxlqSasYRDU9BcJ3hDGoqIjtDY0soLNrndOWi3kxtOyddwUMaNZgtoI2Uf6y7ZQs2EuVj0c20B7mA==",
+      "scopes": [
+        "tests"
+      ],
+      "archiveSha512": "FPzLIlnh45pKPgv3pRANnlBdZGYm5ycrWDNyzcq0eVBlikswArpBvwPPOJwtV2lDbLzkRCS66M9Ngobj1WylZQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "10.0.2",
+      "contentHash": "LG9Yll3B5aNpxv0+D47g6LiOiKBIlodhcHdQwcYzo8VeexFLGqx5ymetmA2aBRyo9cCcWsQWrFsdbsr8LvmWDw==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "rbP/krRdXXVG10QyWH0rWa5+0qP5Rob8VZDKno910kHnDcmH9XdFbBtdedO5pVVlpA1y2MXWx360zLLNLctJ+Q==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "9.0.18",
+      "contentHash": "42XcqOGj0jTNW6FphUEuhNLCdVQsYbYCf2pPlkWdz1uDyxxirpcxyjg7pWIBgPCjzk6rv/irgLya/2tDJKIpYg==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "XYPw0ypUVlaK//5yjPyBBDCmTS/KBlPu8XuDAX2OV71TVEyc1s39CfMfbGT6YrSMb0UDWy+00qznDR4/oQTvPw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.SqlClient",
+      "version": "7.1.1",
+      "contentHash": "Moz4+bba/OdEM9I4jXWggduJ4sqoNcgVAQyXG/dNnGGvnS/YDr2fTjP83fg5YX3drgRki6fRAhR94P8dAZgZtQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "uZ9oSxejHPjNn1sk2ZUlPnsTiKq0Kx3ApVHmk3ZeHMHyh2Wtikijp1h5J+QBQIHa5Cz92p0hstEfbX/3h/lUSw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.Extensions.Abstractions",
+      "version": "7.1.1",
+      "contentHash": "qP/zUOCJwfKqWNC9o+TWqltfNbLnZi1APNpJZgj0yeEJhoI+h+eoQLX+331yZHNOlDxdafZLP5arW/yrS1jAAw==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "sIwSnA217tw/4QHoFhPn/Bub4067JIn3TUVq75uWM9UMr7OmnIaa6LT6BmZh4rBfj1mC3EktKAIzDcUZAgY37A==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.Internal.Logging",
+      "version": "7.1.1",
+      "contentHash": "bVqbATLnHQngue7U9K7GRnzvfdDa7IyiBU2vijfU2vBMBSZrAnQp/wXqNSfaVonckSaMXUk07wfujTqy9IVMdw==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "VzjMZov7UeByuS+bF6RwcXPe9vhnqNB+PVUtflYEmlDeLNg1jiTVnDuNdVH3jdR5RrUpp/cOXUip5iyYmCIhuA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.SNI.runtime",
+      "version": "7.1.0",
+      "contentHash": "rWunOb6Dby0lcI82PohARcRbF+4x4wNKxnKRSHXhuwZMu8/cCS68DCfhceq4bv1gUEfoL5dWXHYnfxVvLQUN+Q==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "7xXsAN/k3L3JLlL2MDgnYoraS6qGrNEdfS4LZaTopTQGari+KIbd7CtCQuCpR40mn3imrGb9HHjhmeoOLYs1Sg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.Sqlite",
+      "version": "10.0.12",
+      "contentHash": "xUq9xUc653ue7ac2rMfCaf8UQN+U3zS8poWYlugycpvJllplMM0Mk7v/+MM0CTlu9zGvbGML4BPH8YWhrUOfGw==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "yZ7JQJqVWSICoSZmKJSx0mCm6vgZ2lnIzmPomiEDDfpCKDq93sGY8/d/+7BBPXgeSOdddfqC7GThK6TcV8RSxg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Data.Sqlite.Core",
+      "version": "10.0.12",
+      "contentHash": "2aL9eL5HQr0V4b8V909SD+jQAx6qnTTl7sT/v3D8dIvmr2UGdpZIQxqm1pj2Js3e4EYTvpw0oMH7DjapJJuPPw==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "U6a1XGw24t9M39INjA7yjncLkGl/UrJBKIFKDaqdjB3JIUYH6HjUDNokXrfVX2XVS0WUDPGjmU/aOhW3E62m9Q==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.Caching.Abstractions",
+      "version": "9.0.18",
+      "contentHash": "Y8PnPKq+ASBazn0QA5d98/dWT0MAfv9CJYV6zPZ/TisZpAUe5zWgKldJLXkrmUuIzvUpQS7/SF7+1dld3OP/EQ==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "Q1Ih/NtYuzjRYhgnTpzAm5uR/FB2oU4Mm7WkrM1ogAgNJ+yl16YJzOJ/t0MT+9K6yNTAgtT4iOioRmwoIXL4hg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.Caching.Memory",
+      "version": "9.0.18",
+      "contentHash": "ZQ+x93CRR8DOGT+YPP4YXvwTAJ0MfvAghs5cwCSvtZFiORSfprAw9f67d0QDhf6PCIYyFsMKFB+PI3p9lpiMUQ==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "E0zB7z8xq2SD/NVfmrSOCg+JI7y1frG2M8CnGlNeyRR7sLcPyXbtA1EgpPGPtgylnYmz0eF+PDtcnUuXqUu3OQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "version": "10.0.0",
+      "contentHash": "L3AdmZ1WOK4XXT5YFPEwyt0ep6l8lGIPs7F5OOBZc77Zqeo01Of7XXICy47628sdVl0v/owxYJTe86DTgFwKCA==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "R1JUmDhx81zXARj7/3QwSexiO9lNE2PBPXyK47sblSGIOl4Jd60iLY8wtmJ/NzhpXtPBiSOTMn2KFYuf7QaRIw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.Logging.Abstractions",
+      "version": "10.0.0",
+      "contentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "CElGLz6i7loG2KuKixPwXzz0Zt5m67xqCpysS+/JHOsYCuA8QgiasMp6Jsp/5bTtGo9z4jXhMI2Zl8lSnDad0Q==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.Options",
+      "version": "9.0.18",
+      "contentHash": "HiA/R0jGR10TGuR6coM8KMUdJ5YlP3bhGxqEdGLkxFdBV1EFNdZMAajSEZHwkex4X/iMQwRCQVotqpElcxOImg==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "aEWVflFby8gbJo2WgDMh5ztOi7CnWZpclnG4x4cueQaLcKFD3g22HVl4AnV68F5rW3Bi1+iSyLbBLGheK5lTxA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.Extensions.Primitives",
+      "version": "9.0.18",
+      "contentHash": "hfHudMC5zDlwMrC0HiHOJesSHMvM+CdqjomjcV/YVzFq5dfSpBRvyRLm1n1Bfh41ZpQnyJzqX+YEo95BAmcDAQ==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "OB2r2zRo9wHy8NTKqmjHohsHEu1uL06MionuUJD7b/3lHe2lFXDxkL2shW44Jp4ztXFWIMr9F0gRkCzMJ+OzBQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.16.0",
+      "contentHash": "gSxKLWRZzBpIsEoeUPkxfywNCCvRvl7hkq146XHPk5vOQc9izSf1I+uL1vh4y2U19QPxd9Z8K/8AdWyxYz2lSg==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "rFCr+qcflmVMzG1gQ/hr5rLHBLA6qwcwkaFSijoX/dDzzwnkhs79Rui1oLGVnuMY6PcLT73Z3ED7bUdfxWGpGw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.19.2",
+      "contentHash": "HJbo/lnSfNHUfphPRT910poQc4T2/9+8svFLvzuaYHGAOJ2Tu+oEDqpX0BVP3BJ4OuUM1kylEKyaiX2fCAK3Cw==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "ASRJB/oHIKh2N45fTt/t/+p2WaKxWUfvjTrHUq2N39mON6wJTQTX2gwfZOtwWBM4FZ9I7uNi8rFNaynXbMYNsQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.16.0",
+      "contentHash": "prBU72cIP4V8E9fhN+o/YdskTsLeIcnKPbhZf0X6mD7fdxoZqnS/NdEkSr+9Zp+2q7OZBOMfNBKGbTbhXODO4w==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "zhJ+ybYDThHO/sgqiLnkz8bFmPjjjUl4xk6lvGgjPzDa/JFfiMzOq+48scBe147Rj2DI/gwypfLTlUrq39WfGA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.19.2",
+      "contentHash": "ui3fuBT4fs8kdKfBthI4NzLYIBIneEVS8UrL1JVBzAn80UiKmngBBi0BEByE7n/9c+EElcfFlCMFFTqpkBSLNA==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "9kokzW5MVsHjANELTihcvrI48azhzhdFQW+oaEce2rD/sGe5Vf57BRQdXFIyDoWluxYh3vhe8aLQ3mg3BP983w==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.16.0",
+      "contentHash": "MTzXmETkNQPACR7/XCXM1OGM6oU9RkyibqeJRtO9Ndew2LnGjMf9Atqj2VSf4XC27X0FQycUAlzxxEgQMWn2xQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "7KGisaV2uhpjZTvMjYJhnSzCBGztglvjT0qzqkauPUEMELnlpRcSmUUpJOErSEe1ONmS4eULe1cdL5aT4lwX7g==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.19.2",
+      "contentHash": "r5YLDIxGOnkVJHrqXv/iD1FM1CgGrQOdriXuvuWvTPmKbnGANhEysq9XKmN6IHjf2a+9bAGEpnoRBsAQlvJU5w==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "15BrxnYEFaE+3svU/8GB7EYQkOd+x0UdlqmNFoV3gY6vN/u4dg10NuXLoDSSUhxHPdc01cvKeoztwGvAw6Vhng==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.16.0",
+      "contentHash": "UFrU7d46UTsPQTa2HIEIpB9H1uJe1BW9FLw5uhEJ2ZuKdur8bcUA/bO5caq5dlBt5gNJeRIB3QQXYNs5fCQCZA==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "Smx0rSTWdyF1cWX+ynhyNnld+EmmWY4yXJ9tKdH3PORzci/quDn+Tok0v/MxKA5xy53Tl6q4+QO5XV1B742slQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.19.2",
+      "contentHash": "sGxSsSrZXNmca6D+jHH2rVRyo2nNRd/g4H9CFbPmLLq0xgoH1U0orLWE5minfijw7+zq49tBs7txenbfAErRoQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "+OTRiYr9kxDvuGaNtPblS0ZlUcMmgF07YkPa+5lZ1wL7OXnXDeym29XQWiuKnimfnhkO7T4imtkA8dy46p44OQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.16.0",
+      "contentHash": "h4yVXyJsEBBX5lg2G5ftMsi5JzcNEGAzrNphA6DQ6eOd8P0s+cDCOyPwVTYLePZvJL5unbPvYIvzrbTXzFjXnQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "2/ZCb0zFjlJnebuW0exY2fxwnuZlKxf+DncsVYsEetXYVp+9RkwkCqEUrTn/X4d6M0l0m7QxN+PNizAjaeRzYg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.19.2",
+      "contentHash": "1XOcyY36cVymzE3qKdzKaUEZ4Pzt7ZpSa14JZoPPK1NLFUkQDs85TCqpV6XDo0YjFXj6nVK00AfOHppjghjhtw==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "JMioo0XfC6Gk6Ui5Sbs9lSzkFkp78vjcxb7qtzRgK3k1BXB8Baegq/Sr/ROg00qkq99MsZZZt3mgDGdACFTv0w==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.16.0",
+      "contentHash": "rtViGJcGsN7WcfUNErwNeQgjuU5cJNl6FDQsfi9TncwO+Epzn0FTfBsg3YuFW1Q0Ch/KPxaVdjLw3/+5Z5ceFQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "JcFwKqmFV9CRDpRNWSCnKubvT2GGwakzTVIASbBccsaRnvjosfhf8ErAJcn4ZJsVz9iCiRTsddgqtd3gYCQQxQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.19.2",
+      "contentHash": "GtPC1S02uH1gOO4fQ+zRysIicKmEXaYFP8PIkdJYXqMyruYhopre4ozVHp0XiDSA0+GJvOZH9prxCPvgBMg4Ww==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "4rGCcWWvktrOG1esOPr2DMLJpxl9DjIAD943L8C8K8Rcsq30vnOG0IcFMlckuOMots/FHNSUJDxqsmo/EG6eBw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "Microsoft.SqlServer.Server",
+      "version": "1.0.0",
+      "contentHash": "N4KeF3cpcm1PUHym1RmakkzfkEv3GRMyofVv40uXsQhCQeglr2OHNcUk2WOG51AKpGO8ynGpo9M/kFXSzghwug==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "G9kLCMlPrfO7YRLJX200puElH0cQgj+plcui7NZXFGoeWU3jOO224YrTUeMABS6CTsge0C9I0/8thYUWmppCYA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "SQLitePCLRaw.bundle_e_sqlite3",
+      "version": "2.1.12",
+      "contentHash": "mAgscpQMLw5/nfA1Q5oJVAT29yROUo1ifZGbbTpx/lwZpSxMUGoYbKfmvdm8oXER+RzxqBmmQzeBEVKfeHv2nw==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "KbeKXtiMrpxd7dFgsnorA1Gci/xVRDCBmkfZNdiiE1la6OdUEMtyTTJ3TBeCn9nIvZgXo5uCd9dVCji3Ay6LuA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "SQLitePCLRaw.core",
+      "version": "2.1.12",
+      "contentHash": "ETpNw9DY3ckWLgRRAeCHj+GKOuPi61aeczkXhgHexUvqoZBAYg8RYESE2J7O1M7+o6QbdSEZwrw9bfqztUVWXg==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "WgmgyKwGLTR6ZfIf1+1dFNxsOyp9GmsU9YjjeUjgz+NZnw2hyjVB0U8taT1Z1vv21s5+gvhHQ3vtpZajsMKJYg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "SQLitePCLRaw.lib.e_sqlite3",
+      "version": "2.1.12",
+      "contentHash": "fWi8Dbknuhgg72fWinIdjXVaqO1hHL4YBBwVLnr7e1c9TAZwJ0QE38j9syW1hwx6HaqEVTwI+O07WPdZn8Rp0w==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "Dli+ELKNuRX0g72Uq2I2OZa5zgi4fwSXV4Je3wyF7jH9oz6AKRA9wXIzMwuVeW7RfAZdSVgIcEeZZON59LdtiA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "SQLitePCLRaw.provider.e_sqlite3",
+      "version": "2.1.12",
+      "contentHash": "W3oH4XIfCzFrgUSDKHhN6N+dgzA5YHOR2VxX8GB6Qy7CyrJJgxPEG8NirgYWlPQC5P2jz2knSsexWu4tDUL33g==",
+      "scopes": [
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "k4RCblP+Hc1JAc77crV+fFZLiZeJPaY8VjMA8kvki00Z0dohG6xxXw4qkuVyCUC2+HChbhwW+ydhmjmlUZAXUQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.Configuration.ConfigurationManager",
+      "version": "9.0.18",
+      "contentHash": "/1q0MHB2xKyTFRC5tk+oL3Ahi+QK0UPI6Qk6Xc5z5BW6otR2T9wwWmEW/LZX98cq7UOmu+7sZ5HNwuq61zrNtg==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "ckPjnhF1vyb6vj4uI+6sHOONOXfUcFCAt0Dqn+HUlnd3sATGblSYjRVHW59IdTcz2SaOw8woxOCdVGO4DUFjnQ==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.Diagnostics.EventLog",
+      "version": "9.0.18",
+      "contentHash": "4f3CBS22A2Y+M+shvdYzeWaEPYycZ3IaouaH+NxGLW6xoFahR1+L+YM8bt8NI3TQRZbqPBp/myt+6+JXc+IhRg==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "UmWycZK/UIWa768r++OY+y9VfLE1+CnhY76IPmhL3OQ1Y0HAtjqCdgRqKldmoao5jgh4baPAgZ4YJp2Y5P/tDw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.16.0",
+      "contentHash": "rrs2u7DRMXQG2yh0oVyF/vLwosfRv20Ld2iEpYcKwQWXHjfV+gFXNQsQ9p008kR9Ou4pxBs68Q6/9zC8Gi1wjg==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "McNh47fk5tuTByr25dywvcqyypNN/NjJV9rMECr8woIf3LNpnAugkwmywEo7ESTgyvSsAxo0Ne5hG0E8yjzWyw==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.19.2",
+      "contentHash": "gqhDC/icByKEutygpr+OFgAmjwTVowyzFjWB8K0q1ww8uFj5a1BQNL+QvijUl9uhq4p8OdDwcAIrjVC+eC9FVA==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "DXewKSmxxRBuvUOd2aG/TAZafCVR6VcqLD0AJAG74wwoDLqukwTPGa0I2SOItZdhXuz43Mfiog1BSpHAC8SVkg==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.Security.Cryptography.Pkcs",
+      "version": "9.0.18",
+      "contentHash": "NKMKhUdLGNZryY9GXXTF5dXyP6S37EYXhiA2JYvwshJbd4DRq07IOS9it8Opi9atadvv5rlNkD76Mio+5Oo2aQ==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "QDvuD2yneSLR1jRaDZS59X5PcAuY0MMTcJO2fiNdnvN6HTnNRbJcdrN6LjXFT4jd50ANVqqAbAJ8v5yG1hegHA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.Security.Cryptography.ProtectedData",
+      "version": "9.0.18",
+      "contentHash": "1/iz9Eex1TBMYdAk+m3igaMvL+nk+rY1EqL6u93an/j1ghxmB24vGOKXkVFy3NSPA39s1H/+SNoK257tHoXoLA==",
+      "scopes": [
+        "spikes",
+        "src",
+        "tests"
+      ],
+      "archiveSha512": "dfkmgyI8cE3hp/CDQf7zmCrB4EHxKXqGraeeGRhr0ybtx0QVOU0C/NujFPwsrhbbgncY450Q2Sv6CKRVfv6SOA==",
+      "localArchive": "MATCH"
+    },
+    {
+      "name": "System.Threading.RateLimiting",
+      "version": "9.0.18",
+      "contentHash": "pxuHw/tQXaHMRXEaKzzgpoGO8VeTPIzHbnp0KclXp6js5wPHn7VaqSCa8yRTAsZDcZ2XuIEnXGM2MbRDJFLBog==",
+      "scopes": [
+        "spikes",
+        "tests"
+      ],
+      "archiveSha512": "PjiQRrT7x0tl4WMvk90oh1EU+SbCQHCK3YtOpC0rJ5LBMNAZ7JuCXI72H+KbAY/SgTx3eX2qDZ72GzyZyEq+/w==",
+      "localArchive": "MATCH"
+    }
+  ],
+  "findings": [],
+  "integrityPass": true
+}

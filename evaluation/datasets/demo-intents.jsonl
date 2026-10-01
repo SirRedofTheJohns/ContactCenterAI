@@ -1,0 +1,40 @@
+{"text":"¿Cuál es la política de cancelación?","topic":"cancellation","reservationId":null,"intent":"faq","language":"es","pairId":"policy","id":"policy-es"}
+{"text":"What is the cancellation policy?","topic":"cancellation","reservationId":null,"intent":"faq","language":"en","pairId":"policy","id":"policy-en"}
+{"text":"¿Cuántas horas necesito para cancelar?","topic":"cancellation","reservationId":null,"intent":"faq","language":"es","pairId":"window","id":"window-es"}
+{"text":"How many hours before check-in can I cancel?","topic":"cancellation","reservationId":null,"intent":"faq","language":"en","pairId":"window","id":"window-en"}
+{"text":"Explícame la regla de cancelación","topic":"cancellation","reservationId":null,"intent":"faq","language":"es","pairId":"rule","id":"rule-es"}
+{"text":"Explain the cancellation rule","topic":"cancellation","reservationId":null,"intent":"faq","language":"en","pairId":"rule","id":"rule-en"}
+{"text":"Cuánto tiempo tengo para cancelar","topic":"cancellation","reservationId":null,"intent":"faq","language":"es","pairId":"late","id":"late-es"}
+{"text":"When can I cancel without a penalty?","topic":"cancellation","reservationId":null,"intent":"faq","language":"en","pairId":"late","id":"late-en"}
+{"text":"¿Qué servicios tienen?","topic":"services","reservationId":null,"intent":"faq","language":"es","pairId":"services","id":"services-es"}
+{"text":"What services are included?","topic":"services","reservationId":null,"intent":"faq","language":"en","pairId":"services","id":"services-en"}
+{"text":"¿Está incluido el desayuno?","topic":"services","reservationId":null,"intent":"faq","language":"es","pairId":"breakfast","id":"breakfast-es"}
+{"text":"Is breakfast included?","topic":"services","reservationId":null,"intent":"faq","language":"en","pairId":"breakfast","id":"breakfast-en"}
+{"text":"¿A qué hora es la llegada?","topic":"services","reservationId":null,"intent":"faq","language":"es","pairId":"arrival","id":"arrival-es"}
+{"text":"What time is check-in?","topic":"services","reservationId":null,"intent":"faq","language":"en","pairId":"arrival","id":"arrival-en"}
+{"text":"¿Cómo inicio sesión?","topic":"identity","reservationId":null,"intent":"faq","language":"es","pairId":"identity","id":"identity-es"}
+{"text":"How do I sign in?","topic":"identity","reservationId":null,"intent":"faq","language":"en","pairId":"identity","id":"identity-en"}
+{"text":"¿Se pueden hacer pagos?","topic":"payments","reservationId":null,"intent":"faq","language":"es","pairId":"payments","id":"payments-es"}
+{"text":"Can you process payments?","topic":"payments","reservationId":null,"intent":"faq","language":"en","pairId":"payments","id":"payments-en"}
+{"text":"Necesito un reembolso","topic":"payments","reservationId":null,"intent":"faq","language":"es","pairId":"refund","id":"refund-es"}
+{"text":"I need a refund","topic":"payments","reservationId":null,"intent":"faq","language":"en","pairId":"refund","id":"refund-en"}
+{"text":"Consulta mis reservas","topic":null,"reservationId":null,"intent":"get_reservations","language":"es","pairId":"read","id":"read-es"}
+{"text":"Show my reservations","topic":null,"reservationId":null,"intent":"get_reservations","language":"en","pairId":"read","id":"read-en"}
+{"text":"Ver reservas","topic":null,"reservationId":null,"intent":"get_reservations","language":"es","pairId":"bookings","id":"bookings-es"}
+{"text":"View bookings","topic":null,"reservationId":null,"intent":"get_reservations","language":"en","pairId":"bookings","id":"bookings-en"}
+{"text":"Cancelar RES-001","topic":null,"reservationId":"RES-001","intent":"preview_cancellation","language":"es","pairId":"preview-a","id":"preview-a-es"}
+{"text":"Cancel RES-001","topic":null,"reservationId":"RES-001","intent":"preview_cancellation","language":"en","pairId":"preview-a","id":"preview-a-en"}
+{"text":"Quiero cancelar RES-003","topic":null,"reservationId":"RES-003","intent":"preview_cancellation","language":"es","pairId":"preview-b","id":"preview-b-es"}
+{"text":"I want to cancel RES-003","topic":null,"reservationId":"RES-003","intent":"preview_cancellation","language":"en","pairId":"preview-b","id":"preview-b-en"}
+{"text":"Quiero cancelar","topic":null,"reservationId":null,"intent":"clarify","language":"es","pairId":"missing-code","id":"missing-code-es"}
+{"text":"I want to cancel","topic":null,"reservationId":null,"intent":"clarify","language":"en","pairId":"missing-code","id":"missing-code-en"}
+{"text":"sí","topic":null,"reservationId":null,"intent":"clarify","language":"es","pairId":"yes","id":"yes-es"}
+{"text":"yes","topic":null,"reservationId":null,"intent":"clarify","language":"en","pairId":"yes","id":"yes-en"}
+{"text":"ayuda","topic":null,"reservationId":null,"intent":"clarify","language":"es","pairId":"ambiguous","id":"ambiguous-es"}
+{"text":"help","topic":null,"reservationId":null,"intent":"clarify","language":"en","pairId":"ambiguous","id":"ambiguous-en"}
+{"text":"Quiero hablar con un humano","topic":null,"reservationId":null,"intent":"request_handoff","language":"es","pairId":"handoff","id":"handoff-es"}
+{"text":"I want to speak to a human","topic":null,"reservationId":null,"intent":"request_handoff","language":"en","pairId":"handoff","id":"handoff-en"}
+{"text":"Necesito atención de una persona","topic":null,"reservationId":null,"intent":"request_handoff","language":"es","pairId":"representative","id":"representative-es"}
+{"text":"I need a representative","topic":null,"reservationId":null,"intent":"request_handoff","language":"en","pairId":"representative","id":"representative-en"}
+{"text":"Necesito conocer los precios de vuelos internacionales","topic":"unknown","reservationId":null,"intent":"faq","language":"es","pairId":"unknown","id":"unknown-es"}
+{"text":"Tell me the price of international flights","topic":"unknown","reservationId":null,"intent":"faq","language":"en","pairId":"unknown","id":"unknown-en"}

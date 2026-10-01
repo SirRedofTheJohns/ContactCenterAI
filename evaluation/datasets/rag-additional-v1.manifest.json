@@ -1,0 +1,12 @@
+{
+  "frozenAtUtc": "2026-10-01T16:06:43.618169+00:00",
+  "datasetSha256": "7985c07cf6399d26b7c3508d9f27b3867b6118677fe930e6b1396426aadd8f41",
+  "cases": 100,
+  "pairs": 50,
+  "positive": 80,
+  "outOfScope": 20,
+  "authoredBeforeV09Implementation": true,
+  "sameAuthor": true,
+  "independentHumanReview": false,
+  "purpose": "Additional frozen paraphrase, scope and injection check; not independent blind human evaluation."
+}

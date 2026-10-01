@@ -1,0 +1,41 @@
+# Secrets and local data
+.env
+.env.*
+!.env.example
+secrets/
+.local/
+*.pfx
+*.pem
+*.key
+
+# Future .NET / Python / frontend build outputs
+bin/
+obj/
+.vs/
+__pycache__/
+.venv/
+node_modules/
+dist/
+coverage/
+
+# Unreviewed runtime artifacts
+logs/
+evaluation/reports/raw/
+*.db
+*.bak
+
+# SQLite sidecars, local bundles and private provider artifacts
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.log
+*.zip
+*.p12
+*.cer
+.DS_Store
+Thumbs.db
+provider-recordings/
+

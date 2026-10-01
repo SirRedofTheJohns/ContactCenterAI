@@ -1,0 +1,25 @@
+sequenceDiagram
+  participant Worker
+  participant SQL
+  participant Source
+  participant Case
+  Worker->>SQL: Claim expired Submitted lease or Unknown command
+  Worker->>Source: Query outcome by stable commandId
+  alt Source confirms Completed
+    Source-->>Worker: Completed and reference
+    Worker->>SQL: Persist Completed, audit and permitted delivery
+  else Source confirms Rejected
+    Source-->>Worker: Rejected or Conflict
+    Worker->>SQL: Persist final non-success and explanation
+  else Source guarantees NotFound and dedupe
+    Source-->>Worker: Definitively not accepted
+    Worker->>Source: Resend same commandId after current checks
+    Source-->>Worker: Authoritative result or uncertain timeout
+    Worker->>SQL: Persist observed result
+  else Still uncertain or source unavailable
+    Source-->>Worker: Pending or timeout
+    Worker->>SQL: Keep Unknown and bounded next query
+    Worker->>Case: After sixty seconds create human review
+    Case-->>SQL: Assigned review with operationId
+  end
+

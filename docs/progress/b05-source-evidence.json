@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T16:58:26.1620955+00:00",
+  "checksPassed": 22,
+  "checks": [
+    "Exactly 72 hours eligible",
+    "One second below 72 hours denied",
+    "Non-confirmed status denied",
+    "Offsets compare instants without changing boundary",
+    "Source queries return only server member reservations",
+    "Foreign and missing reservations denied by source ownership",
+    "Source mutation independently checks owner",
+    "Source rejects outside-window mutation",
+    "Stale source version denied",
+    "Changed policy version denied",
+    "One hundred identical replays preserve receipt and one source transition",
+    "Same command ID with changed payload conflicts",
+    "Twelve concurrent distinct commands make one source transition",
+    "Reopened source recovers reservation and authoritative receipt",
+    "Foreign or never accepted receipt returns no information",
+    "Reservation updates and exactly two receipts committed atomically",
+    "Execution uses current source clock after window changes",
+    "Actual HTTP source denies missing service credential",
+    "Actual HTTP source requires server member context",
+    "Actual authenticated HTTP denies foreign reservation",
+    "Closed command DTO rejects caller eligibility injection",
+    "Source Host restriction stays enabled in HTTP tests"
+  ],
+  "scope": "Pure CP-001, real C# SQLite source transactions/concurrency/receipt persistence and actual Kestrel source HTTP with isolated synthetic DB",
+  "productCancellationEnabled": false,
+  "sqlServerSourceTested": false,
+  "middlewareRecoveryTested": false
+}

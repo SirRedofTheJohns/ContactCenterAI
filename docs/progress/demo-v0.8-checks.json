@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "scope": "Release build and full isolated 224-check run, followed by a 35-check targeted retrieval run after the maximum-content bound fix; 226 checks across the final suites. Not a repeated full-suite run or a live model-quality measurement.",
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "checksPassed": 226,
+  "suites": {
+    "Foundation": 21,
+    "Operational": 17,
+    "Ingress": 33,
+    "Source": 22,
+    "Workflow": 25,
+    "Assistant": 36,
+    "LocalAiContracts": 28,
+    "Retrieval": 35,
+    "Operations": 9
+  },
+  "enterpriseGatesClosed": false,
+  "executionEvidence": {
+    "fullSuiteRunPassed": 224,
+    "finalTargetedRetrievalRunPassed": 35,
+    "newRetrievalAssertions": 2,
+    "finalRetrievalEvidence": "demo-v0.8-retrieval-checks.json"
+  },
+  "finalReleaseRebuild": "PASS, 0 warnings and 0 errors; current maximum-content bound fix included"
+}

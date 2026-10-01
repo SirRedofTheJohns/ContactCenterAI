@@ -1,0 +1,642 @@
+[
+  {
+    "id": "policy-es",
+    "pairId": "policy",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3527,
+    "inputTokens": 315,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "policy-en",
+    "pairId": "policy",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3084,
+    "inputTokens": 290,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "window-es",
+    "pairId": "window",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3312,
+    "inputTokens": 305,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "window-en",
+    "pairId": "window",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3124,
+    "inputTokens": 294,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "rule-es",
+    "pairId": "rule",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3239,
+    "inputTokens": 302,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "rule-en",
+    "pairId": "rule",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3071,
+    "inputTokens": 289,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "late-es",
+    "pairId": "late",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3190,
+    "inputTokens": 297,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "late-en",
+    "pairId": "late",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3108,
+    "inputTokens": 292,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "services-es",
+    "pairId": "services",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3127,
+    "inputTokens": 298,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "services-en",
+    "pairId": "services",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3014,
+    "inputTokens": 289,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "breakfast-es",
+    "pairId": "breakfast",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2104,
+    "inputTokens": 303,
+    "outputTokens": 19,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "breakfast-en",
+    "pairId": "breakfast",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 1923,
+    "inputTokens": 288,
+    "outputTokens": 19,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "arrival-es",
+    "pairId": "arrival",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3196,
+    "inputTokens": 302,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "arrival-en",
+    "pairId": "arrival",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2998,
+    "inputTokens": 290,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "identity-es",
+    "pairId": "identity",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "identity"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3217,
+    "inputTokens": 306,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "identity-en",
+    "pairId": "identity",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "identity"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3004,
+    "inputTokens": 290,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "payments-es",
+    "pairId": "payments",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3052,
+    "inputTokens": 295,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "payments-en",
+    "pairId": "payments",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2977,
+    "inputTokens": 289,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "refund-es",
+    "pairId": "refund",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3045,
+    "inputTokens": 293,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "refund-en",
+    "pairId": "refund",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2995,
+    "inputTokens": 288,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "read-es",
+    "pairId": "read",
+    "language": "es",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3080,
+    "inputTokens": 288,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "read-en",
+    "pairId": "read",
+    "language": "en",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2075,
+    "inputTokens": 287,
+    "outputTokens": 21,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "bookings-es",
+    "pairId": "bookings",
+    "language": "es",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3278,
+    "inputTokens": 287,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "bookings-en",
+    "pairId": "bookings",
+    "language": "en",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2293,
+    "inputTokens": 286,
+    "outputTokens": 21,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "preview-a-es",
+    "pairId": "preview-a",
+    "language": "es",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "es",
+      "reservationId": "RES-001",
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3729,
+    "inputTokens": 290,
+    "outputTokens": 37,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "preview-a-en",
+    "pairId": "preview-a",
+    "language": "en",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "en",
+      "reservationId": "RES-001",
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2545,
+    "inputTokens": 290,
+    "outputTokens": 25,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "preview-b-es",
+    "pairId": "preview-b",
+    "language": "es",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "es",
+      "reservationId": "RES-003",
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3695,
+    "inputTokens": 293,
+    "outputTokens": 37,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "preview-b-en",
+    "pairId": "preview-b",
+    "language": "en",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "en",
+      "reservationId": "RES-003",
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3639,
+    "inputTokens": 293,
+    "outputTokens": 37,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "missing-code-es",
+    "pairId": "missing-code",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3023,
+    "inputTokens": 288,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "missing-code-en",
+    "pairId": "missing-code",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3043,
+    "inputTokens": 288,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "yes-es",
+    "pairId": "yes",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3035,
+    "inputTokens": 289,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "yes-en",
+    "pairId": "yes",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2136,
+    "inputTokens": 285,
+    "outputTokens": 20,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "ambiguous-es",
+    "pairId": "ambiguous",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3143,
+    "inputTokens": 286,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "ambiguous-en",
+    "pairId": "ambiguous",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3129,
+    "inputTokens": 285,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "handoff-es",
+    "pairId": "handoff",
+    "language": "es",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3226,
+    "inputTokens": 290,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "handoff-en",
+    "pairId": "handoff",
+    "language": "en",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2227,
+    "inputTokens": 291,
+    "outputTokens": 21,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "representative-es",
+    "pairId": "representative",
+    "language": "es",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3388,
+    "inputTokens": 299,
+    "outputTokens": 32,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "representative-en",
+    "pairId": "representative",
+    "language": "en",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2207,
+    "inputTokens": 288,
+    "outputTokens": 21,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "unknown-es",
+    "pairId": "unknown",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 3256,
+    "inputTokens": 296,
+    "outputTokens": 31,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  },
+  {
+    "id": "unknown-en",
+    "pairId": "unknown",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "errorCode": null,
+    "elapsedMilliseconds": 2076,
+    "inputTokens": 291,
+    "outputTokens": 19,
+    "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1"
+  }
+]

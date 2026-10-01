@@ -1,0 +1,152 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI BFF session candidate",
+    "version": "0.1.0",
+    "description": "Product composition implemented; live product roundtrip pending. OIDC callback is handled by framework state/nonce/correlation checks. Logout is local, not global IdP logout."
+  },
+  "x-implementation": "implemented-candidate",
+  "servers": [
+    {
+      "url": "https://localhost:7451"
+    }
+  ],
+  "paths": {
+    "/v1/session/csrf": {
+      "get": {
+        "operationId": "bootstrapCsrf",
+        "responses": {
+          "200": {
+            "description": "Antiforgery token; secure CSRF cookie. No identity or conversation write."
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "503": {
+            "description": "SQL dependency unavailable"
+          }
+        },
+        "security": [],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session": {
+      "get": {
+        "operationId": "readSession",
+        "responses": {
+          "200": {
+            "description": "Authenticated boolean and expiry only"
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "503": {
+            "description": "SQL dependency unavailable"
+          }
+        },
+        "security": [],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session/anonymous": {
+      "post": {
+        "operationId": "createAnonymousSession",
+        "responses": {
+          "201": {
+            "description": "Durable guest session and secure cookie"
+          },
+          "200": {
+            "description": "Existing session returned"
+          },
+          "503": {
+            "description": "SQL unavailable; no session accepted"
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be https://localhost:7451. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/login": {
+      "post": {
+        "operationId": "beginLogin",
+        "responses": {
+          "302": {
+            "description": "Redirect to fixed local IdP using Code+PKCE"
+          },
+          "503": {
+            "description": "Identity or SQL unavailable"
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be https://localhost:7451. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/logout": {
+      "post": {
+        "operationId": "logoutLocalSession",
+        "responses": {
+          "204": {
+            "description": "SQL session revoked and local cookie cleared"
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "503": {
+            "description": "Revocation could not be persisted"
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be https://localhost:7451. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "SessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-ccai.session",
+        "description": "Opaque secure cookie backed by active SQL session; no saved tokens."
+      },
+      "AntiCsrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-TOKEN",
+        "description": "Fetch GET /v1/session/csrf after every session rotation. Mutations also require exact HTTPS Origin."
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant UI as Cliente
+  participant Job as Inbox y worker C#
+  participant AI as Adapter Ollama
+  participant Model as Modelo local fijado
+  participant Gate as Gateway determinista
+  participant App as Reglas y evidencia
+  UI->>Job: Mensaje sanitizado
+  Job->>AI: Texto e idioma, deadline 8 s
+  AI->>Model: Validar digest y pedir JSON
+  Model-->>AI: Propuesta no confiable
+  AI-->>Gate: Contenido acotado
+  Gate->>App: FAQ, lectura, preview, handoff o aclaración
+  App-->>Job: Hechos autorizados y citas o fallback
+  Job-->>UI: Resultado persistido con providerId
+  Note over Gate,App: Cancelar requiere confirmación UI y receipt fuente

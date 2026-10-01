@@ -1,0 +1,33 @@
+flowchart TB
+  customer["Person: Customer or assigned employee"]
+  idp["External: OIDC IdP"]
+  llm["External: LLM and embeddings"]
+  source["External: Reservation simulator HTTP"]
+  center["External: Contact center mock or Genesys"]
+  subgraph systemBoundary["ContactCenterAI system boundary"]
+    ui["Container: Angular web UI"]
+    api["Container: ASP.NET Core API and BFF"]
+    worker["Container: .NET durable worker"]
+    sql[("Container: SQL Server Operational DB")]
+    index[("Container: Qdrant index")]
+    telemetry["Container: OTel collector and local dashboard"]
+  end
+  eval["Offline tool: Python evaluator"]
+  customer --> ui
+  ui -->|"Session and API"| api
+  api --> idp
+  center -->|"Authenticated ingress"| api
+  api -->|"State, commands, inbox and outbox"| sql
+  worker -->|"Lease and commit durable jobs"| sql
+  api -->|"RAG candidates"| index
+  worker -->|"Versioned indexing"| index
+  api -->|"Intent and response"| llm
+  worker -->|"Embedding and summaries"| llm
+  api -->|"Read and preview"| source
+  worker -->|"Command and reconciliation"| source
+  worker -->|"Outbound and handoff"| center
+  api --> telemetry
+  worker --> telemetry
+  eval -->|"Synthetic scenarios"| api
+  api -->|"Sanitized evaluation exports"| eval
+

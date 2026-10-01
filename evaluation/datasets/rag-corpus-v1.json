@@ -1,0 +1,802 @@
+[
+  {
+    "documentId": "KB-CANCELLATION-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Política de cancelación CP-001",
+    "content": "CP-001:v1 permite cancelar sin penalidad una reserva confirmada cuando faltan al menos 72 horas antes de la llegada. Se requiere una propuesta vigente y confirmación explícita. La fuente vuelve a validar el estado antes de cancelar.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "cancellation"
+  },
+  {
+    "documentId": "KB-CANCELLATION-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Cancellation policy CP-001",
+    "content": "CP-001:v1 allows a confirmed reservation to be cancelled without penalty at least 72 hours before check-in. A valid offer and explicit confirmation are required. The source checks the current state again before cancellation.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "cancellation"
+  },
+  {
+    "documentId": "KB-SERVICES-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Servicios de la propiedad ficticia",
+    "content": "Caribbean Horizon es una propiedad ficticia de la demo. Ofrece Wi-Fi y desayuno incluidos. La llegada comienza a las 15:00 y la salida es a las 11:00, hora local. Esta información es sintética y no representa un hotel real.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-SERVICES-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Synthetic property services",
+    "content": "Caribbean Horizon is a fictional demo property. Wi-Fi and breakfast are included. Check-in starts at 15:00 and check-out is at 11:00 local time. This synthetic information does not represent a real hotel.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-IDENTITY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Acceso a reservas",
+    "content": "Inicia sesión con tu cuenta ficticia para consultar tus reservas. El sistema utiliza la identidad verificada de Keycloak. Escribir otro nombre o número de miembro en el chat no cambia tus permisos.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "identity"
+  },
+  {
+    "documentId": "KB-IDENTITY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Reservation access",
+    "content": "Sign in with your fictional account to access your reservations. The system uses the identity verified by Keycloak. Typing another name or member number in chat does not change your permissions.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "identity"
+  },
+  {
+    "documentId": "KB-PAYMENTS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Canal de pagos",
+    "content": "Esta demo no procesa pagos, tarjetas ni reembolsos. No envíes números de tarjeta ni códigos CVV. Para una consulta fuera de alcance solicita atención humana en el contact center simulado.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "payments"
+  },
+  {
+    "documentId": "KB-PAYMENTS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Payment channel",
+    "content": "This demo does not process payments, cards or refunds. Do not send card numbers or CVV codes. For a request outside the scope, ask for human assistance in the simulated contact center.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "payments"
+  },
+  {
+    "documentId": "KB-AGENT-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Revisión interna de operaciones",
+    "content": "Procedimiento interno: una operación Unknown debe reconciliarse por commandId. Nunca declarar cancelación confirmada sin receipt Completed. Registrar revisión humana si la fuente sigue sin responder; no ejecutar un segundo comando con ID nuevo.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  },
+  {
+    "documentId": "KB-AGENT-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Internal operation review",
+    "content": "Internal procedure: an Unknown operation must be reconciled by commandId. Never claim confirmed cancellation without a Completed receipt. Record human review if the source remains unavailable; never submit a second command with a new ID.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  },
+  {
+    "documentId": "KB-POOL-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Piscina",
+    "content": "La piscina abre de 08:00 a 20:00. Los menores deben estar acompañados por un adulto.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-POOL-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Pool",
+    "content": "The pool opens from 08:00 to 20:00. Children must be accompanied by an adult.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PARKING-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Estacionamiento",
+    "content": "El estacionamiento descubierto es gratuito para huéspedes. No se garantiza un espacio y no hay valet.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PARKING-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Parking",
+    "content": "Outdoor parking is free for guests. A space is not guaranteed and there is no valet.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PETS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Mascotas",
+    "content": "Se admiten perros de hasta 10 kg con aviso previo. Los animales de asistencia se reciben según sus necesidades. La demo no cobra suplementos.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PETS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Pets",
+    "content": "Dogs up to 10 kg are accepted with advance notice. Assistance animals are accommodated according to their needs. The demo collects no surcharges.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-ACCESSIBILITY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Accesibilidad",
+    "content": "Hay habitaciones con acceso sin escalones y baño adaptado. Solicita a atención humana confirmar disponibilidad antes de viajar.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-ACCESSIBILITY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Accessibility",
+    "content": "Rooms with step-free access and adapted bathrooms are available. Ask human support to confirm availability before travelling.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-BREAKFAST-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Horario del desayuno",
+    "content": "El desayuno incluido se sirve de 07:00 a 10:00 en el comedor principal. Hay opciones vegetarianas.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-BREAKFAST-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Breakfast hours",
+    "content": "The included breakfast is served from 07:00 to 10:00 in the main dining room. Vegetarian options are available.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-WIFI-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Internet",
+    "content": "La red de huéspedes es Horizon-Guest. Solicita la clave de Wi-Fi en recepción; el chat no publica contraseñas de red.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-WIFI-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Internet",
+    "content": "The guest network is Horizon-Guest. Ask reception for the Wi-Fi password; chat does not publish network passwords.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-AIRPORT-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Traslado desde aeropuerto",
+    "content": "La propiedad no opera un traslado propio desde el aeropuerto. Atención humana puede informar opciones externas sin realizar reservas ni pagos.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-AIRPORT-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Airport transport",
+    "content": "The property does not operate its own airport shuttle. Human support can describe external options without making bookings or payments.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LUGGAGE-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Equipaje",
+    "content": "Recepción guarda equipaje el día de llegada o salida hasta las 20:00. No se aceptan objetos peligrosos ni se custodian valores.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LUGGAGE-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Luggage",
+    "content": "Reception stores luggage on the arrival or departure day until 20:00. Dangerous items are not accepted and valuables are not safeguarded.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LATE-CHECKOUT-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Salida tardía",
+    "content": "La salida tardía necesita confirmación de recepción el mismo día y depende de disponibilidad. El asistente no puede garantizarla ni cambiar la reserva.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LATE-CHECKOUT-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Late checkout",
+    "content": "Late checkout requires reception confirmation on the same day and depends on availability. The assistant cannot guarantee it or change the reservation.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-EARLY-CHECKIN-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Llegada anticipada",
+    "content": "La llegada antes de las 15:00 depende de disponibilidad y confirmación de recepción. El asistente no garantiza habitación anticipada.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-EARLY-CHECKIN-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Early check-in",
+    "content": "Arrival before 15:00 depends on availability and reception confirmation. The assistant cannot guarantee early room access.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-SMOKING-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Espacios sin humo",
+    "content": "Las habitaciones y espacios interiores son libres de humo. Recepción indica el área exterior designada para fumar.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-SMOKING-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Smoke-free spaces",
+    "content": "Rooms and indoor areas are smoke-free. Reception can direct you to the designated outdoor smoking area.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LAUNDRY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Lavandería",
+    "content": "La lavandería se solicita en recepción de 09:00 a 17:00. Recepción confirma plazos y condiciones; el chat no cobra ni cotiza.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LAUNDRY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Laundry",
+    "content": "Laundry is requested at reception from 09:00 to 17:00. Reception confirms turnaround and conditions; chat does not collect payment or provide quotes.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-GYM-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Gimnasio",
+    "content": "El gimnasio abre de 06:00 a 22:00. Se requiere calzado deportivo y los menores de 16 años deben ir con un adulto.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-GYM-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Gym",
+    "content": "The gym opens from 06:00 to 22:00. Sports shoes are required and children under 16 must be accompanied by an adult.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-QUIET-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Horario de descanso",
+    "content": "El horario de silencio es de 22:00 a 07:00. Si hay ruido persistente contacta a recepción; el asistente no promete sanciones.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-QUIET-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Quiet hours",
+    "content": "Quiet hours run from 22:00 to 07:00. Contact reception for persistent noise; the assistant does not promise penalties.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LOST-ITEMS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Objetos perdidos",
+    "content": "Reporta objetos olvidados a atención humana con fecha y descripción general. No envíes datos sensibles. El chat no confirma que un objeto haya sido encontrado.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LOST-ITEMS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Lost items",
+    "content": "Report forgotten items to human support with a date and general description. Do not send sensitive data. Chat cannot confirm that an item has been found.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-FOOD-ALLERGY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Alergias alimentarias",
+    "content": "Informa alergias al equipo del comedor antes de consumir alimentos. No se garantiza un ambiente libre de alérgenos. El asistente no ofrece consejo médico.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-FOOD-ALLERGY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Food allergies",
+    "content": "Tell dining staff about allergies before eating. An allergen-free environment is not guaranteed. The assistant does not provide medical advice.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-CRIB-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Cunas",
+    "content": "Las cunas se solicitan a recepción y están sujetas a disponibilidad. No se asignan automáticamente y el asistente no confirma la entrega.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-CRIB-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Baby cots",
+    "content": "Baby cots can be requested at reception subject to availability. They are not assigned automatically and the assistant cannot confirm delivery.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-HOUSEKEEPING-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Limpieza",
+    "content": "La limpieza de habitaciones se realiza de 09:00 a 16:00. Usa el aviso de no molestar si deseas privacidad y contacta recepción para coordinar.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-HOUSEKEEPING-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Housekeeping",
+    "content": "Housekeeping takes place from 09:00 to 16:00. Use the do-not-disturb notice for privacy and contact reception to coordinate.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-WATER-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Agua para beber",
+    "content": "Hay dispensadores de agua potable en el vestíbulo y junto al gimnasio. Usa un recipiente reutilizable.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-WATER-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Drinking water",
+    "content": "Drinking water dispensers are in the lobby and next to the gym. Use a reusable container.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-RESTAURANT-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Restaurante",
+    "content": "El restaurante sirve almuerzo de 12:00 a 15:00 y cena de 18:00 a 21:00. Recepción confirma disponibilidad de mesas.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-RESTAURANT-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Restaurant",
+    "content": "The restaurant serves lunch from 12:00 to 15:00 and dinner from 18:00 to 21:00. Reception confirms table availability.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-BEACH-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Acceso a playa",
+    "content": "La playa pública está a unos diez minutos a pie de la propiedad ficticia. No hay playa privada ni servicio de salvavidas de la propiedad.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-BEACH-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Beach access",
+    "content": "The public beach is about ten minutes on foot from the fictional property. There is no private beach or property lifeguard service.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-TOWELS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Toallas de piscina",
+    "content": "Solicita toallas de piscina en recepción y devuélvelas al terminar. Las toallas de habitación deben permanecer dentro de la propiedad.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-TOWELS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Pool towels",
+    "content": "Request pool towels at reception and return them after use. Room towels must remain on the property.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-RECEPTION-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Recepción",
+    "content": "La recepción atiende las 24 horas. El contact center de esta demo es simulado y no proporciona asistencia de emergencia real.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-RECEPTION-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Reception",
+    "content": "Reception is staffed 24 hours a day. This demo contact center is simulated and does not provide real emergency assistance.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-MEETING-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Sala de reuniones",
+    "content": "Hay una sala de reuniones para hasta doce personas. Atención humana confirma disponibilidad; el chat no crea reservas para eventos.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-MEETING-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Meeting room",
+    "content": "A meeting room accommodates up to twelve people. Human support confirms availability; chat does not create event bookings.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-POWER-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Enchufes",
+    "content": "La propiedad ficticia dispone de enchufes tipo A/B y suministro de 120 V. Recepción puede indicar disponibilidad de adaptadores; no se garantizan.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-POWER-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Power outlets",
+    "content": "The fictional property has type A/B outlets and 120 V supply. Reception can check adapter availability; adapters are not guaranteed.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-CYCLING-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Bicicletas",
+    "content": "Hay un espacio para guardar bicicletas junto al estacionamiento. La propiedad no alquila bicicletas y no custodia valores.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-CYCLING-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Bicycles",
+    "content": "Bicycle storage is next to the parking area. The property does not rent bicycles or safeguard valuables.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-KEYS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Llave de habitación",
+    "content": "Si pierdes la llave de habitación, visita recepción para verificar tu identidad. El chat no emite llaves ni códigos de acceso.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-KEYS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Room key",
+    "content": "If you lose your room key, visit reception for identity verification. Chat does not issue keys or access codes.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-VISITORS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Visitas",
+    "content": "Las visitas deben registrarse en recepción. El horario de visita termina a las 21:00 y no incluye uso de habitaciones para pernoctar.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-VISITORS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Visitors",
+    "content": "Visitors must register at reception. Visiting hours end at 21:00 and do not include overnight room use.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-INVOICE-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Comprobante",
+    "content": "Para solicitar un comprobante de estancia contacta a atención humana. No envíes identificaciones fiscales por chat; esta demo no emite documentos tributarios.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-INVOICE-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Invoice",
+    "content": "Contact human support to request a stay receipt. Do not send tax identifiers in chat; this demo does not issue tax documents.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-MODIFICATIONS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Cambios de reserva",
+    "content": "Esta demo permite consultar y solicitar cancelación confirmada según CP-001. Cambiar fechas o huéspedes requiere atención humana; el asistente no modifica esos datos.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-MODIFICATIONS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Reservation changes",
+    "content": "This demo supports reading reservations and explicitly confirmed cancellation under CP-001. Changing dates or guests requires human support; the assistant does not modify those details.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LANGUAGES-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Idiomas de atención",
+    "content": "La demo atiende en español e inglés. Selecciona el idioma antes de crear la conversación; no se cambia automáticamente por el texto del mensaje.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-LANGUAGES-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Support languages",
+    "content": "The demo supports Spanish and English. Choose the language before creating the conversation; message text does not change it automatically.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PRIVACY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Privacidad del chat",
+    "content": "Usa solo datos ficticios en esta demostración. El chat oculta patrones comunes de datos personales, pero no garantiza detectar todos. No envíes documentos ni información privada.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-PRIVACY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Chat privacy",
+    "content": "Use only fictional data in this demonstration. Chat masks common personal-data patterns but cannot guarantee detection of all of them. Do not send documents or private information.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-FEEDBACK-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Comentarios sobre respuestas",
+    "content": "Puedes marcar una respuesta como incorrecta, incompleta o poco clara. El comentario queda pendiente de revisión y no cambia automáticamente los documentos ni reglas de negocio.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-FEEDBACK-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Answer feedback",
+    "content": "You can flag an answer as incorrect, incomplete or unclear. Feedback awaits review and does not automatically change documents or business rules.",
+    "classification": "Public",
+    "sectionId": "overview",
+    "topic": "services"
+  },
+  {
+    "documentId": "KB-INTERNAL-HANDOFF-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Asignación interna",
+    "content": "Guía interna: un agente solo recibe contexto de conversaciones con asignación activa. Una solicitud de transferencia no equivale a conexión; requiere acknowledgment vigente del contact center.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  },
+  {
+    "documentId": "KB-INTERNAL-HANDOFF-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Internal assignment",
+    "content": "Internal guide: agents receive context only for actively assigned conversations. A transfer request is not a connection; a current contact-center acknowledgment is required.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  },
+  {
+    "documentId": "KB-INTERNAL-SUMMARY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Resumen interno",
+    "content": "Guía interna: el resumen usa mensajes sanitizados, hechos fuente y estados de operación. Unknown se muestra como incierto. El agente verifica la fuente antes de afirmar una cancelación.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  },
+  {
+    "documentId": "KB-INTERNAL-SUMMARY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Internal summary",
+    "content": "Internal guide: the summary uses sanitized messages, source facts and operation states. Unknown is displayed as uncertain. The agent checks the source before claiming a cancellation.",
+    "classification": "Agent",
+    "sectionId": "overview",
+    "topic": "agent"
+  }
+]

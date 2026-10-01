@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T07:05:16.214889+00:00",
+  "profile": "demo-assistant-v0.8",
+  "observed": [
+    "Real Keycloak customer-a login",
+    "Current intent + BGE-M3 retrieval + bounded Qwen selection",
+    "Novel reception question persisted and answered",
+    "KB-RECEPTION-ES v1 citation opened",
+    "Historical conversation and reservations preserved",
+    "OperationsAdmin real login observed 80 approved/indexed variants and one source-confirmed operation"
+  ],
+  "assistantTurnMs": 6957.49,
+  "rerankMs": 3847.11,
+  "newSourceMutation": false,
+  "credentialOrThinkingExported": false,
+  "screenshots": [
+    "screenshots/evidence-selection-v0.8.jpg",
+    "screenshots/operations-v0.7.png"
+  ]
+}

@@ -1,0 +1,25 @@
+sequenceDiagram
+  actor Editor
+  actor Reviewer
+  participant API
+  participant SQL
+  participant Worker
+  participant Embedding
+  participant Qdrant
+  Editor->>API: Submit curated Markdown and metadata
+  API->>SQL: Validate size, content, ACL, translation group, save Draft
+  Editor->>API: Submit validated Draft for review
+  API->>SQL: Freeze content and mark PendingReview
+  Reviewer->>API: Review as different verified principal
+  API->>SQL: Persist ApprovedForIndexing and job
+  Worker->>SQL: Lease ingestion and load immutable version
+  Worker->>Embedding: Embed bounded approved chunks
+  Embedding-->>Worker: Vectors and model version
+  Worker->>Qdrant: Stage complete version with payload indexes
+  Qdrant-->>Worker: Index generation verified
+  Worker->>SQL: Atomically publish active version and supersede previous
+  SQL-->>API: Published evidence available
+  Reviewer->>API: Revoke compromised version
+  API->>SQL: Immediately mark Revoked
+  Worker->>Qdrant: Remove stale projection asynchronously
+

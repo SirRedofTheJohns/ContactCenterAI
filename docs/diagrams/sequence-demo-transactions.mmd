@@ -1,0 +1,27 @@
+sequenceDiagram
+  actor Customer
+  participant API
+  participant OperationalSQLite
+  participant Dispatcher
+  participant SourceHTTP
+  Customer->>API: Preview own reservation
+  API->>SourceHTTP: Read with server member
+  API->>OperationalSQLite: Persist five minute bound offer
+  API-->>Customer: Offer with explicit confirm control
+  Customer->>API: Confirm with CSRF and version and key
+  API->>SourceHTTP: Revalidate current snapshot
+  API->>OperationalSQLite: Atomic consume and Pending and audit
+  API-->>Customer: 202 Pending
+  Dispatcher->>OperationalSQLite: Lease and persist Submitted
+  Dispatcher->>SourceHTTP: Cancel with stable command ID
+  alt Receipt observed
+    SourceHTTP-->>Dispatcher: Authoritative Completed
+    Dispatcher->>OperationalSQLite: Save receipt with current lease
+  else Response lost or process interrupted
+    Dispatcher->>OperationalSQLite: Unknown or expired lease
+    Dispatcher->>SourceHTTP: Query receipt by same command ID
+    SourceHTTP-->>Dispatcher: Completed or definitive local NotFound
+    Dispatcher->>OperationalSQLite: Save fact or schedule bounded retry
+  end
+  Customer->>API: Read owned operation
+  API-->>Customer: Status from durable ledger

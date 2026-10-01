@@ -1,0 +1,17 @@
+{
+  "observedAtUtc": "2026-10-01T15:04:34.958057+00:00",
+  "finalReleaseBuild": "PASS",
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "portfolioArchive": "ContactCenterAI-Demo-v0.8.zip",
+  "localRuntimeState": "Blocked by host Docker startup failure",
+  "keycloakDiscovery": "Connection refused",
+  "dockerStartupError": "OTel manager cannot remove stale Docker/run/userAnalyticsOtlpHttp.sock: The file cannot be accessed by the system.",
+  "repairPermission": "Requested filesystem write access to Docker/run; no additional permissions granted.",
+  "previousBrowserEvidence": "demo-v0.8-browser.json",
+  "previousBrowserEvidenceIsCurrentReadiness": false,
+  "containersReset": false,
+  "databasesReset": false,
+  "credentialsChanged": false,
+  "certificatesChanged": false
+}

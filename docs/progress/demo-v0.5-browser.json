@@ -1,0 +1,36 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T03:22:54.695926+00:00",
+  "profile": "demo-v0.5",
+  "browser": "Codex in-app browser, existing user tab",
+  "observed": [
+    "Real Keycloak login customer-b",
+    "New English conversation",
+    "English policy answer with governed citation",
+    "Open citation content",
+    "Chat Cancel RES-003 displays offer without execution",
+    "Explicit UI confirm returns Pending",
+    "Operation becomes Completed with source reference",
+    "Reload preserves confirmed cancellation",
+    "Handoff requested then accepted, bot paused",
+    "Real Keycloak login agent-assigned",
+    "Assigned context shows source-confirmed fact",
+    "Authorized internal knowledge resolves",
+    "Real Keycloak login customer-a",
+    "New Spanish conversation with policy answer and citation"
+  ],
+  "sourceReference": "source:35ee9050-34c7-46b6-8c50-5b196443da1f",
+  "productSourceMutationObserved": true,
+  "liveLlmTested": false,
+  "genesysTenantTested": false,
+  "sqlServerProductTested": false,
+  "cookiesTokensOrCallbackUrlsExported": false,
+  "currentView": "Customer A, Spanish FAQ. RES-001 retained eligible; B RES-003 is now cancelled.",
+  "screenshots": [
+    "assistant-faq-en.jpg",
+    "cancellation-completed.jpg",
+    "handoff-owned.jpg",
+    "agent-context.jpg",
+    "assistant-faq-es.jpg"
+  ]
+}

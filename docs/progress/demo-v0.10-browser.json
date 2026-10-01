@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T17:23:08.390560+00:00",
+  "profile": "demo-assistant-v0.10",
+  "scope": "Actual in-app browser walkthrough against current product; synthetic account, real local IdP and AI. No tenant Genesys, SQL Server or admin walkthrough repeated.",
+  "observed": [
+    "Real Keycloak customer-a login and return to saved history",
+    "Current Qwen intent/BGE-M3/closed-selector pool question persisted and answered",
+    "KB-POOL-ES v1 citation opened with matching approved passage",
+    "Spanish immediate-money-return question receives abstention without a citation",
+    "Own RES-001 still eligible; RES-002 outside the 72-hour rule; neither cancelled",
+    "Fifteen-minute session expiration observed; normal login renewal restored history",
+    "Normal launcher recognizes already-running current application without rebuild or credential changes"
+  ],
+  "newSourceMutation": false,
+  "credentialsChanged": false,
+  "credentialOrThinkingExported": false,
+  "screenshots": [
+    "screenshots/final-demo-v0.10.png"
+  ]
+}

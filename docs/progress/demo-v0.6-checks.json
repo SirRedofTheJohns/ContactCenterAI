@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "scope": "Release build and isolated safety suites after provider composition change",
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "checksPassed": 182,
+  "suites": {
+    "Foundation": 21,
+    "Operational": 17,
+    "Ingress": 33,
+    "Source": 22,
+    "Workflow": 25,
+    "Assistant": 36,
+    "LocalAiContracts": 28
+  },
+  "liveInferenceEvidence": "local-ai-run.json",
+  "enterpriseGatesClosed": false
+}

@@ -1,0 +1,40 @@
+name: contactcenterai-local
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server@sha256:4402d880dd4c34bfa7d8705e56a86cd6c88da80a1f6bbbe741f999e76264a090
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: "${CCAI_ACCEPT_SQL_EULA:?Review SQL Server Developer terms and set CCAI_ACCEPT_SQL_EULA=Y locally}"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: "${CCAI_SQL_SA_PASSWORD:?Initialize the ignored local .env first}"
+    ports:
+      - "127.0.0.1:14333:1433"
+    volumes:
+      - sql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "SQLCMDPASSWORD=\"$$MSSQL_SA_PASSWORD\" /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -b -Q 'SELECT 1' -o /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    mem_limit: 3g
+  keycloak:
+    image: quay.io/keycloak/keycloak@sha256:37dbaf6f0722c9ec246335f36e1ef8b2e6cb960f7c27e0d8c615121a3d475a85
+    platform: linux/amd64
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ccai-local-admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "${CCAI_KEYCLOAK_ADMIN_PASSWORD:?Initialize the ignored local .env first}"
+      KC_HOSTNAME: http://localhost:8080
+      KC_HEALTH_ENABLED: "true"
+      CCAI_BFF_CLIENT_SECRET: "${CCAI_BFF_CLIENT_SECRET:?Initialize the ignored local .env first}"
+      CCAI_SYNTHETIC_USER_PASSWORD: "${CCAI_SYNTHETIC_USER_PASSWORD:?Initialize the ignored local .env first}"
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./keycloak:/opt/keycloak/data/import:ro
+    mem_limit: 1g
+volumes:
+  sql-data:
+  keycloak-data:

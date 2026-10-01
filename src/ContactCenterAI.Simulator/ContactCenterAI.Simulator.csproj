@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../ContactCenterAI.Domain/ContactCenterAI.Domain.csproj" />
+    <ProjectReference Include="../ContactCenterAI.Application/ContactCenterAI.Application.csproj" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
+  </ItemGroup>
+</Project>

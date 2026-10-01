@@ -1,0 +1,5607 @@
+{
+  "model": "bge-m3@7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+  "indexingMs": 3101,
+  "variants": 80,
+  "queries": [
+    {
+      "id": "rag-001-es",
+      "selected": "KB-CANCELLATION-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.6327431696425366
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.478888966751822
+        },
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.43999181504186297
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.42602818052391794
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.40826365931385783
+        }
+      ],
+      "elapsedMs": 56
+    },
+    {
+      "id": "rag-001-en",
+      "selected": "KB-CANCELLATION-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.6303868965218411
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.48677637223600095
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.4485141168295011
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.4441822339656162
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.4388345743988882
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-002-es",
+      "selected": "KB-CANCELLATION-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.5961047158856582
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.5058662955673892
+        },
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.31204052015078715
+        },
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.3100462740298737
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.3074209333461402
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-002-en",
+      "selected": "KB-CANCELLATION-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.5627181914353158
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5217928125247306
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.3543200975797543
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.35367654665165227
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.3406250063335424
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-003-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.43003818015070855
+        },
+        {
+          "document": "KB-AIRPORT-ES",
+          "score": 0.4270624711515183
+        },
+        {
+          "document": "KB-BEACH-ES",
+          "score": 0.42427000833271433
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.3922883621043767
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.3911071587602531
+        }
+      ],
+      "elapsedMs": 51
+    },
+    {
+      "id": "rag-003-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-BEACH-EN",
+          "score": 0.39611743473107514
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.3857439435304048
+        },
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.37325803933872903
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.3711245230089645
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.368030689956402
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-004-es",
+      "selected": "KB-VISITORS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.6287721091098821
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.6093891196709981
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.6063284246927501
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.6052594506654804
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5905322777018189
+        }
+      ],
+      "elapsedMs": 49
+    },
+    {
+      "id": "rag-004-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6309107144911702
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6274164624722155
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5947608042117528
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.584846423792305
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.5827076147821402
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-005-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5307279115307377
+        },
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.4752607485351945
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4687928911073157
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4495407443573586
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4449848434417722
+        }
+      ],
+      "elapsedMs": 50
+    },
+    {
+      "id": "rag-005-en",
+      "selected": "KB-IDENTITY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.6000981166173248
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5305552218471957
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5259737555886353
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5206424677303743
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.4703902252309505
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-006-es",
+      "selected": "KB-IDENTITY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.6638185400226275
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5343086998053209
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.5212415287236124
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.5127713807450279
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.48639432802089844
+        }
+      ],
+      "elapsedMs": 51
+    },
+    {
+      "id": "rag-006-en",
+      "selected": "KB-IDENTITY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.6768934953961366
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5727318465537855
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5608382703285526
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5482029010971855
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5410391840044412
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-007-es",
+      "selected": "KB-PAYMENTS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.674954239296243
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5944101303208422
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.5864941401929854
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.5765090424864324
+        },
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.5618336782695366
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-007-en",
+      "selected": "KB-PAYMENTS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.6917093047547817
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.6395368487986118
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5994257672378481
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.5891670883036151
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.5794917979260829
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-008-es",
+      "selected": "KB-PAYMENTS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.5743354426845491
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4912557008328396
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4842384843917924
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.477313338277493
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.47370814377998566
+        }
+      ],
+      "elapsedMs": 50
+    },
+    {
+      "id": "rag-008-en",
+      "selected": "KB-PAYMENTS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.641057994454245
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5843563119767865
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5720520793078527
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.5506026547574296
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.53322181237325
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-009-es",
+      "selected": "KB-AGENT-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.5716154120139625
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-ES",
+          "score": 0.4866218928254407
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.4247624516414089
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.3943092619700405
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.3702776552510046
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-009-en",
+      "selected": "KB-AGENT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.5985409347534456
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-EN",
+          "score": 0.5227850879869813
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.4577111265192043
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.44027027816314485
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.3920711628632951
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-010-es",
+      "selected": "KB-AGENT-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.5680271811719954
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.48597017985645935
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-ES",
+          "score": 0.44672589411593067
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.43083400375844977
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4268357334378076
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-010-en",
+      "selected": "KB-AGENT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.6085268861039049
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.5179773484470487
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-EN",
+          "score": 0.48475308363297964
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.4680011485530128
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.4662760265215872
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-011-es",
+      "selected": "KB-POOL-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.6651875784143708
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.6179069402654249
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5438060225422747
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5338957267427152
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5155168608982047
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-011-en",
+      "selected": "KB-POOL-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.6055873670456857
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.5601410412842321
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.511356560252164
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.47133389408855814
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4620787575737774
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-012-es",
+      "selected": "KB-POOL-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.7535150683070606
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.6175238730382192
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.563322463110165
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.560403765105648
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5498216184699628
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-012-en",
+      "selected": "KB-POOL-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.7094868494216776
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.6015364645516077
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5549577004285073
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5537810128158361
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5477111730869224
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-013-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.5404660306683186
+        },
+        {
+          "document": "KB-CYCLING-ES",
+          "score": 0.49155032427084316
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4546843751634636
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.444469629567343
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4389186490030039
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-013-en",
+      "selected": "KB-PARKING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.6319892809947615
+        },
+        {
+          "document": "KB-CYCLING-EN",
+          "score": 0.4918677905781148
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.46525761402575466
+        },
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.46077813485845265
+        },
+        {
+          "document": "KB-BEACH-EN",
+          "score": 0.4474290125060601
+        }
+      ],
+      "elapsedMs": 50
+    },
+    {
+      "id": "rag-014-es",
+      "selected": "KB-PARKING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.5970043690603805
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.48824098818958883
+        },
+        {
+          "document": "KB-CYCLING-ES",
+          "score": 0.4495550281338687
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.44630134296909457
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.43966480146695314
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-014-en",
+      "selected": "KB-PARKING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.7012249218497228
+        },
+        {
+          "document": "KB-CYCLING-EN",
+          "score": 0.5239800026437988
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5105145964491333
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.501826915249757
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4937417739543589
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-015-es",
+      "selected": "KB-PETS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.5856718380828765
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5009914054822622
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.4783396691593748
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.47703539688214475
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.47286867057817616
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-015-en",
+      "selected": "KB-PETS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.5907010772441218
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.4690137398723332
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.46706742089730335
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4667957040299276
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.456012031951223
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-016-es",
+      "selected": "KB-PETS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.6711453510193103
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.43650119448600755
+        },
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.41859214062627714
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4180983808668543
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4168747269367509
+        }
+      ],
+      "elapsedMs": 49
+    },
+    {
+      "id": "rag-016-en",
+      "selected": "KB-PETS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.7181927460419988
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4940939291786593
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4632481175094987
+        },
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.45985186976453724
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.4561252278664261
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-017-es",
+      "selected": "KB-ACCESSIBILITY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.6448104638155218
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5421108112635181
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5128215712843975
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.5097873318010391
+        },
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.5059766584169539
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-017-en",
+      "selected": "KB-ACCESSIBILITY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.6769522322879127
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5796938288887797
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.5434251230517889
+        },
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.5428770641781713
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.5353365384743439
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-018-es",
+      "selected": "KB-ACCESSIBILITY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.6857777513338192
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.518489444691201
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5095933688080172
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5074869706344958
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.4934354536433404
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-018-en",
+      "selected": "KB-ACCESSIBILITY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.667201844004587
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.5287551859855913
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5285609035319162
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5253142844710703
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5139314881607742
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-019-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-BREAKFAST-ES",
+          "score": 0.6549146820964309
+        },
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.6441140634837754
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5178501998816586
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5051190936277473
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.49049143710456267
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-019-en",
+      "selected": "KB-BREAKFAST-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BREAKFAST-EN",
+          "score": 0.7023640358210701
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.68478174155341
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5950128454670583
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.5799086979127956
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5694493283825124
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-020-es",
+      "selected": "KB-BREAKFAST-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BREAKFAST-ES",
+          "score": 0.6314036876223652
+        },
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.5920760469974953
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.49929284535506185
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.48629100399730246
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.484981663595228
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-020-en",
+      "selected": "KB-BREAKFAST-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BREAKFAST-EN",
+          "score": 0.6967497205052794
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.5840245244619905
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5573922261030951
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5327938215190656
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5305930664184693
+        }
+      ],
+      "elapsedMs": 50
+    },
+    {
+      "id": "rag-021-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.546172413156774
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.45230355211427375
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.43173000933077793
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.4307110576119842
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.42387569706332034
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-021-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5406395205621154
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.44039399221777725
+        },
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.42351032619586293
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.42304147195057373
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.41640559559568757
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-022-es",
+      "selected": "KB-WIFI-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.5947402171591482
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.44263483810689286
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.36293545757585705
+        },
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.3523346807264107
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.35136051851618116
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-022-en",
+      "selected": "KB-WIFI-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.6189318308393051
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.413735526443165
+        },
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.3533374740391605
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.34754867095327907
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.34531043719185023
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-023-es",
+      "selected": "KB-LUGGAGE-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.6050405918523163
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5302802474653833
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.52331976106985
+        },
+        {
+          "document": "KB-AIRPORT-ES",
+          "score": 0.5210904850967998
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.5168232181236659
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-023-en",
+      "selected": "KB-LUGGAGE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.5931891315820017
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5529286331355763
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5523915390904679
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5488632173703177
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.5469073076299542
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-024-es",
+      "selected": "KB-AIRPORT-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AIRPORT-ES",
+          "score": 0.6575175203177822
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5188580562902732
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.503399320634257
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.4918647876970747
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.4691101796142831
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-024-en",
+      "selected": "KB-AIRPORT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.6177227959584606
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5028866269681115
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.5026568601635257
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.49164097681926205
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.4831615012070348
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-025-es",
+      "selected": "KB-LUGGAGE-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5927674606125999
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.5448481946679812
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5384514690943231
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.5187976552803739
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5121997567168683
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-025-en",
+      "selected": "KB-LUGGAGE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.6428326579494186
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.6196221516423916
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5643920477969442
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5432678699755045
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.5427894171488236
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-026-es",
+      "selected": "KB-LUGGAGE-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.7771580207209706
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5683490119205554
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5628227705841152
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5533682567893079
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.5526038283353383
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-026-en",
+      "selected": "KB-LUGGAGE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.721059396302932
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5571361728451792
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5416883940859896
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5236350854187242
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.519577625656423
+        }
+      ],
+      "elapsedMs": 48
+    },
+    {
+      "id": "rag-027-es",
+      "selected": "KB-EARLY-CHECKIN-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5981889919929376
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.5626846612498912
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5491992122349361
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5453103446902969
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5410246721483404
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-027-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6325497875679066
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.6321931462799936
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.6249770296694332
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6147430673706331
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.6058921207911302
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-028-es",
+      "selected": "KB-LATE-CHECKOUT-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.69895947070941
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5828016859150095
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5490285245064084
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.48008259491830246
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.4782352119606394
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-028-en",
+      "selected": "KB-LATE-CHECKOUT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.731287311752212
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.6456894006568921
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6251897479214389
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.5962918274916487
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.5777273129736551
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-029-es",
+      "selected": "KB-EARLY-CHECKIN-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.7189531764200471
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.6200531444744444
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.5861819795170773
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5847136631655196
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5842144059382026
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-029-en",
+      "selected": "KB-EARLY-CHECKIN-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.755074579870418
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6191399085548329
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.617812843950208
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.6118106403483042
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6112759705132773
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-030-es",
+      "selected": "KB-VISITORS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.6528915010200962
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.6173263693105018
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.5914344018689651
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.5826695915885602
+        },
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.5564362291937136
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-030-en",
+      "selected": "KB-EARLY-CHECKIN-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.740681239379548
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.7168710325032562
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6538478585315065
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.653347115033486
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.6357700492015979
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-031-es",
+      "selected": "KB-SMOKING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-SMOKING-ES",
+          "score": 0.6226765167792317
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.49032052638943896
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4804927196036934
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.45875129341640664
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.45804262093912645
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-031-en",
+      "selected": "KB-SMOKING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-SMOKING-EN",
+          "score": 0.6421847102344554
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5081736178853392
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.4894397730245256
+        },
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.48695186836503385
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.480899878191841
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-032-es",
+      "selected": "KB-SMOKING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-SMOKING-ES",
+          "score": 0.5803430340960581
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.4505489398834457
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.3839183728585374
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.37600253532425915
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.36820692897320995
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-032-en",
+      "selected": "KB-SMOKING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-SMOKING-EN",
+          "score": 0.6536935936809991
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.4937296406248516
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.4576066860457315
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4415939801577669
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.4304777831505259
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-033-es",
+      "selected": "KB-LAUNDRY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5627269852121924
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.5362578534789446
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.49712294838392734
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.49686137236373645
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.491841808747213
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-033-en",
+      "selected": "KB-LAUNDRY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5662371520074366
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.5302355146177079
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5265763677237967
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.5093578193634606
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.48433941308180806
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-034-es",
+      "selected": "KB-LAUNDRY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.7423596450462384
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5873238866383625
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.5757402365753834
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.563917870609205
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5281792034358844
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-034-en",
+      "selected": "KB-LAUNDRY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6760973071899976
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5998061823534452
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.5546914494917669
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5450990429119557
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.5443420311418622
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-035-es",
+      "selected": "KB-GYM-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.5545048865155038
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.44437603027286826
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.42688076655713586
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.41573380011538014
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.38450682423523025
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-035-en",
+      "selected": "KB-GYM-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.58783794964751
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.46780925541985496
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.4370816750533313
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.43482731426935045
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4198423752893274
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-036-es",
+      "selected": "KB-GYM-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.749646747252461
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.6033998188738727
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5597180988110101
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5525826082183032
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5475057058076771
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-036-en",
+      "selected": "KB-GYM-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.7327486357583689
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.607077656277841
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5666099160746182
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5653543404376808
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5640039783712586
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-037-es",
+      "selected": "KB-QUIET-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.6019571944545441
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.5204011041467651
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.507723452515314
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.4973359186132123
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4752245415072964
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-037-en",
+      "selected": "KB-QUIET-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5725967277077985
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4581127117948107
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.4510812771955937
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.43423996948600435
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.42837685430821537
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-038-es",
+      "selected": "KB-QUIET-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.6676710043187648
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.48354409430831913
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.4580858969964525
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4263880589333899
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.42233351726627927
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-038-en",
+      "selected": "KB-QUIET-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.6918145727013939
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5090842097208239
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.48539443824867784
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4712535298126143
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.45353777928120825
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-039-es",
+      "selected": "KB-LOST-ITEMS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.5591482702091295
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4680164410880774
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.46130764413394937
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.45009744889362957
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.4416506740801447
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-039-en",
+      "selected": "KB-LOST-ITEMS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.6081078758094729
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5359299348880513
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.47947763562715107
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.4764030307959082
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.471011590656781
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-040-es",
+      "selected": "KB-LOST-ITEMS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.6198973962263921
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4973042728498176
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.44786940285992805
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4471170273586633
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.43885511111229486
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-040-en",
+      "selected": "KB-LOST-ITEMS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.6272890431200483
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4726300397546844
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.4579915607027028
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4487205836809405
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.4424869035053589
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-041-es",
+      "selected": "KB-FOOD-ALLERGY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.5677864483166906
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.43629367280874476
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.4352056501615442
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4021016414678767
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.3915332076220981
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-041-en",
+      "selected": "KB-FOOD-ALLERGY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-EN",
+          "score": 0.5634837002991769
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.44280696789222757
+        },
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.4248141168278995
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.41848434789234484
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.4089797211296732
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-042-es",
+      "selected": "KB-FOOD-ALLERGY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.5943071754867357
+        },
+        {
+          "document": "KB-BREAKFAST-ES",
+          "score": 0.4206676407714854
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.41641400996443567
+        },
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.40888075911419075
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.40083196455001235
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-042-en",
+      "selected": "KB-FOOD-ALLERGY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-EN",
+          "score": 0.6141064192557256
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.44117461323771734
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4254987297376316
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4104531962782584
+        },
+        {
+          "document": "KB-BREAKFAST-EN",
+          "score": 0.4065370653327061
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-043-es",
+      "selected": "KB-CRIB-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.6755333253571855
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.48577610685489336
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.46569430970666814
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.46290763886635977
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.4360433049178627
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-043-en",
+      "selected": "KB-CRIB-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.7113290138244233
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5302875845488504
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5083165341671703
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.46116302972654677
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.4561599254734472
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-044-es",
+      "selected": "KB-CRIB-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.6509822233693731
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5305152833714504
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5253214608804406
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.5035216510172316
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.49287270348689394
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-044-en",
+      "selected": "KB-CRIB-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.6801156814418513
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.579841613410757
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5409013628073781
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5362424532290103
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5135136999438565
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-045-es",
+      "selected": "KB-HOUSEKEEPING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.716279991324705
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5877037745138693
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5172182197617982
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5054742303849186
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.5029374019388261
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-045-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.6605327865960586
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6470664945774619
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5680971597211364
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5602018383661376
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5411352934003552
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-046-es",
+      "selected": "KB-HOUSEKEEPING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.6197368702579984
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4999923147365945
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.4915201973485409
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.48437542551299007
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4751179367324518
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-046-en",
+      "selected": "KB-HOUSEKEEPING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5985627249887705
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.49637313645698206
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.4671342526851299
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.45845604534565565
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.44632302625732434
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-047-es",
+      "selected": "KB-WATER-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.5834154707891326
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.4671774799879017
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.43685790732588164
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.40154091152167737
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.3980185073662056
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-047-en",
+      "selected": "KB-WATER-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.61489898483291
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.4703895052113274
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.4452414490249311
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4390283113666678
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.41906030995978577
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-048-es",
+      "selected": "KB-WATER-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.6583294736690017
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.40047848344776926
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.37599927738932726
+        },
+        {
+          "document": "KB-SMOKING-ES",
+          "score": 0.3662545762546887
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.3607839662136079
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-048-en",
+      "selected": "KB-WATER-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.7140664161101933
+        },
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.436208239866005
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.4291885899834397
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.42832318258673524
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.42178231009398554
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-049-es",
+      "selected": "KB-RESTAURANT-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.6888163865493728
+        },
+        {
+          "document": "KB-BREAKFAST-ES",
+          "score": 0.572339497002273
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5501375500541305
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5350974784993878
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5310182613690072
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-049-en",
+      "selected": "KB-RESTAURANT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.7048488125450528
+        },
+        {
+          "document": "KB-BREAKFAST-EN",
+          "score": 0.5786383956196515
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5779067414089745
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5692982567981628
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5472917594387903
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-050-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.6811373922346224
+        },
+        {
+          "document": "KB-BREAKFAST-ES",
+          "score": 0.6798010963855258
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.5554918968998604
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5474698164074946
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5165410096299204
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-050-en",
+      "selected": "KB-RESTAURANT-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-RESTAURANT-EN",
+          "score": 0.6796471309185915
+        },
+        {
+          "document": "KB-BREAKFAST-EN",
+          "score": 0.6005465800332171
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.587805434992085
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5614119911163798
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5555289413881551
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-051-es",
+      "selected": "KB-BEACH-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BEACH-ES",
+          "score": 0.6319431075908271
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.47148013782383236
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.46074583515936934
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.4562302279016749
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4552838378298844
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-051-en",
+      "selected": "KB-BEACH-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BEACH-EN",
+          "score": 0.6471974274566346
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.5272782395167188
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.47545172494676424
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.47533027333255357
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.4746615237561381
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-052-es",
+      "selected": "KB-BEACH-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BEACH-ES",
+          "score": 0.6249383629156693
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.4179141940273909
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.40934766717832965
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.404268118534087
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.4009422553009002
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-052-en",
+      "selected": "KB-BEACH-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-BEACH-EN",
+          "score": 0.6980589048170271
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.45679111421922813
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4451754110606121
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.440184091822021
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.42962466242410013
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-053-es",
+      "selected": "KB-TOWELS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.66252209368323
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.5399780657700363
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.5032701270895265
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4919114863459085
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.48330577327569
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-053-en",
+      "selected": "KB-TOWELS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.6364833608113372
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.5553033747839078
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.5042040934606252
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4879420861168855
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.46870518347107254
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-054-es",
+      "selected": "KB-TOWELS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.7427565274482141
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.5073576400362759
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.49718689862642423
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.43253828385677173
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4203714361824928
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-054-en",
+      "selected": "KB-TOWELS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.7152755447165715
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.5163623324568649
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.4864081657534146
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.48564433809959295
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.43942384358590514
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-055-es",
+      "selected": "KB-RECEPTION-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.643733757448555
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.6168221796822647
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5990840492498677
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.576982308471852
+        },
+        {
+          "document": "KB-RESTAURANT-ES",
+          "score": 0.5638893400032504
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-055-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.6492440775633038
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.6414987543806747
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6398269698127679
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.6105938814037879
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.607373354971949
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-056-es",
+      "selected": "KB-VISITORS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.6508355606419174
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.6357446969733387
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.6331289980587019
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.6081152228238674
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5815729950289108
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-056-en",
+      "selected": "KB-VISITORS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6557042675229007
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.6097281387625113
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.608721316367617
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.6083630390240768
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.6067948066884659
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-057-es",
+      "selected": "KB-MEETING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.7249637589801212
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.4664693218454892
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.45949748328704076
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.45383302114347385
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.453005990914935
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-057-en",
+      "selected": "KB-MEETING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.7393205999012452
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.4717430048771854
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.4694274152496492
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.4556518160784965
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.447321579662384
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-058-es",
+      "selected": "KB-MEETING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.6141029187265818
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5727168283632699
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5669620804883408
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5500140119002689
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.5469721454976703
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-058-en",
+      "selected": "KB-MEETING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.6541268697590946
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.6015876244329534
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5829741032293677
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.567111679590239
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5642232162383888
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-059-es",
+      "selected": "KB-POWER-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.60820864839297
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.41084289280658054
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.40620110002844806
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4060306763630501
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.40415867628797925
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-059-en",
+      "selected": "KB-POWER-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.5945312413901044
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.4485887508273628
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.4350503522690895
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.4286355769729767
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.4237340240643344
+        }
+      ],
+      "elapsedMs": 47
+    },
+    {
+      "id": "rag-060-es",
+      "selected": "KB-POWER-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.5998521404958556
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.47210863599267844
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4491494470822336
+        },
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.4484806664243588
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.4311508958688808
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-060-en",
+      "selected": "KB-POWER-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.6163387390809347
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.4774053043830187
+        },
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.44113898579151467
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.43278364692432925
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.42893029258282095
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-061-es",
+      "selected": "KB-CYCLING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CYCLING-ES",
+          "score": 0.5773594084710145
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.506199683160494
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.4297292705037818
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.42960579741234783
+        },
+        {
+          "document": "KB-CRIB-ES",
+          "score": 0.4225610177197055
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-061-en",
+      "selected": "KB-CYCLING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CYCLING-EN",
+          "score": 0.5976939292579433
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.5205058639859108
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.4529593835851915
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4499616623124729
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.44311917867779566
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-062-es",
+      "selected": "KB-CYCLING-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CYCLING-ES",
+          "score": 0.6365418897056159
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.4881247862237748
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4519514388082571
+        },
+        {
+          "document": "KB-TOWELS-ES",
+          "score": 0.4404798875359966
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.432958447368815
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-062-en",
+      "selected": "KB-CYCLING-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-CYCLING-EN",
+          "score": 0.6722226008382582
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.4593194975903786
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4590558833910131
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.4572389630284661
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.420115187455763
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-063-es",
+      "selected": "KB-KEYS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.6811033577664656
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.5141630260878506
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5088450160990333
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.504918701131198
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.5044742617554424
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-063-en",
+      "selected": "KB-KEYS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.6842261778408822
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.5537404864776393
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5416235895412131
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5143853898786827
+        },
+        {
+          "document": "KB-TOWELS-EN",
+          "score": 0.5032970933070673
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-064-es",
+      "selected": "KB-KEYS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.7023984201047089
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.5730754762354292
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5572223984420196
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.5540497959075085
+        },
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.5165690943747601
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-064-en",
+      "selected": "KB-KEYS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.7111910792882843
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.5327383878083972
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5123058455909366
+        },
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.5032237647859223
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.49388882199571044
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-065-es",
+      "selected": "KB-VISITORS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.6961511734749737
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.5688742906152172
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.5552255572016382
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.5533784818022327
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5501386077772336
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-065-en",
+      "selected": "KB-VISITORS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6870546008602681
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.5619060615661372
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.5599984495610854
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5544824121629569
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5358929165628691
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-066-es",
+      "selected": "KB-VISITORS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.6273815833079444
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5461957540741386
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5121565727876116
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.505600039421106
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.48728088701713945
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-066-en",
+      "selected": "KB-VISITORS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.6725620663427162
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.5457489309641551
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5452378346250847
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5211847307697154
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5201507629611141
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-067-es",
+      "selected": "KB-INVOICE-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.7466802434642804
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.5531993365983782
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5484093296673066
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5172770686859844
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.5122757665191946
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-067-en",
+      "selected": "KB-INVOICE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.6617347417041439
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5961757716820112
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5873326520972645
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5663479302373727
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.5394961833664624
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-068-es",
+      "selected": "KB-INVOICE-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5716311086314938
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4870367038668932
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.46225127844813046
+        },
+        {
+          "document": "KB-PRIVACY-ES",
+          "score": 0.4507322446037073
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.43578107670579275
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-068-en",
+      "selected": "KB-INVOICE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.6686160401980533
+        },
+        {
+          "document": "KB-PRIVACY-EN",
+          "score": 0.48558506387318656
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.4609769102597325
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.454194131265592
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.45133973253854087
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-069-es",
+      "selected": "KB-MODIFICATIONS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.641876230450852
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.5777644577877381
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.57215861925499
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5661976406676391
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.5456835612521127
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-069-en",
+      "selected": "KB-MODIFICATIONS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.6855160704393408
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.6186453267285509
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.6025427464303822
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5888356660979643
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5839260439026409
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-070-es",
+      "selected": "KB-MODIFICATIONS-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.6047719492434811
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.5175822982002892
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.49512237852723484
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.4805243100693676
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.4469574729726459
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-070-en",
+      "selected": "KB-MODIFICATIONS-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.6422290260355163
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.5499389078836747
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.5428424809171338
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5137482664700737
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5117088047311505
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-071-es",
+      "selected": "KB-LANGUAGES-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.6606955869372518
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.4734375801833258
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4639170272324309
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4508401814706238
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.44711475761914093
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-071-en",
+      "selected": "KB-LANGUAGES-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.7176739144245177
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.5016667163305941
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.4843953024819181
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4832704771098292
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.45456368669130837
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-072-es",
+      "selected": "KB-LANGUAGES-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.6425743890135035
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.43003736256979935
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.42848420416310196
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.42188955785836346
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.421663448036521
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-072-en",
+      "selected": "KB-LANGUAGES-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.6478463965674404
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.48701552913560975
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.47375576557129756
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4598390940544326
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.4569314394246507
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-073-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5267631043195912
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.4760285309216799
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.4696306896903677
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.466593787912061
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4599992715722385
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-073-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.5043545886879595
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4974190912133575
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.4924844948800088
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.49152823372873783
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.4893571981322388
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-074-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-PRIVACY-ES",
+          "score": 0.5397979153568071
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5047458117991692
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.49392846696217535
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4656398646626366
+        },
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.46126842864650985
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-074-en",
+      "selected": "KB-PRIVACY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-PRIVACY-EN",
+          "score": 0.6336108582590773
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5608155092370495
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.5608072122707732
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.5097088250519284
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5005939745096347
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-075-es",
+      "selected": "KB-FEEDBACK-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.6427931734116764
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.5536397445610739
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4803479978331582
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.4779831028468159
+        },
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.47604725752189286
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-075-en",
+      "selected": "KB-FEEDBACK-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.709040167154014
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.4594843728087428
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.4440780392633392
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.43160274379714086
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.43114246098462783
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-076-es",
+      "selected": "KB-FEEDBACK-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.6109608952774072
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.46405413276835233
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.44860872127769824
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.43921431757512386
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.4112676769834465
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-076-en",
+      "selected": "KB-FEEDBACK-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.671120589330423
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.5745051094682212
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.4971188197317341
+        },
+        {
+          "document": "KB-RECEPTION-EN",
+          "score": 0.4961056470033817
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.49190618189623714
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-077-es",
+      "selected": "KB-INTERNAL-HANDOFF-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.6438738436798979
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-ES",
+          "score": 0.5395715083265166
+        },
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.5157577915139655
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.46899043749903413
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.4602941823004493
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-077-en",
+      "selected": "KB-INTERNAL-HANDOFF-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.6244785628417283
+        },
+        {
+          "document": "KB-INTERNAL-SUMMARY-EN",
+          "score": 0.5490116473839926
+        },
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.5286938903126088
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.4762785712509418
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.44858819028413627
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-078-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.5307101087319638
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5146193215683661
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.48069174855478164
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.46760749625573067
+        },
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.46514574344071286
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-078-en",
+      "selected": "KB-INVOICE-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5733917267647108
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.5555553468260311
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.5076318226750463
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.49866754977262606
+        },
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.48419973404501027
+        }
+      ],
+      "elapsedMs": 52
+    },
+    {
+      "id": "rag-079-es",
+      "selected": "KB-INTERNAL-SUMMARY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-SUMMARY-ES",
+          "score": 0.6312053780712871
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.5356299184439156
+        },
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.49355960798371074
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4029460150201352
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.40127765891638034
+        }
+      ],
+      "elapsedMs": 50
+    },
+    {
+      "id": "rag-079-en",
+      "selected": "KB-INTERNAL-SUMMARY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-SUMMARY-EN",
+          "score": 0.6348495372619869
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.5389459266234646
+        },
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.47762136116070425
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.38584033645333105
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.37121306319063907
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-080-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-SUMMARY-ES",
+          "score": 0.48052914265591534
+        },
+        {
+          "document": "KB-AGENT-ES",
+          "score": 0.417365767669167
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.40436876132845234
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-ES",
+          "score": 0.3981078395439999
+        },
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.3967106894595028
+        }
+      ],
+      "elapsedMs": 45
+    },
+    {
+      "id": "rag-080-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INTERNAL-SUMMARY-EN",
+          "score": 0.5246358057744508
+        },
+        {
+          "document": "KB-AGENT-EN",
+          "score": 0.45375885650755815
+        },
+        {
+          "document": "KB-INTERNAL-HANDOFF-EN",
+          "score": 0.44364651170932373
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.43547169293170107
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.4317701162123121
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-081-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.38296390486444004
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.3747638263990529
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.3635121059504323
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.35839220866846805
+        },
+        {
+          "document": "KB-AIRPORT-ES",
+          "score": 0.3567926564404578
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-081-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.38925796167499516
+        },
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.37650998375775
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.36498685386303303
+        },
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.34238504446905355
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.3413253641956512
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-082-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.4413966532882996
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.4250403758264768
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4181993189832515
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.41494611273801807
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4144270885203596
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-082-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.44987309896861766
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4495087074307304
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.44919496798078823
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.4448936041296199
+        },
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.44064878880251634
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-083-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.35355694803811155
+        },
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.3399003754786753
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.33894733733135995
+        },
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.33111629010891963
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.32730511037234894
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-083-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.3592649353967029
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.3385639109474406
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.33678946973610085
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.33167384202386435
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.3293586541326958
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-084-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.3687836101507734
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.3678637267856357
+        },
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.36439841963214975
+        },
+        {
+          "document": "KB-PETS-ES",
+          "score": 0.35335704582589955
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.34785645528823467
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-084-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-CRIB-EN",
+          "score": 0.42654700787972055
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.3619740854606968
+        },
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.35490340922815494
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.35220877005982165
+        },
+        {
+          "document": "KB-FOOD-ALLERGY-EN",
+          "score": 0.35153906584512595
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-085-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.41111162431205195
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.40713819361868764
+        },
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.3918316292124267
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.37050972456331444
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.366748993946434
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-085-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.3992320437738402
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.39777545233487777
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.3913908751771172
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.38640394583707455
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.3792048288426677
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-086-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.3448823722708265
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.341638669989577
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.32225780029274
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.3200294812032833
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.3097595974131217
+        }
+      ],
+      "elapsedMs": 46
+    },
+    {
+      "id": "rag-086-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.3502222023876936
+        },
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.34868950749934424
+        },
+        {
+          "document": "KB-GYM-EN",
+          "score": 0.3456412625952633
+        },
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.34453304222793457
+        },
+        {
+          "document": "KB-POOL-EN",
+          "score": 0.34179259938342865
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-087-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.2949993881869914
+        },
+        {
+          "document": "KB-MEETING-ES",
+          "score": 0.2891084245897444
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.2878616845877022
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.28465334367216794
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.2754100708565062
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-087-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.3492534486896389
+        },
+        {
+          "document": "KB-IDENTITY-EN",
+          "score": 0.32024086583259087
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.3196435784126693
+        },
+        {
+          "document": "KB-MEETING-EN",
+          "score": 0.30799584021321946
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.3075137355407235
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-088-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.348011613550952
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.3423206203430174
+        },
+        {
+          "document": "KB-CYCLING-ES",
+          "score": 0.3416530810155873
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.3241404488253203
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.3222295227449513
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-088-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.3664472530040511
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.3383469661688272
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.32513755315924364
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.32230272247005143
+        },
+        {
+          "document": "KB-PETS-EN",
+          "score": 0.3202710068192762
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-089-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4122632801247664
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.4094366985449873
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.3936171896407809
+        },
+        {
+          "document": "KB-HOUSEKEEPING-ES",
+          "score": 0.3869843672814766
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.37410332426327697
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-089-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.39408662263363453
+        },
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.35886236750586037
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.35798165389692893
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.3558564417885456
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.3540978254943055
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-090-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LOST-ITEMS-ES",
+          "score": 0.3366896263307889
+        },
+        {
+          "document": "KB-LANGUAGES-ES",
+          "score": 0.3337965906351387
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.2942897506107066
+        },
+        {
+          "document": "KB-RECEPTION-ES",
+          "score": 0.2907538654282516
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.28750025887193575
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-090-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.32875680356461723
+        },
+        {
+          "document": "KB-LANGUAGES-EN",
+          "score": 0.3036419603171929
+        },
+        {
+          "document": "KB-LOST-ITEMS-EN",
+          "score": 0.3012602369109732
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.3005745269567364
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.28931370354161096
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-091-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-POWER-ES",
+          "score": 0.3942072424427157
+        },
+        {
+          "document": "KB-WATER-ES",
+          "score": 0.3736476763606747
+        },
+        {
+          "document": "KB-KEYS-ES",
+          "score": 0.3688428037462346
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.3667076564352673
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.3606916220522834
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-091-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-WATER-EN",
+          "score": 0.4173739802494606
+        },
+        {
+          "document": "KB-POWER-EN",
+          "score": 0.4130143041815229
+        },
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.395528771580632
+        },
+        {
+          "document": "KB-SMOKING-EN",
+          "score": 0.38594746068626223
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.38305445731721455
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-092-es",
+      "selected": "KB-ACCESSIBILITY-ES",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.5508401316668896
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.5303684061968691
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.49423021015880736
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.48334044679250066
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.47956206124128115
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-092-en",
+      "selected": "KB-ACCESSIBILITY-EN",
+      "reasonCode": "GROUNDED_EXTRACT",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5574826945873397
+        },
+        {
+          "document": "KB-KEYS-EN",
+          "score": 0.5317553151399292
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.5135695934770927
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4991843847810206
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.49861207949857367
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-093-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.39065134586172384
+        },
+        {
+          "document": "KB-SERVICES-ES",
+          "score": 0.3879547414502371
+        },
+        {
+          "document": "KB-PARKING-ES",
+          "score": 0.38546803523071915
+        },
+        {
+          "document": "KB-LUGGAGE-ES",
+          "score": 0.38088470284528986
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.36351112331518953
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-093-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-SERVICES-EN",
+          "score": 0.42245798779427063
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.4113625565424139
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.3985706792628506
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.3892845047616156
+        },
+        {
+          "document": "KB-PARKING-EN",
+          "score": 0.3855523538561513
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-094-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.5456309808788329
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.5135173711786503
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.508996306500902
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.49594905937854017
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4833928667121865
+        }
+      ],
+      "elapsedMs": 38
+    },
+    {
+      "id": "rag-094-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.5475766736140888
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.5417490003798836
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5237948508995487
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.5102298287818604
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.49999215731013047
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-095-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.5322239149115278
+        },
+        {
+          "document": "KB-PAYMENTS-ES",
+          "score": 0.5136233836913544
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.5069592067785625
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4954369375689954
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-ES",
+          "score": 0.4953295406511674
+        }
+      ],
+      "elapsedMs": 44
+    },
+    {
+      "id": "rag-095-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-PAYMENTS-EN",
+          "score": 0.5612263072162451
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.5585135137253652
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.5495287189624033
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.5460720080249751
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.533013466642542
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-096-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.3931815286461125
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.37627067273904524
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.3459908376096167
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.33967534633659807
+        },
+        {
+          "document": "KB-WIFI-ES",
+          "score": 0.33541539499439055
+        }
+      ],
+      "elapsedMs": 39
+    },
+    {
+      "id": "rag-096-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.38051945765891054
+        },
+        {
+          "document": "KB-WIFI-EN",
+          "score": 0.35895761948384197
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.35629620396653383
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.3397030928892596
+        },
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.336372663852218
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-097-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.43818762937835265
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.4364021571155646
+        },
+        {
+          "document": "KB-CANCELLATION-ES",
+          "score": 0.4314164412977186
+        },
+        {
+          "document": "KB-AIRPORT-ES",
+          "score": 0.420652407958204
+        },
+        {
+          "document": "KB-IDENTITY-ES",
+          "score": 0.41123623192329944
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-097-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-CANCELLATION-EN",
+          "score": 0.4637848541351425
+        },
+        {
+          "document": "KB-AIRPORT-EN",
+          "score": 0.4635782481214582
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.43264396310351183
+        },
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4299298747939496
+        },
+        {
+          "document": "KB-LATE-CHECKOUT-EN",
+          "score": 0.4198258413697608
+        }
+      ],
+      "elapsedMs": 41
+    },
+    {
+      "id": "rag-098-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-ES",
+          "score": 0.4366047721537713
+        },
+        {
+          "document": "KB-INVOICE-ES",
+          "score": 0.42189683282477936
+        },
+        {
+          "document": "KB-ACCESSIBILITY-ES",
+          "score": 0.4144969639115388
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.4092351043851838
+        },
+        {
+          "document": "KB-FEEDBACK-ES",
+          "score": 0.40642570064362404
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-098-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-FOOD-ALLERGY-EN",
+          "score": 0.4441152770032452
+        },
+        {
+          "document": "KB-ACCESSIBILITY-EN",
+          "score": 0.43833563695697836
+        },
+        {
+          "document": "KB-FEEDBACK-EN",
+          "score": 0.415838911272963
+        },
+        {
+          "document": "KB-INVOICE-EN",
+          "score": 0.4106393863411567
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.4064238538432742
+        }
+      ],
+      "elapsedMs": 42
+    },
+    {
+      "id": "rag-099-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.3874431022140548
+        },
+        {
+          "document": "KB-MODIFICATIONS-ES",
+          "score": 0.38151799698204814
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.3714207701972658
+        },
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.36316855843900536
+        },
+        {
+          "document": "KB-QUIET-ES",
+          "score": 0.35740943327281266
+        }
+      ],
+      "elapsedMs": 40
+    },
+    {
+      "id": "rag-099-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.4458828942450131
+        },
+        {
+          "document": "KB-HOUSEKEEPING-EN",
+          "score": 0.4419973057771881
+        },
+        {
+          "document": "KB-MODIFICATIONS-EN",
+          "score": 0.428960037471204
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-EN",
+          "score": 0.4042560220055311
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.4002383104849517
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-100-es",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-VISITORS-ES",
+          "score": 0.43293265574957496
+        },
+        {
+          "document": "KB-EARLY-CHECKIN-ES",
+          "score": 0.4313423036781713
+        },
+        {
+          "document": "KB-GYM-ES",
+          "score": 0.42496814391653237
+        },
+        {
+          "document": "KB-LAUNDRY-ES",
+          "score": 0.4221867642822353
+        },
+        {
+          "document": "KB-POOL-ES",
+          "score": 0.41874154166126665
+        }
+      ],
+      "elapsedMs": 43
+    },
+    {
+      "id": "rag-100-en",
+      "selected": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE",
+      "candidates": [
+        {
+          "document": "KB-LUGGAGE-EN",
+          "score": 0.4414792471685361
+        },
+        {
+          "document": "KB-QUIET-EN",
+          "score": 0.43490948136751784
+        },
+        {
+          "document": "KB-VISITORS-EN",
+          "score": 0.42588721521425743
+        },
+        {
+          "document": "KB-LAUNDRY-EN",
+          "score": 0.421237180882652
+        },
+        {
+          "document": "KB-BEACH-EN",
+          "score": 0.4170931012583852
+        }
+      ],
+      "elapsedMs": 41
+    }
+  ]
+}

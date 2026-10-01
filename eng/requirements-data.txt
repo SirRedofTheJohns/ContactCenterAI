@@ -1,0 +1,7 @@
+# Offline provisioning/evaluation tooling only. Isolate from the product runtime.
+python-tds==1.17.1
+pyOpenSSL==26.4.0
+cryptography==50.0.2
+cffi==2.1.1
+pycparser==3.0
+typing_extensions==4.16.0

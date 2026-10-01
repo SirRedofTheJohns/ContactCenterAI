@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T01:08:50.228068+00:00",
+  "syntheticUsersUpdated": 8,
+  "knownPublicDemoPassword": true,
+  "exactCallback": "http://127.0.0.1:7452/signin-oidc",
+  "serviceSecretsChanged": false,
+  "volumesDeleted": false,
+  "realLoginVerified": true,
+  "scope": "Demo provisioning; password verification awaits a real OIDC browser login",
+  "browserVerification": "demo-login-evidence.json"
+}

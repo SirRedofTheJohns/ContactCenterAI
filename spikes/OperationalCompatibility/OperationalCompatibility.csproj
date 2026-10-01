@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <Compile Include="../RuntimeCompatibility/DiagnosticCertificate.cs" Link="DiagnosticCertificate.cs" />
+  </ItemGroup>
+</Project>

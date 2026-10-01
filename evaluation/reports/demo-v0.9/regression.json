@@ -1,0 +1,141 @@
+{
+  "label": "regression",
+  "scope": "Real BGE-M3 + Qwen closed selection, isolated authorized fixture DB; not end-to-end OIDC/workflow, load, or independent human review.",
+  "model": "bge-m3@7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+  "reranker": "evidence-selection-v2",
+  "variants": 80,
+  "minimumReviewedCosine": 0.35,
+  "overall": {
+    "n": 200,
+    "positive": 160,
+    "outOfScope": 40,
+    "exact": 0.955,
+    "answeredCorrectly": 0.95625,
+    "outOfScopeAbstention": 0.95,
+    "selectionPrecision": 0.9870967741935484,
+    "recallAt5": 0.9625,
+    "inferenceFailures": 2,
+    "p50Ms": 3230.0,
+    "p95Ms": 4755,
+    "maxMs": 5094
+  },
+  "es": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.95,
+    "answeredCorrectly": 0.95,
+    "outOfScopeAbstention": 0.95,
+    "selectionPrecision": 0.987012987012987,
+    "recallAt5": 0.9625,
+    "inferenceFailures": 2,
+    "p50Ms": 4260.0,
+    "p95Ms": 4928,
+    "maxMs": 5094
+  },
+  "en": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.96,
+    "answeredCorrectly": 0.9625,
+    "outOfScopeAbstention": 0.95,
+    "selectionPrecision": 0.9871794871794872,
+    "recallAt5": 0.9625,
+    "inferenceFailures": 0,
+    "p50Ms": 2850.0,
+    "p95Ms": 3210,
+    "maxMs": 3490
+  },
+  "independentHumanReview": false,
+  "humanReviewers": 0,
+  "datasetSha256": "3bdf098ba27aafc01cc85888a83c06759d403613dd3e4bb0ecfcb6d8b18d0c50",
+  "runSha256": "d7ee6038b93f7f98775acf4fb93d139e92e1f73f9211d11bd896465babb2ee72",
+  "failures": [
+    {
+      "id": "rag-001-es",
+      "expected": "KB-CANCELLATION-ES",
+      "actual": null,
+      "reason": "INFERENCE_FAILED"
+    },
+    {
+      "id": "rag-004-es",
+      "expected": "KB-SERVICES-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-004-en",
+      "expected": "KB-SERVICES-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-013-es",
+      "expected": "KB-PARKING-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-023-en",
+      "expected": "KB-AIRPORT-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-es",
+      "expected": "KB-PRIVACY-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-en",
+      "expected": "KB-PRIVACY-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-084-es",
+      "expected": null,
+      "actual": "KB-FOOD-ALLERGY-ES",
+      "reason": "GROUNDED_EXTRACT"
+    },
+    {
+      "id": "rag-095-en",
+      "expected": null,
+      "actual": "KB-CANCELLATION-EN",
+      "reason": "GROUNDED_EXTRACT"
+    }
+  ],
+  "localNumericGate": "OPEN",
+  "knownQuestions": true,
+  "historicalSplitIsUnseen": false,
+  "dev": {
+    "n": 60,
+    "positive": 50,
+    "outOfScope": 10,
+    "exact": 0.9333333333333333,
+    "answeredCorrectly": 0.94,
+    "outOfScopeAbstention": 0.9,
+    "selectionPrecision": 0.9791666666666666,
+    "recallAt5": 0.96,
+    "inferenceFailures": 1,
+    "p50Ms": 3531.0,
+    "p95Ms": 4703,
+    "maxMs": 5094
+  },
+  "historicalHoldout": {
+    "n": 140,
+    "positive": 110,
+    "outOfScope": 30,
+    "exact": 0.9642857142857143,
+    "answeredCorrectly": 0.9636363636363636,
+    "outOfScopeAbstention": 0.9666666666666667,
+    "selectionPrecision": 0.9906542056074766,
+    "recallAt5": 0.9636363636363636,
+    "inferenceFailures": 1,
+    "p50Ms": 3200.0,
+    "p95Ms": 4799,
+    "maxMs": 5067
+  }
+}

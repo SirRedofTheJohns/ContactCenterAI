@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ContactCenterAI.Domain/ContactCenterAI.Domain.csproj" />
+    <Project Path="src/ContactCenterAI.Application/ContactCenterAI.Application.csproj" />
+    <Project Path="src/ContactCenterAI.Infrastructure/ContactCenterAI.Infrastructure.csproj" />
+    <Project Path="src/ContactCenterAI.Api/ContactCenterAI.Api.csproj" />
+    <Project Path="src/ContactCenterAI.Worker/ContactCenterAI.Worker.csproj" />
+    <Project Path="src/ContactCenterAI.Simulator/ContactCenterAI.Simulator.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ContactCenterAI.FoundationChecks/ContactCenterAI.FoundationChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.IngressChecks/ContactCenterAI.IngressChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.DemoChecks/ContactCenterAI.DemoChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.SourceChecks/ContactCenterAI.SourceChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.WorkflowChecks/ContactCenterAI.WorkflowChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.AssistantChecks/ContactCenterAI.AssistantChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.LocalAiChecks/ContactCenterAI.LocalAiChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.RetrievalChecks/ContactCenterAI.RetrievalChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.OperationsChecks/ContactCenterAI.OperationsChecks.csproj" />
+  </Folder>
+</Solution>

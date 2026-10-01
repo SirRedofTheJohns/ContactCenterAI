@@ -1,0 +1,601 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI synthetic local presentation",
+    "version": "0.2.0",
+    "description": "ADR-014: HTTP loopback only, real local Keycloak OIDC, persistent SQLiteite. API/storage checked; browser callback unobserved. No AI reply or reservation commands."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:7452"
+    }
+  ],
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "getLiveness",
+        "responses": {
+          "200": {
+            "description": "Process is running; does not imply dependency readiness",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Alive"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "getReadiness",
+        "responses": {
+          "200": {
+            "description": "Operational dependencies verified by a future adapter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Ready"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "B02 has no operational DB adapter: OPERATIONAL_STORE_NOT_CONFIGURED",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    },
+    "/v1/session/csrf": {
+      "get": {
+        "operationId": "bootstrapCsrf",
+        "responses": {
+          "200": {
+            "description": "Antiforgery token; HttpOnly/Strict loopback HTTP CSRF cookie. No identity or conversation write."
+          },
+          "503": {
+            "description": "SQLite dependency unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        },
+        "security": [],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session": {
+      "get": {
+        "operationId": "readSession",
+        "responses": {
+          "200": {
+            "description": "Server-derived session and presentation label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "authenticated",
+                    "expiresAt",
+                    "displayName"
+                  ],
+                  "properties": {
+                    "authenticated": {
+                      "type": "boolean"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "displayName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "503": {
+            "description": "SQLite dependency unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        },
+        "security": [],
+        "description": "Read/CSRF bootstrap; no raw identity/token data returned."
+      }
+    },
+    "/v1/session/anonymous": {
+      "post": {
+        "operationId": "createAnonymousSession",
+        "responses": {
+          "201": {
+            "description": "Durable guest session and HttpOnly/Lax loopback HTTP cookie"
+          },
+          "200": {
+            "description": "Existing session returned"
+          },
+          "503": {
+            "description": "SQLite unavailable; no session accepted"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/login": {
+      "post": {
+        "operationId": "beginLogin",
+        "responses": {
+          "302": {
+            "description": "Redirect to fixed local IdP using Code+PKCE"
+          },
+          "503": {
+            "description": "Identity or SQLite unavailable"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/session/logout": {
+      "post": {
+        "operationId": "logoutLocalSession",
+        "responses": {
+          "204": {
+            "description": "SQLite session revoked and local cookie cleared"
+          },
+          "401": {
+            "description": "No active session"
+          },
+          "503": {
+            "description": "Revocation could not be persisted"
+          },
+          "403": {
+            "description": "Missing/invalid antiforgery token or exact Origin"
+          }
+        },
+        "security": [
+          {
+            "AntiCsrf": []
+          }
+        ],
+        "description": "Origin must be http://127.0.0.1:7452. No caller identity, roles, memberRef or returnUrl accepted."
+      }
+    },
+    "/v1/conversations": {
+      "post": {
+        "operationId": "createConversation",
+        "x-implementation": "implemented-candidate",
+        "description": "Anonymous public session allowed. Principal/tenant/ownership come from server session, never this payload.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConversation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Conversation persisted; opaque ID and version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationCreated"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Same idempotency key with different payload",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Origin, CSRF or action denied"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}/messages": {
+      "post": {
+        "operationId": "submitMessage",
+        "x-implementation": "implemented-candidate",
+        "description": "Owner/assigned employee only; 202 requires committed SQLite inbox. Never implies business success.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "description": "Strong ETag for current conversation version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Durably accepted; processing remains Pending",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Action/CSRF denied",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Absent or not visible resource",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Version or clientMessageId conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}": {
+      "get": {
+        "operationId": "readConversation",
+        "x-implementation": "implemented-candidate",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "description": "Own guest/customer conversation or exact active employee assignment. Foreign and absent resources share 404. Returns first 100 messages ordered by accepted version; no reservation details.",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanitized transcript and current version; ETag supplied"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "503": {
+            "description": "Operational store unavailable"
+          },
+          "403": {
+            "description": "Untrusted Host/remote address; mutations also require exact Origin and antiforgery token"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "correlationId",
+          "retryable"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      },
+      "CreateConversation": {
+        "type": "object",
+        "required": [
+          "language"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "type": "string",
+            "enum": [
+              "es",
+              "en"
+            ]
+          }
+        }
+      },
+      "ConversationCreated": {
+        "type": "object",
+        "required": [
+          "conversationId",
+          "version",
+          "ownership"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "conversationId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "ownership": {
+            "type": "string",
+            "enum": [
+              "AI"
+            ]
+          }
+        }
+      },
+      "SubmitMessage": {
+        "type": "object",
+        "required": [
+          "clientMessageId",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "clientMessageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        }
+      },
+      "MessageAccepted": {
+        "type": "object",
+        "required": [
+          "messageId",
+          "turnId",
+          "status",
+          "version"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "messageId": {
+            "type": "string"
+          },
+          "turnId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "Pending"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 2
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "SessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ccai.demo.session",
+        "description": "Opaque HttpOnly/Lax cookie with active SQLite session lookup; no saved tokens. Secure is disabled only for this synthetic HTTP loopback profile."
+      },
+      "AntiCsrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-TOKEN",
+        "description": "Fetch GET /v1/session/csrf after every session rotation. Mutations also require exact HTTPS Origin."
+      }
+    },
+    "parameters": {
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    }
+  },
+  "x-implementation": "local-demo-server-checked-browser-unobserved"
+}

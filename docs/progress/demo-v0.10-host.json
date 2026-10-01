@@ -1,0 +1,14 @@
+{
+  "scope": "Current application readiness, source liveness and exact local Keycloak issuer; no SQL Server or external integration claim.",
+  "observedAtUtc": "2026-10-01T17:19:48.5613241+00:00",
+  "profile": "demo-assistant-v0.10",
+  "result": "PASS",
+  "runtimeStorage": "SQLite",
+  "credentialsChanged": false,
+  "source": "ReservationSource",
+  "activation": "Current compiled API activated after full verification; separate startup timing diagnosis, not a new feature.",
+  "dataReset": false,
+  "newSourceMutation": false,
+  "modelProvider": "ollama:qwen3-vl@901cae732162:intent-local-v1",
+  "issuer": "http://localhost:8080/realms/contactcenterai-local"
+}

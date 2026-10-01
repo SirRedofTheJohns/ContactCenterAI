@@ -1,0 +1,8 @@
+{
+  "datasetSha256": "3bdf098ba27aafc01cc85888a83c06759d403613dd3e4bb0ecfcb6d8b18d0c50",
+  "runSha256": "56c0f0f25b6d957c00a72754f09fa609f387ac3526288cde1e9a1eab5bebeab0",
+  "corpusSha256": "bf084cc0d4d0353fdabd97fcba4fc42738695d19776057a70b8bd7b58996d527",
+  "split": "60 dev /140 holdout; paired ES/EN; authored before implementation",
+  "independent": false,
+  "humanReviewers": 0
+}

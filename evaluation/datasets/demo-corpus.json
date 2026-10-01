@@ -1,0 +1,92 @@
+[
+  {
+    "documentId": "KB-CANCELLATION-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Pol\u00EDtica de cancelaci\u00F3n CP-001",
+    "content": "CP-001:v1 permite cancelar sin penalidad una reserva confirmada cuando faltan al menos 72 horas antes de la llegada. Se requiere una propuesta vigente y confirmaci\u00F3n expl\u00EDcita. La fuente vuelve a validar el estado antes de cancelar.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-CANCELLATION-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Cancellation policy CP-001",
+    "content": "CP-001:v1 allows a confirmed reservation to be cancelled without penalty at least 72 hours before check-in. A valid offer and explicit confirmation are required. The source checks the current state again before cancellation.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-SERVICES-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Servicios de la propiedad ficticia",
+    "content": "Caribbean Horizon es una propiedad ficticia de la demo. Ofrece Wi-Fi y desayuno incluidos. La llegada comienza a las 15:00 y la salida es a las 11:00, hora local. Esta informaci\u00F3n es sint\u00E9tica y no representa un hotel real.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-SERVICES-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Synthetic property services",
+    "content": "Caribbean Horizon is a fictional demo property. Wi-Fi and breakfast are included. Check-in starts at 15:00 and check-out is at 11:00 local time. This synthetic information does not represent a real hotel.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-IDENTITY-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Acceso a reservas",
+    "content": "Inicia sesi\u00F3n con tu cuenta ficticia para consultar tus reservas. El sistema utiliza la identidad verificada de Keycloak. Escribir otro nombre o n\u00FAmero de miembro en el chat no cambia tus permisos.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-IDENTITY-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Reservation access",
+    "content": "Sign in with your fictional account to access your reservations. The system uses the identity verified by Keycloak. Typing another name or member number in chat does not change your permissions.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-PAYMENTS-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Canal de pagos",
+    "content": "Esta demo no procesa pagos, tarjetas ni reembolsos. No env\u00EDes n\u00FAmeros de tarjeta ni c\u00F3digos CVV. Para una consulta fuera de alcance solicita atenci\u00F3n humana en el contact center simulado.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-PAYMENTS-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Payment channel",
+    "content": "This demo does not process payments, cards or refunds. Do not send card numbers or CVV codes. For a request outside the scope, ask for human assistance in the simulated contact center.",
+    "classification": "Public",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-AGENT-ES",
+    "version": 1,
+    "language": "es",
+    "title": "Revisi\u00F3n interna de operaciones",
+    "content": "Procedimiento interno: una operaci\u00F3n Unknown debe reconciliarse por commandId. Nunca declarar cancelaci\u00F3n confirmada sin receipt Completed. Registrar revisi\u00F3n humana si la fuente sigue sin responder; no ejecutar un segundo comando con ID nuevo.",
+    "classification": "Agent",
+    "sectionId": "overview"
+  },
+  {
+    "documentId": "KB-AGENT-EN",
+    "version": 1,
+    "language": "en",
+    "title": "Internal operation review",
+    "content": "Internal procedure: an Unknown operation must be reconciled by commandId. Never claim confirmed cancellation without a Completed receipt. Record human review if the source remains unavailable; never submit a second command with a new ID.",
+    "classification": "Agent",
+    "sectionId": "overview"
+  }
+]

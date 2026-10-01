@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/ContactCenterAI.Domain/ContactCenterAI.Domain.csproj" />
+    <ProjectReference Include="../../src/ContactCenterAI.Application/ContactCenterAI.Application.csproj" />
+  </ItemGroup>
+</Project>

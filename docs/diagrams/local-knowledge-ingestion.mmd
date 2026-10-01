@@ -1,0 +1,10 @@
+sequenceDiagram
+  participant Worker as Worker C#
+  participant Store as Registry e índice
+  participant Model as BGE-M3 local
+  Worker->>Store: Snapshot publicado y hashes
+  Store-->>Worker: Secciones/versiones
+  Worker->>Model: Embeddings por lotes fuera de transacción
+  Model-->>Worker: Vectores finitos de 1024 dimensiones
+  Worker->>Store: Activar generación atómica
+  Note over Worker,Store: Una generación incompleta no se sirve

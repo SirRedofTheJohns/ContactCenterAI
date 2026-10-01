@@ -1,0 +1,36 @@
+flowchart TB
+  browser["Browser: customer and assigned agent"]
+  cloud["Optional external LLM provider"]
+  subgraph machine["Local machine: proposed container network"]
+    api[".NET API and BFF - localhost ingress"]
+    worker[".NET worker - no public port"]
+    idp["Local test OIDC provider"]
+    sql[("SQL Server: Operations DB and Simulator DB")]
+    qdrant[("Qdrant - internal access")]
+    source[".NET source simulator - internal HTTP"]
+    center[".NET contact center mock"]
+    stub["Deterministic LLM stub"]
+    otel["OTel collector and dashboard"]
+    python["Python offline evaluation runner"]
+  end
+  future["Future Genesys sandbox: separate gated profile"]
+  browser --> api
+  api --> idp
+  api -->|"Operations DB only"| sql
+  worker -->|"Operations DB only"| sql
+  source -->|"Simulator DB only"| sql
+  api --> qdrant
+  worker --> qdrant
+  api --> source
+  worker --> source
+  center --> api
+  worker --> center
+  api --> stub
+  worker --> stub
+  api -.->|"Live AI profile"| cloud
+  worker -.->|"Live AI profile"| cloud
+  api --> otel
+  worker --> otel
+  python --> api
+  future -.->|"Not deployed in v0.1"| api
+

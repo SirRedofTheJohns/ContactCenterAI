@@ -1,0 +1,35 @@
+name: Demo safety and evaluation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  local-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+      - name: Build locked dependencies and run deterministic safety
+        shell: pwsh
+        run: ./eng/Verify-Demo.ps1
+      - name: Keep sanitized report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: demo-evaluation
+          path: |
+            evaluation/reports/
+            docs/progress/demo-v0.7-*checks.json
+            docs/progress/demo-v0.8-*checks.json
+            docs/progress/demo-v0.9-*checks.json
+            docs/progress/demo-v0.10-*checks.json
+          retention-days: 7

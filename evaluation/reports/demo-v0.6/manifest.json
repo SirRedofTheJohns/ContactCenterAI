@@ -1,0 +1,22 @@
+{
+  "observedAtUtc": "2026-10-01T05:24:30.1972591+00:00",
+  "providerId": "ollama:qwen3-vl@901cae732162:intent-local-v1",
+  "model": "qwen3-vl:latest",
+  "digest": "901cae73216286ea8c5aba8b46d307ff7188f737285ec500c795a12f05225d28",
+  "wrapper": "raw-chatml-empty-think-v1",
+  "promptSha256": "8b26b2ff4d28d8969ed85694ecb6fd0e6fa2af6959566937847eeb63e8d83675",
+  "schemaSha256": "56a2198e1d5e56f5fa65663cfdc2623c09ee9350e429df6c94cc798120dcab3f",
+  "runtime": "10.0.12",
+  "samples": 40,
+  "publicDevelopmentCases": true,
+  "thinkingExported": false,
+  "requestDeadlineSeconds": 8,
+  "datasetSha256": "8b0fea1b8027ca0bc4b249c87e887ccf09163dad4138669b0c4353850cf234e5",
+  "outputSha256": "b301d7173dbba08fbd62149f9c6ff71c258e1a67fe274372fff721ff8d352d98",
+  "providerSourceSha256": "0d3f1ad0db5174c5d641ce4886b56eeac7f761becb5b47b339b66441158a5f5a",
+  "evaluatorSha256": "3d4583ba6c4db560d89a226fbfdb51d14ddc6fde7564c5ab3db83a8b3756f9c2",
+  "evaluatedAtUtc": "2026-10-01T05:39:29.782589+00:00",
+  "purpose": "Public development sample, not unseen holdout",
+  "rules": "CP-001:v1",
+  "retrieval": "lexical-topics-v1"
+}

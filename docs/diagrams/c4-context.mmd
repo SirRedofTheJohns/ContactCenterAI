@@ -1,0 +1,22 @@
+flowchart LR
+  customer["Person: Customer ES or EN"]
+  agent["Person: Assigned agent or supervisor"]
+  editor["Person: Knowledge editor and reviewer"]
+  ops["Person: Operations admin"]
+  platform["Software System: ContactCenterAI"]
+  center["External System: Contact center mock or future Genesys"]
+  source["External System: Member and reservation simulator"]
+  identity["External System: OIDC identity provider"]
+  model["External System: LLM and embedding provider"]
+  customer -->|"Web chat and explicit confirmation"| platform
+  customer -->|"Future managed digital channels"| center
+  agent -->|"Authorized knowledge and handoff context"| platform
+  agent -->|"Accept interaction"| center
+  editor -->|"Govern synthetic knowledge"| platform
+  ops -->|"Observe and stop mutations"| platform
+  center -->|"Authenticated events and identity evidence"| platform
+  platform -->|"Responses and handoff request"| center
+  platform -->|"Authorized read and versioned command"| source
+  platform -->|"Verify principal and claims"| identity
+  platform -->|"Minimal context and untrusted proposals"| model
+

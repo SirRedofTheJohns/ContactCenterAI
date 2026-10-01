@@ -1,0 +1,76 @@
+{
+  "label": "additional",
+  "scope": "Real BGE-M3 + Qwen closed selection, isolated authorized fixture DB; not end-to-end OIDC/workflow, load, or independent human review.",
+  "model": "bge-m3@7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+  "reranker": "evidence-selection-v2",
+  "variants": 80,
+  "minimumReviewedCosine": 0.35,
+  "overall": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.98,
+    "answeredCorrectly": 0.975,
+    "outOfScopeAbstention": 1.0,
+    "selectionPrecision": 0.9873417721518988,
+    "recallAt5": 0.9875,
+    "inferenceFailures": 0,
+    "outOfScopeInferenceFailures": 0,
+    "p50Ms": 3065.5,
+    "p95Ms": 4760,
+    "maxMs": 5337
+  },
+  "es": {
+    "n": 50,
+    "positive": 40,
+    "outOfScope": 10,
+    "exact": 0.98,
+    "answeredCorrectly": 0.975,
+    "outOfScopeAbstention": 1.0,
+    "selectionPrecision": 1.0,
+    "recallAt5": 1.0,
+    "inferenceFailures": 0,
+    "outOfScopeInferenceFailures": 0,
+    "p50Ms": 4225.5,
+    "p95Ms": 4863,
+    "maxMs": 5337
+  },
+  "en": {
+    "n": 50,
+    "positive": 40,
+    "outOfScope": 10,
+    "exact": 0.98,
+    "answeredCorrectly": 0.975,
+    "outOfScopeAbstention": 1.0,
+    "selectionPrecision": 0.975,
+    "recallAt5": 0.975,
+    "inferenceFailures": 0,
+    "outOfScopeInferenceFailures": 0,
+    "p50Ms": 2825.5,
+    "p95Ms": 3141,
+    "maxMs": 3359
+  },
+  "independentHumanReview": false,
+  "humanReviewers": 0,
+  "datasetSha256": "7985c07cf6399d26b7c3508d9f27b3867b6118677fe930e6b1396426aadd8f41",
+  "runSha256": "60965a51aa3dafad2656d87a7ada1f662b72e607d27e2d5ea790c55bd0d2e50b",
+  "failures": [
+    {
+      "id": "fresh-014-en",
+      "expected": "KB-LATE-CHECKOUT-EN",
+      "actual": "KB-VISITORS-EN",
+      "reason": "GROUNDED_EXTRACT"
+    },
+    {
+      "id": "fresh-032-es",
+      "expected": "KB-KEYS-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    }
+  ],
+  "localNumericGate": "PASS",
+  "frozenBeforeInitialCandidateImplementation": true,
+  "sameAuthor": true,
+  "knownReplay": true,
+  "v10NamedVenueGuardInformedByV09AdditionalRun": true
+}

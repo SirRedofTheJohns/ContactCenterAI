@@ -1,0 +1,207 @@
+{
+  "scope": "NuGet SDK PackageArchiveReader computes content hash excluding package signature; not certificate chain/revocation verification",
+  "count": 40,
+  "allMatch": true,
+  "packages": [
+    {
+      "name": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+      "version": "10.0.12",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.AspNetCore.TestHost",
+      "version": "10.0.12",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "10.0.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.SqlClient",
+      "version": "7.1.1",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.Extensions.Abstractions",
+      "version": "7.1.1",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.Internal.Logging",
+      "version": "7.1.1",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.SqlClient.SNI.runtime",
+      "version": "7.1.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.Sqlite",
+      "version": "10.0.12",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Data.Sqlite.Core",
+      "version": "10.0.12",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.Caching.Abstractions",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.Caching.Memory",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "version": "10.0.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.Logging.Abstractions",
+      "version": "10.0.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.Options",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.Extensions.Primitives",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "Microsoft.SqlServer.Server",
+      "version": "1.0.0",
+      "matched": true
+    },
+    {
+      "name": "SQLitePCLRaw.bundle_e_sqlite3",
+      "version": "2.1.12",
+      "matched": true
+    },
+    {
+      "name": "SQLitePCLRaw.core",
+      "version": "2.1.12",
+      "matched": true
+    },
+    {
+      "name": "SQLitePCLRaw.lib.e_sqlite3",
+      "version": "2.1.12",
+      "matched": true
+    },
+    {
+      "name": "SQLitePCLRaw.provider.e_sqlite3",
+      "version": "2.1.12",
+      "matched": true
+    },
+    {
+      "name": "System.Configuration.ConfigurationManager",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "System.Diagnostics.EventLog",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.16.0",
+      "matched": true
+    },
+    {
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.19.2",
+      "matched": true
+    },
+    {
+      "name": "System.Security.Cryptography.Pkcs",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "System.Security.Cryptography.ProtectedData",
+      "version": "9.0.18",
+      "matched": true
+    },
+    {
+      "name": "System.Threading.RateLimiting",
+      "version": "9.0.18",
+      "matched": true
+    }
+  ]
+}

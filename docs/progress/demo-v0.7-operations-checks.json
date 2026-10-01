@@ -1,0 +1,15 @@
+{
+  "scope": "real local aggregates/auth and trace exporter fixtures",
+  "passed": 9,
+  "checks": [
+    "Customer cannot read operational aggregate panel",
+    "Supplied role cannot grant operational access",
+    "Panel reflects actual registry and explicit non-semantic fixture mode",
+    "Fresh fixture does not invent completed operations or alerts",
+    "Revoked admin cannot read panel",
+    "Trace exporter rejects arbitrary attributes and content",
+    "Nested activities preserve W3C trace and parent relation",
+    "Dashboard recent activity has a bounded window",
+    "Unlisted activity names are not exported"
+  ]
+}

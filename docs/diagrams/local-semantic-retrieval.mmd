@@ -1,0 +1,12 @@
+flowchart LR
+  Documents[Corpus sintético revisado] --> Registry[Registry de versiones y ACL]
+  Registry --> Ingest[Ingesta C# por snapshot]
+  Ingest --> Embed[Embeddings BGE-M3 local]
+  Embed --> Index[Generación atómica SQLite]
+  Question[Pregunta sanitizada] --> Embed
+  Identity[Sesión e idioma comprobados] --> Candidates[Candidatos autorizados]
+  Index --> Candidates
+  Candidates --> Rank[Coseno exacto top 5]
+  Rank --> Gate[Umbral y revalidación SQL]
+  Registry --> Gate
+  Gate --> Evidence[Extracto aprobado y cita o abstención]

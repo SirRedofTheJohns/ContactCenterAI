@@ -1,0 +1,407 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI conversation ingress",
+    "version": "0.1.0",
+    "description": "Implemented candidate. Policy/HTTP pipeline verified with isolated fixture ports; native SQL/product OIDC integration remains unverified."
+  },
+  "x-implementation": "implemented-candidate",
+  "x-requirements": [
+    "FR01",
+    "FR03",
+    "FR09",
+    "NFR03"
+  ],
+  "paths": {
+    "/v1/conversations": {
+      "post": {
+        "operationId": "createConversation",
+        "x-implementation": "implemented-candidate",
+        "description": "Anonymous public session allowed. Principal/tenant/ownership come from server session, never this payload.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConversation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Conversation persisted; opaque ID and version",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationCreated"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Same idempotency key with different payload",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "426": {
+            "description": "HTTPS required; no acceptance"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "403": {
+            "description": "Origin, CSRF or action denied"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}/messages": {
+      "post": {
+        "operationId": "submitMessage",
+        "x-implementation": "implemented-candidate",
+        "description": "Owner/assigned employee only; 202 requires committed SQL inbox. Never implies business success.",
+        "security": [
+          {
+            "SessionCookie": [],
+            "AntiCsrf": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "description": "Strong ETag for current conversation version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitMessage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Durably accepted; processing remains Pending",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid schema",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Action/CSRF denied",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Absent or not visible resource",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Version or clientMessageId conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No durable acceptance",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "426": {
+            "description": "HTTPS required; no acceptance"
+          }
+        }
+      }
+    },
+    "/v1/conversations/{conversationId}": {
+      "get": {
+        "operationId": "readConversation",
+        "x-implementation": "implemented-candidate",
+        "security": [
+          {
+            "SessionCookie": []
+          }
+        ],
+        "description": "Own guest/customer conversation or exact active employee assignment. Foreign and absent resources share 404. Returns first 100 messages ordered by accepted version; no reservation details.",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sanitized transcript and current version; ETag supplied"
+          },
+          "401": {
+            "description": "Session required"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "426": {
+            "description": "HTTPS required"
+          },
+          "503": {
+            "description": "Operational store unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "SessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-ccai.session",
+        "description": "Opaque secure cookie backed by active SQL session; no saved tokens."
+      },
+      "AntiCsrf": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-TOKEN",
+        "description": "Fetch GET /v1/session/csrf after every session rotation. Mutations also require exact HTTPS Origin."
+      }
+    },
+    "parameters": {
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    },
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "correlationId",
+          "retryable"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      },
+      "CreateConversation": {
+        "type": "object",
+        "required": [
+          "language"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "language": {
+            "type": "string",
+            "enum": [
+              "es",
+              "en"
+            ]
+          }
+        }
+      },
+      "ConversationCreated": {
+        "type": "object",
+        "required": [
+          "conversationId",
+          "version",
+          "ownership"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "conversationId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "ownership": {
+            "type": "string",
+            "enum": [
+              "AI"
+            ]
+          }
+        }
+      },
+      "SubmitMessage": {
+        "type": "object",
+        "required": [
+          "clientMessageId",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "clientMessageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        }
+      },
+      "MessageAccepted": {
+        "type": "object",
+        "required": [
+          "messageId",
+          "turnId",
+          "status",
+          "version"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "messageId": {
+            "type": "string"
+          },
+          "turnId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "const": "Pending"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 2
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7451"
+    }
+  ]
+}

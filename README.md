@@ -52,4 +52,3 @@ The demo uses SQLite and plain JavaScript. SQL Server, Qdrant, Angular and a liv
 Everything is fictional: hotel, accounts, policies and reservations. Demo users share `123456Aa!`; service credentials are generated locally and excluded from Git. Model weights, databases, backups and runtime logs are also excluded.
 
 This is a learning and portfolio project developed with AI-assisted tooling. The documentation explains the choices, tests and limitations so they can be discussed and reproduced.
-

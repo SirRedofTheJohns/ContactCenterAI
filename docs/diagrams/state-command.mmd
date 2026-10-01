@@ -1,0 +1,17 @@
+stateDiagram-v2
+  [*] --> Pending
+  Pending --> Submitted: durable dispatch lease and current checks
+  Pending --> Rejected: authorization lost or kill switch
+  Submitted --> Completed: source confirms completed
+  Submitted --> Rejected: source confirms rejection
+  Submitted --> Conflict: source version or policy changed
+  Submitted --> Unknown: timeout or worker crash
+  Unknown --> Completed: authoritative reconciliation
+  Unknown --> Rejected: authoritative reconciliation
+  Unknown --> Conflict: authoritative reconciliation
+  Unknown --> Submitted: definitive not-accepted plus source dedupe
+  Unknown --> Unknown: unresolved with human review
+  Completed --> [*]
+  Rejected --> [*]
+  Conflict --> [*]
+

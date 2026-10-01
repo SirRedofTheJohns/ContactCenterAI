@@ -1,0 +1,233 @@
+{
+  "scope": "real BGE-M3 retrieval, not end-to-end intent/workflow or independent human evaluation",
+  "model": "bge-m3@7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+  "variants": 80,
+  "indexingMs": 3060,
+  "threshold": 0.55,
+  "margin": null,
+  "thresholdTunedAfterHoldout": false,
+  "rankingChangedAfterInspectingPreviousHoldout": true,
+  "unseenHoldout": false,
+  "overall": {
+    "n": 200,
+    "positive": 160,
+    "outOfScope": 40,
+    "exact": 0.89,
+    "recallAt5": 0.95625,
+    "answeredCorrectly": 0.8625,
+    "outOfScopeAbstention": 1.0,
+    "inferenceFailures": 2,
+    "p50Ms": 2657.5,
+    "p95Ms": 4376,
+    "maxMs": 5075
+  },
+  "dev": {
+    "n": 60,
+    "positive": 50,
+    "outOfScope": 10,
+    "exact": 0.8166666666666667,
+    "recallAt5": 0.94,
+    "answeredCorrectly": 0.78,
+    "outOfScopeAbstention": 1.0,
+    "inferenceFailures": 2,
+    "p50Ms": 2623.5,
+    "p95Ms": 4675,
+    "maxMs": 5075
+  },
+  "holdout": {
+    "n": 140,
+    "positive": 110,
+    "outOfScope": 30,
+    "exact": 0.9214285714285714,
+    "recallAt5": 0.9636363636363636,
+    "answeredCorrectly": 0.9,
+    "outOfScopeAbstention": 1.0,
+    "inferenceFailures": 0,
+    "p50Ms": 2669.0,
+    "p95Ms": 4376,
+    "maxMs": 4608
+  },
+  "es": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.86,
+    "recallAt5": 0.9625,
+    "answeredCorrectly": 0.825,
+    "outOfScopeAbstention": 1.0,
+    "inferenceFailures": 1,
+    "p50Ms": 3760.5,
+    "p95Ms": 4566,
+    "maxMs": 5075
+  },
+  "en": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.92,
+    "recallAt5": 0.95,
+    "answeredCorrectly": 0.9,
+    "outOfScopeAbstention": 1.0,
+    "inferenceFailures": 1,
+    "p50Ms": 2545.5,
+    "p95Ms": 2886,
+    "maxMs": 5068
+  },
+  "localQualityGate": "OPEN",
+  "failures": [
+    {
+      "id": "rag-001-es",
+      "split": "dev",
+      "expected": "KB-CANCELLATION-ES",
+      "actual": null,
+      "reasonCode": "INFERENCE_FAILED"
+    },
+    {
+      "id": "rag-001-en",
+      "split": "dev",
+      "expected": "KB-CANCELLATION-EN",
+      "actual": null,
+      "reasonCode": "INFERENCE_FAILED"
+    },
+    {
+      "id": "rag-003-es",
+      "split": "dev",
+      "expected": "KB-SERVICES-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-003-en",
+      "split": "dev",
+      "expected": "KB-SERVICES-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-004-es",
+      "split": "holdout",
+      "expected": "KB-SERVICES-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-004-en",
+      "split": "holdout",
+      "expected": "KB-SERVICES-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-005-es",
+      "split": "dev",
+      "expected": "KB-IDENTITY-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-013-es",
+      "split": "dev",
+      "expected": "KB-PARKING-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-021-es",
+      "split": "dev",
+      "expected": "KB-WIFI-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-021-en",
+      "split": "dev",
+      "expected": "KB-WIFI-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-023-es",
+      "split": "dev",
+      "expected": "KB-AIRPORT-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-023-en",
+      "split": "dev",
+      "expected": "KB-AIRPORT-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-037-es",
+      "split": "dev",
+      "expected": "KB-QUIET-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-042-es",
+      "split": "holdout",
+      "expected": "KB-FOOD-ALLERGY-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-063-es",
+      "split": "holdout",
+      "expected": "KB-KEYS-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-es",
+      "split": "holdout",
+      "expected": "KB-PRIVACY-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-en",
+      "split": "holdout",
+      "expected": "KB-PRIVACY-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-074-es",
+      "split": "holdout",
+      "expected": "KB-PRIVACY-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-078-es",
+      "split": "holdout",
+      "expected": "KB-INTERNAL-HANDOFF-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-078-en",
+      "split": "holdout",
+      "expected": "KB-INTERNAL-HANDOFF-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-080-es",
+      "split": "holdout",
+      "expected": "KB-INTERNAL-SUMMARY-ES",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-080-en",
+      "split": "holdout",
+      "expected": "KB-INTERNAL-SUMMARY-EN",
+      "actual": null,
+      "reasonCode": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}

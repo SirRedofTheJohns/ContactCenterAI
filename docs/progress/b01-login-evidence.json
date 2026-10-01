@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "ticket": "B01",
+  "result": "PASS",
+  "source": "Agent-operated in-app browser; real local Keycloak and ASP.NET OIDC middleware",
+  "runId": "c8552a68-7d24-4c2f-bdf0-4c615a10aae6",
+  "observedAtUtc": "2026-09-30T22:56:15.3055795+00:00",
+  "anonymousProofStatus": 401,
+  "anonymousProofSource": "Earlier user-supplied validated HTTPS preflight output",
+  "httpsCertificateValidation": "Enabled; user helper temporarily trusted this run's localhost certificate",
+  "issuer": "http://localhost:8080/realms/contactcenterai-local",
+  "clientId": "contactcenterai-bff",
+  "accounts": [
+    {
+      "account": "customer-a",
+      "subject": "10000000-0000-0000-0000-000000000001",
+      "authorizationCodeFlow": true,
+      "pkceS256": true,
+      "exactCallback": true,
+      "codeReceived": true,
+      "callbackObserved": true,
+      "idTokenValidated": true,
+      "customerRole": true,
+      "cookieHttpOnly": true,
+      "cookieSecure": true,
+      "cookieSameSiteLax": true,
+      "cookieRoundtrip": true,
+      "tokensAbsent": true,
+      "failed": false,
+      "passed": true
+    },
+    {
+      "account": "customer-b",
+      "subject": "10000000-0000-0000-0000-000000000002",
+      "authorizationCodeFlow": true,
+      "pkceS256": true,
+      "exactCallback": true,
+      "codeReceived": true,
+      "callbackObserved": true,
+      "idTokenValidated": true,
+      "customerRole": true,
+      "cookieHttpOnly": true,
+      "cookieSecure": true,
+      "cookieSameSiteLax": true,
+      "cookieRoundtrip": true,
+      "tokensAbsent": true,
+      "failed": false,
+      "passed": true
+    }
+  ],
+  "scope": "B01 real OIDC middleware and HTTPS cookie roundtrip; no product resource authorization",
+  "productAuthorizationTested": false,
+  "screenshots": [
+    "screenshots/b01-customer-a.png",
+    "screenshots/b01-customer-b.png"
+  ],
+  "cleanup": "Diagnostic stopped; original-profile certificate removal unverified",
+  "helperExportObserved": false,
+  "operationalCleanup": {
+    "userTerminalClosed": true,
+    "diagnosticShutdown": "Agent requested graceful shutdown using this run's workspace marker; TCP 7443 absent afterwards",
+    "certificateTrustRemoval": "Unverified: original terminal closed; restricted shell cannot inspect the desktop user's trust store",
+    "privateKeyDisposal": "Normal shutdown requested; temporary key deletion follows X509Certificate2 disposal; physical container deletion not audited",
+    "remainingNote": "Exact public localhost certificate removal requires the original Windows profile; maintenance note, not a failed compatibility check"
+  }
+}

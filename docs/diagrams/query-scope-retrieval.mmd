@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant API as Aplicación C#
+  participant ACL as Sesión y recurso
+  participant Scope as Política de alcance
+  participant RAG as Recuperación y selector
+  API->>ACL: Autorizar identidad y conversación
+  ACL-->>API: Actor válido o rechazo
+  API->>Scope: Consulta acotada
+  alt Solicitud fuera de alcance
+    Scope-->>API: OUT_OF_SCOPE, sin inferencia
+  else Consulta permitida
+    API->>RAG: Pregunta, idioma, deadline
+    RAG->>ACL: Evidencia publicada y autorizada
+    ACL-->>RAG: Candidatos vigentes
+    RAG-->>API: Extracto revalidado con cita o abstención
+  end

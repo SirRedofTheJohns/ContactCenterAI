@@ -1,0 +1,19 @@
+stateDiagram-v2
+  [*] --> New
+  New --> Active: session established
+  Active --> IdentityRequired: private action requested
+  IdentityRequired --> Active: trusted login completed
+  IdentityRequired --> HandoffPending: failed identity or human request
+  Active --> WaitingForConfirmation: eligible offer displayed
+  WaitingForConfirmation --> Active: reject or expire
+  WaitingForConfirmation --> ActionPending: authenticated confirmation consumed
+  ActionPending --> Active: authoritative final outcome
+  Active --> HandoffPending: explicit request or safe escalation
+  WaitingForConfirmation --> HandoffPending: invalidate unused offer
+  ActionPending --> HandoffPending: include in-flight operation
+  HandoffPending --> HandoffPending: timeout or retry same request
+  HandoffPending --> HumanOwned: matching accepted event and epoch
+  HumanOwned --> Closed: human closes interaction
+  Active --> Closed: explicit close with no pending operation
+  Closed --> [*]
+

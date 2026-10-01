@@ -1,0 +1,17 @@
+{
+  "scope": "Offline Python data provisioning over encrypted TDS; not C# driver or product OIDC proof",
+  "observedAtUtc": "2026-10-01T00:35:54.934433+00:00",
+  "result": "PASS",
+  "checks": [
+    "Pinned local SQL tooling connection fully encrypted",
+    "Eight synthetic server bindings seeded without passwords or tokens",
+    "Operational schema v001 applied",
+    "Operational database contains no authoritative source reservation copy",
+    "Application login has no DDL or sysadmin permission",
+    "Application can append messages and cannot delete them",
+    "Application cannot rewrite bindings, assignments or audit",
+    "Restricted application login reads operational schema"
+  ],
+  "nativeBackendLiveVerified": false,
+  "fullSessionLiveVerified": false
+}

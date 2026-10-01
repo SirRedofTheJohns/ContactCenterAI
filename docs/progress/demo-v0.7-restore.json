@@ -1,0 +1,39 @@
+{
+  "scope": "two SQLite online snapshots; not a distributed atomic backup; source receipts reconcile uncertain commands",
+  "createdAt": "2026-10-01T06:16:23.143507+00:00",
+  "backupFiles": 2,
+  "restore": {
+    "integrity": "PASS",
+    "foreignKeys": "PASS",
+    "rowCounts": "PASS",
+    "completedCommandsHaveSourceReceipts": "PASS",
+    "activeDatabasesReplaced": false
+  },
+  "counts": {
+    "operations": {
+      "Assignment": 1,
+      "Audit": 36,
+      "BusinessCommand": 1,
+      "Confirmation": 1,
+      "Conversation": 5,
+      "ConversationControl": 3,
+      "Feedback": 0,
+      "HumanReview": 0,
+      "Idempotency": 5,
+      "Inbox": 6,
+      "KnowledgeRegistry": 10,
+      "KnowledgeVersion": 10,
+      "Message": 6,
+      "Offer": 1,
+      "Principal": 8,
+      "TurnJob": 4,
+      "TurnResult": 4,
+      "UserSession": 10
+    },
+    "reservations": {
+      "Receipt": 1,
+      "Reservation": 4
+    }
+  },
+  "artifactPolicy": "DB/backup/session data remain in .local and are excluded from portfolio ZIP"
+}

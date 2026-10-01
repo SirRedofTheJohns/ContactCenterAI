@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../ContactCenterAI.Application/ContactCenterAI.Application.csproj" />
+    <ProjectReference Include="../ContactCenterAI.Infrastructure/ContactCenterAI.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.12" />
+  </ItemGroup>
+</Project>

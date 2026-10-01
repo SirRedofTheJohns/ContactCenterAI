@@ -1,0 +1,37 @@
+sequenceDiagram
+  actor Customer
+  participant API
+  participant Gateway
+  participant Source
+  participant Policy
+  participant SQL
+  participant Worker
+  Customer->>API: Request cancellation for own reservation
+  API->>Gateway: Validated proposal with verified principal
+  Gateway->>Source: Authorized read of reservation
+  Source-->>Gateway: Confirmed state, rowVersion and checkInUtc
+  Gateway->>Policy: Evaluate CP-001 v1 with server clock
+  Policy-->>Gateway: Eligible, zero penalty or denial
+  Gateway->>SQL: Persist bound offer with five-minute expiry
+  Gateway-->>Customer: Display offer and confirmation control
+  Customer->>API: Authenticated confirm offerId and idempotency key
+  API->>SQL: Atomically revalidate, consume offer, insert command, audit and outbox
+  SQL-->>API: Durable Pending operationId
+  API-->>Customer: 202 Pending, no success claim
+  Worker->>SQL: Lease command and persist Submitted
+  Worker->>Source: Cancel with commandId and expected version
+  Source->>Source: Revalidate authorization, active policy and state
+  alt Authoritative completed result
+    Source-->>Worker: Completed and source reference
+    Worker->>SQL: Commit result, audit and response outbox
+    Customer->>API: Poll operation or conversation events
+    API-->>Customer: Verified cancellation confirmation
+  else Version or policy conflict
+    Source-->>Worker: Conflict or Rejected
+    Worker->>SQL: Persist failure and safe response
+    API-->>Customer: Explain and request fresh preview if appropriate
+  else Timeout after possible source commit
+    Worker->>SQL: Persist Unknown and reconciliation job
+    API-->>Customer: Outcome uncertain, do not repeat action
+  end
+

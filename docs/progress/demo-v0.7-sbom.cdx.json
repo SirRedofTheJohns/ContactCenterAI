@@ -1,0 +1,895 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-01T06:27:15.504085+00:00",
+    "component": {
+      "type": "application",
+      "name": "ContactCenterAI local presentation",
+      "version": "0.7.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+      "version": "10.0.12",
+      "purl": "pkg:nuget/Microsoft.AspNetCore.Authentication.OpenIdConnect@10.0.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "bcac1084812dfb28b19bce35d471a591e9d9bf3134ea00312fb93f1d2a08295f2310c4fe4bdc6884a9df7039c1737d2d5f2b34f30db542632cada4b2236920ec"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "UfkKr9EP+LBgnFfxwkfnZzta7XkalCroZWoxg2yW9dt8iPXO7bJYpcmyFIeM+FLcAlOKZeduP93XhuCcfWaYIQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.AspNetCore.TestHost",
+      "version": "10.0.12",
+      "purl": "pkg:nuget/Microsoft.AspNetCore.TestHost@10.0.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "14fccb2259e1e39a4a3e0bf7a5100d9e505d646626e7272b583372cdcab47950658a4b3002ba41bf03cf389c2d5769436cbce44424bae8cf4d8286e3d56ca565"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "bTHgbcjSrLxlqSasYRDU9BcJ3hDGoqIjtDY0soLNrndOWi3kxtOyddwUMaNZgtoI2Uf6y7ZQs2EuVj0c20B7mA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "10.0.2",
+      "purl": "pkg:nuget/Microsoft.Bcl.Cryptography@10.0.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "adb3ff92b45d5d7546d74432587d2b59ae7ed2a3f94686fc5590ca9e8f75d241e70dc987f577456c1b5d79d3b9a55565a40d72d8c5d6c77eb4ccb2cd2dcb49f9"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "LG9Yll3B5aNpxv0+D47g6LiOiKBIlodhcHdQwcYzo8VeexFLGqx5ymetmA2aBRyo9cCcWsQWrFsdbsr8LvmWDw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Bcl.Cryptography",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/Microsoft.Bcl.Cryptography@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5d83f0d32a5456568afffe728cfc810430a64d2fca0653eef17b83017d8e57bd53544c9cd6cdfd09f31f6c64fa62b48c6f45035b2fb4d2ace70d1e3fa104ef3f"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "42XcqOGj0jTNW6FphUEuhNLCdVQsYbYCf2pPlkWdz1uDyxxirpcxyjg7pWIBgPCjzk6rv/irgLya/2tDJKIpYg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.SqlClient",
+      "version": "7.1.1",
+      "purl": "pkg:nuget/Microsoft.Data.SqlClient@7.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "b99f684b17a31cf8cd9f5b24d995253e7b1388aab42b1dc0a551e693765e1cc1f28765ad8a48a3a7587927e4014081dae42cfdda9d21b2d11f6d7ff787f9544b"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "Moz4+bba/OdEM9I4jXWggduJ4sqoNcgVAQyXG/dNnGGvnS/YDr2fTjP83fg5YX3drgRki6fRAhR94P8dAZgZtQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.SqlClient.Extensions.Abstractions",
+      "version": "7.1.1",
+      "purl": "pkg:nuget/Microsoft.Data.SqlClient.Extensions.Abstractions@7.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "b08c129c0db5eedc3fe101e81613e7fc1b9be34ebb2489f74d456aef9b9633d50cafb3a69c869ae8b4fa066661e2b05f8f5982dc492d2802330dc519020637ec"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "qP/zUOCJwfKqWNC9o+TWqltfNbLnZi1APNpJZgj0yeEJhoI+h+eoQLX+331yZHNOlDxdafZLP5arW/yrS1jAAw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.SqlClient.Internal.Logging",
+      "version": "7.1.1",
+      "purl": "pkg:nuget/Microsoft.Data.SqlClient.Internal.Logging@7.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5738cc668bfb51e072b92f9b17a4707173def6f867a8d07e3d552d7e56049a50de2cd8358e24d59c3b8d7551f78dd47946b529a7f70e5d48a9e62c98982221b8"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "bVqbATLnHQngue7U9K7GRnzvfdDa7IyiBU2vijfU2vBMBSZrAnQp/wXqNSfaVonckSaMXUk07wfujTqy9IVMdw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.SqlClient.SNI.runtime",
+      "version": "7.1.0",
+      "purl": "pkg:nuget/Microsoft.Data.SqlClient.SNI.runtime@7.1.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ef15ec00dfe4dcbdc92e52f6303827628ada4baa86acd11d7d2e0b65a4e8a534066ab8be2886ddec2b4242e0a9478d269f78a6ac66fd1c78e199ea0e2d8b354a"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "rWunOb6Dby0lcI82PohARcRbF+4x4wNKxnKRSHXhuwZMu8/cCS68DCfhceq4bv1gUEfoL5dWXHYnfxVvLQUN+Q=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.Sqlite",
+      "version": "10.0.12",
+      "purl": "pkg:nuget/Microsoft.Data.Sqlite@10.0.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "c99ec9409a95592202a126662894b1d260a6eaf819da59c8ce63e89a21030dfa42283abddec198f3f77ffbb0413d781e48e75d75fa82ec64e12ba4dc57c452c6"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "xUq9xUc653ue7ac2rMfCaf8UQN+U3zS8poWYlugycpvJllplMM0Mk7v/+MM0CTlu9zGvbGML4BPH8YWhrUOfGw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Data.Sqlite.Core",
+      "version": "10.0.12",
+      "purl": "pkg:nuget/Microsoft.Data.Sqlite.Core@10.0.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "53a6b55c6c36e2df4cdfd20d8c0ef28e770b90697f52b24128814a0daa9d8c1dc9214607e878d40cda245eb7d55f65d54b45940cf1a3994fda3a15b713ada6f5"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "2aL9eL5HQr0V4b8V909SD+jQAx6qnTTl7sT/v3D8dIvmr2UGdpZIQxqm1pj2Js3e4EYTvpw0oMH7DjapJJuPPw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.Caching.Abstractions",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/Microsoft.Extensions.Caching.Abstractions@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "435221fcdb58bb38d16218274e9cc09b9b91fc5076a14e0c9bb5a4accd6880080d27eca5d7a609cce27fb74313fbd2bac8d4c082d4f888e8a8466c282172f886"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "Y8PnPKq+ASBazn0QA5d98/dWT0MAfv9CJYV6zPZ/TisZpAUe5zWgKldJLXkrmUuIzvUpQS7/SF7+1dld3OP/EQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.Caching.Memory",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/Microsoft.Extensions.Caching.Memory@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "134cc1ef3f31ab6483fcd55f9ab48e0a0f8923bcb57eb1b633c0a71a535ec9147bb0b70fc976ed035120a4f18fb60ca59d89b3d1e17e3c3b5c9d4b97a94bb739"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "ZQ+x93CRR8DOGT+YPP4YXvwTAJ0MfvAghs5cwCSvtZFiORSfprAw9f67d0QDhf6PCIYyFsMKFB+PI3p9lpiMUQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "version": "10.0.0",
+      "purl": "pkg:nuget/Microsoft.Extensions.DependencyInjection.Abstractions@10.0.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "475254983871f35cd70118fbff743049ec623bd94d1363c13d7c8ae3bb1b9521883a5e0977ad222d8f30b6627f3738695ed3c1892393327d8a158b9fed069123"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "L3AdmZ1WOK4XXT5YFPEwyt0ep6l8lGIPs7F5OOBZc77Zqeo01Of7XXICy47628sdVl0v/owxYJTe86DTgFwKCA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.Logging.Abstractions",
+      "version": "10.0.0",
+      "purl": "pkg:nuget/Microsoft.Extensions.Logging.Abstractions@10.0.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0849462f3ea2ee5a06d8ab8a8b13f05f3cf466de66ebbc6a0a9cac4befc91ceb180ae03c42089ab0ca7a26ca7fe5b4ed1a8f73e235e1308d9997c9529c369dd1"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.Options",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/Microsoft.Extensions.Options@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "6845957e515bcbc81b268d96803321e73b4e8bb0a7599a5c9671b8c7872e79068b70a143de0db61d597802757af05e6b5b7062d7e892c8b6c12c685e2b9953c4"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "HiA/R0jGR10TGuR6coM8KMUdJ5YlP3bhGxqEdGLkxFdBV1EFNdZMAajSEZHwkex4X/iMQwRCQVotqpElcxOImg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.Extensions.Primitives",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/Microsoft.Extensions.Primitives@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "381dabdb3468f701f2f0d4caaa68c7a21b0712ed6e2f4e8c8a89ee5090fb6ffde51deda51570f190bdac856e38269e33b5715620cafd174811902ccc27e3b305"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "hfHudMC5zDlwMrC0HiHOJesSHMvM+CdqjomjcV/YVzFq5dfSpBRvyRLm1n1Bfh41ZpQnyJzqX+YEo95BAmcDAQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Abstractions@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ac50abfaa71f96654ccc6d6043f86be6b2c704b03aab073091a1528a3a17fdd0f3cf09e486cefd46e8b5a0b1959ee318e8f70b4fbdd9dc40fb6d475fc561a91b"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "gSxKLWRZzBpIsEoeUPkxfywNCCvRvl7hkq146XHPk5vOQc9izSf1I+uL1vh4y2U19QPxd9Z8K/8AdWyxYz2lSg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Abstractions@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "01244907fa0720a876378e5f4edfedffea7659a2b15947ef8d3ac752ad8ddfd98e37ac094d04d7da0c1f64eb70581338159f48eee362f2b14d6b29d76cc60db1"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "HJbo/lnSfNHUfphPRT910poQc4T2/9+8svFLvzuaYHGAOJ2Tu+oEDqpX0BVP3BJ4OuUM1kylEKyaiX2fCAK3Cw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.JsonWebTokens@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ce127ec9b6034e11cefec82a88b9e4cfc6c598f8e38d4978c64ea5bc68233f30dafc915f88ccceabee3cb1c05ed78ed18f60c8fe0c32a5f2d3954aeadfd59f18"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "prBU72cIP4V8E9fhN+o/YdskTsLeIcnKPbhZf0X6mD7fdxoZqnS/NdEkSr+9Zp+2q7OZBOMfNBKGbTbhXODO4w=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.JsonWebTokens@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "f64a24cd6e4c56c1e300d10b4e285cbeb238f1ace1ce1745416fa868471edab0ffb067b955fe7b05141d5c52320e85a5bb1621def85ef1a2d0de683704ff7cdf"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "ui3fuBT4fs8kdKfBthI4NzLYIBIneEVS8UrL1JVBzAn80UiKmngBBi0BEByE7n/9c+EElcfFlCMFFTqpkBSLNA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Logging@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "eca1a2b1a576ba1a63653bcc8d82619d2cc2046ced825be34f4ab3aa46ae3d410c10b9e5a5171299452924e12b4847b538d992e1e50b7b571d2f9693e25c17ee"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "MTzXmETkNQPACR7/XCXM1OGM6oU9RkyibqeJRtO9Ndew2LnGjMf9Atqj2VSf4XC27X0FQycUAlzxxEgQMWn2xQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Logging",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Logging@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "d7906bc6760415a13edecbd4ffc181ec461090e77ec7451d96a98d168577818eaf37fbb8760d7436e5cba03492521c473dd734d5cbca7a8cedc06bc0c3a5619e"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "r5YLDIxGOnkVJHrqXv/iD1FM1CgGrQOdriXuvuWvTPmKbnGANhEysq9XKmN6IHjf2a+9bAGEpnoRBsAQlvJU5w=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Protocols@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4a6c74ad24d67721757165feca787236795df849a6598e325c9f6d29d1f73ce473722feab839fe4e8934bff331280e71cb9dd397aab8f903b95d5d41ef8dac95"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "UFrU7d46UTsPQTa2HIEIpB9H1uJe1BW9FLw5uhEJ2ZuKdur8bcUA/bO5caq5dlBt5gNJeRIB3QQXYNs5fCQCZA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Protocols",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Protocols@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "f8e4d1898afd9310efb8668db4f6e54b466551c326805d3b6243dafb9959d702fb3979d70deca6dbd5d05a2b8a9e299f9e190eed3e229ad900f1dcb8ea9e3839"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "sGxSsSrZXNmca6D+jHH2rVRyo2nNRd/g4H9CFbPmLLq0xgoH1U0orLWE5minfijw7+zq49tBs7txenbfAErRoQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Protocols.OpenIdConnect@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "dbf6426f4cc58e526779bb96d1ec58d9fc709ee6652b17fe0e772c558b047ad5d8569fbd464c240aa114ad39ff5f877a3349749bb43137e3cd8b302369e47362"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "h4yVXyJsEBBX5lg2G5ftMsi5JzcNEGAzrNphA6DQ6eOd8P0s+cDCOyPwVTYLePZvJL5unbPvYIvzrbTXzFjXnQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Protocols.OpenIdConnect@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "24c8a8a345df0ba1a4e948b949bb3d952ce4164a7bf2f8dcc5beeab734602b793505707c05a7a0abf4abfd13a0d34aa4abdf4cb19659b779a00c67400854efd3"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "1XOcyY36cVymzE3qKdzKaUEZ4Pzt7ZpSa14JZoPPK1NLFUkQDs85TCqpV6XDo0YjFXj6nVK00AfOHppjghjhtw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Tokens@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "25c1702aa98557d0910e944d5920a72ae6ef4f6186c1a9334d520049b05c72c6919ef8e8b1f85ff04ac025c9f8649b15cfd8828914ec75d82ab5dde0602410c5"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "rtViGJcGsN7WcfUNErwNeQgjuU5cJNl6FDQsfi9TncwO+Epzn0FTfBsg3YuFW1Q0Ch/KPxaVdjLw3/+5Z5ceFQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.IdentityModel.Tokens",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/Microsoft.IdentityModel.Tokens@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e2b1827165af92dace1b57ac38faf60cc2c9a7197d0e32000fde372fc0bc2bc45cb2adf4be7386d08705325724b8e328b6cfc51cd494243c6ab26a3f106e9e07"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "GtPC1S02uH1gOO4fQ+zRysIicKmEXaYFP8PIkdJYXqMyruYhopre4ozVHp0XiDSA0+GJvOZH9prxCPvgBMg4Ww=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "Microsoft.SqlServer.Server",
+      "version": "1.0.0",
+      "purl": "pkg:nuget/Microsoft.SqlServer.Server@1.0.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "1bd90b08c94fadf3bb6112c95f6d34a6e1251f4710823fa995cba2ecd657146a1e594de338edb6e18ad351e300052e824ec81ed02f48d3ff2d8585169a9a4260"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "N4KeF3cpcm1PUHym1RmakkzfkEv3GRMyofVv40uXsQhCQeglr2OHNcUk2WOG51AKpGO8ynGpo9M/kFXSzghwug=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SQLitePCLRaw.bundle_e_sqlite3",
+      "version": "2.1.12",
+      "purl": "pkg:nuget/SQLitePCLRaw.bundle_e_sqlite3@2.1.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "29b78a5ed88cae9c5dedd160b27a2b03519c8bfc554430819a47d935d8a213595ae8e75410cb724d32774c17829fd9c8bd9817a39b8277d7550a38b7032e8bb8"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "mAgscpQMLw5/nfA1Q5oJVAT29yROUo1ifZGbbTpx/lwZpSxMUGoYbKfmvdm8oXER+RzxqBmmQzeBEVKfeHv2nw=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SQLitePCLRaw.core",
+      "version": "2.1.12",
+      "purl": "pkg:nuget/SQLitePCLRaw.core@2.1.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5a09a0c8ac062d347a65f21fd7ed5d14dc6c3b2a7d1a6b14f588e37948e0cfe3599f0da1ca3541d14f2d693d59d6fbf6d6ce7e82f847437beda596a3b0c28962"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "ETpNw9DY3ckWLgRRAeCHj+GKOuPi61aeczkXhgHexUvqoZBAYg8RYESE2J7O1M7+o6QbdSEZwrw9bfqztUVWXg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SQLitePCLRaw.lib.e_sqlite3",
+      "version": "2.1.12",
+      "purl": "pkg:nuget/SQLitePCLRaw.lib.e_sqlite3@2.1.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0e58be10b28db915f483bd94ab62363996b9ce08b87f049757825edf0c85ee31fda33e8029103dc17233330b95796ed17c065d49580870479964e379f4b76d88"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "fWi8Dbknuhgg72fWinIdjXVaqO1hHL4YBBwVLnr7e1c9TAZwJ0QE38j9syW1hwx6HaqEVTwI+O07WPdZn8Rp0w=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "SQLitePCLRaw.provider.e_sqlite3",
+      "version": "2.1.12",
+      "purl": "pkg:nuget/SQLitePCLRaw.provider.e_sqlite3@2.1.12",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9384426e53fe1dcd4901cefb72b57e7c564b8997893da63c563300f24be48b4d19d1da211bac715f0e2a92e5720940b6f870a16e1c16fb27619a39a551901751"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "W3oH4XIfCzFrgUSDKHhN6N+dgzA5YHOR2VxX8GB6Qy7CyrJJgxPEG8NirgYWlPQC5P2jz2knSsexWu4tDUL33g=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.Configuration.ConfigurationManager",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/System.Configuration.ConfigurationManager@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "7243e39e1175bf26fabe3e2e23eeac1ce38d3977d4705080b740ea9fe1d4967777b004c66e54988d15475b9f48753733d9268ec3cc28c4e09d5463b80d41639d"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "/1q0MHB2xKyTFRC5tk+oL3Ahi+QK0UPI6Qk6Xc5z5BW6otR2T9wwWmEW/LZX98cq7UOmu+7sZ5HNwuq61zrNtg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.Diagnostics.EventLog",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/System.Diagnostics.EventLog@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5265b27192bf50859aefaf2bfbe398fb2f557cb135f829e163be883e684bdce4356341c0b63a8276046a2a5766a1aa398e08786da3c0819e18269d98e4ffed0f"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "4f3CBS22A2Y+M+shvdYzeWaEPYycZ3IaouaH+NxGLW6xoFahR1+L+YM8bt8NI3TQRZbqPBp/myt+6+JXc+IhRg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.16.0",
+      "purl": "pkg:nuget/System.IdentityModel.Tokens.Jwt@8.16.0",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "31c361e3b7e4e6db93072af6e5dcb0bdcab2ca934dfcd8c957dacc102afcc2821fdcb3699c0ba09309b2c04a3b1124e0caf4ac031a3435ee611b413cca3cd6cb"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "rrs2u7DRMXQG2yh0oVyF/vLwosfRv20Ld2iEpYcKwQWXHjfV+gFXNQsQ9p008kR9Ou4pxBs68Q6/9zC8Gi1wjg=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.19.2",
+      "purl": "pkg:nuget/System.IdentityModel.Tokens.Jwt@8.19.2",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0d77b02929b1c5106ebd439dd9a1bf4c065a7c2551e9572a2c3d002401bbe30c280cbaae9304cf19ad08d92388b597615eecf8dcc7e2a20d414a91c00bc49592"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "gqhDC/icByKEutygpr+OFgAmjwTVowyzFjWB8K0q1ww8uFj5a1BQNL+QvijUl9uhq4p8OdDwcAIrjVC+eC9FVA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.Security.Cryptography.Pkcs",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/System.Security.Cryptography.Pkcs@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "403bee0f6ca77922d1d6345a0d94b9f57e4f700b98d0c3137093b67e235d9ef37a1d39cd45b25c76b37a2e35c54f88dde7400d56aa806c027cbf9c86d617a01c"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "NKMKhUdLGNZryY9GXXTF5dXyP6S37EYXhiA2JYvwshJbd4DRq07IOS9it8Opi9atadvv5rlNkD76Mio+5Oo2aQ=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.Security.Cryptography.ProtectedData",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/System.Security.Cryptography.ProtectedData@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "75f92683223c704de1a7f08341fef3982ac1e041f1297a86ada79e19186bd326edc74415394d02fcdba314fc2cae16db827718e39d10d92bfa08a4557efe9238"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,src,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "1/iz9Eex1TBMYdAk+m3igaMvL+nk+rY1EqL6u93an/j1ghxmB24vGOKXkVFy3NSPA39s1H/+SNoK257tHoXoLA=="
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "System.Threading.RateLimiting",
+      "version": "9.0.18",
+      "purl": "pkg:nuget/System.Threading.RateLimiting@9.0.18",
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "3e389046b4fbc74b65e1632f93dd28875114f926c240708add8b4ea42d2b2792c130d019ec9b825c8ef61fe29b018fd2813c77797daa0d9ef61b3c99c84abeff"
+        }
+      ],
+      "properties": [
+        {
+          "name": "ccai:scope",
+          "value": "spikes,tests"
+        },
+        {
+          "name": "ccai:nuget-content-hash",
+          "value": "pxuHw/tQXaHMRXEaKzzgpoGO8VeTPIzHbnp0KclXp6js5wPHn7VaqSCa8yRTAsZDcZ2XuIEnXGM2MbRDJFLBog=="
+        }
+      ]
+    }
+  ]
+}

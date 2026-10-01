@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "0.1",
+  "issuer": "http://localhost:8080/realms/contactcenterai-local",
+  "scope": "Synthetic local seed for future SQL provisioning; never read from the prompt",
+  "bindings": [
+    { "subject": "10000000-0000-0000-0000-000000000001", "tenantId": "tenant-demo", "memberRef": "MEM-001" },
+    { "subject": "10000000-0000-0000-0000-000000000002", "tenantId": "tenant-demo", "memberRef": "MEM-002" }
+  ]
+}

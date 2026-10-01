@@ -1,0 +1,7 @@
+# B06/B07 — workflow local entregado
+
+DONE para la presentación SQLite v0.4/v0.5. Enterprise SQL Server mantiene sus gates. [Diseño cerrado](../architecture-freeze-v0.4-transactions.md) y [ADR-016](../adr/016-local-durable-transactions.md) preceden implementación. [25 checks PASS](b06-b07-evidence.json); [recorrido del producto](demo-v0.5.md).
+
+Ofertas propias de cinco minutos, If-Match/epoch, confirmación consumible y hash de idempotencia se guardan con Pending/audit en una transacción. Source revalidation antes de consumo y al ejecutar. Confirmation replay idéntico retorna su receipt original; consultar operation obtiene el estado actual. Rechazar no despacha. Worker persiste Submitted antes del HTTP, leases expiran y resultados viejos no pisan leases nuevos. Source receipt permite Completed; timeout/caída produce Unknown, consulta antes de reenviar mismo ID únicamente bajo garantía local de NotFound+dedupe. Kill switch pausa confirmación y Pending, conserva reconciliación. HumanReview local se abre después de sesenta segundos no resueltos. No hay exactly-once global.
+
+En el perfil local se hospeda dispatcher en la API como BackgroundService; el Worker separado empresarial no se declara migrado. La fuente es proceso/DB independiente. Queries/receipts/leases de pruebas son reales C# SQLite; falla de transporte se inyecta por puerto de servicio. La cancelación ficticia desde navegador usa el adapter HTTP real y guarda resultado tras recarga.

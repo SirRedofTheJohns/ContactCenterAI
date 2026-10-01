@@ -1,0 +1,86 @@
+{
+  "result": "PASS_DEV_SAMPLE",
+  "metrics": {
+    "es": {
+      "exact": 19,
+      "intent": 20,
+      "total": 20,
+      "exactRate": 0.95,
+      "intentRate": 1.0,
+      "wilson95": [
+        0.7639,
+        0.9911
+      ]
+    },
+    "en": {
+      "exact": 19,
+      "intent": 20,
+      "total": 20,
+      "exactRate": 0.95,
+      "intentRate": 1.0,
+      "wilson95": [
+        0.7639,
+        0.9911
+      ]
+    }
+  },
+  "failures": [
+    {
+      "id": "unknown-es",
+      "expected": {
+        "intent": "faq",
+        "language": "es",
+        "topic": "unknown",
+        "reservationId": null
+      },
+      "actual": {
+        "intent": "faq",
+        "language": "es",
+        "reservationId": null,
+        "topic": "payments"
+      },
+      "errorCode": null
+    },
+    {
+      "id": "unknown-en",
+      "expected": {
+        "intent": "faq",
+        "language": "en",
+        "topic": "unknown",
+        "reservationId": null
+      },
+      "actual": {
+        "intent": "faq",
+        "language": "en",
+        "reservationId": null,
+        "topic": "payments"
+      },
+      "errorCode": null
+    }
+  ],
+  "latency": {
+    "samples": 40,
+    "p50Milliseconds": 3071,
+    "p95Milliseconds": 3639,
+    "maximumMilliseconds": 3729,
+    "timeouts": 0
+  },
+  "usage": {
+    "measuredSamples": 40,
+    "inputTokens": 11705,
+    "outputTokens": 1177,
+    "cloudCalls": 0,
+    "cloudTokenCharges": null
+  },
+  "limitations": [
+    "Public development set, not an unseen holdout. One developer authored/assessed the cases.",
+    "This evaluates intent/proposal classification, not open generation, semantic citation support, dense retrieval, or enterprise workload latency.",
+    "Power/resource costs were not measured. Startup was measured separately; 40 sequential requests are not a load benchmark.",
+    "Deterministic authorization/workflow safety is tested separately. No production quality, security certification or tenant Genesys validation."
+  ],
+  "enterpriseQualityGate": "OPEN: unseen holdout, abstention/support review and workload validation remain required",
+  "unknownTopicRouting": {
+    "correct": 0,
+    "total": 2
+  }
+}

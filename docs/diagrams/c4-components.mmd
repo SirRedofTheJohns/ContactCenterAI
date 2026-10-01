@@ -1,0 +1,38 @@
+flowchart TB
+  subgraph apiBoundary["ASP.NET Core API process - components"]
+    ingress["HTTP and contact ingress adapters"]
+    access["Identity and resource authorization"]
+    state["Conversation workflow and ownership"]
+    ai["Bounded AI orchestrator"]
+    knowledge["Knowledge retrieval and citation validator"]
+    gateway["Secure tool gateway"]
+    policy["Deterministic cancellation policy"]
+    confirmation["Confirmation and command ledger"]
+    handoff["Handoff application service"]
+    store["SQL repositories, inbox, outbox and audit"]
+  end
+  model["LLM adapter: proposals only"]
+  rag["Qdrant adapter: candidate IDs"]
+  reservation["Reservation HTTP adapter"]
+  worker["Separate worker: dispatch and reconcile"]
+  ingress --> access
+  access --> state
+  state --> ai
+  ai --> model
+  ai --> knowledge
+  ai --> gateway
+  gateway --> access
+  gateway --> policy
+  gateway --> reservation
+  gateway --> handoff
+  knowledge --> access
+  knowledge --> rag
+  knowledge --> store
+  state --> store
+  policy --> store
+  ingress -->|"Authenticated confirmation control"| confirmation
+  confirmation --> access
+  confirmation --> store
+  handoff --> store
+  store -->|"Durable commands and events"| worker
+

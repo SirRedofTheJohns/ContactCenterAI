@@ -1,0 +1,117 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ContactCenterAI host foundation",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:7450",
+      "description": "B02 local loopback; no user data or credentials"
+    }
+  ],
+  "security": [],
+  "x-implementation": "B02",
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "getLiveness",
+        "responses": {
+          "200": {
+            "description": "Process is running; does not imply dependency readiness",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Alive"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "getReadiness",
+        "responses": {
+          "200": {
+            "description": "Operational dependencies verified by a future adapter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "Ready"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "B02 has no operational DB adapter: OPERATIONAL_STORE_NOT_CONFIGURED",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "correlationId",
+          "retryable"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "code": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["intent", "language", "reservationId", "topic"],
+  "properties": {
+    "intent": {"type": "string", "enum": ["faq", "get_reservations", "preview_cancellation", "request_handoff", "clarify"]},
+    "language": {"type": "string", "enum": ["es", "en"]},
+    "reservationId": {"type": ["string", "null"], "pattern": "^RES-[0-9]{3}$"},
+    "topic": {"type": ["string", "null"], "enum": ["cancellation", "services", "identity", "payments", "agent", "unknown", null]}
+  }
+}

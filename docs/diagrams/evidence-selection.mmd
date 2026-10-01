@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant App as Orquestador C#
+  participant Search as Embeddings e índice
+  participant Rank as Reranker local
+  participant SQL as Registry y autorización
+  App->>Search: Pregunta e idioma, deadline compartido
+  Search->>SQL: Candidatos publicados y autorizados
+  SQL-->>Search: Hasta cinco secciones
+  Search->>Rank: Pregunta y extractos, sin autoridad de negocio
+  Rank-->>Search: Posición válida o abstención
+  Search->>SQL: Revalidar versión, hash, ACL y fechas
+  SQL-->>App: Extracto citado o abstención
+  Note over App,SQL: Cancelación conserva confirmación y receipt fuente

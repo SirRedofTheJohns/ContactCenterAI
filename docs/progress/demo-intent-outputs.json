@@ -1,0 +1,642 @@
+[
+  {
+    "id": "policy-es",
+    "pairId": "policy",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "policy-en",
+    "pairId": "policy",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "window-es",
+    "pairId": "window",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "window-en",
+    "pairId": "window",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "rule-es",
+    "pairId": "rule",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "rule-en",
+    "pairId": "rule",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "late-es",
+    "pairId": "late",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "late-en",
+    "pairId": "late",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "cancellation"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "cancellation",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "services-es",
+    "pairId": "services",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "services-en",
+    "pairId": "services",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "breakfast-es",
+    "pairId": "breakfast",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "breakfast-en",
+    "pairId": "breakfast",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "arrival-es",
+    "pairId": "arrival",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "arrival-en",
+    "pairId": "arrival",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "services"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "services",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "identity-es",
+    "pairId": "identity",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "identity"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "identity",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "identity-en",
+    "pairId": "identity",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "identity"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "identity",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "payments-es",
+    "pairId": "payments",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "payments",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "payments-en",
+    "pairId": "payments",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "payments",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "refund-es",
+    "pairId": "refund",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "payments",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "refund-en",
+    "pairId": "refund",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "payments"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "payments",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "read-es",
+    "pairId": "read",
+    "language": "es",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "get_reservations",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "read-en",
+    "pairId": "read",
+    "language": "en",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "get_reservations",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "bookings-es",
+    "pairId": "bookings",
+    "language": "es",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "get_reservations",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "bookings-en",
+    "pairId": "bookings",
+    "language": "en",
+    "actual": {
+      "intent": "get_reservations",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "get_reservations",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "preview-a-es",
+    "pairId": "preview-a",
+    "language": "es",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "es",
+      "reservationId": "RES-001",
+      "topic": null
+    },
+    "gold": {
+      "intent": "preview_cancellation",
+      "topic": null,
+      "reservationId": "RES-001"
+    }
+  },
+  {
+    "id": "preview-a-en",
+    "pairId": "preview-a",
+    "language": "en",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "en",
+      "reservationId": "RES-001",
+      "topic": null
+    },
+    "gold": {
+      "intent": "preview_cancellation",
+      "topic": null,
+      "reservationId": "RES-001"
+    }
+  },
+  {
+    "id": "preview-b-es",
+    "pairId": "preview-b",
+    "language": "es",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "es",
+      "reservationId": "RES-003",
+      "topic": null
+    },
+    "gold": {
+      "intent": "preview_cancellation",
+      "topic": null,
+      "reservationId": "RES-003"
+    }
+  },
+  {
+    "id": "preview-b-en",
+    "pairId": "preview-b",
+    "language": "en",
+    "actual": {
+      "intent": "preview_cancellation",
+      "language": "en",
+      "reservationId": "RES-003",
+      "topic": null
+    },
+    "gold": {
+      "intent": "preview_cancellation",
+      "topic": null,
+      "reservationId": "RES-003"
+    }
+  },
+  {
+    "id": "missing-code-es",
+    "pairId": "missing-code",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "missing-code-en",
+    "pairId": "missing-code",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "yes-es",
+    "pairId": "yes",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "yes-en",
+    "pairId": "yes",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "ambiguous-es",
+    "pairId": "ambiguous",
+    "language": "es",
+    "actual": {
+      "intent": "clarify",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "ambiguous-en",
+    "pairId": "ambiguous",
+    "language": "en",
+    "actual": {
+      "intent": "clarify",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "clarify",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "handoff-es",
+    "pairId": "handoff",
+    "language": "es",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "request_handoff",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "handoff-en",
+    "pairId": "handoff",
+    "language": "en",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "request_handoff",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "representative-es",
+    "pairId": "representative",
+    "language": "es",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "es",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "request_handoff",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "representative-en",
+    "pairId": "representative",
+    "language": "en",
+    "actual": {
+      "intent": "request_handoff",
+      "language": "en",
+      "reservationId": null,
+      "topic": null
+    },
+    "gold": {
+      "intent": "request_handoff",
+      "topic": null,
+      "reservationId": null
+    }
+  },
+  {
+    "id": "unknown-es",
+    "pairId": "unknown",
+    "language": "es",
+    "actual": {
+      "intent": "faq",
+      "language": "es",
+      "reservationId": null,
+      "topic": "unknown"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "unknown",
+      "reservationId": null
+    }
+  },
+  {
+    "id": "unknown-en",
+    "pairId": "unknown",
+    "language": "en",
+    "actual": {
+      "intent": "faq",
+      "language": "en",
+      "reservationId": null,
+      "topic": "unknown"
+    },
+    "gold": {
+      "intent": "faq",
+      "topic": "unknown",
+      "reservationId": null
+    }
+  }
+]

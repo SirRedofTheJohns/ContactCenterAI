@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T16:58:23.5242039+00:00",
+  "checksPassed": 17,
+  "checks": [
+    "SQLite native adapter and schema start without Windows certificates",
+    "Verified subject maps server member and rotates opaque session",
+    "Guest session revoked after login",
+    "Guest conversation adoption increments version and ownership epoch atomically",
+    "Persistent store prevents customer B reading customer A conversation",
+    "Claim role inconsistent with server binding denied",
+    "Untrusted issuer cannot bind to member",
+    "Twelve concurrent SQLite creates with same key commit one conversation",
+    "Reused key with different payload conflicts in persistent store",
+    "Repeated message atomically preserves one message/inbox receipt",
+    "Client message replay with changed body denied",
+    "Persistent version check rejects stale write",
+    "New repository instance recovers committed sanitized conversation and version",
+    "Session/login/create/message events committed to audit",
+    "Logout revocation visible to original and reopened adapter",
+    "Revoked session cannot use a cached Actor for private access",
+    "Session absolute expiry enforced in persistent store"
+  ],
+  "scope": "Real C# SQLite adapter/transactions/concurrent writes/reopened repository; isolated synthetic DB",
+  "oidcBrowserLoginVerified": false,
+  "sqlServerNativeVerified": false
+}

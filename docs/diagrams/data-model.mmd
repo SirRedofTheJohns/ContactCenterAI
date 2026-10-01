@@ -1,0 +1,75 @@
+erDiagram
+  PRINCIPAL o|--o{ CONVERSATION : owns
+  PRINCIPAL ||--o{ ASSIGNMENT : receives
+  CONVERSATION ||--o{ ASSIGNMENT : has
+  CONVERSATION ||--o{ MESSAGE : contains
+  CONVERSATION ||--o{ CANCELLATION_OFFER : presents
+  CANCELLATION_OFFER ||--o| CONFIRMATION : consumes
+  CONFIRMATION ||--o| COMMAND : creates
+  COMMAND ||--o{ AUDIT_EVENT : records
+  CONVERSATION ||--o{ HANDOFF_REQUEST : requests
+  KNOWLEDGE_DOCUMENT ||--|{ KNOWLEDGE_VERSION : versions
+  KNOWLEDGE_VERSION ||--o{ KNOWLEDGE_CHUNK : chunks
+  KNOWLEDGE_VERSION ||--o{ DOCUMENT_PERMISSION : allows
+  MESSAGE ||--o{ RETRIEVAL_EVIDENCE : cites
+  KNOWLEDGE_CHUNK ||--o{ RETRIEVAL_EVIDENCE : supports
+  MESSAGE ||--o{ FEEDBACK : receives
+  POLICY_VERSION ||--o{ CANCELLATION_OFFER : determines
+  CONVERSATION ||--o{ INBOX_EVENT : receives
+  CONVERSATION ||--o{ OUTBOX_EVENT : emits
+  SOURCE_MEMBER ||--o{ SOURCE_RESERVATION : owns
+  SOURCE_RESERVATION ||--o{ SOURCE_COMMAND_RECEIPT : changes
+  PRINCIPAL {
+    string id PK
+    string tenantId
+    string idpSubject
+    string memberRef
+  }
+  CONVERSATION {
+    string id PK
+    string principalId FK
+    string language
+    string state
+    int ownershipEpoch
+    int version
+  }
+  CANCELLATION_OFFER {
+    string id PK
+    string conversationId FK
+    string reservationRef
+    string reservationVersion
+    string policyVersion FK
+    datetime expiresAtUtc
+    string payloadHash
+  }
+  COMMAND {
+    string id PK
+    string confirmationId FK
+    string status
+    string idempotencyHash
+    string sourceReference
+    datetime leaseUntilUtc
+  }
+  KNOWLEDGE_VERSION {
+    string id PK
+    string documentId FK
+    string status
+    string language
+    string translationGroup
+    datetime effectiveAtUtc
+    datetime expiresAtUtc
+    string contentHash
+  }
+  POLICY_VERSION {
+    string id PK
+    int freeCancellationHours
+    datetime effectiveAtUtc
+  }
+  SOURCE_RESERVATION {
+    string id PK
+    string memberId FK
+    datetime checkInUtc
+    string state
+    string rowVersion
+  }
+

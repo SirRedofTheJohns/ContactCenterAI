@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T05:45:20.605094+00:00",
+  "mode": "local-llm",
+  "observed": [
+    "Real Keycloak customer-a login",
+    "New Spanish conversation",
+    "Novel policy question persisted",
+    "CP-001 grounded extract with ES citation",
+    "Answer labeled Asistente · IA local real and mode badge visible"
+  ],
+  "newSourceMutation": false,
+  "thinkingOrAuthenticationTokensExported": false,
+  "contactCenter": "mock",
+  "screenshot": "screenshots/local-ai-v0.6.jpg"
+}

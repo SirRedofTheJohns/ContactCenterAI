@@ -1,0 +1,22 @@
+{
+  "ticket": "B02",
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T00:47:46.6838200+00:00",
+  "sdk": "10.0.401",
+  "targetFramework": "net10.0",
+  "productProjects": 5,
+  "releaseBuild": "PASS",
+  "warningsAsErrors": true,
+  "foundationChecksPassed": 21,
+  "workerStartup": "PASS",
+  "apiLiveness": 200,
+  "apiReadiness": 503,
+  "readinessReason": "OPERATIONAL_STORE_NOT_CONFIGURED",
+  "businessRoute": "Candidate rejects HTTP (426 HTTPS_REQUIRED)",
+  "smokeProcessStopped": true,
+  "contractValidation": "Local refs and bounded structural checks; not full OAS conformance",
+  "productAuthorizationTested": false,
+  "aiEvaluationExecuted": false,
+  "liveGenesysValidated": false,
+  "scope": "Foundation only: references, host status, fail-closed readiness and passive worker startup"
+}

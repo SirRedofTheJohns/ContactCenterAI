@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T03:08:31.357362+00:00",
+  "checksPassed": 18,
+  "checks": [
+    "Running demo and persistent SQLite readiness",
+    "Demo entry page served by production host",
+    "Static asset served: /demo.css",
+    "Static asset served: /demo.js",
+    "No authenticated session fabricated on page load",
+    "Private conversation denied without session",
+    "Product reservation query denied without active session",
+    "Unauthenticated access denied: /v1/conversations/00000000-0000-0000-0000-000000000001/assistant",
+    "Unauthenticated access denied: /v1/conversations/00000000-0000-0000-0000-000000000001/actions",
+    "Unauthenticated access denied: /v1/operations/00000000-0000-0000-0000-000000000001",
+    "Unauthenticated access denied: /v1/agent/conversations",
+    "Untrusted Host denied",
+    "Login POST without CSRF denied",
+    "CSRF bootstrap issues token",
+    "Cross-origin login denied",
+    "Valid login challenges actual local Keycloak",
+    "Actual middleware challenges with Keycloak pushed authorization request",
+    "Challenge excludes client secrets and tokens"
+  ],
+  "scope": "Actual running HTTP demo API, static assets, CSRF/Origin/Host and real Keycloak challenge; no login form submitted",
+  "challengeTransport": "PAR",
+  "pushedParametersNotInspected": true,
+  "browserLoginVerified": false,
+  "sqlServerNativeVerified": false
+}

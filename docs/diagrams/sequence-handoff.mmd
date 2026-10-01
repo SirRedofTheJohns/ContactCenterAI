@@ -1,0 +1,26 @@
+sequenceDiagram
+  actor Customer
+  participant API
+  participant SQL
+  participant Worker
+  participant Adapter
+  participant Human
+  Customer->>API: Request human assistance
+  API->>SQL: Persist HandoffPending, requestId, epoch and minimum context
+  SQL->>SQL: Invalidate unused offer and stop new tools
+  API-->>Customer: Transfer requested, not yet connected
+  Worker->>SQL: Lease handoff outbox and verify epoch
+  Worker->>Adapter: Request handoff with stable requestId and contextRef
+  alt Adapter acknowledges matching request and epoch
+    Adapter->>API: Authenticated handoff accepted event
+    API->>SQL: CAS to HumanOwned and increment epoch
+    Adapter->>Human: Route interaction
+    Human->>API: Fetch assigned context and pending operation
+    API-->>Human: Verified facts and explicit uncertainty
+  else Timeout or failure
+    Worker->>SQL: Keep HandoffPending and record failure
+    API-->>Customer: Transfer pending and safe fallback
+  end
+  Adapter->>API: Duplicate or stale callback
+  API->>SQL: Dedupe and reject stale epoch, no AI reactivation
+

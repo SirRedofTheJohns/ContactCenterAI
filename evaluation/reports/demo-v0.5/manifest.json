@@ -1,0 +1,18 @@
+{
+  "observedAtUtc": "2026-10-01T16:58:39.186535+00:00",
+  "profile": "demo-v0.5",
+  "provider": "simulated-intent-v1",
+  "rule": "CP-001:v1",
+  "retrieval": "lexical-topics-v1",
+  "toolSchema": "closed-intent-v1",
+  "runtime": "C#/.NET10",
+  "evaluation": "Python offline",
+  "datasetSha256": "8b0fea1b8027ca0bc4b249c87e887ccf09163dad4138669b0c4353850cf234e5",
+  "corpusSha256": "c10b0f75cfe7e77f7ceee451059f9c1bac2c4b6c4e2eb65c12f62ed5eb986f64",
+  "outputSha256": "248bc108a9ce839fbdcf8ee45b53f6d327f2fa80f92809f7638c936f8ddd8484",
+  "datasetPurpose": "Public development/control cases; not unseen holdout",
+  "liveLlmTested": false,
+  "denseRetrievalTested": false,
+  "genesysTenantTested": false,
+  "remoteCiRunObserved": false
+}

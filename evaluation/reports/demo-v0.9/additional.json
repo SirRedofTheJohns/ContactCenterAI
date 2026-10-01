@@ -1,0 +1,89 @@
+{
+  "label": "additional",
+  "scope": "Real BGE-M3 + Qwen closed selection, isolated authorized fixture DB; not end-to-end OIDC/workflow, load, or independent human review.",
+  "model": "bge-m3@7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+  "reranker": "evidence-selection-v2",
+  "variants": 80,
+  "minimumReviewedCosine": 0.35,
+  "overall": {
+    "n": 100,
+    "positive": 80,
+    "outOfScope": 20,
+    "exact": 0.95,
+    "answeredCorrectly": 0.9625,
+    "outOfScopeAbstention": 0.9,
+    "selectionPrecision": 0.9625,
+    "recallAt5": 0.975,
+    "inferenceFailures": 1,
+    "p50Ms": 3490.0,
+    "p95Ms": 4774,
+    "maxMs": 5073
+  },
+  "es": {
+    "n": 50,
+    "positive": 40,
+    "outOfScope": 10,
+    "exact": 0.94,
+    "answeredCorrectly": 0.95,
+    "outOfScopeAbstention": 0.9,
+    "selectionPrecision": 0.9743589743589743,
+    "recallAt5": 0.975,
+    "inferenceFailures": 1,
+    "p50Ms": 4284.0,
+    "p95Ms": 4898,
+    "maxMs": 5073
+  },
+  "en": {
+    "n": 50,
+    "positive": 40,
+    "outOfScope": 10,
+    "exact": 0.96,
+    "answeredCorrectly": 0.975,
+    "outOfScopeAbstention": 0.9,
+    "selectionPrecision": 0.9512195121951219,
+    "recallAt5": 0.975,
+    "inferenceFailures": 0,
+    "p50Ms": 2915.0,
+    "p95Ms": 3232,
+    "maxMs": 3827
+  },
+  "independentHumanReview": false,
+  "humanReviewers": 0,
+  "datasetSha256": "7985c07cf6399d26b7c3508d9f27b3867b6118677fe930e6b1396426aadd8f41",
+  "runSha256": "934c93ac7832d031ada0e80f9f6fffc224929dc8a2dee85edf057cf5e57ea56d",
+  "failures": [
+    {
+      "id": "fresh-005-es",
+      "expected": "KB-AGENT-ES",
+      "actual": null,
+      "reason": "INFERENCE_FAILED"
+    },
+    {
+      "id": "fresh-014-en",
+      "expected": "KB-LATE-CHECKOUT-EN",
+      "actual": "KB-VISITORS-EN",
+      "reason": "GROUNDED_EXTRACT"
+    },
+    {
+      "id": "fresh-032-es",
+      "expected": "KB-KEYS-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "fresh-049-es",
+      "expected": null,
+      "actual": "KB-POOL-ES",
+      "reason": "GROUNDED_EXTRACT"
+    },
+    {
+      "id": "fresh-049-en",
+      "expected": null,
+      "actual": "KB-POOL-EN",
+      "reason": "GROUNDED_EXTRACT"
+    }
+  ],
+  "localNumericGate": "OPEN",
+  "frozenBeforeImplementation": true,
+  "sameAuthor": true
+}

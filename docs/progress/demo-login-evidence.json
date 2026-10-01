@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "observedAtUtc": "2026-10-01T02:16:36.788731+00:00",
+  "profile": "demo-source-v0.3",
+  "scope": "Observed native browser UI on real BFF/Keycloak and persistent demo/source adapters; no preissued test tickets",
+  "productBrowserLoginVerified": true,
+  "accounts": [
+    "customer-a",
+    "customer-b"
+  ],
+  "localLogoutObserved": true,
+  "newConversationAndMessagePersisted": true,
+  "reloadPreservesSanitizedMessage": true,
+  "emailMasked": true,
+  "separateCustomerHistoriesObserved": true,
+  "reservationsObserved": {
+    "customer-a": [
+      "RES-001",
+      "RES-002"
+    ],
+    "customer-b": [
+      "RES-003",
+      "RES-004"
+    ]
+  },
+  "eligibilityAndOutsideWindowObserved": true,
+  "productCancellationEnabled": false,
+  "directForeignProductUrlTestBlockedByBrowserTool": true,
+  "directForeignProductHttpStatusObserved": false,
+  "sourceOwnershipHttpVerifiedSeparately": true,
+  "sqlServerNativeVerified": false,
+  "claimsOrCookiesExported": false,
+  "screenshots": [
+    "screenshots/demo-customer-a.jpg",
+    "screenshots/demo-customer-b.jpg",
+    "screenshots/reservations-customer-a.jpg",
+    "screenshots/reservations-customer-b.jpg"
+  ]
+}

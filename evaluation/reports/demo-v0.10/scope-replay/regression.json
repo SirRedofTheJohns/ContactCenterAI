@@ -1,0 +1,58 @@
+{
+  "label": "regression",
+  "scope": "Composite evaluation: current C# guard/store checks plus unchanged real model outputs. Not a new 300-query inference or latency run.",
+  "n": 200,
+  "exact": 0.97,
+  "outOfScopeAbstention": 1.0,
+  "selectionPrecision": 1.0,
+  "guardedQueries": 5,
+  "reusedOutputs": 195,
+  "correctedSelections": 1,
+  "newModelCalls": 0,
+  "outOfScopeInferenceFailures": 0,
+  "latencyMeasuredForCurrentComposedRun": false,
+  "independentHumanReview": false,
+  "knownReplay": true,
+  "sourceSha256": "92ef43d20066ce0a8e4751274f467c426ae140875c91e3391ad17d9cdf924271",
+  "datasetSha256": "3bdf098ba27aafc01cc85888a83c06759d403613dd3e4bb0ecfcb6d8b18d0c50",
+  "replaySha256": "8116e608c9079d2f2ae220b72db5a35d41085718b81a322ae1aefcfd8ab9a423",
+  "localNumericGate": "PASS",
+  "failures": [
+    {
+      "id": "rag-004-es",
+      "expected": "KB-SERVICES-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-004-en",
+      "expected": "KB-SERVICES-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-013-es",
+      "expected": "KB-PARKING-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-023-en",
+      "expected": "KB-AIRPORT-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-es",
+      "expected": "KB-PRIVACY-ES",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "id": "rag-073-en",
+      "expected": "KB-PRIVACY-EN",
+      "actual": null,
+      "reason": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}

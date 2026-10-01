@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-30",
+  "ticket": "B01",
+  "userAttempt": {
+    "source": "User supplied Start-B01Login.cmd -TrustLocalCertificate output",
+    "offlineChecks": "12 PASS",
+    "listenerStarted": true,
+    "temporaryCertificateTrust": "Added then removed",
+    "failure": "DIAGNOSTIC_HTTPS_FAILED before browser login",
+    "interactiveAccountsVerified": 0,
+    "actualUserNativeErrorCode": "Not captured by the previous helper"
+  },
+  "agentOriginalReproduction": {
+    "certificateValidationEnabled": true,
+    "result": "TLS_FAILED",
+    "serverNativeCode": "0x8009030E",
+    "scope": "Instrumented original harness; anonymous request only; no trust-store changes or OIDC login"
+  },
+  "change": {
+    "windowsKeyLoading": "In-memory PKCS12 roundtrip into UserKeySet; no PersistKeySet, no exported PFX file",
+    "cleanup": "Workspace stop marker requests graceful host shutdown and certificate disposal before process-kill fallback",
+    "errorOutput": "Only type, HResult and native error codes; no arbitrary messages, formatter output or auth values",
+    "clientProbe": "Fixed localhost HttpClient; no proxy or redirects; normal certificate validation"
+  },
+  "verification": {
+    "releaseBuild": "PASS, zero warnings and errors",
+    "offlineCompatibility": "12 PASS",
+    "correctedAgentNativeHttps": "START_FAILED",
+    "correctedAgentCertificateHResult": "0x80070002",
+    "limitation": "Agent shell cannot start the Windows TLS host; browser successfully used the user-started host",
+    "requiredNextEvidence": "Compatibility gate completed; original-profile trust cleanup tracked separately",
+    "correctedRealUserHttps": "PASS: user supplied HTTP 401 via validated HTTPS; browser reached Keycloak login",
+    "interactiveCodePkceRoundtrips": "PASS: customer-a and customer-b, observed by agent through real browser"
+  },
+  "reference": "https://learn.microsoft.com/en-us/dotnet/core/extensions/sslstream-troubleshooting#handshake-failed-with-ephemeral-keys",
+  "b01Closed": true,
+  "b02Ready": true,
+  "operationalCleanup": {
+    "userTerminalClosed": true,
+    "diagnosticShutdown": "Agent requested graceful shutdown using this run's workspace marker; TCP 7443 absent afterwards",
+    "certificateTrustRemoval": "Unverified: original terminal closed; restricted shell cannot inspect the desktop user's trust store",
+    "privateKeyDisposal": "Normal shutdown requested; temporary key deletion follows X509Certificate2 disposal; physical container deletion not audited",
+    "remainingNote": "Exact public localhost certificate removal requires the original Windows profile; maintenance note, not a failed compatibility check"
+  }
+}
