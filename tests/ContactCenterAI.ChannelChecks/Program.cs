@@ -128,6 +128,31 @@ using var metaSender = new ProviderClient(wa, new FixtureHttp(async req => { met
 var metaResult = await metaSender.SendAsync(metaOutput, now, default);
 using var metaSent = JsonDocument.Parse(metaBody!);
 Check(metaResult.Status == "Sent" && authorization == "Bearer" && metaSent.RootElement.GetProperty("type").GetString() == "text" && !metaSent.RootElement.TryGetProperty("template", out _), "Meta dispatch uses authenticated plain text with no template branch");
+var rejectionDiagnostics = new List<string>();
+using var rejectedMeta = new ProviderClient(wa, new FixtureHttp(_ => Task.FromResult(Response(HttpStatusCode.BadRequest,
+    "{\"error\":{\"code\":100,\"error_subcode\":33,\"message\":\"fixture-private-token fixture-phone\",\"error_data\":{\"details\":\"private reply text\"},\"fbtrace_id\":\"private-trace\"}}"))), rejectionDiagnostics.Add);
+var rejectedResult = await rejectedMeta.SendAsync(metaOutput, now, default);
+Check(rejectedResult is { Status: "Failed", ProviderId: null } && rejectionDiagnostics.Single() == "META_SEND_REJECTED HTTP=400 Code=100 Subcode=33", "Meta rejection diagnostic contains only numeric codes, never provider messages or personal details");
+foreach (var (body, name) in new[] {
+    ("not-json private-token", "Malformed diagnostic JSON preserves the definitive Failed outcome"),
+    ("{\"error\":{\"code\":\"private-token\",\"error_subcode\":\"private-phone\"}}", "Non-numeric diagnostic fields cannot enter logs"),
+    (new string('x', ProviderInput.MaximumBody + 1), "Oversized diagnostic body is bounded without changing Failed") })
+{
+    var diagnostics = new List<string>();
+    using var rejection = new ProviderClient(wa, new FixtureHttp(_ => Task.FromResult(Response(HttpStatusCode.BadRequest, body))), diagnostics.Add);
+    Check((await rejection.SendAsync(metaOutput, now, default)).Status == "Failed" && diagnostics.Single() == "META_SEND_REJECTED HTTP=400 Code=none Subcode=none", name);
+}
+var unreadableDiagnostics = new List<string>();
+using var unreadableMeta = new ProviderClient(wa, new FixtureHttp(_ => Task.FromResult(new HttpResponseMessage(HttpStatusCode.BadRequest) { Content = new UnreadableContent() })), unreadableDiagnostics.Add);
+Check((await unreadableMeta.SendAsync(metaOutput, now, default)).Status == "Failed" && unreadableDiagnostics.Single() == "META_SEND_REJECTED HTTP=400 Code=none Subcode=none", "Diagnostic body read failure cannot turn a definitive rejection into Unknown");
+using var brokenLoggerMeta = new ProviderClient(wa, new FixtureHttp(_ => Task.FromResult(Response(HttpStatusCode.BadRequest, "{}"))), _ => throw new IOException("fixture-private-logger-error"));
+Check((await brokenLoggerMeta.SendAsync(metaOutput, now, default)).Status == "Failed", "Diagnostic sink failure cannot change the transport outcome");
+var ambiguousDiagnostics = new List<string>();
+using var ambiguousMeta = new ProviderClient(wa, new FixtureHttp(_ => Task.FromResult(Response(HttpStatusCode.InternalServerError, "{\"error\":{\"code\":100}}"))), ambiguousDiagnostics.Add);
+Check((await ambiguousMeta.SendAsync(metaOutput, now, default)).Status == "Unknown" && ambiguousDiagnostics.Count == 0, "Meta 500 remains Unknown and is not reported as a definitive rejection");
+var failedMetaLedger = Fresh("failed-meta-diagnostic"); failedMetaLedger.Accept(Text("1", endpoint: wa), wa); failedMetaLedger.Complete(failedMetaLedger.Claim(now)!, Plain(), now);
+var failedMetaRuntime = new ChannelRuntime(failedMetaLedger, new PublicResponder(new SqliteOperationalStore(Path.Combine(root, "failed-meta-knowledge.db")), new SimulatedIntentProvider(), clock), new Dictionary<string, ProviderClient> { ["whatsapp"] = rejectedMeta }, new LocalContactCenterMock(), clock);
+Check(await failedMetaRuntime.SendOneAsync(default) && !await failedMetaRuntime.SendOneAsync(default) && Scalar("failed-meta-diagnostic", "SELECT COUNT(*) FROM ChannelOutbox WHERE Status='Failed'") == 1, "Definitive rejection is persisted and diagnostics create no automatic resend");
 metaLedger.BeginSend(metaOutput, now); metaLedger.FinishSend(metaOutput.Id, "Unknown", null, now);
 string Status(string state, string recipient = "18095550001") => JsonSerializer.Serialize(new { @object = "whatsapp_business_account", entry = new[] { new { changes = new[] { new { field = "messages", value = new { metadata = new { phone_number_id = "987" }, statuses = new[] { new { id = "wamid.sent", status = state, recipient_id = recipient, biz_opaque_callback_data = metaOutput.Id.ToString("D") } } } } } } } });
 using (var wrongReceipt = JsonDocument.Parse(Status("read", "99"))) metaLedger.MetaStatuses(wrongReceipt.RootElement, "987");
@@ -193,7 +218,7 @@ HttpStatusCode limited = HttpStatusCode.OK; for (var i = 0; i < 60; i++) { using
 Check(limited == HttpStatusCode.TooManyRequests, "Public webhook ingress has a real per-host rate limit");
 await host.StopAsync();
 var report = new { version = "0.11", evidence = "MockValidated", checks = checks.Count, names = checks, providerCalls = "fake HTTP only; no real recipients or credentials", modelCalls = "deterministic intent fixture; existing inference reports preserved", retention = "logical SQLite cleanup; not secure erasure", generatedAtUtc = DateTimeOffset.UtcNow };
-await File.WriteAllTextAsync(Path.Combine(repo, "docs/progress/channels-v0.11-checks.json"), JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true }));
+await File.WriteAllTextAsync(Path.Combine(repo, "docs/progress/channels-activation-checks.json"), JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true }));
 Console.WriteLine("Channel checks completed: " + checks.Count);
 }
 catch (Exception error)
@@ -205,3 +230,8 @@ catch (Exception error)
 sealed class FixtureClock(DateTimeOffset now) : TimeProvider { public override DateTimeOffset GetUtcNow() => now; }
 sealed class FixtureHttp(Func<HttpRequestMessage, Task<HttpResponseMessage>> send) : HttpMessageHandler
 { protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) => send(request); }
+sealed class UnreadableContent : HttpContent
+{
+    protected override Task SerializeToStreamAsync(Stream stream, TransportContext? context) => Task.FromException(new IOException("fixture-private-body-error"));
+    protected override bool TryComputeLength(out long length) { length = 0; return false; }
+}

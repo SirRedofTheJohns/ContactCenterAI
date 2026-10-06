@@ -11,10 +11,11 @@ public sealed record TransportResult(string Status, string? ProviderId = null, i
 public sealed class ProviderClient : IDisposable
 {
     private readonly HttpClient client;
+    private readonly Action<string>? diagnostic;
     public EndpointOptions Options { get; }
-    public ProviderClient(EndpointOptions options, HttpMessageHandler? fixture = null)
+    public ProviderClient(EndpointOptions options, HttpMessageHandler? fixture = null, Action<string>? diagnostic = null)
     {
-        options.Validate(); Options = options;
+        options.Validate(); Options = options; this.diagnostic = diagnostic;
         client = new(fixture ?? new SocketsHttpHandler { AllowAutoRedirect = false }) { Timeout = TimeSpan.FromSeconds(35) };
     }
     private Uri TelegramUri(string method) => new("https://api.telegram.org/bot" + Options.AccessToken + "/" + method);
@@ -25,6 +26,28 @@ public sealed class ProviderClient : IDisposable
         while ((count = await input.ReadAsync(bytes, ct)) > 0)
         { if (output.Length + count > ProviderInput.MaximumBody) throw new RequestRejected(503, "PROVIDER_RESPONSE_TOO_LARGE"); await output.WriteAsync(bytes.AsMemory(0, count), ct); }
         return ProviderInput.Parse(output.ToArray());
+    }
+    private async Task ReportMetaRejectionAsync(HttpResponseMessage response, CancellationToken ct)
+    {
+        if (diagnostic is null || Options.Channel != "whatsapp") return;
+        int? code = null, subcode = null;
+        try
+        {
+            using var body = await Read(response, ct);
+            if (body.RootElement.TryGetProperty("error", out var error) && error.ValueKind == JsonValueKind.Object)
+            {
+                if (error.TryGetProperty("code", out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number)) code = number;
+                if (error.TryGetProperty("error_subcode", out value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out number)) subcode = number;
+            }
+        }
+        catch (Exception) { /* Diagnostic parsing cannot turn a definitive rejection into uncertainty. */ }
+        try
+        {
+            diagnostic("META_SEND_REJECTED HTTP=" + ((int)response.StatusCode).ToString(CultureInfo.InvariantCulture) +
+                " Code=" + (code?.ToString(CultureInfo.InvariantCulture) ?? "none") +
+                " Subcode=" + (subcode?.ToString(CultureInfo.InvariantCulture) ?? "none"));
+        }
+        catch (Exception) { /* Diagnostic output cannot change delivery state. */ }
     }
     public async Task CheckTelegramAsync(CancellationToken ct)
     {
@@ -74,7 +97,11 @@ public sealed class ProviderClient : IDisposable
                 return new(output.Attempts >= 2 ? "Failed" : "Pending", RetryAfterSeconds: delay);
             }
             if ((int)response.StatusCode >= 500 || response.StatusCode == HttpStatusCode.RequestTimeout || (int)response.StatusCode is >= 300 and < 400) return new("Unknown");
-            if (!response.IsSuccessStatusCode) return new("Failed");
+            if (!response.IsSuccessStatusCode)
+            {
+                await ReportMetaRejectionAsync(response, ct);
+                return new("Failed");
+            }
             using var document = await Read(response, ct); string? id;
             if (Options.Channel == "telegram")
             {

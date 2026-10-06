@@ -96,6 +96,7 @@ Límites CH-N01–08, detallados también en la versión inglesa:
 - Telegram: un poller, 25 segundos long polling, <=100 updates, tipos explícitos; no webhook simultáneo. Envío conservador global de uno por segundo. Reintentar solo 429 definitivo, respetando `retry_after`, máximo tres envíos.
 - Respuesta plana <=3,500 caracteres Unicode, sin dividir automáticamente ni ejecutar markup. Cita por ID/versión/sección/título; sin links loopback inútiles desde el teléfono.
 - Tokens, URLs con token, cuerpos originales, IDs de remitente y texto no van a logs/trazas. Guardar ruta necesaria y texto sanitizado en archivo local ignorado; errores devuelven códigos estables.
+  Aclaración operativa, 2026-10-05: un rechazo definitivo de envío Meta puede registrar solo el estado HTTP y códigos/subcódigos numéricos. Nunca registrar mensajes de error del proveedor, detalles, trace IDs, cuerpos ni peticiones. Un fallo al leer el diagnóstico conserva Failed; no habilita reenvíos de Failed ni Unknown. Los fixtures deben comprobar esta restricción y la conservación del estado antes de activar el cambio.
 - Objetivo retención siete días, tombstones de duplicados 30 días; verificar limpieza antes de activación real. Acceso OS restringido. SQLite no aporta por sí sola cifrado/compliance de producción.
 - Preservar bases, cuentas, pins e informes v0.10. Evidencia nueva aislada.
 

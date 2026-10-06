@@ -52,7 +52,7 @@ try
     }
     IIntentProvider model = mode == "local-llm" ? new OllamaIntentProvider(intentClient) : new SimulatedIntentProvider();
     using var tgClient = telegram is null ? null : new ProviderClient(telegram);
-    using var metaClient = meta is null ? null : new ProviderClient(meta);
+    using var metaClient = meta is null ? null : new ProviderClient(meta, diagnostic: Console.WriteLine);
     var providers = new Dictionary<string, ProviderClient>();
     if (tgClient is not null) providers.Add("telegram", tgClient);
     if (metaClient is not null) providers.Add("whatsapp", metaClient);

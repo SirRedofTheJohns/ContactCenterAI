@@ -31,3 +31,9 @@ Claves durables evitan trabajo duplicado. Guardar lote Telegram antes de avanzar
 Requires provider-owned credentials and test-account setup before live evidence. Test resources have availability/terms limits; no permanent free production promise. The dedicated ledger introduces another local backup/cleanup responsibility. Member linking, channel critical actions and real Genesys transfer need later freezes. Existing web state and historical measurements are preserved.
 
 Requiere claves y configuración del dueño antes de evidencia live. Recursos test tienen límites de disponibilidad/términos; no se promete producción gratis permanente. El ledger nuevo añade responsabilidad de copia/limpieza. Vinculación de miembros, acciones críticas y Genesys real necesitan otros freezes. Se conserva estado web y mediciones históricas.
+
+## Operational clarification / Aclaración operativa — 2026-10-05
+
+The first real incoming question reached the isolated host, but its reply received a definitive rejection without an assigned provider message ID. CH-N06 permits a bounded diagnostic consisting only of HTTP status and integer Meta error code/subcode. Raw provider messages and details remain forbidden. Diagnostic parsing/logging cannot change the Failed outcome, create a retry or weaken the existing uncertainty rule. This adds no capability, public endpoint or ledger transition; the frozen scope and historical evidence remain intact.
+
+La primera pregunta real llegó al host, pero el envío de la respuesta fue rechazado sin ID de mensaje del proveedor. Se permite un diagnóstico limitado a estado HTTP y códigos/subcódigos numéricos. Leer o registrar ese diagnóstico no puede cambiar Failed, crear un reintento ni modificar la política de incertidumbre. No se agregan capacidades, rutas públicas ni transiciones al ledger.
