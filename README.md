@@ -8,6 +8,17 @@ The useful part is what happens around the model: the server checks permissions,
 
 ![Local demo: reservations, an approved citation and an out-of-scope answer](docs/progress/screenshots/final-demo-v0.10.png)
 
+
+## Resort + WhatsApp · v0.12
+
+Three fictional rooms: Standard ($120/night), Deluxe ($180/night) and Suite ($280/night, private jacuzzi). The web calendar and WhatsApp read the same live local inventory. Sign in, link your chat, then request a booking, a date change or a cancellation. Each action needs an expiring quote and explicit confirmation. No payments.
+
+[Try the resort](docs/resort-demo.en.md) · [Architecture and flows](docs/resort-booking-v0.12.en.md) · [Current evidence](docs/progress/resort-v0.12.md)
+
+![Fictional resort calendar](docs/progress/screenshots/resort-v0.12.png)
+
+This resort flow uses a bounded deterministic parser. The local Qwen/RAG profile remains available separately; paid token APIs are not required. Real WhatsApp availability and a confirmed Suite booking were observed on 2026-10-06 and matched the web calendar. Remaining live acceptance and remote CI are reported separately in the evidence.
+
 ## A five-minute walkthrough
 
 1. Ask when the pool opens. Open the document cited in the answer.
@@ -32,7 +43,7 @@ The useful part is what happens around the model: the server checks permissions,
 | Operations | Small local operations panel, sanitized traces and a recorded backup/restore exercise |
 | Delivery | Locked dependencies, a GitHub Actions workflow and 249 deterministic checks in the v0.10 baseline |
 
-WhatsApp and Telegram now have a separate C# host for public ES/EN questions and a simulated human queue. Their [architecture](docs/integrations/channels.en.md) was frozen before code. The extension has **75 local channel checks**; the full regression passes **324 checks**. Real accounts are not connected yet. [Create your bot and Meta test setup](docs/integrations/setup.en.md) · [Delivery evidence](docs/progress/channels-v0.11.md).
+WhatsApp uses the official Cloud API test resource; real ES/EN policy replies reached Read in the historical v0.11 evidence. Telegram adapter code is present but its live bot is not configured. The v0.12 linked booking extension is documented above. [Messaging setup](docs/integrations/setup.en.md).
 
 ## What the measurements mean
 

@@ -13,6 +13,9 @@ Las guías de entrada describen la demo actual en ambos idiomas. Los documentos 
 | Interview / Entrevista | [Portfolio guide](en/portfolio.md) | [Portafolio](es/portafolio.md) |
 | WhatsApp and Telegram | [Integration design](integrations/channels.en.md) | [Diseño de integración](integrations/channels.es.md) |
 | Create provider resources / Crear recursos | [Channel setup](integrations/setup.en.md) | [Configurar canales](integrations/setup.es.md) |
+| Resort walkthrough / Guion del resort | [Booking demo](resort-demo.en.md) | [Demo de reservas](resort-demo.es.md) |
+| Resort architecture / Arquitectura del resort | [Design](resort-booking-v0.12.en.md) | [Diseño](resort-booking-v0.12.es.md) |
+| Resort evidence / Evidencia del resort | [v0.12 delivery](progress/resort-v0.12.md) | [Entrega v0.12](progress/resort-v0.12.md) |
 | Channel delivery / Entrega de canales | [v0.11 local evidence](progress/channels-v0.11.md) | [Estado bilingüe v0.11](progress/channels-v0.11.md) |
 
 Detailed sources / Fuentes técnicas:

@@ -131,7 +131,7 @@ public static class ProductApi
                     if (Enum.TryParse<ActorRoles>(role.Value, out var parsed) && Enum.IsDefined(parsed)) roles |= parsed;
                 var actor = await store.LoginAsync(Issuer, subject, roles, previous, clock.GetUtcNow(), http.RequestAborted);
                 context.Principal = Principal(actor); context.Properties!.ExpiresUtc = actor.ExpiresAt;
-                context.Properties.IsPersistent = false; context.ReturnUri = localDemo ? "/" : "/v1/session";
+                context.Properties.IsPersistent = false; context.ReturnUri = localDemo ? (context.Properties.Items.TryGetValue("resort-return", out var resortReturn) && resortReturn == "1" ? "/resort.html" : "/") : "/v1/session";
             };
             options.Events.OnRemoteFailure = async context =>
             {
@@ -140,6 +140,12 @@ public static class ProductApi
                     context.Failure is OperationalUnavailable ? "OPERATIONAL_STORE_UNAVAILABLE" : "LOGIN_FAILED");
             };
         });
+        if (localDemo && builder.Configuration["CCAI_RESORT_ENABLED"] == "true")
+        {
+            if ((builder.Configuration["CCAI_RESORT_BRIDGE_KEY"] ?? "").Length < 32) throw new RequestRejected(503, "RESORT_BRIDGE_CONFIG_REQUIRED");
+            builder.Services.AddSingleton(sp => new ResortStore(Path.Combine(builder.Environment.ContentRootPath, ".local", "resort", "resort.db"), sp.GetRequiredService<TimeProvider>()));
+            builder.Services.AddHostedService<ResortRecoveryWorker>();
+        }
         var app = builder.Build();
         if(traceExporter is not null)app.Lifetime.ApplicationStopped.Register(traceExporter.Dispose);
         app.Use(async (http, next) =>
@@ -165,7 +171,7 @@ public static class ProductApi
         app.UseAuthentication();
         app.Use(async (http, next) =>
         {
-            if (http.Request.Path.StartsWithSegments("/v1") && http.Request.Method is not ("GET" or "HEAD"))
+            if ((http.Request.Path.StartsWithSegments("/v1") || http.Request.Path.StartsWithSegments("/v2")) && http.Request.Method is not ("GET" or "HEAD"))
             {
                 if (http.Request.Headers.Origin.Count != 1 || http.Request.Headers.Origin[0] != origin)
                 { await Problem(http, 403, "ORIGIN_REJECTED"); return; }
@@ -204,7 +210,9 @@ public static class ProductApi
         app.MapPost("/v1/session/login", async (HttpContext http, IAuthenticationSchemeProvider schemes) =>
         {
             if (await schemes.GetSchemeAsync(OidcScheme) is null) return ProblemResult(http, 503, "IDENTITY_NOT_CONFIGURED");
-            return Results.Challenge(new AuthenticationProperties { RedirectUri = localDemo ? "/" : "/v1/session" }, [OidcScheme]);
+            var properties = new AuthenticationProperties { RedirectUri = localDemo ? "/" : "/v1/session" };
+            if (localDemo && http.Request.Query["resort"] == "1") properties.Items["resort-return"] = "1";
+            return Results.Challenge(properties, [OidcScheme]);
         });
         app.MapPost("/v1/session/logout", async (HttpContext http, IOperationalStore store, TimeProvider clock) =>
         {
@@ -285,6 +293,11 @@ public static class ProductApi
                 Results.Ok(await store.ActionsAsync(RequireActor(http), id, clock.GetUtcNow(), http.RequestAborted)));
             app.MapGet("/v1/operations/{id:guid}", async (Guid id, HttpContext http, ICancellationStore store, TimeProvider clock) =>
                 Results.Ok(await store.OperationAsync(RequireActor(http), id, clock.GetUtcNow(), http.RequestAborted)));
+        }
+        if (localDemo && builder.Configuration["CCAI_RESORT_ENABLED"] == "true")
+        {
+            var resort = app.Services.GetRequiredService<ResortStore>();
+            ResortApi.Map(app, resort, builder.Configuration["CCAI_RESORT_BRIDGE_KEY"] ?? "", builder.Configuration["CCAI_RESORT_META_ENDPOINT_ID"] ?? "");
         }
         return app;
     }

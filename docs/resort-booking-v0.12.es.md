@@ -1,18 +1,18 @@
-# Calendario y reservas por WhatsApp — propuesta v0.12
+# Calendario y reservas por WhatsApp — arquitectura v0.12
 
-Fecha: 2026-10-06. Estado: **diseño propuesto, sin implementación**. [English](resort-booking-v0.12.en.md) · [ADR-025](adr/025-resort-booking-calendar.md) · [Freeze](architecture-freeze-v0.12-resort.md).
+Fecha: 2026-10-06. Estado: **baseline local cerrada e implementada**. Las pruebas y limitaciones actuales están en [la entrega](progress/resort-v0.12.md). El contrato final prevalece sobre el boceto original de topología. [English](resort-booking-v0.12.en.md) · [ADR-025](adr/025-resort-booking-calendar.md) · [Freeze](architecture-freeze-v0.12-resort.md).
 
 ## Objetivo y alcance
 
 Convertir la demo de preguntas públicas en una experiencia de reservas de un resort ficticio: consultar habitaciones, amenidades, tarifas y fechas; crear una estancia; consultar, cambiar o cancelar reservas propias desde WhatsApp. Una vista de calendario permite gestionar ocupación y mantenimiento. Son datos y precios ficticios, sin pagos reales ni conexión a un hotel comercial.
 
-El usuario confirmó el escenario de hotel y pidió categorías de estadía, precios y amenidades. El catálogo inicial propuesto es editable antes de cerrar el diseño:
+El usuario confirmó el escenario de hotel y pidió categorías de estadía, precios y amenidades. Catálogo inicial implementado (etiquetas lógicas de unidad):
 
 | Unidad | Categoría | Capacidad | Tarifa ficticia por noche | Amenidades |
 |---|---|---:|---:|---|
 | R101 | Estándar | 2 | USD 120 | Wi-Fi, desayuno, aire acondicionado |
-| R201 | Deluxe | 2 | USD 180 | Lo anterior, balcón y vista a piscina |
-| R301 | Suite | 4 | USD 280 | Lo anterior, jacuzzi privado y terraza |
+| R201 | Deluxe | 2 | USD 180 | Wi-Fi, desayuno, balcón y vista a piscina |
+| R301 | Suite | 4 | USD 280 | Wi-Fi, desayuno, balcón, vista a piscina, jacuzzi privado y terraza |
 
 Una unidad por categoría permite mostrar que una Suite puede estar ocupada mientras la Estándar está libre. La tarifa incluye todos los conceptos de esta simulación; no representa impuestos ni tarifas comerciales. Total = suma de tarifas de las noches. No hay descuentos, anticipos, pagos, penalidades cobradas o reembolsos. Cambiar de categoría muestra total anterior, nuevo total y diferencia como información ficticia.
 
@@ -38,7 +38,7 @@ La IA identifica intención y propone filtros. C# valida fechas, capacidad, iden
 - La unidad elegida debe estar libre durante **todas** las noches. No basta con que exista alguna habitación libre por noche si no es la misma unidad.
 - Una clave única `(unitId, night)` protege reserva y mantenimiento. Fuente transaccional: dos clientes compitiendo por la última Suite producen un éxito y un conflicto.
 - Cotización válida 5 minutos, sin retener inventario. Consultar o preparar una oferta no garantiza disponibilidad; se revalida al confirmar.
-- Dinero en centavos enteros y moneda fija USD, sin `float`. La oferta contiene desglose por noche, versiones y total. Cambio de tarifa antes de confirmar requiere oferta nueva.
+- Dinero en centavos enteros y moneda fija USD, sin `float`. La oferta contiene tarifa fija por noche, cantidad de noches, versiones y total. Cambio de tarifa antes de confirmar requiere oferta nueva.
 - Cancelación CP-001: al menos 72 horas antes de la entrada. Cambio gratuito RS-001: también exige 72 horas respecto de la **entrada actual**, y nuevas fechas futuras; mover la fecha no evade la política.
 - Cambio atómico: validar nueva disponibilidad antes de liberar las noches actuales. Un conflicto conserva toda la reserva anterior. Un cambio que se solapa con noches propias no las considera ocupación ajena.
 - Cancelar libera noches en la misma transacción que el recibo. El historial permanece.
@@ -80,7 +80,7 @@ flowchart LR
 
 La API interna tiene una credencial de servicio distinta del token Meta y de la clave de fuente, rutas fijas y sin redirecciones. La autenticación del servicio no autoriza por sí sola al cliente: cada operación requiere vínculo vigente. El ChannelHost no abre directamente la base operacional web. Ninguna ruta de login, administración o reserva HTTP queda en el túnel público.
 
-El perfil nuevo `resort-v0.12` usa bases nuevas para fuente y workflow, conserva inbox/outbox históricos de canales y distingue códigos `STAY-...` de los `RES-...` históricos. Los endpoints v1 y mediciones v0.10 permanecen. La pantalla indica qué escenario está activo; nunca combina inventario de dos fuentes para la misma reserva. El contrato v2 añade salida, unidad, huéspedes y total; no rellena una salida inventada en las reservas v1.
+El perfil nuevo `resort-v0.12` usa un único almacén nuevo para fuente local, propuestas, comandos, recibos y vínculos, según [el contrato final](contracts/resort-v0.12.md); la fuente C# corre dentro de la API web, conserva inbox/outbox históricos de canales y distingue códigos `STAY-...` de los `RES-...` históricos. Los endpoints v1 y mediciones v0.10 permanecen. La pantalla indica qué escenario está activo; nunca combina inventario de dos fuentes para la misma reserva. El contrato v2 añade salida, unidad, huéspedes y total; no rellena una salida inventada en las reservas v1.
 
 ## Flujo de reserva o cambio
 
@@ -104,24 +104,19 @@ sequenceDiagram
     S->>S: Revalidar y guardar noches, reserva y recibo atómicamente
     S-->>B: Recibo Completed o conflicto
     B-->>C: Resultado basado en recibo
-    C-->>U: Reserva confirmada o propuesta de alternativas
+    C-->>U: Reserva confirmada o rechazo estable; el cliente puede consultar alternativas
 ```
 
-Si la fuente confirma pero se pierde la respuesta, el comando queda `Unknown`. Consultar recibo con el mismo commandId; no crear una segunda reserva. La entrega de WhatsApp es independiente: una reserva puede estar completada aunque su mensaje tenga resultado incierto. Consultar «mis reservas» recupera el estado real.
+El comando en `Queued` sobrevive un reinicio y se recupera con el mismo ID. Reserva y recibo se guardan juntos. Si se pierde la respuesta HTTP, el cliente tiene un resultado sin verificar: consultar el recibo o «mis reservas»; no crear otra reserva. La oferta caducada se detecta por su fecha de vencimiento; Expired no es un estado persistido. Unknown en el outbox separado de Meta describe la entrega del mensaje. La entrega de WhatsApp es independiente: una reserva puede estar completada aunque su mensaje tenga resultado incierto. Consultar «mis reservas» recupera el estado real.
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Draft
-    Draft --> AwaitingConfirmation: datos completos y oferta vigente
-    AwaitingConfirmation --> Expired: cinco minutos o cambio de vínculo
-    AwaitingConfirmation --> Queued: confirmación explícita consumida una vez
-    Queued --> Executing: lease durable
-    Executing --> Completed: recibo autoritativo
-    Executing --> Rejected: conflicto o regla
-    Executing --> Unknown: timeout o reinicio
-    Unknown --> Completed: reconciliar mismo commandId
-    Unknown --> Rejected: recibo autoritativo de rechazo
-    Unknown --> ManualReview: no se puede resolver
+    [*] --> Pending: valid offer / oferta vigente
+    Pending --> Queued: explicit confirmation / confirmación explícita
+    Pending --> Invalidated: unlink or ownership change / desvincular
+    Queued --> Completed: atomic booking and receipt / transacción y recibo
+    Queued --> Rejected: source rule or revoked session / regla o sesión revocada
+    Queued --> Queued: storage failure / fallo de almacenamiento
 ```
 
 ## Modelo conceptual
@@ -140,13 +135,13 @@ erDiagram
     SOURCE_COMMAND ||--o| COMMAND_RECEIPT : resultado
 ```
 
-Cada asignación pertenece a una reserva **o** un bloqueo, nunca a ambos. Entidades con versión; oferta con hash de payload, cuenta/ruta/época, vencimiento y política. Recibo único por commandId, con hash de payload y cuenta. Repetir el mismo comando devuelve el mismo resultado; otro payload con ese ID produce conflicto. Registrar eventos de reserva/cambio/cancelación/bloqueo sin textos, claves o teléfono en trazas públicas.
+Cada asignación pertenece a una reserva **o** un bloqueo, nunca a ambos. Entidades con versión; oferta con hash de payload, cuenta/ruta/época, vencimiento y versiones de fuente; se revalidan las reglas estáticas CP-001/RS-001. Recibo único por commandId, con hash de payload y cuenta. Repetir el mismo comando devuelve el mismo resultado; otro payload con ese ID produce conflicto. Registrar eventos de reserva/cambio/cancelación/bloqueo sin textos, claves o teléfono en trazas públicas.
 
 ## Requisitos y aceptación
 
 | ID | Caso | Resultado comprobable |
 |---|---|---|
-| RB01 | «Dame las fechas disponibles para reservar» | Pedir categoría, mes y duración que falten; devolver rangos continuos consultados en fuente |
+| RB01 | «Dame las fechas disponibles para reservar» | Sin filtros, consultar las tres categorías y dos noches; devolver hasta cinco opciones por categoría y pedir fechas completas/huéspedes |
 | RB02 | «Quiero una Suite con jacuzzi» | Catálogo versionado, capacidad y tarifa ficticia; preguntar fechas |
 | RB03 | Estancia de dos noches | Total exacto de ambas tarifas y confirmación antes de escribir |
 | RB04 | Dos clientes confirman la última Suite | Una reserva; el otro recibe conflicto y alternativas |
@@ -157,7 +152,7 @@ Cada asignación pertenece a una reserva **o** un bloqueo, nunca a ambos. Entida
 | RB09 | Otro remitente conoce un código STAY | No leer ni cambiar la reserva; respuesta genérica |
 | RB10 | Oferta expirada, antigua, ajena o precio cambiado | Ninguna escritura; cotizar de nuevo cuando corresponda |
 | RB11 | Webhook repetido o confirmación duplicada | Un comando y un recibo; sin doble reserva |
-| RB12 | Commit fuente + timeout / reinicio | Unknown y reconciliación del mismo comando; no repetir efectos |
+| RB12 | Commit fuente + timeout / reinicio | Resultado del cliente sin verificar; recibo o recuperación del mismo comando, sin repetir efectos |
 | RB13 | Cliente intenta bloquear calendario | Denegado; OperationsAdmin solo con identidad verificada |
 | RB14 | Código de vínculo repetido, expirado o sesión cerrada | Sin nueva autoridad; invalidar ofertas afectadas |
 | RB15 | ES/EN y «háblame en español» | Idioma persistido mediante regla acotada; no modifica identidad ni reserva |
@@ -171,7 +166,7 @@ Observabilidad: códigos estables para conflicto de inventario, oferta caducada,
 
 Orden: (1) cerrar reglas/contratos y freeze; (2) fuente, catálogo, calendario y concurrencia; (3) UI local de calendario y OperationsAdmin; (4) vínculo de cuenta; (5) ofertas/confirmación/recibos de reserva, cambio y cancelación; (6) WhatsApp, frases ES/EN y pruebas reales; (7) documentación y video. CI conserva invariantes; ejecutar regresiones pertinentes y reportar por separado cualquier runner remoto bloqueado.
 
-Definition of Ready: contratos versionados de búsqueda/cotización/comando/recibo y vínculo; esquema y restricciones; impacto sobre v1; casos negativos con oráculos; límites de parser; UI de confirmación; rollback y feature flag desactivado. **El paquete es una propuesta; todavía no cierra estos puntos ni habilita acciones privadas en el host actual.**
+Definition of Ready: contratos versionados de búsqueda/cotización/comando/recibo y vínculo; esquema y restricciones; impacto sobre v1; casos negativos con oráculos; límites de parser; UI de confirmación; rollback y feature flag desactivado. **DoR cerrado antes del código en el contrato final y Architecture Freeze. Las acciones privadas están implementadas con vínculo verificado.**
 
 Definition of Done: suites pertinentes pasan; no doble ocupación ni acceso cruzado; persistencia/reconciliación demostradas; operaciones ES/EN vistas en WhatsApp con recibos; calendario refleja el estado de la fuente; precios ficticios visibles; artefactos sin secretos y límites documentados. Rollback desactiva v0.12 y vuelve al FAQ v0.11 conservando bases y recibos, incluso comandos inciertos pendientes de revisión.
 

@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "cases": 28,
+  "failures": [],
+  "scope": "Declared ES/EN parser and scope examples; real C# parser invoked by Python offline. No live LLM, no independent holdout, no provider traffic."
+}

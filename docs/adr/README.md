@@ -39,3 +39,5 @@ Actualización de evidencia 2026-09-30: ADR-011 mantiene su contexto histórico;
 | [023](023-query-scope-before-semantic-inference.md) | Alcance determinista antes de inferencia tras fallos del candidato |
 
 | [024](024-demo-messaging-channels.md) | WhatsApp oficial de prueba y Telegram polling: host separado, preguntas públicas, outbox y límites de costo |
+
+| [025](025-resort-booking-calendar.md) | Resort ficticio: inventario estructurado, transacciones y vínculo temporal de WhatsApp |

@@ -8,6 +8,17 @@ Lo interesante está alrededor del modelo: el servidor comprueba los permisos, p
 
 ![Demo local: reservas, cita aprobada y respuesta fuera de alcance](docs/progress/screenshots/final-demo-v0.10.png)
 
+
+## Resort + WhatsApp · v0.12
+
+Tres habitaciones ficticias: Estándar (120 USD/noche), Deluxe (180 USD/noche) y Suite (280 USD/noche, jacuzzi privado). El calendario web y WhatsApp consultan el mismo inventario local. Inicia sesión, vincula el chat y pide una reserva, un cambio de fechas o una cancelación. Cada acción requiere una propuesta vigente y confirmación explícita. No hay pagos.
+
+[Probar el resort](docs/resort-demo.es.md) · [Arquitectura y flujos](docs/resort-booking-v0.12.es.md) · [Evidencia actual](docs/progress/resort-v0.12.md)
+
+![Calendario del resort ficticio](docs/progress/screenshots/resort-v0.12.png)
+
+Este flujo usa un parser determinista con frases acotadas. El perfil Qwen/RAG local sigue disponible por separado; no requiere una API pagada de tokens. El 2026-10-06 se observaron la disponibilidad y una Suite confirmada por WhatsApp, coincidiendo con el calendario web. Las pruebas en vivo restantes y CI remoto se reportan por separado en la evidencia.
+
 ## Recorrido de cinco minutos
 
 1. Pregunta a qué hora abre la piscina y abre el documento citado.
@@ -32,7 +43,7 @@ Lo interesante está alrededor del modelo: el servidor comprueba los permisos, p
 | Operación | Panel local sencillo, trazas sanitizadas y ensayo registrado de copia/restauración |
 | Entrega | Dependencias fijadas, GitHub Actions y 249 comprobaciones deterministas en la base v0.10 |
 
-WhatsApp y Telegram ya tienen un host C# separado para preguntas públicas ES/EN y cola humana simulada. Su [arquitectura](docs/integrations/channels.es.md) se cerró antes del código. Pasan **75 comprobaciones locales de canales** y **324 en la regresión completa**. Aún no hay cuentas reales conectadas. [Crear tu bot y los recursos de prueba de Meta](docs/integrations/setup.es.md) · [Estado y evidencia](docs/progress/channels-v0.11.md).
+WhatsApp usa el recurso de prueba de Cloud API oficial; hay respuestas ES/EN de políticas confirmadas como leídas en la evidencia histórica v0.11. El adapter de Telegram está implementado, pero su bot real no está configurado. La ampliación de reservas vinculadas v0.12 se explica arriba. [Preparación de canales](docs/integrations/setup.es.md).
 
 ## Cómo leer los resultados
 

@@ -1,6 +1,8 @@
 # ADR-025 — Live inventory and scoped resort booking through messaging
 
-Status: **Proposed**, 2026-10-06. [ES proposal](../resort-booking-v0.12.es.md) · [EN proposal](../resort-booking-v0.12.en.md).
+Status: **Accepted for local implementation**, 2026-10-06. [ES proposal](../resort-booking-v0.12.es.md) · [EN proposal](../resort-booking-v0.12.en.md) · [Final contract/refinement](../contracts/resort-v0.12.md).
+
+Final local refinement: co-locate the new resort source and command journal in one new SQLite file, with separately committed Queued command and atomic allocation/receipt transaction. Existing HTTP v1 source and its databases remain untouched. No remote-source or SQLServer validation is implied. DoR/negative oracles are reviewed in the contract before code.
 
 The owner requested a fictional hotel calendar, available/occupied dates, reservation creation, changes and cancellation through WhatsApp, then expanded the catalog to room categories, nightly prices and amenities such as a jacuzzi. v0.11 deliberately has no private reservation capability; a new baseline is required before implementation.
 

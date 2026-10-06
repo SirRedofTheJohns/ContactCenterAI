@@ -32,4 +32,5 @@ jobs:
             docs/progress/demo-v0.8-*checks.json
             docs/progress/demo-v0.9-*checks.json
             docs/progress/demo-v0.10-*checks.json
+            docs/progress/resort-v0.12-checks.json
           retention-days: 7

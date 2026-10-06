@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-06",
+  "profile": "resort-v0.12",
+  "transport": "Official Meta test WhatsApp",
+  "intentMode": "simulated/deterministic",
+  "fictionalHotelAndPrices": true,
+  "realCharge": false,
+  "observations": [
+    { "case": "availability", "evidence": "Owner supplied received alternatives for all three categories, two nights, and current structured prices." },
+    { "case": "link", "evidence": "Owner sent the one-use command; same authenticated customer browser confirmed the pending link." },
+    { "case": "create", "stay": "STAY-E717B171", "arrival": "2026-10-25", "departure": "2026-10-27", "guests": 2, "totalCents": 56000, "currency": "USD", "status": "Confirmed", "evidence": "Owner supplied CREATE_COMPLETED WhatsApp reply and subsequent own-bookings reply. Independently observed identical stay in customer browser." },
+    { "case": "calendar", "evidence": "Browser calendar independently showed Suite nights October 25 and 26 occupied, October 27 free, matching the confirmed half-open stay." },
+    { "case": "sessionExpiry", "evidence": "After the original fifteen-minute session expired, WhatsApp denied a new private change request and requested login/linkage. Persisted stay remained visible after fresh login." }
+  ],
+  "pendingLiveCases": ["change confirmed over Meta", "cancel confirmed over Meta", "English private operation over Meta"],
+  "localCoverage": "Create/change/cancel ES/EN HTTP fixtures pass. Browser create/change/cancel observed separately. These are not substituted for pending Meta cases.",
+  "privacy": "No provider IDs, phone numbers, route hashes, access tokens, link codes, customer secrets or raw provider logs exported. Booking identifiers and data shown here are synthetic."
+}

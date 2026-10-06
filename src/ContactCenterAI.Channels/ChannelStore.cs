@@ -69,7 +69,7 @@ public sealed class ChannelStore
         if (!endpoint.Allows(input) || input.OccurredAtUtc > input.ReceivedAtUtc.AddMinutes(5)) status = "Ignored";
         else
         {
-            try { text = ConversationIngress.SanitizeText(input.Text); }
+            try { text = ResortLanguage.LanguageControl(input.Text) is string lang ? "/" + lang : ResortLanguage.SanitizeChannelText(input.Text); }
             catch (RequestRejected) { status = "Rejected"; }
         }
         var routeKey = Key(input.Channel, input.EndpointId, input.SenderId);
@@ -90,9 +90,25 @@ public sealed class ChannelStore
             if (Route(db, tx, routeKey)!.Ownership != "BotOwned" && text != "/human") status = "HumanPending";
         }
         Execute(db, tx, "INSERT INTO ChannelInbox(Key,RouteKey,Hash,Text,Status,ReceivedAt) VALUES(@key,@route,@hash,@text,@status,@now)",
-            ("@key", key), ("@route", status is "Ignored" or "Rejected" ? null : routeKey), ("@hash", hash), ("@text", status is "Ignored" or "Rejected" ? "" : text), ("@status", status), ("@now", Ms(input.ReceivedAtUtc)));
+            ("@key", key), ("@route", status is "Ignored" or "Rejected" ? null : routeKey), ("@hash", hash), ("@text", status is "Ignored" or "Rejected" ? "" : ProtectLink(text)), ("@status", status), ("@now", Ms(input.ReceivedAtUtc)));
         return status;
     }
+    private string ProtectLink(string text)
+    {
+        if (!ResortLanguage.LinkCommand(text)) return text;
+        var plain = Encoding.UTF8.GetBytes(text); var nonce = RandomNumberGenerator.GetBytes(12); var tag = new byte[16]; var cipher = new byte[plain.Length];
+        using var aes = new AesGcm(hashingKey, 16); aes.Encrypt(nonce, plain, cipher, tag);
+        return "enc-link:" + Convert.ToBase64String(nonce.Concat(tag).Concat(cipher).ToArray());
+    }
+    private string UnprotectLink(string text)
+    {
+        if (!text.StartsWith("enc-link:", StringComparison.Ordinal)) return text;
+        var bytes = Convert.FromBase64String(text[9..]); var plain = new byte[bytes.Length - 28];
+        using var aes = new AesGcm(hashingKey, 16); aes.Decrypt(bytes[..12], bytes[28..], bytes[12..28], plain);
+        return Encoding.UTF8.GetString(plain);
+    }
+    public bool CanAct(ChannelJob job)
+    { using var db = Open(); var current = Route(db, null, job.Route.Key); return current is { Ownership: "BotOwned" } && current.Epoch == job.Route.Epoch; }
     public long ReadOffset(string botId)
     { using var db = Open(); using var cmd = Command(db, null, "SELECT NextOffset FROM ChannelPoll WHERE Endpoint=@bot", ("@bot", botId)); return cmd.ExecuteScalar() is long offset ? offset : 0; }
     public void AcceptTelegram(IReadOnlyList<ProviderUpdate> batch, EndpointOptions endpoint, DateTimeOffset now)
@@ -132,7 +148,7 @@ public sealed class ChannelStore
         Execute(db, tx, "UPDATE ChannelInbox SET Status='Suppressed' WHERE Status IN ('Pending','Processing') AND Attempts>=2 AND (LeaseUntil IS NULL OR LeaseUntil<=@now)", ("@now", Ms(now)));
         using var cmd = Command(db, tx, "SELECT Key,RouteKey,Text FROM ChannelInbox WHERE Status IN ('Pending','Processing') AND (LeaseUntil IS NULL OR LeaseUntil<=@now) ORDER BY ReceivedAt,Key LIMIT 1", ("@now", Ms(now)));
         string key, routeKey, text;
-        using (var row = cmd.ExecuteReader()) { if (!row.Read()) return null; key = row.GetString(0); routeKey = row.GetString(1); text = row.GetString(2); }
+        using (var row = cmd.ExecuteReader()) { if (!row.Read()) return null; key = row.GetString(0); routeKey = row.GetString(1); text = UnprotectLink(row.GetString(2)); }
         var route = Route(db, tx, routeKey)!;
         if (route.Ownership != "BotOwned" && text != "/human") { Execute(db, tx, "UPDATE ChannelInbox SET Status='HumanPending' WHERE Key=@key", ("@key", key)); tx.Commit(); return null; }
         var lease = Guid.NewGuid(); Execute(db, tx, "UPDATE ChannelInbox SET Status='Processing',Lease=@lease,LeaseUntil=@until,Attempts=Attempts+1 WHERE Key=@key", ("@key", key), ("@lease", S(lease)), ("@until", Ms(now.AddSeconds(20)))); tx.Commit();
@@ -147,7 +163,7 @@ public sealed class ChannelStore
         if ((!isHandoff && (route.Ownership != "BotOwned" || route.Epoch != job.Route.Epoch)) || output.Reply.Text.EnumerateRunes().Count() > 3500)
         { Execute(db, tx, "UPDATE ChannelInbox SET Status='Suppressed',Lease=NULL,LeaseUntil=NULL WHERE Key=@key", ("@key", job.Key)); tx.Commit(); return; }
         Execute(db, tx, "INSERT OR IGNORE INTO ChannelOutbox(Id,InboundKey,RouteKey,Epoch,Output,Status,RetryAt) VALUES(@id,@inbound,@route,@epoch,@output,'Pending',@now)", ("@id", S(Guid.NewGuid())), ("@inbound", job.Key), ("@route", route.Key), ("@epoch", isHandoff ? route.Epoch : job.Route.Epoch), ("@output", JsonSerializer.Serialize(output)), ("@now", Ms(now)));
-        Execute(db, tx, "UPDATE ChannelInbox SET Status='Completed',Lease=NULL,LeaseUntil=NULL WHERE Key=@key", ("@key", job.Key)); tx.Commit();
+        Execute(db, tx, "UPDATE ChannelInbox SET Status='Completed',Text=CASE WHEN Text LIKE 'enc-link:%' THEN '' ELSE Text END,Lease=NULL,LeaseUntil=NULL WHERE Key=@key", ("@key", job.Key)); tx.Commit();
     }
     public ChannelOutput? NextOutput(DateTimeOffset now)
     {

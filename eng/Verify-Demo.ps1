@@ -34,7 +34,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_RESTORE_FAILED' }
     & $DotNetExe build (Join-Path $taskRepo 'ContactCenterAI.slnx') --artifacts-path $taskArtifacts --no-restore -c Release
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_BUILD_FAILED' }
-    foreach ($taskSuite in @('DemoChecks','IngressChecks','SourceChecks','WorkflowChecks','AssistantChecks','LocalAiChecks','RetrievalChecks','OperationsChecks','ChannelChecks')) {
+    foreach ($taskSuite in @('DemoChecks','IngressChecks','SourceChecks','WorkflowChecks','AssistantChecks','LocalAiChecks','RetrievalChecks','OperationsChecks','ChannelChecks','ResortChecks')) {
         & $DotNetExe (Join-Path $taskArtifacts ('bin/ContactCenterAI.'+$taskSuite+'/release/ContactCenterAI.'+$taskSuite+'.dll')) $taskRepo
         if ($LASTEXITCODE -ne 0) { throw ('DEMO_CHECKS_FAILED: '+$taskSuite) }
     }
@@ -42,6 +42,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_FOUNDATION_FAILED' }
     python (Join-Path $taskRepo 'evaluation/evaluators/demo_eval.py')
     if ($LASTEXITCODE -ne 0) { throw 'DEMO_EVALUATION_FAILED' }
+    python (Join-Path $taskRepo 'evaluation/evaluators/resort_eval.py') --dotnet $DotNetExe --assembly (Join-Path $taskArtifacts 'bin/ContactCenterAI.ResortChecks/release/ContactCenterAI.ResortChecks.dll')
+    if ($LASTEXITCODE -ne 0) { throw 'RESORT_EVALUATION_FAILED' }
 }
 finally {
     foreach ($taskName in $taskPreviousEnvironment.Keys) {

@@ -1,18 +1,18 @@
-# Resort calendar and WhatsApp booking — v0.12 proposal
+# Resort calendar and WhatsApp booking — v0.12 architecture
 
-Date: 2026-10-06. Status: **proposed design, not implemented**. [Español](resort-booking-v0.12.es.md) · [ADR-025](adr/025-resort-booking-calendar.md) · [Open freeze](architecture-freeze-v0.12-resort.md).
+Date: 2026-10-06. Status: **local baseline closed and implemented**. See [delivery evidence](progress/resort-v0.12.md). The final executable contract supersedes the original topology sketch. [Español](resort-booking-v0.12.es.md) · [ADR-025](adr/025-resort-booking-calendar.md) · [Closed freeze](architecture-freeze-v0.12-resort.md).
 
 ## Purpose and boundaries
 
 Expand the fictional hotel demo from public questions to room/amenity/rate search, live available dates, new reservations, own-reservation lookup, date/category changes and cancellation through WhatsApp. A local calendar supports occupancy and maintenance administration. All bookings and rates are synthetic; there are no real payments or commercial hotel connections.
 
-The owner confirmed a hotel scenario and requested accommodation categories, prices and amenities such as a jacuzzi. Proposed seed:
+The owner confirmed a hotel scenario and requested accommodation categories, prices and amenities such as a jacuzzi. Implemented seed (logical unit labels):
 
 | Unit | Category | Guests | Fictional nightly rate | Amenities |
 |---|---|---:|---:|---|
 | R101 | Standard | 2 | USD 120 | Wi-Fi, breakfast, air conditioning |
-| R201 | Deluxe | 2 | USD 180 | Standard amenities, balcony, pool view |
-| R301 | Suite | 4 | USD 280 | Deluxe amenities, private jacuzzi, terrace |
+| R201 | Deluxe | 2 | USD 180 | Wi-Fi, breakfast, balcony, pool view |
+| R301 | Suite | 4 | USD 280 | Wi-Fi, breakfast, balcony, pool view, private jacuzzi, terrace |
 
 One unit per category makes sold-out categories visible. Rates include every component of this simplified simulation, without representing commercial taxes. Total is the sum of nightly rates. Category changes show previous total, new total and fictional difference. No payments, refunds, deposits, charged penalties or commercial discounts. Exclude multi-property/multi-currency pricing, campaigns, voice, third-party bookings, phone-derived admin roles and live Genesys. Telegram has a separate activation gate.
 
@@ -45,7 +45,7 @@ flowchart LR
 - Search horizon 90 days, stays 1–14 nights, positive guests within unit capacity, no past nights. Ambiguous/incomplete dates trigger clarification and a full-date confirmation summary.
 - The **same unit** must be free for every requested night. Unique `(unitId, night)` allocations cover both reservations and maintenance. Transactional source enforcement determines the winner of concurrent confirmations.
 - Five-minute quotes do not hold inventory. Confirm rechecks all nights, capacity, policy, identity and rate/catalog versions.
-- Money is integer minor units in fixed USD; checked totals and per-night lines. A price/version change requires a new offer.
+- Money is integer minor units in fixed USD; checked totals from the fixed nightly rate and night count. A price/version change requires a new offer.
 - Cancellation retains CP-001: at least 72 hours before current arrival. Proposed RS-001 changes also require 72 hours before the **existing** arrival and future target dates; moving the date cannot evade policy.
 - Reschedule is atomic: verify target nights before releasing original nights; exclude own overlapping allocations from foreign occupancy. A conflict keeps the old booking intact.
 - Cancellation releases nights and records the receipt in one transaction, preserving history.
@@ -86,25 +86,20 @@ sequenceDiagram
     S->>S: Validate and atomically save allocations, booking and receipt
     S-->>A: Completed receipt or conflict
     A-->>C: Authoritative result
-    C-->>U: Confirmed booking or available alternatives
+    C-->>U: Confirmed booking or stable rejection; customer may search again
 ```
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Draft
-    Draft --> AwaitingConfirmation: complete offer
-    AwaitingConfirmation --> Expired: deadline or authority change
-    AwaitingConfirmation --> Queued: one-time explicit confirmation
-    Queued --> Executing: durable lease
-    Executing --> Completed: authoritative receipt
-    Executing --> Rejected: conflict or rule
-    Executing --> Unknown: timeout or restart
-    Unknown --> Completed: reconcile same commandId
-    Unknown --> Rejected: authoritative rejection receipt
-    Unknown --> ManualReview: unresolved source state
+    [*] --> Pending: valid offer / oferta vigente
+    Pending --> Queued: explicit confirmation / confirmación explícita
+    Pending --> Invalidated: unlink or ownership change / desvincular
+    Queued --> Completed: atomic booking and receipt / transacción y recibo
+    Queued --> Rejected: source rule or revoked session / regla o sesión revocada
+    Queued --> Queued: storage failure / fallo de almacenamiento
 ```
 
-Source commit plus lost response becomes Unknown; query the same command's receipt rather than create another booking. WhatsApp delivery is separate from business completion. An uncertain reply does not undo a completed reservation; own-reservation lookup returns source state.
+A queued command survives restart and is recovered with the same ID. Source state and receipt commit together. A lost HTTP response is an unverified client observation: query that command's receipt or own bookings rather than create another booking. Pending offer expiry is checked from its deadline; Expired is not a stored state. Unknown in the independent Meta outbox describes message delivery. WhatsApp delivery is separate from business completion. An uncertain reply does not undo a completed reservation; own-reservation lookup returns source state.
 
 ## Data and compatibility
 
@@ -122,9 +117,9 @@ erDiagram
     SOURCE_COMMAND ||--o| COMMAND_RECEIPT : resolves
 ```
 
-Allocation belongs to exactly one booking or maintenance block. Version entities; bind offers to payload hash/account/route/epoch/expiry/policy. Unique command receipt includes account and payload hash: same command returns the same result, changed payload conflicts. Audit semantic events without public message text, phone or secrets.
+Allocation belongs to exactly one booking or maintenance block. Version entities; bind offers to payload hash/account/route/epoch/expiry and source versions; current static CP-001/RS-001 rules are rechecked. Unique command receipt includes account and payload hash: same command returns the same result, changed payload conflicts. Audit semantic events without public message text, phone or secrets.
 
-An isolated `resort-v0.12` source/workflow profile and v2 contracts add checkout, unit, guests and total. Keep v1 source/web databases and measurements intact, distinguish new `STAY-...` IDs from historical `RES-...`, and retain channel inbox/outbox history. UI identifies the active scenario. Never invent checkout dates in v1 records or combine sources for a booking. Rollback returns to public FAQ without deleting new receipts/databases or concealing uncertain commands.
+An isolated `resort-v0.12` source/workflow profile uses one new SQLite source/journal/link store inside the web API, per the [final contract](contracts/resort-v0.12.md). Its v2 contracts add checkout, unit, guests and total. Keep v1 source/web databases and measurements intact, distinguish new `STAY-...` IDs from historical `RES-...`, and retain channel inbox/outbox history. UI identifies the active scenario. Never invent checkout dates in v1 records or combine sources for a booking. Rollback returns to public FAQ without deleting new receipts/databases or concealing uncertain commands.
 
 ## Acceptance and delivery
 
@@ -134,6 +129,6 @@ Threat controls cover stale inventory, wrong date extraction, hijacked links, do
 
 Order: close contracts/freeze → source/catalog/inventory → authenticated calendar admin → account linkage → booking/change/cancel offers and receipts → WhatsApp ES/EN live tests → bilingual documentation and short video. Required regression runs are scoped to changed invariants; remote CI restrictions remain explicit.
 
-DoR requires versioned API/schema/error contracts, implementable session revocation bridge, negative oracles, date-parser boundaries, confirmation UI, compatibility review and disabled feature flag. **This proposal does not close those gates or enable private actions today.** DoD requires no cross-account/double-booking failure, tested persistence/reconciliation, real ES/EN channel operations, calendar/source agreement, clear synthetic prices and secret-free evidence.
+DoR requires versioned API/schema/error contracts, implementable session revocation bridge, negative oracles, date-parser boundaries, confirmation UI, compatibility review and disabled feature flag. **DoR closed before code in the executable contract and Architecture Freeze. Private actions now require verified linkage.** DoD requires no cross-account/double-booking failure, tested persistence/reconciliation, real ES/EN channel operations, calendar/source agreement, clear synthetic prices and secret-free evidence.
 
 Portfolio video: Suite/jacuzzi → unavailable dates → alternative → USD 560 fictional two-night quote → explicit confirmation → calendar update → reschedule → eligible cancellation → nights available again. Label fictional hotel/rates, real WhatsApp transport, actual AI mode and simulated human transfer. Present measured outcomes, not this plan as implemented.

@@ -1,6 +1,6 @@
 #requires -Version 7.2
 [CmdletBinding()]
-param([switch]$NoBrowser, [switch]$FreshData, [switch]$Rebuild, [ValidateSet('simulated','local-llm')][string]$IntentProvider)
+param([switch]$Resort, [switch]$NoBrowser, [switch]$FreshData, [switch]$Rebuild, [ValidateSet('simulated','local-llm')][string]$IntentProvider)
 $ErrorActionPreference='Stop'
 $taskRepo=Split-Path -Parent $PSScriptRoot
 $taskWorkspace=Split-Path -Parent (Split-Path -Parent $taskRepo)
@@ -29,6 +29,7 @@ function Test-DemoAvailable {
             $taskEmbeddingModels=Invoke-RestMethod -Uri 'http://127.0.0.1:11435/api/tags' -TimeoutSec 2
             if(-not($taskEmbeddingModels.models|Where-Object{$_.name -ceq 'bge-m3:latest' -and $_.digest -ceq '7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab'})){return $false}
         }
+        if ($Resort) { $taskCatalog=Invoke-RestMethod -Uri ($taskUrl+'/v2/resort/catalog') -TimeoutSec 2; if (-not $taskCatalog.fictional) {return $false} }
         return $taskReady.status -eq 'Ready' -and $taskReady.profile -eq 'demo-assistant-v0.10' -and $taskReady.modelProvider -ceq $taskDesiredProvider -and
             $taskSource.component -eq 'ReservationSource' -and $taskPage.Content.Contains('<title>ContactCenterAI · Demo</title>')
     } catch { return $false }
@@ -57,6 +58,17 @@ foreach ($taskLine in [IO.File]::ReadAllLines($taskEnvPath)) {
 if (-not $taskEnvironment.CCAI_SOURCE_SERVICE_KEY) {
     $taskEnvironment.CCAI_SOURCE_SERVICE_KEY=[Convert]::ToHexString([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
     [IO.File]::AppendAllText($taskEnvPath, "`nCCAI_SOURCE_SERVICE_KEY="+$taskEnvironment.CCAI_SOURCE_SERVICE_KEY+"`n",[Text.UTF8Encoding]::new($false))
+}
+if ($Resort) {
+    $taskChannelConfig=Join-Path $taskRepo 'deploy/channels/.env'
+    if (-not (Test-Path -LiteralPath $taskChannelConfig)) { throw 'Primero prepara la configuración de canales.' }
+    foreach ($taskLine in [IO.File]::ReadAllLines($taskChannelConfig)) {
+        if ($taskLine.StartsWith('CCAI_CHANNEL_RESORT_BRIDGE_KEY=')) { $taskEnvironment.CCAI_RESORT_BRIDGE_KEY=$taskLine.Split('=',2)[1] }
+        if ($taskLine.StartsWith('CCAI_CHANNEL_META_ENDPOINT_ID=')) { $taskEnvironment.CCAI_RESORT_META_ENDPOINT_ID=$taskLine.Split('=',2)[1] }
+    }
+    if (-not $taskEnvironment.CCAI_RESORT_BRIDGE_KEY) { throw 'Falta la clave privada del puente del resort. Ejecuta Prepare-Resort.ps1.' }
+    $taskEnvironment.CCAI_RESORT_ENABLED='true'
+    $taskUrl='http://127.0.0.1:7452'
 }
 function Stop-OwnedDemo {
     param([string]$Marker='process.json',[string]$Project='ContactCenterAI.Api')

@@ -9,6 +9,14 @@ $taskData = Join-Path $taskRepo '.local/channels'
 function Restrict-ChannelPath([string]$taskPath, [bool]$taskDirectory) {
     if ((Get-Item -LiteralPath $taskPath).Attributes -band [System.IO.FileAttributes]::ReparsePoint) { throw 'CHANNEL_STORAGE_LINK_REJECTED' }
     if ($IsWindows) {
+        # Preserve an already protected local DACL. Reapplying it can require owner
+        # rights even when the current user can safely read/write configuration.
+        if ((Get-Acl -LiteralPath $taskPath).AreAccessRulesProtected) { return }
+        if (-not $taskDirectory) {
+            $taskInheritedAcl=Get-Acl -LiteralPath $taskPath
+            $taskParentAcl=Get-Acl -LiteralPath (Split-Path -Parent $taskPath)
+            if ($taskParentAcl.AreAccessRulesProtected -and @($taskInheritedAcl.Access | Where-Object {-not $_.IsInherited}).Count -eq 0) { return }
+        }
         # Write only the DACL. Reusing Get-Acl can also request privileged owner/SACL writes.
         $taskAcl = if ($taskDirectory) { [System.Security.AccessControl.DirectorySecurity]::new() } else { [System.Security.AccessControl.FileSecurity]::new() }
         $taskAcl.SetAccessRuleProtection($true, $false)
@@ -52,7 +60,7 @@ if (-not (Test-Path -LiteralPath $taskConfig)) {
 Restrict-ChannelPath $taskConfig $false
 if ($PrepareOnly) { Write-Host 'Configuración local preparada: deploy/channels/.env. Los ajustes existentes se conservaron.'; return }
 $taskPrevious = @{}
-$taskAllowed = @('AI_MODE','TELEGRAM_ENABLED','TELEGRAM_ENDPOINT_ID','TELEGRAM_ACCESS_TOKEN','TELEGRAM_RECIPIENTS','META_ENABLED','META_ENDPOINT_ID','META_ACCESS_TOKEN','META_APP_SECRET','META_VERIFY_TOKEN','META_API_VERSION','META_RECIPIENTS','META_TEST_RESOURCES_CONFIRMED') | ForEach-Object { 'CCAI_CHANNEL_' + $_ }
+$taskAllowed = @('AI_MODE','RESORT_ENABLED','RESORT_BRIDGE_KEY','TELEGRAM_ENABLED','TELEGRAM_ENDPOINT_ID','TELEGRAM_ACCESS_TOKEN','TELEGRAM_RECIPIENTS','META_ENABLED','META_ENDPOINT_ID','META_ACCESS_TOKEN','META_APP_SECRET','META_VERIFY_TOKEN','META_API_VERSION','META_RECIPIENTS','META_TEST_RESOURCES_CONFIRMED') | ForEach-Object { 'CCAI_CHANNEL_' + $_ }
 try {
     foreach ($taskLine in [System.IO.File]::ReadAllLines($taskConfig)) {
         if (-not $taskLine.Trim() -or $taskLine.TrimStart().StartsWith('#')) { continue }

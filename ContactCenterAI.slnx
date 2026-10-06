@@ -9,6 +9,7 @@
     <Project Path="src/ContactCenterAI.Channels/ContactCenterAI.Channels.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/ContactCenterAI.ResortChecks/ContactCenterAI.ResortChecks.csproj" />
     <Project Path="tests/ContactCenterAI.FoundationChecks/ContactCenterAI.FoundationChecks.csproj" />
     <Project Path="tests/ContactCenterAI.IngressChecks/ContactCenterAI.IngressChecks.csproj" />
     <Project Path="tests/ContactCenterAI.DemoChecks/ContactCenterAI.DemoChecks.csproj" />

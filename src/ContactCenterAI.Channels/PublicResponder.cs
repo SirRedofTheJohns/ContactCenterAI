@@ -3,17 +3,19 @@ using ContactCenterAI.Infrastructure;
 
 namespace ContactCenterAI.Channels;
 
-// No reservation-source or cancellation capability is injected into this handler.
-public sealed class PublicResponder(SqliteOperationalStore knowledge, IIntentProvider model, TimeProvider clock)
+// Approved FAQ evidence and an optional fixed, authenticated local booking bridge.
+public sealed class PublicResponder(SqliteOperationalStore knowledge, IIntentProvider model, TimeProvider clock, ResortBridgeClient? resort = null)
 {
     public async Task<PreparedOutput> AnswerAsync(ChannelJob job, CancellationToken ct)
     {
         var language = job.Route.Language;
         ChannelReply Answer(string code, string es, string en) => new(language == "en" ? en : es, code, []);
         if (job.Text is "/start" or "/en" or "/es")
-            return new(Answer("CHANNEL_HELP", "Demo ficticia: pregunta por los servicios o políticas. /en: inglés, /es: español, /human: cola humana simulada. No envíes datos personales ni de pago.", "Fictional demo: ask about services or policies. /en: English, /es: Spanish, /human: simulated human queue. Do not send personal or payment data."));
+            return new(Answer("CHANNEL_HELP", "Demo ficticia: pregunta por servicios, políticas, habitaciones o fechas disponibles. Para gestionar reservas vincula WhatsApp desde la página del resort. /en: inglés, /es: español, /human: cola humana simulada. No envíes datos personales ni de pago.", "Fictional demo: ask about services, policies, rooms or available dates. Link WhatsApp from the resort page to manage bookings. /en: English, /es: Spanish, /human: simulated human queue. Do not send personal or payment data."));
         if (KnowledgeQueryScope.RequiresAbstention(job.Text))
             return new(Answer("OUT_OF_SCOPE", "No tengo información aprobada para esa pregunta. Usa /human para la cola simulada.", "I have no approved information for that question. Use /human for the simulated queue."));
+        if (resort is not null && job.Route.Channel == "whatsapp" && ResortBridgeClient.Recognizes(job.Text))
+            return new(await resort.AnswerAsync(job, ct));
         var proposal = ProposalGateway.Validate(await model.ProposeAsync(job.Text, language, ct), language);
         if (proposal.Intent is "get_reservations" or "preview_cancellation")
             return new(Answer("VERIFIED_MEMBER_REQUIRED", "Las reservas se consultan y confirman en la demo web con login. Este canal no verifica una cuenta de miembro por teléfono o ID.", "Reservations require login in the web demo. This channel does not verify membership from a phone number or sender ID."));

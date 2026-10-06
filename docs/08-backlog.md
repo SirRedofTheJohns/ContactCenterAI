@@ -61,3 +61,7 @@ El texto anterior conserva la secuencia del plan v0.1. La presentación vigente 
 ## Cierre de entrega local v0.10
 
 [Estado vigente](progress/demo-v0.10.md). Subsets locales de B05–B15 completados dentro de la excepción de presentación: source/transacciones, asistente/IA/retrieval gobernado, mock handoff, UI, eval, panel y restore. 249 checks y cierre compuesto 97%/98%; errores conservados. B03/B04 empresarial y M6 no se cierran por un mock. SQL cifrado bloqueado en el entorno actual, GitHub destino/Genesys tenant no proporcionados y revisión humana pendiente. Entrega final facilita apertura, evaluación e entrevista sin ampliar el scope a pagos o datos reales.
+
+## Entrega local v0.12: resort y reservas por WhatsApp
+
+[Entrega y límites](progress/resort-v0.12.md), [contrato](contracts/resort-v0.12.md) y ADR-025. Catálogo, calendario vigente, nueva reserva, cambio, cancelación, precios ficticios, recibos, vínculo temporal y administración local implementados. 70 comprobaciones del resort; 402 junto a la regresión anterior. Parser ES/EN: 28 ejemplos conocidos. La creación por WhatsApp y su aparición en web ya se observaron; pruebas de fixtures y gates reales se reportan separados. Se conserva v1 y el perfil local de IA/RAG. Esta ampliación no cierra SQL/Genesys/Telegram real/CI remoto ni revisión independiente.

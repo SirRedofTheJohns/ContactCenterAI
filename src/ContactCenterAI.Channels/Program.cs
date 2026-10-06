@@ -57,7 +57,8 @@ try
     if (tgClient is not null) providers.Add("telegram", tgClient);
     if (metaClient is not null) providers.Add("whatsapp", metaClient);
     var clock = TimeProvider.System;
-    var runtime = new ChannelRuntime(store, new PublicResponder(knowledge, model, clock), providers, new LocalContactCenterMock(), clock);
+    using var resort = Enabled("RESORT_ENABLED") ? new ResortBridgeClient(Env("RESORT_BRIDGE_KEY"), store) : null;
+    var runtime = new ChannelRuntime(store, new PublicResponder(knowledge, model, clock, resort), providers, new LocalContactCenterMock(), clock);
     await using var host = ChannelHost.Build(store, meta);
     using var stopping = new CancellationTokenSource();
     host.Lifetime.ApplicationStopping.Register(stopping.Cancel);

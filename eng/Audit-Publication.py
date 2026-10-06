@@ -32,7 +32,7 @@ for env_file in [repo/'deploy/local/.env', repo/'deploy/channels/.env']:
         if '=' not in entry or entry.lstrip().startswith('#'):
             continue
         key, value = entry.split('=', 1)
-        if key != 'CCAI_SYNTHETIC_USER_PASSWORD' and re.search('PASSWORD|SECRET|TOKEN|SERVICE_KEY', key):
+        if key != 'CCAI_SYNTHETIC_USER_PASSWORD' and re.search('PASSWORD|SECRET|TOKEN|SERVICE_KEY|BRIDGE_KEY', key):
             if len(value) >= 12 and not value.startswith(('GENERATE_', 'REVIEW_')):
                 known_local_secrets.append(value)
 for name in files:
