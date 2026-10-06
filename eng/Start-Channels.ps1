@@ -9,16 +9,30 @@ $taskData = Join-Path $taskRepo '.local/channels'
 function Restrict-ChannelPath([string]$taskPath, [bool]$taskDirectory) {
     if ((Get-Item -LiteralPath $taskPath).Attributes -band [System.IO.FileAttributes]::ReparsePoint) { throw 'CHANNEL_STORAGE_LINK_REJECTED' }
     if ($IsWindows) {
-        $taskAcl = Get-Acl -LiteralPath $taskPath
+        # Write only the DACL. Reusing Get-Acl can also request privileged owner/SACL writes.
+        $taskAcl = if ($taskDirectory) { [System.Security.AccessControl.DirectorySecurity]::new() } else { [System.Security.AccessControl.FileSecurity]::new() }
         $taskAcl.SetAccessRuleProtection($true, $false)
-        foreach ($taskRule in @($taskAcl.Access)) { [void]$taskAcl.RemoveAccessRuleSpecific($taskRule) }
         $taskSid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User
         $taskInheritance = if ($taskDirectory) { [System.Security.AccessControl.InheritanceFlags]'ContainerInherit, ObjectInherit' } else { [System.Security.AccessControl.InheritanceFlags]::None }
         foreach ($taskAccount in @($taskSid, [System.Security.Principal.SecurityIdentifier]::new('S-1-5-18'))) {
             $taskRule = [System.Security.AccessControl.FileSystemAccessRule]::new($taskAccount, 'FullControl', $taskInheritance, 'None', 'Allow')
             $taskAcl.AddAccessRule($taskRule)
         }
-        Set-Acl -LiteralPath $taskPath -AclObject $taskAcl
+        # The desktop user must still be able to edit configuration when a sandbox runs this script.
+        $taskProfileAccount = [System.Security.Principal.NTAccount]::new([Environment]::MachineName, (Split-Path -Leaf $env:USERPROFILE))
+        try { $taskProfileSid = $taskProfileAccount.Translate([System.Security.Principal.SecurityIdentifier]) } catch { $taskProfileSid = $null }
+        if ($taskProfileSid -and $taskProfileSid -ne $taskSid) {
+            $taskRepoAcl = Get-Acl -LiteralPath $taskRepo
+            $taskProfileAllowed = @($taskRepoAcl.GetAccessRules($true, $true, [System.Security.Principal.SecurityIdentifier]) | Where-Object {
+                $_.IdentityReference -eq $taskProfileSid -and $_.AccessControlType -eq 'Allow' -and
+                ($_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify) -eq [System.Security.AccessControl.FileSystemRights]::Modify
+            }).Count -gt 0
+            if ($taskProfileAllowed) {
+                $taskAcl.AddAccessRule([System.Security.AccessControl.FileSystemAccessRule]::new($taskProfileSid, 'Modify', $taskInheritance, 'None', 'Allow'))
+            }
+        }
+        if ($taskDirectory) { [System.IO.FileSystemAclExtensions]::SetAccessControl([System.IO.DirectoryInfo]::new($taskPath), $taskAcl) }
+        else { [System.IO.FileSystemAclExtensions]::SetAccessControl([System.IO.FileInfo]::new($taskPath), $taskAcl) }
         $taskChecked = Get-Acl -LiteralPath $taskPath
         if (-not $taskChecked.AreAccessRulesProtected) { throw 'CHANNEL_STORAGE_RESTRICTION_FAILED' }
     } else {
@@ -36,7 +50,7 @@ if (-not (Test-Path -LiteralPath $taskConfig)) {
     [System.IO.File]::WriteAllText($taskConfig, $taskContents.Replace('CCAI_CHANNEL_META_VERIFY_TOKEN=', ('CCAI_CHANNEL_META_VERIFY_TOKEN=' + $taskVerify)))
 }
 Restrict-ChannelPath $taskConfig $false
-if ($PrepareOnly) { Write-Host 'Configuración local preparada: deploy/channels/.env. Ambos canales siguen desactivados.'; return }
+if ($PrepareOnly) { Write-Host 'Configuración local preparada: deploy/channels/.env. Los ajustes existentes se conservaron.'; return }
 $taskPrevious = @{}
 $taskAllowed = @('AI_MODE','TELEGRAM_ENABLED','TELEGRAM_ENDPOINT_ID','TELEGRAM_ACCESS_TOKEN','TELEGRAM_RECIPIENTS','META_ENABLED','META_ENDPOINT_ID','META_ACCESS_TOKEN','META_APP_SECRET','META_VERIFY_TOKEN','META_API_VERSION','META_RECIPIENTS','META_TEST_RESOURCES_CONFIRMED') | ForEach-Object { 'CCAI_CHANNEL_' + $_ }
 try {
@@ -50,6 +64,12 @@ try {
     foreach ($taskSetting in @{ CCAI_CHANNEL_STORAGE_RESTRICTED='true'; DOTNET_CLI_TELEMETRY_OPTOUT='1'; DOTNET_GENERATE_ASPNET_CERTIFICATE='false'; DOTNET_CLI_HOME=(Join-Path $taskRepo '.local/cli'); NUGET_PACKAGES=(Join-Path $taskRepo '.local/packages') }.GetEnumerator()) {
         $taskPrevious[$taskSetting.Key] = [Environment]::GetEnvironmentVariable($taskSetting.Key, 'Process')
         [Environment]::SetEnvironmentVariable($taskSetting.Key, $taskSetting.Value, 'Process')
+    }
+    if ($IsWindows) {
+        $taskPrevious['APPDATA'] = [Environment]::GetEnvironmentVariable('APPDATA', 'Process')
+        $taskAppData = Join-Path $taskRepo '.local/appdata'
+        New-Item -ItemType Directory -Force -Path (Join-Path $taskAppData 'NuGet') | Out-Null
+        [Environment]::SetEnvironmentVariable('APPDATA', $taskAppData, 'Process')
     }
     if (-not $DotNetExe) { $DotNetExe = Join-Path $taskWorkspace 'work/runtimes/dotnet/dotnet.exe' }
     if (-not (Test-Path -LiteralPath $DotNetExe)) { $DotNetExe = (Get-Command dotnet -ErrorAction Stop).Source }
