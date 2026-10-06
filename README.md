@@ -1,66 +1,122 @@
 # ContactCenterAI
 
-[Español](README.es.md) · [Run it](docs/en/getting-started.md) · [Architecture](docs/en/engineering-guide.md) · [WhatsApp + Telegram](docs/integrations/channels.en.md)
+### A fictional resort you can book through WhatsApp
 
-A small contact-center demo built in **C# / .NET 10**. It answers questions in English and Spanish, reads fictional reservations, prepares a cancellation for review, and hands a conversation to a simulated human queue.
+[Español](README.es.md) · [Try the demo](docs/resort-demo.en.md) · [How it works](docs/en/how-it-works.md) · [Architecture](docs/resort-booking-v0.12.en.md)
 
-The useful part is what happens around the model: the server checks permissions, asks for explicit confirmation, records the operation, and waits for the reservation service to confirm the result. The model cannot cancel a reservation by itself.
+Ask for available dates, compare rooms, and confirm a fictional stay from a chat. You can then change the dates or cancel. The web calendar reads the same inventory and reflects each confirmed action.
 
-![Local demo: reservations, an approved citation and an out-of-scope answer](docs/progress/screenshots/final-demo-v0.10.png)
+This **C# / .NET portfolio project** connects a conversation to a reliable business operation. WhatsApp transport and login are real. The hotel, prices and reservations are fictional. There are no payments.
 
+## The customer journey
 
-## Resort + WhatsApp · v0.12
+```mermaid
+flowchart TD
+    A[Customer asks for dates] --> B[Demo checks the calendar]
+    B --> C[Customer chooses a room]
+    C --> D[Demo shows dates and price]
+    D --> E[Customer explicitly confirms]
+    E --> F[Demo checks again and saves the booking]
+    F --> G[Calendar updates and customer gets a receipt]
+    G --> H[Customer can request a change or cancellation]
+    H --> D
+```
 
-Three fictional rooms: Standard ($120/night), Deluxe ($180/night) and Suite ($280/night, private jacuzzi). The web calendar and WhatsApp read the same live local inventory. Sign in, link your chat, then request a booking, a date change or a cancellation. Each action needs an expiring quote and explicit confirmation. No payments.
+**Asking and confirming are separate steps.** A proposal lasts five minutes and does not hold a room. The server checks availability, price and permissions again when the customer confirms.
 
-[Try the resort](docs/resort-demo.en.md) · [Architecture and flows](docs/resort-booking-v0.12.en.md) · [Current evidence](docs/progress/resort-v0.12.md)
+<details>
+<summary><strong>See the resort and calendar</strong></summary>
 
-![Fictional resort calendar](docs/progress/screenshots/resort-v0.12.png)
+![Resort page with room categories, prices, availability and booking controls](docs/progress/screenshots/resort-v0.12.png)
 
-This resort flow uses a bounded deterministic parser. The local Qwen/RAG profile remains available separately; paid token APIs are not required. On 2026-10-06, real WhatsApp availability, booking, date change and cancellation matched the web calendar, with private responses in Spanish and English. The [recorded walkthrough](docs/progress/resort-whatsapp-2026-10-06.json) covers this demo route; broader provider/security validation and remote CI remain separate.
+Screenshot from the 2026-10-06 walkthrough, after creating a Suite stay. Later steps changed and cancelled it.
 
-## A five-minute walkthrough
+![The same fictional stay after cancellation](docs/progress/screenshots/resort-whatsapp-cancelled.png)
 
-1. Ask when the pool opens. Open the document cited in the answer.
-2. Sign in as a fictional customer and view their reservations.
-3. Request a cancellation. The reservation stays unchanged until you press Confirm.
-4. Show a lost response: the system checks the original command instead of creating a second cancellation.
-5. Request a human. The bot pauses and only the assigned agent can open the case.
+</details>
 
-[English demo script](docs/en/demo.md) · [Guion en español](DEMO.md)
+## What you can do
 
-## What is working
-
-| Area | Current demo |
+| Customer request | What the demo does |
 |---|---|
-| Backend | ASP.NET Core, Application / Domain / Infrastructure layers; Python for offline evaluation |
-| Identity | Real local Keycloak login with Authorization Code + PKCE, persistent sessions, roles and resource checks |
-| Reservations | Separate HTTP service with its own SQLite database; synthetic inventory |
-| Reliable actions | Expiring offers, explicit confirmation, durable commands, leases, source receipts and reconciliation |
-| Local AI | Pinned Qwen intent model, BGE-M3 embeddings and a closed evidence selector; no paid inference API |
-| Knowledge | 40 logical documents / 80 ES/EN variants, publication review, access filters, expiry and citation checks |
-| Human transfer | Provider-neutral interface and a local mock; request IDs and ownership epochs prevent stale acknowledgments |
-| Operations | Small local operations panel, sanitized traces and a recorded backup/restore exercise |
-| Delivery | Locked dependencies, a GitHub Actions workflow and 249 deterministic checks in the v0.10 baseline |
+| “What does the Suite include?” | Reads amenities, capacity and price from the catalog |
+| “Show available dates” | Checks current inventory, including occupied and maintenance nights |
+| “Book a Suite for two guests” | Prepares a proposal with complete dates and a fictional total |
+| “Confirm …” | Checks the proposal and records the operation once |
+| “My bookings” | Shows only the bookings owned by the linked account |
+| “Change my dates” | Keeps the old booking until confirmation of the change succeeds |
+| “Cancel my booking” | Checks the rule, asks for confirmation and releases the nights |
+| `/en`, `/es`, `/human` | Changes language or pauses the bot for a simulated human queue |
 
-WhatsApp uses the official Cloud API test resource; real ES/EN policy replies reached Read in the historical v0.11 evidence. Telegram adapter code is present but its live bot is not configured. The v0.12 linked booking extension is documented above. [Messaging setup](docs/integrations/setup.en.md).
+Private actions require login and a temporary account link. A phone number or booking reference cannot grant access to another customer's stay.
 
-## What the measurements mean
+## The fictional property
 
-The [evaluation guide](docs/en/evaluation-and-limits.md) explains the results and keeps the failures visible. There are 300 original local retrieval outputs. A later, narrowly scoped replay combines 13 current scope checks with 287 unchanged outputs: 97% and 98% exact results on two known sets, and abstention on all 60 out-of-scope cases. **Eight quality errors remain.** This is not a fresh 300-call run, a load test, or an independent review.
+| Room | Guests | USD per night | Included amenities |
+|---|---:|---:|---|
+| Standard | 2 | 120 | Wi-Fi, breakfast, air conditioning |
+| Deluxe | 2 | 180 | Wi-Fi, breakfast, balcony, pool view |
+| Suite | 4 | 280 | Deluxe amenities, private jacuzzi, terrace |
 
-The demo uses SQLite and plain JavaScript. SQL Server, Qdrant, Angular and a live Genesys Cloud tenant are enterprise targets with open gates. Encrypted SQL product connectivity remains blocked on the original Windows host. No production-readiness claim is made.
+One room per category. Stays last 1–14 nights within a 90-day horizon. Two nights in a Suite cost **560 fictional USD**. Changes and cancellations use a 72-hour cutoff before the current arrival.
 
-## Start here
+## Under the hood
 
-- [Setup on a new computer](docs/en/getting-started.md)
-- [How the system works](docs/en/engineering-guide.md)
-- [What this demonstrates for an AI Agent Developer role](docs/en/portfolio.md)
-- [Messaging integration design](docs/integrations/channels.en.md)
-- [Connect Telegram and WhatsApp from scratch](docs/integrations/setup.en.md)
-- [Requirements, decisions and historical evidence](docs/README.md)
-- [Third-party notices](THIRD_PARTY_NOTICES.md)
+```mermaid
+flowchart LR
+    WA[WhatsApp] --> Meta[Official Meta test API]
+    Meta --> Channel[Dedicated channel adapter]
+    Channel --> Rules[C# booking rules and permission checks]
+    Web[Local resort website] --> Rules
+    Login[Keycloak login and verified account link] --> Rules
+    Rules --> DB[(Shared resort inventory and receipts)]
+    Rules --> Reply[Confirmed result for the customer]
+```
 
-Everything is fictional: hotel, accounts, policies and reservations. Demo users share `123456Aa!`; service credentials are generated locally and excluded from Git. Model weights, databases, backups and runtime logs are also excluded.
+Only the channel host uses a temporary HTTPS tunnel. Web login, administration and internal booking endpoints stay local. See the [architecture guide](docs/resort-booking-v0.12.en.md) for these boundaries and recovery.
 
-This is a learning and portfolio project developed with AI-assisted tooling. The documentation explains the choices, tests and limitations so they can be discussed and reproduced.
+| Engineering area | Current implementation |
+|---|---|
+| Backend | ASP.NET Core on .NET 10, layered C# and explicit integration contracts |
+| Identity | Keycloak Authorization Code + PKCE, roles, ownership checks and expiring sessions |
+| Calendar | Relational SQLite with one unique allocation per room/night |
+| Reliable actions | Expiring proposals, explicit confirmation, atomic changes and durable receipts |
+| Duplicates/restarts | Same command ID returns its recorded result; queued work can recover |
+| Channels | Real official WhatsApp test transport; Telegram adapter present, live bot not configured |
+| AI and knowledge | Bounded deterministic resort intents; separate local Qwen/BGE-M3 retrieval profile with approved ES/EN knowledge and citations |
+| Evaluation | Python offline tooling, deterministic C# checks and preserved inference results |
+| Operations | Sanitized audit/traces, local operations UI and historical backup/restore evidence |
+
+Prices and dates come from structured data. Critical permissions and state changes remain in C#.
+
+## Evidence and honest limits
+
+On **2026-10-06**, the owner completed availability, account linking, booking, date change, cancellation and own-booking queries through real WhatsApp. The browser showed matching calendar changes. Creation/change replies were Spanish; cancellation and own-booking replies were also checked in English. [Recorded walkthrough](docs/progress/resort-whatsapp-2026-10-06.json).
+
+- **402 combined deterministic checks:** 332 original regression checks plus 70 resort checks, covering concurrency, rollback, recovery and permission boundaries.
+- **28/28 declared parser examples:** known ES/EN examples, not unrestricted language understanding.
+- **Local AI evaluation:** 300 original retrieval outputs. A scoped replay combines 13 current checks with 287 unchanged outputs. Eight quality errors remain. [Results and limits](docs/en/evaluation-and-limits.md).
+
+Human transfer and Genesys Cloud remain mocked. Telegram has no live bot configured. SQL Server product connectivity, Qdrant, Angular, independent review and remote CI remain open targets. A GitHub Actions workflow exists, without a claimed successful remote run. This is a local portfolio demo.
+
+## Run and explore
+
+After the [initial setup](docs/en/getting-started.md), start Docker Desktop and run:
+
+```powershell
+.\eng\Start-Resort.cmd
+```
+
+Open `http://127.0.0.1:7452/resort.html`. Synthetic users `customer-a`, `customer-b` and `operations-admin` use `123456Aa!`. Service credentials stay in ignored local files. WhatsApp requires your own Meta test setup and an active tunnel. Publishing the code on GitHub does not keep the bot running.
+
+| If you want to… | Read this |
+|---|---|
+| Understand it without a software background | [Plain-language explanation](docs/en/how-it-works.md) |
+| Reproduce the resort walkthrough | [Demo instructions](docs/resort-demo.en.md) |
+| Review booking rules and diagrams | [Resort architecture](docs/resort-booking-v0.12.en.md) |
+| Inspect the original local AI/RAG system | [Engineering guide](docs/en/engineering-guide.md) |
+| Connect messaging channels | [WhatsApp and Telegram setup](docs/integrations/setup.en.md) |
+| Discuss it in an interview | [Portfolio guide](docs/en/portfolio.md) |
+| Review requirements, ADRs and historical evidence | [Documentation index](docs/README.md) |
+
+Learning and portfolio project developed with AI-assisted tooling. Decisions, evidence and limitations are documented for review. Databases, model weights, tokens, account-link codes, backups and private logs stay out of Git. [Third-party notices](THIRD_PARTY_NOTICES.md).
