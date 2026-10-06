@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-05",
+  "scope": "owner-operated Meta test-number text replies",
+  "ai_mode": "simulated",
+  "telegram_enabled": false,
+  "graph_version": "v25.0",
+  "messages_webhook_version": "v26.0",
+  "token_type": "SYSTEM_USER",
+  "token_duration_days": 60,
+  "inbox": { "Completed": 6 },
+  "outbox": { "Failed": 2, "Read": 4 },
+  "ownership": { "BotOwned": 1 },
+  "all_outputs_one_attempt": true,
+  "failed_outputs_have_provider_id": false,
+  "read_outputs_have_provider_id": true,
+  "spanish_policy_reply_read": true,
+  "english_policy_reply_read": true,
+  "english_reply_matches_approved_source": true,
+  "policy_replies_have_citations": true,
+  "previous_failed_outputs_preserved": true,
+  "verification": "read-only local ledger snapshot; authenticated Meta webhook receipt transitions",
+  "historical_channel_fixture_checks_passed": 83,
+  "production_readiness_claimed": false,
+  "remaining_live_acceptance": [
+    "full PC and temporary-tunnel restart recovery",
+    "expired-token behavior",
+    "simulated human handoff"
+  ],
+  "separate_gates": [ "Telegram activation", "local-model channel activation" ],
+  "privacy": "No tokens, resource IDs, participant IDs, raw provider payloads or message bodies. Aggregate evidence is operator-recorded, not independent attestation."
+}

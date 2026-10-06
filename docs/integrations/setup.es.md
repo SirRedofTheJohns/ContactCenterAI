@@ -4,7 +4,7 @@
 
 Empieza por Telegram. Solo necesitas tu cuenta de Telegram, crear un bot y dejar este PC encendido. WhatsApp tiene más pasos porque Meta debe entregar un número de prueba y recibir mensajes en una dirección HTTPS.
 
-Los adapters están implementados y probados con proveedores simulados. **Todavía no hay cuentas reales conectadas.** Crear la cuenta, aceptar términos y verificar tu teléfono corresponde al dueño. No hay que cambiar las contraseñas ni repetir los logins de la demo web.
+Los adapters están implementados y probados con proveedores simulados. La demo preparada ya recibió una respuesta real de WhatsApp con recibo de lectura; el [informe de activación](../progress/whatsapp-activation-2026-10-05.md) explica la evidencia y los pendientes. Telegram todavía no está activado en ese PC. Crear la cuenta, aceptar términos y verificar tu teléfono corresponde al dueño. No hay que cambiar las contraseñas ni repetir los logins de la demo web.
 
 ## Preparar el archivo local
 
@@ -40,11 +40,13 @@ El [Developer Hub oficial](https://whatsappbusiness.com/developers/developer-hub
 | Campo local | Qué colocar |
 |---|---|
 | `CCAI_CHANNEL_META_ENDPOINT_ID` | Phone Number ID del número de prueba, no el número visible ni el WABA ID |
-| `CCAI_CHANNEL_META_ACCESS_TOKEN` | Token de acceso autorizado para ese recurso; el temporal puede vencer |
+| `CCAI_CHANNEL_META_ACCESS_TOKEN` | Token de usuario de sistema autorizado para la app/cuenta de prueba; guardar su vencimiento localmente |
 | `CCAI_CHANNEL_META_APP_SECRET` | App Secret de la app, desde su configuración básica |
 | `CCAI_CHANNEL_META_API_VERSION` | Versión Graph que muestra el ejemplo del panel, con formato `vNN.0` |
 | `CCAI_CHANNEL_META_RECIPIENTS` | Tu teléfono de prueba ya verificado, solo dígitos |
 | `CCAI_CHANNEL_META_VERIFY_TOKEN` | Conservar el valor aleatorio que generó la preparación; se usará al registrar el webhook |
+
+   Para responder texto, sigue la [configuración de usuario de sistema de Meta](https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started). En Business settings crea un usuario técnico Employee y asigna solo la app/cuenta de prueba. Esta demo utiliza **Manage app / Full access** en la app y **Messages** más la lectura del número que Meta activa automáticamente en WhatsApp. Manage app permite cambiar configuración y roles: requiere aprobación del dueño antes de otorgarlo. La guía oficial recomienda permisos más amplios en WhatsApp; aquí el permiso limitado pasó la prueba de respuesta registrada. Genera un token con `whatsapp_business_messaging` y `whatsapp_business_management`, con vencimiento limitado (60 días en esta configuración). Guárdalo solo en el archivo local con el host detenido y reinicia el host sin borrar la base. El token temporal de API Setup permitió `hello_world`, pero las respuestas posteriores fallaron con 131005 hasta cambiar esta configuración.
 
 4. Comprueba en tu panel que se trata de recursos gratuitos de prueba. Solo entonces cambia `CCAI_CHANNEL_META_TEST_RESOURCES_CONFIRMED` y `CCAI_CHANNEL_META_ENABLED` a `true`. El código limita destinatarios, no incluye templates/campañas y no activa pagos. Esa bandera es una confirmación del dueño, no una consulta automática a la facturación de Meta.
 5. Inicia `./eng/Start-Channels.cmd`. El host nuevo escucha únicamente en `127.0.0.1:7454`. Para recibir webhooks, necesitas un túnel HTTPS hacia ese puerto. Instala `cloudflared` siguiendo las [instrucciones oficiales](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) y abre, en otra ventana:
@@ -54,9 +56,9 @@ cloudflared tunnel --url http://127.0.0.1:7454
 ```
 
 6. Copia el hostname HTTPS que entregue el túnel y registra en Meta el callback `https://HOST-DEL-TUNEL/webhooks/whatsapp` con tu `META_VERIFY_TOKEN`. Suscribe el campo `messages` y la app al WABA de prueba conforme a las instrucciones de tu panel. La comprobación GET debe devolver el challenge; los POST usan una firma diferente con el App Secret. [Webhooks de Meta](https://whatsapp.github.io/WhatsApp-Nodejs-SDK/api-reference/webhooks/start/).
-7. Desde tu teléfono de prueba, escribe al número de prueba de Meta; si el panel requiere iniciar el contacto, sigue su procedimiento de prueba. Luego prueba las preguntas ES/EN anteriores. El host solo responde dentro de las 24 horas desde un mensaje elegible recibido y no genera templates para abrir otra ventana. El túnel es temporal: al cambiar de dirección, actualiza el callback. [Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/).
+7. Desde tu teléfono de prueba, escribe al número de prueba de Meta; si el panel requiere iniciar el contacto, sigue su procedimiento. Prueba la pregunta en español; después envía `/en` y la pregunta en inglés. Usa `/es` para volver a español. El canal no cambia automáticamente el idioma guardado por el idioma de la pregunta. El host solo responde dentro de las 24 horas desde un mensaje elegible y no genera templates para abrir otra ventana. El túnel es temporal: al cambiar de dirección, actualiza el callback. [Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/).
 
-Publica **solo el puerto 7454**. La demo web 7452, reservas 7453, Keycloak 8080 y modelos 11434/11435 quedan locales. No hace falta que Docker publique más puertos para Telegram o para el host de canales.
+Publica **solo el puerto 7454**. La demo web 7452, reservas 7453, Keycloak 8080 y modelos 11434/11435 quedan locales. La disponibilidad del host se comprueba en `/health/live`. Cada instalación debe comprobar su configuración y recibos reales; el informe fechado registra la combinación de versiones comprobada aquí. No hace falta publicar más puertos de Docker.
 
 ## Leer el estado y detener
 
