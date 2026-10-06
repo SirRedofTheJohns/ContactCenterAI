@@ -25,4 +25,6 @@ The prior public-channel freeze remains valid for the running FAQ. New private c
 
 The earlier design/restoration activity added no private capability; implementation now proceeds under this closed local baseline. Do not claim live-ready until test and provider evidence exists.
 
-Estado: CLOSED para implementar el alcance local; revisión de contratos, invariantes de esquema, vinculación/revocación, casos negativos e impacto registrada antes del código. Evidencia en vivo pendiente. El nuevo almacén resort agrupa fuente y journal; conserva la demo anterior y la autoridad determinista.
+Estado al cierre anterior al código: CLOSED para implementar el alcance local; revisión de contratos, invariantes de esquema, vinculación/revocación, casos negativos e impacto registrada antes del código. Evidencia en vivo pendiente en ese momento. El nuevo almacén resort agrupa fuente y journal; conserva la demo anterior y la autoridad determinista.
+
+Delivery update, 2026-10-06: [local delivery](progress/resort-v0.12.md) records 402 combined deterministic checks and the real owner-route WhatsApp smoke: availability, linkage, create, change, cancel and own-bookings matched the browser calendar, with Spanish and English private replies. That bounded smoke is closed. Broader live provider/security/production gates remain separate; this does not rewrite the review-before-code chronology.

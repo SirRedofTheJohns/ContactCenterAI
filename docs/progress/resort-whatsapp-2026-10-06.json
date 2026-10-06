@@ -5,14 +5,22 @@
   "intentMode": "simulated/deterministic",
   "fictionalHotelAndPrices": true,
   "realCharge": false,
+  "liveSmokeResult": "PASS",
+  "liveSmokeScope": "Owner-controlled test route: current availability, verified link, create, change, cancel and own-bookings; Spanish create/change and English cancel. Not exhaustive live security, provider-failure or production validation.",
   "observations": [
     { "case": "availability", "evidence": "Owner supplied received alternatives for all three categories, two nights, and current structured prices." },
     { "case": "link", "evidence": "Owner sent the one-use command; same authenticated customer browser confirmed the pending link." },
     { "case": "create", "stay": "STAY-E717B171", "arrival": "2026-10-25", "departure": "2026-10-27", "guests": 2, "totalCents": 56000, "currency": "USD", "status": "Confirmed", "evidence": "Owner supplied CREATE_COMPLETED WhatsApp reply and subsequent own-bookings reply. Independently observed identical stay in customer browser." },
     { "case": "calendar", "evidence": "Browser calendar independently showed Suite nights October 25 and 26 occupied, October 27 free, matching the confirmed half-open stay." },
-    { "case": "sessionExpiry", "evidence": "After the original fifteen-minute session expired, WhatsApp denied a new private change request and requested login/linkage. Persisted stay remained visible after fresh login." }
+    { "case": "sessionExpiry", "evidence": "After the original fifteen-minute session expired, WhatsApp denied a new private change request and requested login/linkage. Persisted stay remained visible after fresh login." },
+    { "case": "linkRenewal", "evidence": "Fresh customer login, new one-use code and same-session browser confirmation restored linked authority without resetting the stay." },
+    { "case": "change", "stay": "STAY-E717B171", "previousArrival": "2026-10-25", "previousDeparture": "2026-10-27", "arrival": "2026-10-28", "departure": "2026-10-30", "guests": 2, "totalCents": 56000, "differenceCents": 0, "status": "Confirmed", "responseLanguage": "es", "evidence": "Owner supplied the unexecuted proposal, explicit confirmation and Dates updated reply via WhatsApp. Own bookings matched. Browser independently showed the new dates, original nights free and October 28/29 occupied." },
+    { "case": "languageCommandBoundary", "evidence": "Owner combined /en and the change request in one message. Booking intent was recognized, but language remained Spanish. Sending /en separately later changed the response language to English." },
+    { "case": "cancel", "stay": "STAY-E717B171", "arrival": "2026-10-28", "departure": "2026-10-30", "guests": 2, "recordedBookingTotalCents": 56000, "status": "Cancelled", "responseLanguage": "en", "evidence": "Owner supplied English cancellation proposal, explicit offer-bound confirmation, Booking cancelled reply and own-bookings response. Browser independently showed Cancelled, preserved dates/amount/history and released both Suite nights." },
+    { "case": "invalidStaySyntax", "evidence": "An initial mistyped non-hexadecimal stay reference returned the public help response, with no cancellation proposal. The correctly copied reference then produced a proposal; execution followed only its explicit confirmation." }
   ],
-  "pendingLiveCases": ["change confirmed over Meta", "cancel confirmed over Meta", "English private operation over Meta"],
+  "pendingLiveCases": [],
+  "remainingExternalGates": "Broader live failure/security acceptance, real Telegram, Genesys tenant, enterprise SQL and remote CI remain separate. This report closes only the declared resort smoke scope.",
   "localCoverage": "Create/change/cancel ES/EN HTTP fixtures pass. Browser create/change/cancel observed separately. These are not substituted for pending Meta cases.",
   "privacy": "No provider IDs, phone numbers, route hashes, access tokens, link codes, customer secrets or raw provider logs exported. Booking identifiers and data shown here are synthetic."
 }

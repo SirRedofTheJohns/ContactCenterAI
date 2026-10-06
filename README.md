@@ -17,7 +17,7 @@ Three fictional rooms: Standard ($120/night), Deluxe ($180/night) and Suite ($28
 
 ![Fictional resort calendar](docs/progress/screenshots/resort-v0.12.png)
 
-This resort flow uses a bounded deterministic parser. The local Qwen/RAG profile remains available separately; paid token APIs are not required. Real WhatsApp availability and a confirmed Suite booking were observed on 2026-10-06 and matched the web calendar. Remaining live acceptance and remote CI are reported separately in the evidence.
+This resort flow uses a bounded deterministic parser. The local Qwen/RAG profile remains available separately; paid token APIs are not required. On 2026-10-06, real WhatsApp availability, booking, date change and cancellation matched the web calendar, with private responses in Spanish and English. The [recorded walkthrough](docs/progress/resort-whatsapp-2026-10-06.json) covers this demo route; broader provider/security validation and remote CI remain separate.
 
 ## A five-minute walkthrough
 

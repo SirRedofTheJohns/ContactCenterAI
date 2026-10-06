@@ -17,7 +17,7 @@ Tres habitaciones ficticias: Estándar (120 USD/noche), Deluxe (180 USD/noche) y
 
 ![Calendario del resort ficticio](docs/progress/screenshots/resort-v0.12.png)
 
-Este flujo usa un parser determinista con frases acotadas. El perfil Qwen/RAG local sigue disponible por separado; no requiere una API pagada de tokens. El 2026-10-06 se observaron la disponibilidad y una Suite confirmada por WhatsApp, coincidiendo con el calendario web. Las pruebas en vivo restantes y CI remoto se reportan por separado en la evidencia.
+Este flujo usa un parser determinista con frases acotadas. El perfil Qwen/RAG local sigue disponible por separado; no requiere una API pagada de tokens. El 2026-10-06 se comprobaron disponibilidad, reserva, cambio de fechas y cancelación por WhatsApp real, coincidiendo con el calendario y con respuestas privadas en español e inglés. El [recorrido registrado](docs/progress/resort-whatsapp-2026-10-06.json) cubre esta ruta de demo; las validaciones amplias de proveedor/seguridad y CI remoto siguen separadas.
 
 ## Recorrido de cinco minutos
 
