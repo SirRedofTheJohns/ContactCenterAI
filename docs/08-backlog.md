@@ -1,5 +1,9 @@
 # Backlog posterior al freeze
 
+## Propuesta resort v0.12 — 2026-10-06
+
+Petición del dueño: calendario ficticio, categorías/amenidades/tarifas y reservas/cambios/cancelación por WhatsApp. [Diseño ES](resort-booking-v0.12.es.md) / [EN](resort-booking-v0.12.en.md), ADR-025 propuesto y freeze v0.12 **OPEN**, sin implementación. Primero cerrar contratos/esquema/vínculo de cuenta/oráculos de fallo; luego fuente/calendario, administración, identidad, transacciones y canal. La restauración del FAQ tras reiniciar el PC está documentada por separado y no habilita estas capacidades.
+
 ## Extensión de canales v0.11
 
 Diseño previo al código: [freeze](architecture-freeze-v0.11-channels.md), [ES](integrations/channels.es.md), [EN](integrations/channels.en.md), ADR-024 y contratos versionados. CH01: ledger/contratos/fixtures. CH02: Telegram privado polling/replies. CH03: Meta firmado/test number/túnel opcional. CH04: conocimiento Public y handoff mock. Partes locales Ready; live depende de credenciales/configuración/evidencia. CH05 vinculación de miembro y acciones privadas excluido y Not Ready. Sin modificación de mediciones, cuentas ni bases v0.10.
