@@ -12,7 +12,8 @@ Las guías de entrada describen la demo actual en ambos idiomas. Los documentos 
 | Contract / Contrato | [Resort v0.13](contracts/resort-v0.13.md) | [Resort v0.13](contracts/resort-v0.13.md) |
 | Latest evidence / Evidencia más reciente | [v0.13 progress note](progress/portfolio-v0.13-2026-10-27.md) | [Nota v0.13](progress/portfolio-v0.13-2026-10-27.md) |
 | Interview / Entrevista | [Interview script (ES)](interview-script.md) | [Guion de entrevista](interview-script.md) |
-| Changes / Cambios | [Changelog](../CHANGELOG.md), [release notes](release-notes-v0.13.md) | [Changelog](../CHANGELOG.md), [notas de versión](release-notes-v0.13.md) |
+| Local AI chat / IA local del chat | [2026-10-27 note](progress/local-ai-chat-2026-10-27.md) | [Nota 2026-10-27](progress/local-ai-chat-2026-10-27.md) |
+| Changes / Cambios | [Changelog](../CHANGELOG.md), release notes [v0.13](release-notes-v0.13.md), [v0.13.1](release-notes-v0.13.1.md) | [Changelog](../CHANGELOG.md), notas [v0.13](release-notes-v0.13.md), [v0.13.1](release-notes-v0.13.1.md) |
 
 **Earlier guides and history / Guías anteriores e historia** (each page states its status at the top / cada página indica su estado al inicio):
 

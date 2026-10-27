@@ -43,7 +43,7 @@ The page has a *Scenarios* section with buttons that fill the chat for each one,
 | Bookings, ownership, offers, confirmation, transactions, idempotent receipts, recovery | **Implemented** in C# with SQLite and covered by deterministic checks |
 | Sign-in | **Real** local Keycloak OIDC (Authorization Code + PKCE) with synthetic users |
 | Chat interpretation (default) | **Deterministic** rules and regular expressions, no model |
-| Chat interpretation (optional) | **Local AI** adapter for the existing pinned Qwen model, closed schema, no fallback. Model not included; real inference **pending** on a host with the pinned model |
+| Chat interpretation (optional) | **Local AI**: the existing pinned Qwen model through Ollama on your computer (`start-demo.cmd ai`), closed schema, no fallback. **Run** on 2026-10-27: development sample 22/22 after one prompt round (rules 19/22), 3.5–6.8 s per message on CPU. Model not included, and the pinned build may no longer be downloadable ([details](docs/progress/local-ai-chat-2026-10-27.md)) |
 | Original assistant with RAG (v0.10) | Implemented; runs from source, not in the Docker demo |
 | WhatsApp | Optional integration with its own Meta setup; outside the basic demo |
 | Telegram, Genesys, human agents | Adapter present or **simulated**; no live tenant |

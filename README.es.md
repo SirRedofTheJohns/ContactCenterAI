@@ -43,7 +43,7 @@ La página tiene una sección *Escenarios* con botones que rellenan el chat para
 | Reservas, propiedad, propuestas, confirmación, transacciones, recibos idempotentes, recuperación | **Implementado** en C# con SQLite y cubierto por comprobaciones deterministas |
 | Inicio de sesión | **Real**: Keycloak OIDC local (Authorization Code + PKCE) con usuarios sintéticos |
 | Interpretación del chat (por defecto) | **Determinista**: reglas y expresiones regulares, sin modelo |
-| Interpretación del chat (opcional) | Adaptador de **IA local** para el modelo Qwen ya fijado, con esquema cerrado y sin reemplazo silencioso. El modelo no se incluye; la inferencia real queda **pendiente** de un equipo que tenga el modelo fijado |
+| Interpretación del chat (opcional) | **IA local**: el modelo Qwen ya fijado, mediante Ollama en tu equipo (`start-demo.cmd ai`), con esquema cerrado y sin reemplazo silencioso. **Ejecutada** el 2026-10-27: muestra de desarrollo 22/22 tras una ronda de ajuste de prompt (reglas 19/22), 3,5–6,8 s por mensaje en CPU. El modelo no se incluye, y puede que la versión fijada ya no se pueda descargar ([detalles](docs/progress/local-ai-chat-2026-10-27.md)) |
 | Asistente original con RAG (v0.10) | Implementado; se ejecuta desde el código, no en la demo Docker |
 | WhatsApp | Integración opcional con su propia configuración de Meta; fuera de la demo básica |
 | Telegram, Genesys, agentes humanos | Adaptador presente o **simulado**; sin tenant real |

@@ -17,7 +17,9 @@ Hay dos superficies distintas que no conviene mezclar:
 - **Resort (v0.12–v0.13, `/resort.html`)**: chat web, catálogo, calendario, resumen de propuesta y
   formularios. El chat y el puente de WhatsApp comparten `ResortConversation.RespondAsync`. La
   interpretación por defecto es determinista (`ResortLanguage`); el adaptador de IA local
-  (`OllamaResortInterpreter`) es opcional y su inferencia real está pendiente.
+  (`OllamaResortInterpreter`) es opcional (`start-demo.cmd ai`); se evaluó con una muestra de desarrollo
+  el 2026-10-27. No ejecutar `ollama pull qwen3-vl:latest`: la etiqueta del registro ya no coincide con
+  el digest fijado y movería la del equipo.
 
 ## Instrucciones base
 

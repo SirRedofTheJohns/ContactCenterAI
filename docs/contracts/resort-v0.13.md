@@ -24,6 +24,8 @@
 
 - `deterministic` (default, `resort-rules-v0.12`): the v0.12 parser plus guest/policy/reference helpers. No model, network or download.
 - `local-llm` (`CCAI_RESORT_INTERPRETER=local-llm`): `OllamaResortInterpreter` uses the existing pinned `qwen3-vl` digest, raw wrapper, loopback endpoint, eight-second deadline and a closed six-field schema (`resort-intent-local-v1`). Output that is not exactly that schema is rejected, not repaired. Pin mismatch, timeout and transport failure each return their own code. There is no fallback to the deterministic interpreter and no automatic download. The channel bridge always stays deterministic.
+- Endpoint (2026-10-27): `CCAI_OLLAMA_ENDPOINT` accepts only `http://127.0.0.1:11434`, or, in container mode only, `http://host.docker.internal:11434` (Docker Desktop forwards it to the host loopback). Any other value fails startup with `OLLAMA_ENDPOINT_INVALID`. The compose file selects the interpreter with `CCAI_DEMO_INTERPRETER` (default `deterministic`).
+- Warm-up: in `local-llm` mode a startup service checks the pinned digest and loads the model once with the inference load options and no prompt. Its failure changes nothing; the eight-second answer deadline is unchanged.
 
 ## Container profile
 

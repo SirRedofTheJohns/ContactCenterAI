@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-VERSION = 'v0.13'
+VERSION = 'v0.13.1'
 FORBIDDEN = ['*.env', '.env*', '*.db', '*.db-*', '*.sqlite*', '*.pfx', '*.pem', '*.key', '*.p12', '.local/*', '*/.local/*',
              '*/bin/*', '*/obj/*', 'provider-recordings/*', '*.log']
 
@@ -39,12 +39,15 @@ def main():
         'Requirements: Docker Desktop (or Docker Engine with Compose v2) and Internet access the first time.\n'
         'Windows: start-demo.cmd    macOS/Linux: ./demo.sh start\n'
         'Then open http://127.0.0.1:7452 - users customer-a / customer-b / operations-admin, password 123456Aa!\n\n'
-        'Guide: docs/demo-guide.en.md (English) / docs/demo-guide.es.md (Spanish). Release notes: docs/release-notes-v0.13.md\n'
+        'Optional local AI: start-demo.cmd ai (needs Ollama with the pinned qwen3-vl digest; see the guide).\n'
+        'Guide: docs/demo-guide.en.md (English) / docs/demo-guide.es.md (Spanish). Release notes: docs/release-notes-v0.13.1.md\n'
         'Fictional data only. No licence has been chosen yet: default copyright applies.\n', encoding='utf-8', newline='\r\n')
     archive = out / (name + '.zip')
     subprocess.run(['git', 'archive', '--format=zip', f'--prefix={name}/', f'--add-file={note}', '-o', str(archive), 'HEAD'], cwd=repo, check=True)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
-    (out / 'SHA256SUMS').write_text(f'{digest}  {archive.name}\n', encoding='utf-8', newline='\n')
+    # Earlier packages in the folder are kept and listed too.
+    sums = ''.join(f'{hashlib.sha256(z.read_bytes()).hexdigest()}  {z.name}\n' for z in sorted(out.glob('ContactCenterAI-demo-*.zip')))
+    (out / 'SHA256SUMS').write_text(sums, encoding='utf-8', newline='\n')
     print(f'Package: {archive}\nSHA-256: {digest}\nFiles: {len(files) + 1}')
     return 0
 
