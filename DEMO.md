@@ -1,5 +1,7 @@
 # Mostrar ContactCenterAI en cinco minutos
 
+> **Estado 2026-10-27:** guion histórico del equipo original (perfil desde código). Para probar la demo en cualquier equipo con Docker, consulta la [guía de la demo](docs/demo-guide.es.md).
+
 Abre [la demo local](http://127.0.0.1:7452). **Abre Docker Desktop y haz doble clic en Abrir-Demo.cmd**. Conserva tus datos y la selección de IA. El lanzador reconoce el servicio de acceso y puede iniciar únicamente el contenedor Keycloak existente del proyecto; no crea contenedores ni descarga imágenes. Si Docker impide el acceso, inicia el grupo **contactcenterai-local** desde su pantalla. En este equipo ya están preparados Keycloak, el modelo de intención y el modelo bilingüe de búsqueda.
 
 | Cuenta ficticia | Para qué sirve | Clave |

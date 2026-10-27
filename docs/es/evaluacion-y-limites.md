@@ -1,5 +1,7 @@
 # Evidencia y límites
 
+> **Estado 2026-10-27:** las cifras de esta página son históricas (324 en v0.11, 402 en v0.12). Los resultados actuales están en [la nota de progreso v0.13](../progress/portfolio-v0.13-2026-10-27.md). Las mediciones de RAG describen el asistente v0.10, no el chat del resort.
+
 [English](../en/evaluation-and-limits.md)
 
 ## Seguridad y funcionamiento

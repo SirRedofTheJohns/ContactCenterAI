@@ -1,5 +1,7 @@
 # Discussing the project in an interview
 
+> **Status 2026-10-27:** for the current presentation use the [interview script](../interview-script.md) and the [demo guide](../demo-guide.en.md). Remote CI is blocked by the account billing lock; no remote run exists yet.
+
 [Español](../es/portafolio.md)
 
 Lead with a working example: “This is a bilingual C# assistant for fictional reservations. I wanted to show the workflow around AI: identity, permissions, explicit confirmation and recovery when an external service times out.”

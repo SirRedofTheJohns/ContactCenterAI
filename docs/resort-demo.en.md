@@ -1,5 +1,7 @@
 # Try the resort
 
+> **Status 2026-10-27:** historical v0.12 walkthrough centered on WhatsApp with fixed October 2026 examples. For the current web chat, scenarios and dates relative to today, see the [demo guide](demo-guide.en.md).
+
 [Español](resort-demo.es.md) · [Architecture](resort-booking-v0.12.en.md) · [Evidence and limits](progress/resort-v0.12.md)
 
 Caribbean Horizon is a fictional hotel with one Standard room, one Deluxe and one Suite. Nightly prices are USD 120, 180 and 280. The Suite sleeps four and includes a private jacuzzi. There are no payments or commercial hotel connections.

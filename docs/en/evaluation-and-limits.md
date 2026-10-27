@@ -1,5 +1,7 @@
 # Evidence and limits
 
+> **Status 2026-10-27:** figures here are historical (324 at v0.11, 402 at v0.12). Current results are in [the v0.13 progress note](../progress/portfolio-v0.13-2026-10-27.md). The RAG measurements describe the v0.10 assistant, not the resort chat.
+
 [Español](../es/evaluacion-y-limites.md)
 
 ## Safety and correctness

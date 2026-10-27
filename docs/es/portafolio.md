@@ -1,5 +1,7 @@
 # Explicar el proyecto en una entrevista
 
+> **Estado 2026-10-27:** para la presentación actual usa el [guion de entrevista](../interview-script.md) y la [guía de la demo](../demo-guide.es.md). La CI remota está bloqueada por la facturación de la cuenta; todavía no existe una ejecución remota.
+
 [English](../en/portfolio.md)
 
 Empieza con un ejemplo que funcione: «Es un asistente bilingüe en C# para reservas ficticias. Quise demostrar el flujo alrededor de la IA: identidad, permisos, confirmación explícita y recuperación cuando falla un servicio externo».

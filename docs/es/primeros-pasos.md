@@ -1,5 +1,7 @@
 # Ejecutar la demo
 
+> **Estado 2026-10-27:** esta es la preparación histórica del *perfil desde código* (Windows, PowerShell 7, SDK, Python). La forma vigente de ejecutar la demo del resort es Docker: consulta la [guía de la demo](../demo-guide.es.md). La CI remota no se ejecuta desde el bloqueo de facturación de la cuenta de GitHub; la frase sobre CI de abajo no es evidencia actual.
+
 [English](../en/getting-started.md)
 
 ## Requisitos

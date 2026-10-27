@@ -1,0 +1,15 @@
+# The demo image needs only src/, build settings and deploy/demo scripts.
+.git
+**/.local
+**/bin
+**/obj
+**/.vs
+**/.env
+**/*.db
+**/*.db-*
+docs
+evaluation
+spikes
+tests
+deploy/local/.env
+deploy/channels

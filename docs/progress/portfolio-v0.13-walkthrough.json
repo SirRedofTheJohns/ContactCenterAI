@@ -1,0 +1,115 @@
+{
+  "result": "PASS",
+  "commit": "95eda1b9",
+  "source": "clean copy extracted from .local/release/ContactCenterAI-demo-v0.13-95eda1b9.zip, started with start-demo.cmd",
+  "host": "Windows 11, Docker Desktop (engine 27.4.0), headless Chrome driven over CDP",
+  "phaseA": {
+    "phase": "a",
+    "at": "2026-10-27T21:17:59.152Z",
+    "results": [
+      {
+        "step": "Page loads with catalog, calendar and deterministic mode badge",
+        "ok": true,
+        "detail": "today=2026-10-27, / redirects to /resort.html, mode=Modo determinista"
+      },
+      {
+        "step": "Visitor asks about the Suite",
+        "ok": true,
+        "detail": "Suite · 280.00 USD por noche; tarifa ficticia · huéspedes: 4"
+      },
+      {
+        "step": "Visitor booking request asks to sign in; no offer",
+        "ok": true,
+        "detail": "SIGN_IN_REQUIRED"
+      },
+      {
+        "step": "Sign in from the chat through Keycloak keeps the typed message",
+        "ok": true,
+        "detail": "idp=http://localhost:18080, account=Cliente A, restored=\"Reservar Deluxe 2026-11-17 a 2026-11-19 para 2 personas\""
+      },
+      {
+        "step": "Chat booking returns a reviewable proposal (no booking yet)",
+        "ok": true,
+        "detail": "Acción | reservar | Habitación | Deluxe | Fechas | 2026-11-17 → 2026-11-19 · 2 noches | Huéspedes | 2 | Total ficticio | 360.00 USD | Vence | 27/10/2026, 17:22:59 · America/Santo_Domingo | Estado | Todavía no se ejecutó."
+      },
+      {
+        "step": "Confirm books once; calendar and My bookings update",
+        "ok": true,
+        "detail": "Acción confirmada · STAY-CF50EF5C"
+      },
+      {
+        "step": "Repeated confirmation returns the same receipt without a duplicate",
+        "ok": true,
+        "detail": "Acción confirmada · STAY-CF50EF5C · Mismo recibo que antes: no se repitió la operación."
+      },
+      {
+        "step": "Change onto occupied nights is rejected and the original is kept",
+        "ok": true,
+        "detail": "target 2026-11-06 → DATES_OCCUPIED; STAY-CF50EF5C still 2026-11-17 → 2026-11-19"
+      },
+      {
+        "step": "Change to free dates through chat, then confirm",
+        "ok": true,
+        "detail": "STAY-CF50EF5C now 2026-11-21 → 2026-11-23, guests kept 2"
+      },
+      {
+        "step": "Cancel through chat, then confirm",
+        "ok": true,
+        "detail": "STAY-CF50EF5C Cancelled"
+      },
+      {
+        "step": "Another customer's booking is denied without data",
+        "ok": true,
+        "detail": "Esa reserva/propuesta no está disponible para tu cuenta actual. [RESOURCE_NOT_FOUND]"
+      },
+      {
+        "step": "Lab fault: unverified result recovered from the same receipt",
+        "ok": true,
+        "detail": "Acción confirmada · STAY-3ECAF754 · Recuperado del recibo de la misma propuesta."
+      },
+      {
+        "step": "Ambiguous guest count is asked, out-of-scope is declined",
+        "ok": true,
+        "detail": "RESORT_DETAILS_REQUIRED (guests-exact) + RESORT_OUT_OF_SCOPE"
+      },
+      {
+        "step": "Technical panel shows mode and receipt but no token",
+        "ok": true,
+        "detail": "no CSRF token in panel"
+      },
+      {
+        "step": "English UI and chat",
+        "ok": true,
+        "detail": "STAY-A0000001 · standard · 2026-11-03 → 2026-11-05"
+      },
+      {
+        "step": "Logout ends the session",
+        "ok": true,
+        "detail": "notice: Sesión cerrada.; /v2/resort/stays → 401"
+      }
+    ]
+  },
+  "restart": "stop-demo.cmd then start-demo.cmd",
+  "phaseB": {
+    "phase": "b",
+    "at": "2026-10-27T21:18:29.550Z",
+    "results": [
+      {
+        "step": "After container restart: sign in again and earlier bookings persist",
+        "ok": true,
+        "detail": "STAY-A0000001:Confirmed, STAY-CF50EF5C:Cancelled, STAY-3ECAF754:Confirmed"
+      },
+      {
+        "step": "Keyboard: skip link, type, Enter to send, Tab to Confirm, Enter to execute",
+        "ok": true,
+        "detail": "first Tab → skip:Ir al chat; Enter → chat-input; Enter sends; focus → offer-title; Tab → confirm; Enter → Acción confirmada · STAY-B2B62D24"
+      },
+      {
+        "step": "Mobile 390px: no horizontal overflow; chat usable",
+        "ok": true,
+        "detail": "scrollWidth=390, calendar days=7"
+      }
+    ]
+  },
+  "scope": "Real browser against the Docker demo with real Keycloak login. Fictional data. Not a load, security or cross-platform test."
+}

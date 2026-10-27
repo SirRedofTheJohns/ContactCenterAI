@@ -1,0 +1,4 @@
+# Shell scripts run inside Linux containers or on macOS/Linux hosts: keep LF even on Windows checkouts.
+*.sh text eol=lf
+# Windows launchers keep CRLF.
+*.cmd text eol=crlf

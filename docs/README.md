@@ -4,9 +4,22 @@ The entry guides describe the current demo in both languages. Older numbered doc
 
 Las guías de entrada describen la demo actual en ambos idiomas. Los documentos numerados e informes conservan el diseño original y su evolución; sus estados históricos no describen necesariamente la implementación actual.
 
+**Current (v0.13, 2026-10-27) / Vigente:**
+
 | Topic / Tema | English | Español |
 |---|---|---|
-| Setup / Preparación | [Getting started](en/getting-started.md) | [Primeros pasos](es/primeros-pasos.md) |
+| Install, use, scenarios, architecture / Instalar, usar, escenarios, arquitectura | [Demo guide](demo-guide.en.md) | [Guía de la demo](demo-guide.es.md) |
+| Contract / Contrato | [Resort v0.13](contracts/resort-v0.13.md) | [Resort v0.13](contracts/resort-v0.13.md) |
+| Latest evidence / Evidencia más reciente | [v0.13 progress note](progress/portfolio-v0.13-2026-10-27.md) | [Nota v0.13](progress/portfolio-v0.13-2026-10-27.md) |
+| Interview / Entrevista | [Interview script (ES)](interview-script.md) | [Guion de entrevista](interview-script.md) |
+| Local AI chat / IA local del chat | [2026-10-27 note](progress/local-ai-chat-2026-10-27.md) | [Nota 2026-10-27](progress/local-ai-chat-2026-10-27.md) |
+| Changes / Cambios | [Changelog](../CHANGELOG.md), release notes [v0.13](release-notes-v0.13.md), [v0.13.1](release-notes-v0.13.1.md) | [Changelog](../CHANGELOG.md), notas [v0.13](release-notes-v0.13.md), [v0.13.1](release-notes-v0.13.1.md) |
+
+**Earlier guides and history / Guías anteriores e historia** (each page states its status at the top / cada página indica su estado al inicio):
+
+| Topic / Tema | English | Español |
+|---|---|---|
+| Source-profile setup / Preparación desde código | [Getting started](en/getting-started.md) | [Primeros pasos](es/primeros-pasos.md) |
 | Demo | [Demo script](en/demo.md) | [Guion](../DEMO.md) |
 | Architecture / Arquitectura | [Engineering guide](en/engineering-guide.md) | [Guía de ingeniería](es/guia-ingenieria.md) |
 | Evidence and limits / Evidencia y límites | [Evaluation](en/evaluation-and-limits.md) | [Evaluación](es/evaluacion-y-limites.md) |

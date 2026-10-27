@@ -20,5 +20,6 @@
     <Project Path="tests/ContactCenterAI.RetrievalChecks/ContactCenterAI.RetrievalChecks.csproj" />
     <Project Path="tests/ContactCenterAI.OperationsChecks/ContactCenterAI.OperationsChecks.csproj" />
     <Project Path="tests/ContactCenterAI.ChannelChecks/ContactCenterAI.ChannelChecks.csproj" />
+    <Project Path="tests/ContactCenterAI.ResortChatChecks/ContactCenterAI.ResortChatChecks.csproj" />
   </Folder>
 </Solution>
