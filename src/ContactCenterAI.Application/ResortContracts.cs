@@ -12,6 +12,36 @@ public sealed record ResortChannelRequest(string Route, long Epoch, string Endpo
 public sealed record ResortChannelResult(string Text, string Code);
 public sealed record ResortBlockRequest(string Unit, string Arrival, string Departure);
 public sealed record ResortConfirm(string Decision);
+public sealed record ResortChatRequest(string Text, string Language);
+public sealed record ResortAvailability(string Type, long NightlyCents, int Capacity, string[] Ranges);
+// One structured conversation turn shared by the web chat and the WhatsApp bridge. Text is presentation only;
+// authority comes from the server-resolved Actor, never from the interpretation.
+public sealed record ResortTurn(string Code, string Text, string Mode, ResortRequest? Interpreted, string[] Missing, string[] Assumptions,
+    ResortOffer? Offer = null, ResortStay[]? Stays = null, IReadOnlyList<RoomCategory>? Catalog = null, ResortAvailability[]? Availability = null,
+    ResortReceipt? Receipt = null, string[]? Suggestions = null);
+// Untrusted proposal from an interpreter: either the deterministic parser or a local model.
+public sealed record ResortInterpretation(ResortRequest? Request, int? Guests, bool GuestsAmbiguous, string Source, string? Error = null);
+public interface IResortInterpreter
+{
+    string Mode { get; }
+    string ProviderId { get; }
+    Task<ResortInterpretation> InterpretAsync(string sanitizedText, string language, DateOnly today, CancellationToken ct);
+}
+public sealed class DeterministicResortInterpreter : IResortInterpreter
+{
+    public string Mode => "deterministic";
+    public string ProviderId => "resort-rules-v0.12";
+    public Task<ResortInterpretation> InterpretAsync(string sanitizedText, string language, DateOnly today, CancellationToken ct) =>
+        Task.FromResult(Interpret(sanitizedText, new DateTimeOffset(today.ToDateTime(TimeOnly.MinValue), TimeSpan.Zero)));
+    public static ResortInterpretation Interpret(string text, DateTimeOffset now)
+    {
+        var (guests, ambiguous) = ResortLanguage.GuestMention(text);
+        var parsed = ResortLanguage.Parse(text, now);
+        if (parsed is null && ResortLanguage.IsPolicyQuestion(text)) parsed = new("policy");
+        else if (ResortLanguage.ActionWithoutReference(text) is string action && parsed?.Action is not ("change" or "cancel")) parsed = new(action, null, parsed?.Type, parsed?.Arrival, parsed?.Departure);
+        return new(parsed, guests, ambiguous, "resort-rules-v0.12");
+    }
+}
 
 // This parser is a bounded demo interpreter, not an unrestricted language model.
 public static partial class ResortLanguage
@@ -72,6 +102,23 @@ public static partial class ResortLanguage
         var guest = Guests().Match(q); var guests = guest.Success ? int.Parse(guest.Groups[1].Value, CultureInfo.InvariantCulture) : 2;
         return new(action, id, type, arrival, departure, guests);
     }
+    // Parse keeps its v0.12 default of two guests for the declared examples; the conversation asks instead of assuming.
+    public static (int? Count, bool Ambiguous) GuestMention(string text)
+    {
+        var counts = GuestCount().Matches(text.ToLowerInvariant()).Select(m => int.Parse(m.Groups[1].Value, CultureInfo.InvariantCulture)).Distinct().ToArray();
+        var hedged = GuestRange().IsMatch(text.ToLowerInvariant());
+        return counts.Length == 1 && !hedged ? (counts[0], false) : (null, counts.Length > 1 || hedged);
+    }
+    public static bool IsPolicyQuestion(string text) { var q = text.ToLowerInvariant(); return q.Contains("política") || q.Contains("politica") || q.Contains("policy") || q.Contains("regla") || q.Contains("rules"); }
+    // Change/cancel intent without a STAY reference: Parse cannot act on it, so the conversation asks which booking.
+    public static string? ActionWithoutReference(string text)
+    {
+        var q = text.ToLowerInvariant(); if (Stay().IsMatch(text)) return null;
+        return q.Contains("cancel") || q.Contains("anular") ? "cancel" : q.Contains("cambia") || q.Contains("change") || q.Contains("mover") || q.Contains("reschedul") ? "change" : null;
+    }
+    public static int DateCount(string text) => Dates().Matches(text).Count;
+    [GeneratedRegex(@"\b(\d{1,2})\s*(?:personas?|hu[eé]spedes?|guests?|people|adult(?:o|e)?s?)\b", RegexOptions.CultureInvariant, 100)] private static partial Regex GuestCount();
+    [GeneratedRegex(@"\b\d{1,2}\s*(?:o|or|a|to|-|–)\s*\d{1,2}\s*(?:personas?|hu[eé]spedes?|guests?|people|adult(?:o|e)?s?)\b", RegexOptions.CultureInvariant, 100)] private static partial Regex GuestRange();
     [GeneratedRegex(@"^(?:vincular|link)\s+([a-fA-F0-9]{32})$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, 100)] private static partial Regex Link();
     [GeneratedRegex(@"^(?:confirmar|confirm)\s+([a-fA-F0-9-]{36})$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, 100)] private static partial Regex Confirm();
     [GeneratedRegex(@"\bSTAY-[A-F0-9]{8}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, 100)] private static partial Regex Stay();

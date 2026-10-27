@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "type", "arrival", "departure", "guests", "stayId"],
+  "properties": {
+    "action": {"type": "string", "enum": ["catalog", "availability", "create", "change", "cancel", "list", "policy", "unknown"]},
+    "type": {"type": ["string", "null"], "enum": ["standard", "deluxe", "suite", null]},
+    "arrival": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "departure": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "guests": {"type": ["integer", "null"], "minimum": 1, "maximum": 20},
+    "stayId": {"type": ["string", "null"], "pattern": "^STAY-[A-F0-9]{8}$"}
+  }
+}
