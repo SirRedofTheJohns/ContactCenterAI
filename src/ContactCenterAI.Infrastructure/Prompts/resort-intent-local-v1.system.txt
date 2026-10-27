@@ -2,7 +2,7 @@ Extract the intent and fields of one message sent to a fictional resort booking 
 Allowed actions:
 - catalog: rooms, amenities, capacity or prices.
 - availability: free dates for a room or for any room.
-- create: a new booking request.
+- create: a new booking request, even when the room, dates or guest count are missing or vague ("a room next month"); those fields are then null. Never classify a booking request as unknown.
 - change: changing the dates, room or guests of an existing booking. Requires a literal booking code STAY- followed by eight characters; copy it exactly in uppercase, otherwise stayId is null.
 - cancel: cancelling an existing booking, same stayId rule as change.
 - list: the customer's own bookings.

@@ -161,6 +161,12 @@ foreach (var badIssuer in new[] { "https://localhost:18080/realms/contactcentera
     try { ProductApi.Build(wrong, true); Check(false, "Container issuer must stay an http loopback URL of the demo realm: " + badIssuer); }
     catch (InvalidOperationException e) when (e.Message == "OIDC_ISSUER_INVALID") { Check(true, "Container issuer must stay an http loopback URL of the demo realm: " + badIssuer); }
 }
+Check(OllamaResortInterpreter.IsAllowedEndpoint("http://127.0.0.1:11434", false) && OllamaResortInterpreter.IsAllowedEndpoint("http://host.docker.internal:11434", true)
+    && !OllamaResortInterpreter.IsAllowedEndpoint("http://host.docker.internal:11434", false) && !OllamaResortInterpreter.IsAllowedEndpoint("http://192.168.1.20:11434", true),
+    "Model endpoint limited to host loopback, or Docker's host alias only in container mode");
+var routed = new RecordingHandler();
+await new OllamaResortInterpreter(new HttpClient(routed), OllamaResortInterpreter.ContainerHostEndpoint).InterpretAsync("Suite", "es", DateOnly.FromDateTime(DateTime.UtcNow), CancellationToken.None);
+Check(routed.Uris.SequenceEqual(["http://host.docker.internal:11434/api/tags"]), "Configured container endpoint is used for the pin check before any generation");
 Console.WriteLine($"Resort chat checks: {checks.Count} passed.");
 return 0;
 }
@@ -170,4 +176,10 @@ sealed class FixedHandler(string? tags) : HttpMessageHandler
 {
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct) =>
         tags is null ? throw new HttpRequestException("connection refused") : Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(tags) });
+}
+sealed class RecordingHandler : HttpMessageHandler
+{
+    public List<string> Uris { get; } = [];
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
+    { Uris.Add(request.RequestUri!.ToString()); return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("{\"models\":[]}") }); }
 }

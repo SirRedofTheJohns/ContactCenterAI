@@ -55,11 +55,15 @@ services:
     environment:
       CCAI_DEMO_CONTAINER: "true"
       CCAI_RESORT_ENABLED: "true"
-      CCAI_RESORT_INTERPRETER: deterministic
+      # Deterministic by default. "start-demo.cmd ai" / "./demo.sh start-ai" selects the local model on the host's Ollama.
+      CCAI_RESORT_INTERPRETER: ${CCAI_DEMO_INTERPRETER:-deterministic}
+      CCAI_OLLAMA_ENDPOINT: http://host.docker.internal:11434
       CCAI_INTENT_PROVIDER: simulated
       CCAI_RETRIEVAL_PROVIDER: topic
       CCAI_OIDC_ISSUER: http://localhost:${CCAI_DEMO_IDP_PORT:-18080}/realms/contactcenterai-local
       CCAI_OIDC_METADATA_ADDRESS: http://keycloak:8080/realms/contactcenterai-local/.well-known/openid-configuration
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "127.0.0.1:7452:7452"
     volumes:

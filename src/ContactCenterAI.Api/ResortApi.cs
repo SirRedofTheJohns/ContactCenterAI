@@ -211,3 +211,10 @@ public sealed class ResortRecoveryWorker(ResortStore store, IOperationalStore id
         }
     }
 }
+
+// Local AI mode only: load the pinned model once at startup so the first visitor message does not hit a cold start.
+public sealed class ResortModelWarmup(IResortInterpreter interpreter) : BackgroundService
+{
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) =>
+        interpreter is OllamaResortInterpreter local ? local.WarmUpAsync(stoppingToken) : Task.CompletedTask;
+}

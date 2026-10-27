@@ -11,8 +11,12 @@ namespace ContactCenterAI.Infrastructure;
 // Resort chat adapter for the existing pinned local model. The model only proposes intent and fields; the
 // conversation still applies the same clarification, ownership, offer and explicit-confirmation rules.
 // Failures return an explicit error code: there is no silent fallback to the deterministic interpreter.
-public sealed partial class OllamaResortInterpreter(HttpClient client) : IResortInterpreter
+public sealed partial class OllamaResortInterpreter(HttpClient client, string endpoint = OllamaResortInterpreter.LoopbackEndpoint) : IResortInterpreter
 {
+    public const string LoopbackEndpoint = "http://127.0.0.1:11434";
+    // Docker Desktop forwards this name to the host loopback, so Ollama keeps listening on 127.0.0.1 only.
+    public const string ContainerHostEndpoint = "http://host.docker.internal:11434";
+    public static bool IsAllowedEndpoint(string value, bool container) => value == LoopbackEndpoint || container && value == ContainerHostEndpoint;
     private static readonly string SystemPrompt = Resource("resort-intent-local-v1.system.txt");
     private static readonly string Schema = Resource("resort-intent-local-v1.schema.json");
     public string Mode => "local-llm";
@@ -32,12 +36,7 @@ public sealed partial class OllamaResortInterpreter(HttpClient client) : IResort
         deadline.CancelAfter(TimeSpan.FromSeconds(8));
         try
         {
-            using var tagsResponse = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, "http://127.0.0.1:11434/api/tags"), HttpCompletionOption.ResponseHeadersRead, deadline.Token);
-            using var tags = await OllamaIntentProvider.ReadAsync(tagsResponse, deadline.Token);
-            if (!tags.RootElement.TryGetProperty("models", out var models) || models.ValueKind != JsonValueKind.Array ||
-                !models.EnumerateArray().Any(model => model.TryGetProperty("name", out var name) && name.GetString() == OllamaIntentProvider.ModelTag &&
-                    model.TryGetProperty("digest", out var digest) && digest.GetString() == OllamaIntentProvider.ModelDigest))
-                return Failed("LOCAL_MODEL_PIN_MISMATCH");
+            if (!await PinnedAsync(deadline.Token)) return Failed("LOCAL_MODEL_PIN_MISMATCH");
             var payload = new
             {
                 model = OllamaIntentProvider.ModelTag,
@@ -45,9 +44,9 @@ public sealed partial class OllamaResortInterpreter(HttpClient client) : IResort
                     JsonSerializer.Serialize(new { language, today = today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture), message = sanitizedText }) +
                     "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
                 raw = true, stream = false, think = false, format = JsonNode.Parse(Schema), keep_alive = "15m",
-                options = new { temperature = 0, num_ctx = 2048, num_predict = 128, num_gpu = 0, num_thread = 8 }
+                options = new { temperature = 0, num_ctx = LoadOptions.num_ctx, num_predict = 128, num_gpu = LoadOptions.num_gpu, num_thread = LoadOptions.num_thread }
             };
-            using var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:11434/api/generate") { Content = JsonContent.Create(payload) }, HttpCompletionOption.ResponseHeadersRead, deadline.Token);
+            using var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Post, endpoint + "/api/generate") { Content = JsonContent.Create(payload) }, HttpCompletionOption.ResponseHeadersRead, deadline.Token);
             using var body = await OllamaIntentProvider.ReadAsync(response, deadline.Token);
             var root = body.RootElement;
             if (!root.TryGetProperty("done", out var done) || done.ValueKind != JsonValueKind.True ||
@@ -61,6 +60,31 @@ public sealed partial class OllamaResortInterpreter(HttpClient client) : IResort
         catch (Exception error) when (error is HttpRequestException or JsonException or IOException) { return Failed("LOCAL_MODEL_UNAVAILABLE"); }
     }
     private ResortInterpretation Failed(string code) => new(null, null, false, ProviderId, code);
+    // Same load options as inference, so the warm-up load is reused instead of reloaded.
+    private static readonly (int num_ctx, int num_gpu, int num_thread) LoadOptions = (2048, 0, 8);
+    private async Task<bool> PinnedAsync(CancellationToken ct)
+    {
+        using var tagsResponse = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, endpoint + "/api/tags"), HttpCompletionOption.ResponseHeadersRead, ct);
+        using var tags = await OllamaIntentProvider.ReadAsync(tagsResponse, ct);
+        return tags.RootElement.TryGetProperty("models", out var models) && models.ValueKind == JsonValueKind.Array &&
+            models.EnumerateArray().Any(model => model.TryGetProperty("name", out var name) && name.GetString() == OllamaIntentProvider.ModelTag &&
+                model.TryGetProperty("digest", out var digest) && digest.GetString() == OllamaIntentProvider.ModelDigest);
+    }
+    // Cold-loading the model on CPU can exceed the eight-second answer deadline, so startup loads it once
+    // (pinned digest only, no prompt, no inference). Failure changes nothing: the chat still reports its explicit error.
+    public async Task<bool> WarmUpAsync(CancellationToken ct)
+    {
+        try
+        {
+            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            deadline.CancelAfter(TimeSpan.FromMinutes(3));
+            if (!await PinnedAsync(deadline.Token)) return false;
+            var payload = new { model = OllamaIntentProvider.ModelTag, keep_alive = "15m", options = new { num_ctx = LoadOptions.num_ctx, num_gpu = LoadOptions.num_gpu, num_thread = LoadOptions.num_thread } };
+            using var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Post, endpoint + "/api/generate") { Content = JsonContent.Create(payload) }, deadline.Token);
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception error) when (error is HttpRequestException or OperationCanceledException or IOException or JsonException or RequestRejected) { return false; }
+    }
     // Closed-contract validation of untrusted model output. Anything outside the contract is rejected, not repaired.
     public static ResortInterpretation Validate(string output, string source)
     {

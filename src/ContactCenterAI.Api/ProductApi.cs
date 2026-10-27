@@ -163,7 +163,9 @@ public static class ProductApi
             builder.Services.AddSingleton(sp => new ResortStore(Path.Combine(builder.Environment.ContentRootPath, ".local", "resort", "resort.db"), sp.GetRequiredService<TimeProvider>()));
             builder.Services.AddSingleton<ResortConversation>();
             var interpreterMode = builder.Configuration["CCAI_RESORT_INTERPRETER"] ?? "deterministic";
-            if (interpreterMode == "local-llm") builder.Services.AddSingleton<IResortInterpreter>(new OllamaResortInterpreter(OllamaIntentProvider.CreateClient()));
+            var ollamaEndpoint = builder.Configuration["CCAI_OLLAMA_ENDPOINT"] ?? OllamaResortInterpreter.LoopbackEndpoint;
+            if (!OllamaResortInterpreter.IsAllowedEndpoint(ollamaEndpoint, container)) throw new InvalidOperationException("OLLAMA_ENDPOINT_INVALID");
+            if (interpreterMode == "local-llm") { builder.Services.AddSingleton<IResortInterpreter>(new OllamaResortInterpreter(OllamaIntentProvider.CreateClient(), ollamaEndpoint)); builder.Services.AddHostedService<ResortModelWarmup>(); }
             else if (interpreterMode == "deterministic") builder.Services.AddSingleton<IResortInterpreter, DeterministicResortInterpreter>();
             else throw new InvalidOperationException("RESORT_INTERPRETER_MODE_INVALID");
             builder.Services.AddHostedService<ResortRecoveryWorker>();
