@@ -184,7 +184,7 @@ public sealed class ResortConversation(ResortStore store, IOperationalStore iden
     }
     // Web text uses the property's time zone, matching the proposal summary; the channel keeps its v0.12 UTC format.
     private static string PropertyTime(DateTimeOffset at) => TimeZoneInfo.ConvertTime(at, TimeZoneInfo.FindSystemTimeZoneById("America/Santo_Domingo")).ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture) + " (America/Santo_Domingo)";
-    private static string StayText(ResortStay s, bool en) => $"{s.Id} · {s.Type} · {s.Arrival} → {s.Departure}\n{s.Guests} {(en ? "guests" : "huéspedes")} · {Money(s.TotalCents)} · {s.Status}";
+    private static string StayText(ResortStay s, bool en) => $"{s.Id} · {s.Type} · {s.Arrival} → {s.Departure}\n{s.Guests} {(en ? "guests" : "huéspedes")} · {Money(s.TotalCents)} · {(en ? s.Status : s.Status == "Confirmed" ? "Confirmada" : "Cancelada")}";
     private static string Error(string code, bool en) => code switch
     {
         "DATES_OCCUPIED" => en ? "Those nights are occupied or blocked. Your previous booking is unchanged. Ask for available dates." : "Esas noches están ocupadas o bloqueadas. Tu reserva anterior se conserva. Pide fechas disponibles.",
