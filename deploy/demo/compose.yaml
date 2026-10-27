@@ -1,0 +1,79 @@
+# Self-contained resort demo: app + identity + persistence. No WhatsApp, tunnel, ChannelHost or model.
+# Start: start-demo.cmd (Windows) or ./demo.sh start. Ports are published only on the host loopback.
+name: contactcenterai-demo
+x-app-image: &app-image
+  build:
+    context: ../..
+    dockerfile: deploy/demo/Dockerfile
+  image: contactcenterai-demo:local
+services:
+  init:
+    <<: *app-image
+    entrypoint: ["/bin/sh", "/app/demo/init-config.sh"]
+    volumes:
+      - demo-config:/config
+    restart: "no"
+  keycloak:
+    image: quay.io/keycloak/keycloak@sha256:37dbaf6f0722c9ec246335f36e1ef8b2e6cb960f7c27e0d8c615121a3d475a85
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    # The realm (users, roles, exact callback) is imported once from the repository fixture; later starts keep it.
+    entrypoint:
+      - /bin/bash
+      - -c
+      - set -a && . /config/demo.env && set +a && export KC_BOOTSTRAP_ADMIN_PASSWORD="$$CCAI_KEYCLOAK_ADMIN_PASSWORD" && exec /opt/keycloak/bin/kc.sh start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ccai-local-admin
+      # Browsers reach Keycloak as localhost:<CCAI_DEMO_IDP_PORT> (the issuer); the app reaches it as keycloak:8080.
+      # 18080 by default because 8080 is often taken; override with CCAI_DEMO_IDP_PORT if needed.
+      KC_HOSTNAME: http://localhost:${CCAI_DEMO_IDP_PORT:-18080}
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
+      KC_HEALTH_ENABLED: "true"
+      CCAI_SYNTHETIC_USER_PASSWORD: "123456Aa!"
+    ports:
+      - "127.0.0.1:${CCAI_DEMO_IDP_PORT:-18080}:8080"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ../local/keycloak:/opt/keycloak/data/import:ro
+      - demo-config:/config:ro
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/9000 && printf 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && grep -q UP <&3"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 20s
+    mem_limit: 1g
+    restart: unless-stopped
+  app:
+    <<: *app-image
+    depends_on:
+      init:
+        condition: service_completed_successfully
+      keycloak:
+        condition: service_healthy
+    environment:
+      CCAI_DEMO_CONTAINER: "true"
+      CCAI_RESORT_ENABLED: "true"
+      CCAI_RESORT_INTERPRETER: deterministic
+      CCAI_INTENT_PROVIDER: simulated
+      CCAI_RETRIEVAL_PROVIDER: topic
+      CCAI_OIDC_ISSUER: http://localhost:${CCAI_DEMO_IDP_PORT:-18080}/realms/contactcenterai-local
+      CCAI_OIDC_METADATA_ADDRESS: http://keycloak:8080/realms/contactcenterai-local/.well-known/openid-configuration
+    ports:
+      - "127.0.0.1:7452:7452"
+    volumes:
+      - app-data:/app/.local
+      - demo-config:/config:ro
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/7452 && printf 'GET /health/live HTTP/1.1\\r\\nHost: 127.0.0.1:7452\\r\\nConnection: close\\r\\n\\r\\n' >&3 && grep -q Alive <&3"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    mem_limit: 1g
+    restart: unless-stopped
+volumes:
+  demo-config:
+  keycloak-data:
+  app-data:

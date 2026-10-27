@@ -154,6 +154,13 @@ invalid.Configuration.AddInMemoryCollection(new Dictionary<string, string?> { ["
 try { ProductApi.Build(invalid, true); Check(false, "Container metadata address restricted to the demo realm discovery path"); }
 catch (InvalidOperationException e) when (e.Message == "OIDC_METADATA_ADDRESS_INVALID") { Check(true, "Container metadata address restricted to the demo realm discovery path"); }
 
+foreach (var badIssuer in new[] { "https://localhost:18080/realms/contactcenterai-local", "http://evil.example:18080/realms/contactcenterai-local", "http://localhost:18080/realms/master" })
+{
+    var wrong = WebApplication.CreateBuilder(new WebApplicationOptions { ContentRootPath = root, EnvironmentName = "Production" });
+    wrong.Configuration.AddInMemoryCollection(new Dictionary<string, string?> { ["CCAI_DEMO_CONTAINER"] = "true", ["CCAI_OIDC_ISSUER"] = badIssuer });
+    try { ProductApi.Build(wrong, true); Check(false, "Container issuer must stay an http loopback URL of the demo realm: " + badIssuer); }
+    catch (InvalidOperationException e) when (e.Message == "OIDC_ISSUER_INVALID") { Check(true, "Container issuer must stay an http loopback URL of the demo realm: " + badIssuer); }
+}
 Console.WriteLine($"Resort chat checks: {checks.Count} passed.");
 return 0;
 }

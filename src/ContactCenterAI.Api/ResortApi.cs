@@ -161,7 +161,7 @@ public sealed class ResortConversation(ResortStore store, IOperationalStore iden
             }
             var offer = store.Offer(actor, request, key, route, epoch);
             var r = offer.Request;
-            return Turn("RESORT_OFFER", $"{(en ? "Proposal — not booked yet" : "Propuesta — todavía no ejecutada")}: {(r.Action == "create" ? (en ? "book" : "reservar") : r.Action == "change" ? (en ? "change dates" : "cambiar fechas") : (en ? "cancel" : "cancelar"))}\n{r.StayId} {r.Type}: {r.Arrival} → {r.Departure}; {r.Guests} {(en ? "guests" : "huéspedes")}\n{(en ? "Fictional total" : "Total ficticio")}: {Money(offer.TotalCents)}" + (r.Action == "change" ? $"\n{(en ? "Previous total / difference" : "Total anterior / diferencia")}: {Money(offer.PreviousTotalCents)} / {Money(offer.TotalCents - offer.PreviousTotalCents)}" : "") + $"\n{(en ? "Expires" : "Vence")}: {offer.ExpiresAt:u}" + (channel ? $"\n{(en ? "Confirm" : "Confirmar")} {offer.Id}" : ""), request) with { Offer = offer };
+            return Turn("RESORT_OFFER", $"{(en ? "Proposal — not booked yet" : "Propuesta — todavía no ejecutada")}: {(r.Action == "create" ? (en ? "book" : "reservar") : r.Action == "change" ? (en ? "change dates" : "cambiar fechas") : (en ? "cancel" : "cancelar"))}\n{r.StayId} {r.Type}: {r.Arrival} → {r.Departure}; {r.Guests} {(en ? "guests" : "huéspedes")}\n{(en ? "Fictional total" : "Total ficticio")}: {Money(offer.TotalCents)}" + (r.Action == "change" ? $"\n{(en ? "Previous total / difference" : "Total anterior / diferencia")}: {Money(offer.PreviousTotalCents)} / {Money(offer.TotalCents - offer.PreviousTotalCents)}" : "") + $"\n{(en ? "Expires" : "Vence")}: {(channel ? offer.ExpiresAt.ToString("u", CultureInfo.InvariantCulture) : PropertyTime(offer.ExpiresAt))}" + (channel ? $"\n{(en ? "Confirm" : "Confirmar")} {offer.Id}" : ""), request) with { Offer = offer };
         }
         catch (RequestRejected rejected) { return Turn(rejected.Code, Error(rejected.Code, en)); }
     }
@@ -182,6 +182,8 @@ public sealed class ResortConversation(ResortStore store, IOperationalStore iden
             : (en ? $"Book {type} {request.Arrival ?? a} to {request.Departure ?? d} for 2 guests" : $"Reservar {type} {request.Arrival ?? a} a {request.Departure ?? d} para 2 personas");
         return (en ? "To prepare the proposal I still need " : "Para preparar la propuesta me falta ") + string.Join(en ? " and " : " y ", parts) + (en ? ". Example: " : ". Ejemplo: ") + example;
     }
+    // Web text uses the property's time zone, matching the proposal summary; the channel keeps its v0.12 UTC format.
+    private static string PropertyTime(DateTimeOffset at) => TimeZoneInfo.ConvertTime(at, TimeZoneInfo.FindSystemTimeZoneById("America/Santo_Domingo")).ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture) + " (America/Santo_Domingo)";
     private static string StayText(ResortStay s, bool en) => $"{s.Id} · {s.Type} · {s.Arrival} → {s.Departure}\n{s.Guests} {(en ? "guests" : "huéspedes")} · {Money(s.TotalCents)} · {s.Status}";
     private static string Error(string code, bool en) => code switch
     {

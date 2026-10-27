@@ -30,6 +30,12 @@ public static class ProductApi
         var metadataAddress = container ? builder.Configuration["CCAI_OIDC_METADATA_ADDRESS"] : null;
         if (metadataAddress is not null && (!Uri.TryCreate(metadataAddress, UriKind.Absolute, out var metadataUri) || metadataUri.Scheme != "http" || !metadataUri.AbsolutePath.EndsWith("/realms/contactcenterai-local/.well-known/openid-configuration", StringComparison.Ordinal)))
             throw new InvalidOperationException("OIDC_METADATA_ADDRESS_INVALID");
+        // Port 8080 is often taken on visitors' machines, so the container profile may move the browser-facing
+        // Keycloak port. The issuer stays a loopback URL of the same realm; identity bindings keep the logical Issuer.
+        var issuer = container ? builder.Configuration["CCAI_OIDC_ISSUER"] ?? Issuer : Issuer;
+        if (!Uri.TryCreate(issuer, UriKind.Absolute, out var issuerUri) || issuerUri.Scheme != "http" || issuerUri.Host != "localhost" || issuerUri.AbsolutePath != "/realms/contactcenterai-local" || !string.IsNullOrEmpty(issuerUri.Query))
+            throw new InvalidOperationException("OIDC_ISSUER_INVALID");
+        var identityOrigin = issuerUri.GetLeftPart(UriPartial.Authority);
         var securePolicy = localDemo ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
         var traceExporter=localDemo?new LocalTraceExporter(Path.Combine(builder.Environment.ContentRootPath,".local","telemetry")):null;
         if (localDemo)
@@ -99,7 +105,7 @@ public static class ProductApi
         var secret = builder.Configuration["CCAI_BFF_CLIENT_SECRET"];
         if (!string.IsNullOrWhiteSpace(secret)) authentication.AddOpenIdConnect(OidcScheme, options =>
         {
-            options.Authority = Issuer; options.RequireHttpsMetadata = false; // Fixed loopback IdP only, ADR-011.
+            options.Authority = issuer; options.RequireHttpsMetadata = false; // Fixed loopback IdP only, ADR-011.
             // Inside Docker the browser-facing issuer is not reachable as localhost; discovery, token and keys use the
             // compose network while issuer/audience validation still requires the fixed browser issuer.
             if (metadataAddress is not null) options.MetadataAddress = metadataAddress;
@@ -123,7 +129,7 @@ public static class ProductApi
             };
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidIssuer = Issuer, ValidAudience = "contactcenterai-bff", ValidateIssuer = true, ValidateAudience = true,
+                ValidIssuer = issuer, ValidAudience = "contactcenterai-bff", ValidateIssuer = true, ValidateAudience = true,
                 ValidateLifetime = true, RequireSignedTokens = true, ValidAlgorithms = [SecurityAlgorithms.RsaSha256],
                 NameClaimType = "sub", RoleClaimType = "ccai_role", ClockSkew = TimeSpan.FromSeconds(30)
             };
@@ -170,7 +176,7 @@ public static class ProductApi
             using var recorded=activity is null?null:new RecordStatus(activity,http);
             http.Response.Headers.CacheControl = "no-store"; http.Response.Headers.XContentTypeOptions = "nosniff";
             http.Response.Headers.ContentSecurityPolicy = localDemo
-                ? "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self' http://localhost:8080"
+                ? "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self' " + identityOrigin
                 : "default-src 'none'; frame-ancestors 'none'";
             if (localDemo && (http.Request.Host.ToString() != "127.0.0.1:7452" ||
                 http.Connection.RemoteIpAddress is { } address && !IPAddress.IsLoopback(address) && !(container && IsPrivate(address))))
