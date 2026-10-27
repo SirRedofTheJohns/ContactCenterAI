@@ -20,8 +20,10 @@ class FakeElement {
   constructor(doc, tag, attrs = {}) {
     Object.assign(this, { ownerDocument: doc, tagName: tag.toUpperCase(), attrs, children: [], text: '', id: attrs.id ?? '',
       className: attrs.class ?? '', hidden: 'hidden' in attrs, value: attrs.value ?? '', disabled: false, title: '', min: '', max: '',
-      dataset: attrs['data-i'] ? { i: attrs['data-i'] } : {}, scrolls: 0 });
+      dataset: Object.fromEntries(Object.entries(attrs).filter(([k]) => k.startsWith('data-')).map(([k, v]) => [k.slice(5), v])), scrolls: 0 });
   }
+  setAttribute(name, value) { this.attrs[name] = String(value); }
+  getAttribute(name) { return this.attrs[name] ?? null; }
   get textContent() { return this.text + this.children.map(c => c.textContent).join(''); }
   set textContent(v) { this.text = String(v); this.children = []; }
   append(...nodes) { this.children.push(...nodes.map(n => typeof n === 'string' ? new FakeText(n) : n)); }
@@ -52,7 +54,7 @@ function parseDocument() {
   Object.assign(doc, {
     documentElement: all.find(e => e.tagName === 'HTML'),
     getElementById: id => all.find(e => e.id === id) ?? null,
-    querySelectorAll: selector => { assert.equal(selector, '[data-i]'); return all.filter(e => e.dataset.i); },
+    querySelectorAll: selector => { const key = /^\[data-([a-z]+)\]$/.exec(selector)?.[1]; assert.ok(key, 'unsupported selector ' + selector); return all.filter(e => e.dataset[key] !== undefined); },
     createElement: tag => new FakeElement(doc, tag),
   });
   return doc;
@@ -95,6 +97,7 @@ async function loadPage({ session = { authenticated: false }, storage = new Memo
     'POST /v2/resort/offers': body => json(200, offerFor(body)),
     'POST /v2/resort/unlink': () => json(204, null),
     'POST /v1/session/logout': () => json(204, null),
+    'GET /v2/resort/chat/profile': () => json(200, { mode: 'deterministic', providerId: 'resort-rules-v0.12', examples: { es: ['Mis reservas'], en: ['My bookings'] } }),
   };
   async function fakeFetch(url, options = {}) {
     const method = options.method ?? 'GET';
@@ -120,7 +123,7 @@ const deferred = () => { let resolve; const promise = new Promise(r => { resolve
 const findButton = (container, text) => container.findAll(e => e.tagName === 'BUTTON' && e.textContent === text)[0];
 const roomCard = (page, id) => page.$('catalog').children.find(card => card.className.split(' ').includes(id));
 const stayCard = (page, id) => page.$('stays').children.find(card => card.children[0]?.textContent === id);
-const privateCalls = calls => calls.filter(c => c.path.startsWith('/v2/resort/') && !['/v2/resort/catalog', '/v2/resort/calendar'].includes(c.path));
+const privateCalls = calls => calls.filter(c => c.path.startsWith('/v2/resort/') && !['/v2/resort/catalog', '/v2/resort/calendar', '/v2/resort/chat/profile'].includes(c.path));
 
 // F05 — choosing a room before login
 
@@ -149,7 +152,8 @@ test('after returning from OIDC as a customer the picked room is restored once',
   findButton(roomCard(visitor, 'suite'), 'Elegir habitación').onclick();
   const returned = await loadPage({ session: customer, storage }); // Second page load = browser back on /resort.html after login.
   assert.equal(returned.$('type').value, 'suite');
-  assert.equal(returned.doc.scrolledTo, returned.$('booking'));
+  assert.equal(returned.$('chat-input').value, 'Reservar Hab suite ');
+  assert.equal(returned.doc.activeElement, returned.$('chat-input'));
   assert.match(returned.$('notice').textContent, /Habitación elegida antes de iniciar sesión: suite/);
   assert.equal(storage.getItem('ccai-resort-pick'), null);
   const again = await loadPage({ session: customer, storage });
@@ -331,4 +335,122 @@ test('observed and expiry times are rendered in America/Santo_Domingo, not the b
   page.$('booking').onsubmit({ preventDefault() {} });
   await settle();
   assert.ok(page.$('offer-detail').textContent.includes(new Date('2026-10-27T03:35:00Z').toLocaleString('es', { timeZone: TZ })), page.$('offer-detail').textContent);
+});
+
+// Web chat states (server turns are faked; the server contract is covered by ResortChatChecks)
+
+const turn = (code, text, extra = {}) => ({ code, text, mode: 'deterministic', interpreted: null, missing: [], assumptions: [], ...extra });
+const chatCalls = page => page.calls.filter(c => c.path === '/v2/resort/chat');
+async function say(page, text) { page.$('chat-input').value = text; page.$('chat-form').onsubmit({ preventDefault() {} }); await settle(); }
+const bubbles = page => page.$('chat-log').children.slice(1);
+
+test('a chat turn renders the server text, mode and code, and the technical panel shows no token', async () => {
+  const page = await loadPage({ routes: { 'POST /v2/resort/chat': () => json(200, turn('RESORT_CATALOG', 'Suite · 280.00 USD', { interpreted: { action: 'catalog', type: 'suite' }, catalog: [] })) } });
+  await say(page, '¿Qué incluye la Suite?');
+  const [mine, reply] = bubbles(page);
+  assert.equal(mine.textContent, '¿Qué incluye la Suite?');
+  assert.match(reply.textContent, /Suite · 280\.00 USD.*determinista · RESORT_CATALOG/s);
+  assert.equal(chatCalls(page)[0].body.language, 'es');
+  assert.match(chatCalls(page)[0].headers['Idempotency-Key'], /^[0-9a-f-]{36}$/);
+  assert.match(page.$('tech-detail').textContent, /RESORT_CATALOG.*"action":"catalog"/s);
+  assert.doesNotMatch(page.$('tech-detail').textContent + page.$('tech-calls').textContent, /csrf-token/);
+  assert.equal(page.$('chat-input').value, '');
+});
+
+test('the mode badge names deterministic mode, or says unknown when the profile is unavailable', async () => {
+  assert.equal((await loadPage()).$('mode').textContent, 'Modo determinista');
+  const page = await loadPage({ routes: { 'GET /v2/resort/chat/profile': () => json(503, { code: 'X' }) } });
+  assert.equal(page.$('mode').textContent, 'Modo desconocido');
+  assert.equal(page.$('catalog').children.length, 3);
+});
+
+test('a chat proposal fills the summary and only the Confirm button executes it, once', async () => {
+  const proposal = offerFor({ action: 'create', type: 'suite', arrival: '2026-11-20', departure: '2026-11-22', guests: 3 });
+  const receipt = { commandId: proposal.id, status: 'Completed', reasonCode: 'CREATE_COMPLETED', stay: { id: 'STAY-CCCC0003' } };
+  const page = await loadPage({ session: customer, routes: { 'POST /v2/resort/chat': () => json(200, turn('RESORT_OFFER', 'Propuesta', { offer: proposal })), ['POST /v2/resort/offers/' + proposal.id + '/confirm']: () => json(200, receipt) } });
+  await say(page, 'Reservar Suite 2026-11-20 a 2026-11-22 para 3 personas');
+  assert.equal(page.$('offer').hidden, false);
+  assert.match(page.$('offer-detail').textContent, /Hab suite.*2026-11-20 → 2026-11-22 · 2 noches.*3.*560\.00 USD.*Todavía no se ejecutó/s);
+  assert.equal(page.calls.filter(c => c.path.endsWith('/confirm')).length, 0);
+  page.$('confirm').onclick(); await settle();
+  assert.match(page.$('operation').textContent, /Acción confirmada · STAY-CCCC0003/);
+  page.$('confirm').onclick(); await settle();
+  assert.match(page.$('operation').textContent, /Mismo recibo que antes/);
+  assert.deepEqual(page.calls.filter(c => c.path.endsWith('/confirm')).map(c => c.body), [{ decision: 'confirm' }, { decision: 'confirm' }]);
+});
+
+test('a clarification offers its example for editing instead of sending it', async () => {
+  const page = await loadPage({ session: customer, routes: { 'POST /v2/resort/chat': () => json(200, turn('RESORT_DETAILS_REQUIRED', 'Para preparar la propuesta me falta el número de huéspedes. Ejemplo: Reservar suite 2026-11-20 a 2026-11-22 para 2 personas', { missing: ['guests'] })) } });
+  await say(page, 'Reservar Suite 2026-11-20 a 2026-11-22');
+  findButton(page.$('chat-log'), 'Usar ejemplo').onclick();
+  assert.equal(page.$('chat-input').value, 'Reservar suite 2026-11-20 a 2026-11-22 para 2 personas');
+  assert.equal(page.doc.activeElement, page.$('chat-input'));
+  assert.equal(chatCalls(page).length, 1);
+  assert.equal(page.$('offer').hidden, true);
+});
+
+test('a failed chat request offers a retry that reuses the same Idempotency-Key', async () => {
+  let n = 0;
+  const page = await loadPage({ routes: { 'POST /v2/resort/chat': () => (++n === 1 ? json(503, { code: 'OPERATIONAL_STORE_UNAVAILABLE' }) : json(200, turn('RESORT_POLICY', 'Política'))) } });
+  await say(page, 'Política');
+  assert.match(bubbles(page)[1].className, /error/);
+  findButton(page.$('chat-log'), 'Reintentar').onclick(); await settle();
+  const [first, second] = chatCalls(page);
+  assert.equal(second.headers['Idempotency-Key'], first.headers['Idempotency-Key']);
+  assert.match(page.$('chat-log').textContent, /Política.*RESORT_POLICY/s);
+});
+
+test('a sign-in answer keeps the typed message across the login round trip', async () => {
+  const storage = new MemoryStorage();
+  const page = await loadPage({ storage, routes: { 'POST /v2/resort/chat': () => json(200, turn('SIGN_IN_REQUIRED', 'Inicia sesión')) } });
+  let submitted = 0; page.$('login').submit = () => submitted++;
+  await say(page, 'Mis reservas');
+  findButton(page.$('chat-log'), 'Iniciar sesión').onclick();
+  assert.equal(submitted, 1);
+  const back = await loadPage({ session: customer, storage });
+  assert.equal(back.$('chat-input').value, 'Mis reservas');
+  assert.equal(chatCalls(back).length, 0);
+});
+
+test('a chat proposal that arrives after another draft started does not replace the summary', async () => {
+  const slow = deferred();
+  const page = await loadPage({ session: customer, routes: { 'POST /v2/resort/chat': () => slow.promise } });
+  await say(page, 'Reservar Suite 2026-11-20 a 2026-11-22 para 3 personas');
+  findButton(stayCard(page, 'STAY-AAAA0001'), 'Cambiar fechas').onclick();
+  slow.resolve(json(200, turn('RESORT_OFFER', 'Propuesta', { offer: offerFor({ action: 'create', type: 'suite', arrival: '2026-11-20', departure: '2026-11-22', guests: 3 }) })));
+  await settle();
+  assert.equal(page.$('offer').hidden, true);
+  assert.match(page.$('chat-log').textContent, /Propuesta no mostrada/);
+});
+
+test('lab fault: a discarded confirmation response is recovered from the same receipt', async () => {
+  const proposal = offerFor({ action: 'create', type: 'standard', arrival: '2026-11-26', departure: '2026-11-28', guests: 2 });
+  const receipt = { commandId: proposal.id, status: 'Completed', reasonCode: 'CREATE_COMPLETED', stay: { id: 'STAY-DDDD0004' } };
+  let lookups = 0;
+  const page = await loadPage({ session: customer, routes: {
+    'POST /v2/resort/offers': () => json(200, proposal),
+    ['POST /v2/resort/offers/' + proposal.id + '/confirm']: () => json(200, receipt),
+    ['GET /v2/resort/operations/' + proposal.id]: () => (++lookups === 1 ? json(200, null) : json(200, receipt)) } });
+  page.$('booking').onsubmit({ preventDefault() {} }); await settle();
+  page.$('lab-drop').checked = true; page.$('lab-drop').onchange();
+  page.$('confirm').onclick(); await settle();
+  assert.match(page.$('operation').textContent, /Resultado sin verificar.*laboratorio/s);
+  assert.equal(page.$('receipt-check').hidden, false);
+  assert.equal(page.$('lab-drop').checked, false);
+  page.$('receipt-check').onclick(); await settle();
+  assert.match(page.$('operation').textContent, /Todavía no hay recibo/);
+  page.$('receipt-check').onclick(); await settle();
+  assert.match(page.$('operation').textContent, /Acción confirmada · STAY-DDDD0004 · Recuperado del recibo/);
+  assert.equal(page.calls.filter(c => c.path.endsWith('/confirm')).length, 1);
+});
+
+test('example chips send directly while scenario buttons only prefill dates relative to today', async () => {
+  const page = await loadPage({ routes: { 'POST /v2/resort/chat': () => json(200, turn('RESORT_MY_STAYS', 'ok')) } });
+  findButton(page.$('chat-examples'), 'Mis reservas').onclick(); await settle();
+  assert.equal(chatCalls(page).length, 1);
+  const tryButtons = page.$('scenario-list').findAll(e => e.tagName === 'BUTTON');
+  assert.equal(page.$('scenario-list').children.length, 6);
+  tryButtons[0].onclick();
+  assert.equal(page.$('chat-input').value, 'Reservar Deluxe 2026-11-17 a 2026-11-19 para 2 personas');
+  assert.equal(chatCalls(page).length, 1);
 });
