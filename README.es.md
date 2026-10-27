@@ -12,11 +12,13 @@ Es un **proyecto de portafolio**. El hotel, los precios, los huéspedes y las re
 
 ## Pruébalo en cinco minutos
 
+La ruta principal es la demo Docker en **modo determinista**, sin modelo ni cuentas externas. Está comprobada en **Windows 11 con Docker Desktop**. `demo.sh` para macOS/Linux se incluye, pero no se ha validado en esos sistemas.
+
 Requisitos: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (o Docker Engine con Compose v2) y acceso a internet para la primera construcción. **No** necesitas el SDK de .NET, Python, PowerShell, WhatsApp, un túnel, descargar un modelo ni una cuenta de pago.
 
 ```text
-Windows:       start-demo.cmd
-macOS / Linux: ./demo.sh start
+Windows (comprobado):            start-demo.cmd
+macOS / Linux (sin comprobar):   ./demo.sh start
 ```
 
 Abre **http://127.0.0.1:7452** e inicia sesión como `customer-a` o `customer-b` con la clave `123456Aa!`. Las reservas se conservan al reiniciar. `stop-demo.cmd` / `./demo.sh stop` detiene la demo, y `reset-demo.cmd` / `./demo.sh reset` borra solo los datos de esta demo después de que escribas `DELETE`.
@@ -43,7 +45,7 @@ La página tiene una sección *Escenarios* con botones que rellenan el chat para
 | Reservas, propiedad, propuestas, confirmación, transacciones, recibos idempotentes, recuperación | **Implementado** en C# con SQLite y cubierto por comprobaciones deterministas |
 | Inicio de sesión | **Real**: Keycloak OIDC local (Authorization Code + PKCE) con usuarios sintéticos |
 | Interpretación del chat (por defecto) | **Determinista**: reglas y expresiones regulares, sin modelo |
-| Interpretación del chat (opcional) | **IA local**: el modelo Qwen ya fijado, mediante Ollama en tu equipo (`start-demo.cmd ai`), con esquema cerrado y sin reemplazo silencioso. **Ejecutada** el 2026-10-27: muestra de desarrollo 22/22 tras una ronda de ajuste de prompt (reglas 19/22), 3,5–6,8 s por mensaje en CPU. El modelo no se incluye, y puede que la versión fijada ya no se pueda descargar ([detalles](docs/progress/local-ai-chat-2026-10-27.md)) |
+| Interpretación del chat (opcional) | **IA local, ejecutada en el equipo del autor el 2026-10-27, pero hoy no reproducible en una instalación nueva:** el proyecto fija una versión exacta de `qwen3-vl` y el registro ya no la sirve, así que una instalación nueva no puede obtener ese modelo. En el equipo del autor, una muestra de desarrollo de 22 casos dio 21/22 antes de un ajuste del prompt y 22/22 después (las reglas deterministas dieron 19/22). El ajuste añadió al prompt un ejemplo derivado de uno de esos casos, así que la muestra no demuestra generalización, calidad productiva ni precisión global. Ver los [detalles](docs/progress/local-ai-chat-2026-10-27.md) y la [guía](docs/demo-guide.es.md#modos-determinista-e-ia-local) |
 | Asistente original con RAG (v0.10) | Implementado; se ejecuta desde el código, no en la demo Docker |
 | WhatsApp | Integración opcional con su propia configuración de Meta; fuera de la demo básica |
 | Telegram, Genesys, agentes humanos | Adaptador presente o **simulado**; sin tenant real |
@@ -71,7 +73,8 @@ El texto solo **propone**. La identidad sale de la cookie de sesión, nunca del 
 
 - Comprobaciones deterministas en C#: las 402 originales más 44 del chat web, y 28 de la interfaz sin navegador con el runner integrado de Node. Los resultados, con fechas y comandos, están en [la nota de progreso más reciente](docs/progress/portfolio-v0.13-2026-10-27.md). Las cifras anteriores son históricas.
 - CI: el workflow ejecuta estas comprobaciones y construye la imagen de la demo. Las ejecuciones remotas no arrancan desde que la cuenta de GitHub quedó bloqueada por facturación, así que todavía no hay evidencia remota.
-- No se afirma: preparación para producción, certificación de seguridad, Genesys real, calidad medida del modelo en el nuevo chat ni pruebas de carga o rendimiento.
+- Plataformas: solo se comprobó Windows 11 con Docker Desktop.
+- No se afirma: preparación para producción, certificación de seguridad, Genesys real, precisión general o productiva del modelo local (solo existe una muestra de desarrollo de 22 casos) ni pruebas de carga o rendimiento.
 
 ## Más
 
@@ -79,7 +82,7 @@ El texto solo **propone**. La identidad sale de la cookie de sesión, nunca del 
 |---|---|
 | Instalar, usar y resolver problemas | [Guía de la demo](docs/demo-guide.es.md) |
 | Revisar contratos | [Resort v0.13](docs/contracts/resort-v0.13.md), [base v0.12](docs/contracts/resort-v0.12.md) |
-| Presentarlo en una entrevista | [Guion de entrevista](docs/interview-script.md) |
+| Presentarlo | [Guion de 60–90 s, explicación de dos minutos y guía de grabación](docs/presentation.md), y [guion de entrevista](docs/interview-script.md) |
 | Ver qué cambió | [Changelog](CHANGELOG.md) |
 | Consultar el historial de diseño y la evidencia anterior | [Índice de documentación](docs/README.md) |
 

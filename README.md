@@ -12,11 +12,13 @@ This is a **portfolio project**. The hotel, prices, guests and bookings are fict
 
 ## Try it in five minutes
 
+The main path is the Docker demo in **deterministic mode**: no model, no external account. It has been checked on **Windows 11 with Docker Desktop**. `demo.sh` for macOS/Linux is included but has not been validated on those systems.
+
 Requirements: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine with Compose v2) and Internet access for the first build. You do **not** need the .NET SDK, Python, PowerShell, WhatsApp, a tunnel, a model download or a paid account.
 
 ```text
-Windows:       start-demo.cmd
-macOS / Linux: ./demo.sh start
+Windows (checked):           start-demo.cmd
+macOS / Linux (not checked): ./demo.sh start
 ```
 
 Open **http://127.0.0.1:7452** and sign in as `customer-a` or `customer-b` with password `123456Aa!`. Bookings persist across restarts. `stop-demo.cmd` / `./demo.sh stop` stops the demo, and `reset-demo.cmd` / `./demo.sh reset` deletes only this demo's data after you type `DELETE`.
@@ -43,7 +45,7 @@ The page has a *Scenarios* section with buttons that fill the chat for each one,
 | Bookings, ownership, offers, confirmation, transactions, idempotent receipts, recovery | **Implemented** in C# with SQLite and covered by deterministic checks |
 | Sign-in | **Real** local Keycloak OIDC (Authorization Code + PKCE) with synthetic users |
 | Chat interpretation (default) | **Deterministic** rules and regular expressions, no model |
-| Chat interpretation (optional) | **Local AI**: the existing pinned Qwen model through Ollama on your computer (`start-demo.cmd ai`), closed schema, no fallback. **Run** on 2026-10-27: development sample 22/22 after one prompt round (rules 19/22), 3.5–6.8 s per message on CPU. Model not included, and the pinned build may no longer be downloadable ([details](docs/progress/local-ai-chat-2026-10-27.md)) |
+| Chat interpretation (optional) | **Local AI, run locally by the author on 2026-10-27, not reproducible on a new installation today:** the project pins one exact build of `qwen3-vl`, and the registry no longer serves it, so a fresh setup cannot obtain that model. On the author's PC, a 22-case development sample gave 21/22 before one prompt adjustment and 22/22 after it (the deterministic rules gave 19/22). The adjustment added an example derived from one of those cases, so the sample shows no generalization, production quality or overall accuracy. See the [details](docs/progress/local-ai-chat-2026-10-27.md) and the [guide](docs/demo-guide.en.md#modes-deterministic-and-local-ai) |
 | Original assistant with RAG (v0.10) | Implemented; runs from source, not in the Docker demo |
 | WhatsApp | Optional integration with its own Meta setup; outside the basic demo |
 | Telegram, Genesys, human agents | Adapter present or **simulated**; no live tenant |
@@ -71,7 +73,8 @@ The text only **proposes**. Identity comes from the session cookie, never from t
 
 - Deterministic C# checks: the original 402 plus 44 web-chat checks, and 28 browser-free UI checks with Node's built-in runner. Results with dates and commands are in [the latest progress note](docs/progress/portfolio-v0.13-2026-10-27.md). Earlier figures are historical.
 - CI: the workflow runs these checks and builds the demo image. Remote runs have not started since the GitHub account's billing lock, so there is no remote evidence yet.
-- Not claimed: production readiness, security certification, live Genesys, measured model quality for the new chat, or load/performance benchmarks.
+- Platforms: checked only on Windows 11 with Docker Desktop.
+- Not claimed: production readiness, security certification, live Genesys, general or production accuracy of the local model (only a 22-case development sample exists), or load/performance benchmarks.
 
 ## More
 
@@ -79,7 +82,7 @@ The text only **proposes**. Identity comes from the session cookie, never from t
 |---|---|
 | Install, use and troubleshoot | [Demo guide](docs/demo-guide.en.md) |
 | Review contracts | [Resort v0.13](docs/contracts/resort-v0.13.md), [v0.12 baseline](docs/contracts/resort-v0.12.md) |
-| Present it in an interview | [Interview script](docs/interview-script.md) (Spanish) |
+| Present it | [60–90 s demo script, 2-minute explanation, recording guide](docs/presentation.md) and [interview script](docs/interview-script.md) (Spanish) |
 | See what changed | [Changelog](CHANGELOG.md) |
 | Browse design history and earlier evidence | [Documentation index](docs/README.md) |
 

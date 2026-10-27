@@ -6,7 +6,8 @@ Entries before v0.13 are summarized from historical progress notes in `docs/prog
 
 - **Local AI usable from the Docker demo**: `start-demo.cmd ai` / `./demo.sh start-ai`; the container reaches the host's loopback Ollama through `host.docker.internal`; startup warm-up of the pinned model; one prompt clarification for vague booking requests.
 - Development sample of 22 ES/EN cases through the Docker app: local model 22/22 after one prompt round (21/22 before), deterministic rules 19/22; UI walkthrough and explicit unavailability error verified. See `docs/progress/local-ai-chat-2026-10-27.md`.
-- Known: the registry's `qwen3-vl:latest` no longer resolves to the pinned digest, so local AI works only where that digest is already installed.
+- Known: the registry's `qwen3-vl:latest` no longer resolves to the pinned digest, so local AI works only where that digest is already installed. The round-1 prompt includes an example derived from one development case.
+- Presentation material: `docs/presentation.md` (60–90 s script, 2-minute explanation, recording guide); README states the checked platform and the local AI limitation first.
 
 ## v0.13 — 2026-10-27 (unreleased)
 

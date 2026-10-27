@@ -23,7 +23,7 @@ Muestra el diagrama de la [guía](demo-guide.es.md#arquitectura): navegador → 
 
 ## 4. Preguntas difíciles y respuestas cortas
 
-- **"¿Dónde está la IA?"** "El modo por defecto es determinista y lo digo en la interfaz. Hay un adaptador para un modelo local con esquema cerrado de seis campos; si falla, devuelve un error explícito y no cambia en silencio a las reglas. No he medido su calidad en este chat y no uso cifras antiguas para venderlo."
+- **"¿Dónde está la IA?"** "El modo por defecto es determinista y lo digo en la interfaz. Hay un adaptador para un modelo local con esquema cerrado de seis campos; si falla, devuelve un error explícito y no cambia en silencio a las reglas. Lo ejecuté en mi equipo con una muestra de desarrollo de 22 casos: 21/22, y 22/22 tras un ajuste del prompt que incluyó un ejemplo derivado de un caso, así que no es una medida de calidad general. Además, hoy el modelo fijado no se puede volver a descargar."
 - **"¿Qué pasa si dos personas confirman la misma noche?"** "La tabla de noches tiene clave única (habitación, noche) y la confirmación revalida dentro de la transacción: una gana y la otra recibe un rechazo con recibo. Hay una comprobación concurrente que lo verifica."
 - **"¿Por qué una propuesta no reserva?"** "Para no bloquear inventario por mensajes que nadie confirma. A cambio, la confirmación puede fallar si alguien ocupó la noche; por eso se revalida."
 - **"¿Por qué aceptas IPs privadas en modo contenedor?"** "Detrás del port-forward de Docker la IP remota es el gateway. La frontera pasa a ser el puerto publicado solo en 127.0.0.1; Host, Origin y CSRF no cambian, y el modo es explícito."
