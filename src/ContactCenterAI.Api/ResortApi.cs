@@ -88,8 +88,9 @@ public sealed class ResortConversation(ResortStore store, IOperationalStore iden
     {
         var today = store.Today();
         string T(string es, string english) => en ? english : es;
+        int? statedGuests = null; // what the user actually said; ResortRequest.Guests keeps the parser default for v0.12 compatibility
         ResortTurn Turn(string code, string message, ResortRequest? interpreted = null, string[]? missing = null, string[]? assumptions = null) =>
-            new(code, message, interpreter.Mode, interpreted, missing ?? [], assumptions ?? []);
+            new(code, message, interpreter.Mode, interpreted, missing ?? [], assumptions ?? [], StatedGuests: statedGuests);
         try
         {
             var safe = ResortLanguage.SanitizeChannelText(text);
@@ -98,7 +99,7 @@ public sealed class ResortConversation(ResortStore store, IOperationalStore iden
             ResortInterpretation interpretation = confirm is null ? await interpreter.InterpretAsync(safe, en ? "en" : "es", today, ct) : new(null, null, false, "command");
             if (interpretation.Error is string modelError)
                 return Turn(modelError, T($"La IA local no devolvió una interpretación válida ({modelError}). No se usó otro intérprete y no se preparó ninguna acción.", $"The local AI did not return a valid interpretation ({modelError}). No other interpreter was used and no action was prepared."));
-            var proposal = interpretation.Request;
+            var proposal = interpretation.Request; statedGuests = interpretation.Guests;
             if (proposal is null && confirm is null)
                 return ResortLanguage.IsConfirmation(safe)
                     ? Turn("CONFIRM_REFERENCE_REQUIRED", channel ? T("Para confirmar, copia el comando Confirmar seguido del identificador completo de la oferta. Un sí solo no cambia una reserva.", "To confirm, copy Confirm followed by the full offer identifier. Yes alone does not change a booking.") : T("Para confirmar usa el botón Confirmar de la propuesta. Un sí escrito no cambia una reserva.", "Use the proposal's Confirm button. A typed yes does not change a booking."))

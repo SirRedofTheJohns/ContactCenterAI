@@ -18,7 +18,7 @@ public sealed record ResortAvailability(string Type, long NightlyCents, int Capa
 // authority comes from the server-resolved Actor, never from the interpretation.
 public sealed record ResortTurn(string Code, string Text, string Mode, ResortRequest? Interpreted, string[] Missing, string[] Assumptions,
     ResortOffer? Offer = null, ResortStay[]? Stays = null, IReadOnlyList<RoomCategory>? Catalog = null, ResortAvailability[]? Availability = null,
-    ResortReceipt? Receipt = null, string[]? Suggestions = null);
+    ResortReceipt? Receipt = null, string[]? Suggestions = null, int? StatedGuests = null);
 // Untrusted proposal from an interpreter: either the deterministic parser or a local model.
 public sealed record ResortInterpretation(ResortRequest? Request, int? Guests, bool GuestsAmbiguous, string Source, string? Error = null);
 public interface IResortInterpreter

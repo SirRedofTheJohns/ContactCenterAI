@@ -333,7 +333,12 @@ function renderTech(turn) {
   const dl = $('tech-detail'); dl.replaceChildren();
   fact(dl, t('Modo', 'Mode'), profile ? profile.mode + ' · ' + profile.providerId : '—');
   fact(dl, t('Código', 'Code'), turn.code || '—');
-  if (turn.interpreted) fact(dl, t('Interpretación (no autoriza)', 'Interpretation (no authority)'), JSON.stringify(turn.interpreted));
+  if (turn.interpreted) {
+    // guests in the interpreted request is the parser's compatibility default; show what the user actually stated instead.
+    const { guests, ...fields } = turn.interpreted;
+    fact(dl, t('Interpretación (no autoriza)', 'Interpretation (no authority)'), JSON.stringify(fields));
+    fact(dl, t('Huéspedes indicados', 'Guests stated'), turn.statedGuests == null ? t('no indicados', 'not stated') : String(turn.statedGuests));
+  }
   if (turn.missing?.length) fact(dl, t('Datos que faltan', 'Missing details'), turn.missing.join(', '));
   if (turn.assumptions?.length) fact(dl, t('Supuestos', 'Assumptions'), turn.assumptions.join(' | '));
   if (turn.catalog || turn.availability) fact(dl, t('Fuente', 'Source'), t('Catálogo e inventario del resort (SQLite, en el servidor)', 'Resort catalog and inventory (SQLite, server side)'));
