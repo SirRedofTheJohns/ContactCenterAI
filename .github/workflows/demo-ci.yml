@@ -7,7 +7,7 @@ permissions:
 jobs:
   local-contracts:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -18,9 +18,15 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: '3.12'
+      # Node is a development tool for the resort UI checks only; the Docker demo does not need it.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.20.0'
       - name: Build locked dependencies and run deterministic safety
         shell: pwsh
         run: ./eng/Verify-Demo.ps1
+      - name: Resort web UI checks
+        run: node --test "tests/web/*.test.mjs"
       - name: Keep sanitized report
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
@@ -34,3 +40,12 @@ jobs:
             docs/progress/demo-v0.10-*checks.json
             docs/progress/resort-v0.12-checks.json
           retention-days: 7
+  demo-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Build the self-contained demo image (locked restore with NuGet audit)
+        run: docker compose -f deploy/demo/compose.yaml build
