@@ -11,7 +11,7 @@ Self-contained portfolio demo with a web chat.
 - **Optional local AI interpreter** for the existing pinned model, with a closed schema and explicit errors (no silent fallback). Real inference not run in this release.
 - **Chat-first UI**: proposal summary, repeated-confirmation and receipt lookup, six scenarios, browser-only lab fault, technical panel, keyboard and mobile improvements.
 - **Fixes**: room pick kept across login; stale quotes retired; logout independent of link cleanup with honest unverified/rejected messages; times in America/Santo_Domingo; patched `System.Security.Cryptography.Pkcs` 9.0.21 so clean restores pass NuGet audit.
-- **Checks**: new `ResortChatChecks` (41) and Node UI checks (28); CI runs them with pinned Node and builds the demo image.
+- **Checks**: new `ResortChatChecks` (44) and Node UI checks (28); CI runs them with pinned Node and builds the demo image.
 - WhatsApp bridge key is now optional.
 
 ## v0.12 — 2026-10-06

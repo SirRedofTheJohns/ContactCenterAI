@@ -69,7 +69,7 @@ El texto solo **propone**. La identidad sale de la cookie de sesión, nunca del 
 
 ## Evidencia y límites
 
-- Comprobaciones deterministas en C#: las 402 originales más 41 del chat web, y 28 de la interfaz sin navegador con el runner integrado de Node. Los resultados, con fechas y comandos, están en [la nota de progreso más reciente](docs/progress/portfolio-v0.13-2026-10-27.md). Las cifras anteriores son históricas.
+- Comprobaciones deterministas en C#: las 402 originales más 44 del chat web, y 28 de la interfaz sin navegador con el runner integrado de Node. Los resultados, con fechas y comandos, están en [la nota de progreso más reciente](docs/progress/portfolio-v0.13-2026-10-27.md). Las cifras anteriores son históricas.
 - CI: el workflow ejecuta estas comprobaciones y construye la imagen de la demo. Las ejecuciones remotas no arrancan desde que la cuenta de GitHub quedó bloqueada por facturación, así que todavía no hay evidencia remota.
 - No se afirma: preparación para producción, certificación de seguridad, Genesys real, calidad medida del modelo en el nuevo chat ni pruebas de carga o rendimiento.
 

@@ -69,7 +69,7 @@ The text only **proposes**. Identity comes from the session cookie, never from t
 
 ## Evidence and limits
 
-- Deterministic C# checks: the original 402 plus 41 web-chat checks, and 28 browser-free UI checks with Node's built-in runner. Results with dates and commands are in [the latest progress note](docs/progress/portfolio-v0.13-2026-10-27.md). Earlier figures are historical.
+- Deterministic C# checks: the original 402 plus 44 web-chat checks, and 28 browser-free UI checks with Node's built-in runner. Results with dates and commands are in [the latest progress note](docs/progress/portfolio-v0.13-2026-10-27.md). Earlier figures are historical.
 - CI: the workflow runs these checks and builds the demo image. Remote runs have not started since the GitHub account's billing lock, so there is no remote evidence yet.
 - Not claimed: production readiness, security certification, live Genesys, measured model quality for the new chat, or load/performance benchmarks.
 
