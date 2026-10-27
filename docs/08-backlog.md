@@ -1,5 +1,7 @@
 # Backlog posterior al freeze
 
+> **Estado 2026-10-27:** backlog histórico. v0.12 sí está implementada ([evidencia](progress/resort-v0.12.md)) y v0.13 añade la demo Docker y el chat web ([contrato](contracts/resort-v0.13.md), [nota](progress/portfolio-v0.13-2026-10-27.md)). Las entregas actuales se acuerdan con el dueño.
+
 ## Propuesta resort v0.12 — 2026-10-06
 
 Petición del dueño: calendario ficticio, categorías/amenidades/tarifas y reservas/cambios/cancelación por WhatsApp. [Diseño ES](resort-booking-v0.12.es.md) / [EN](resort-booking-v0.12.en.md), ADR-025 propuesto y freeze v0.12 **OPEN**, sin implementación. Primero cerrar contratos/esquema/vínculo de cuenta/oráculos de fallo; luego fuente/calendario, administración, identidad, transacciones y canal. La restauración del FAQ tras reiniciar el PC está documentada por separado y no habilita estas capacidades.

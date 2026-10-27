@@ -1,5 +1,7 @@
 # Run the demo
 
+> **Status 2026-10-27:** this is the historical *source-profile* setup (Windows, PowerShell 7, SDK, Python). The current way to run the resort demo is Docker: see the [demo guide](../demo-guide.en.md). Remote CI has not run since the GitHub account billing lock, so the CI sentence below is not current evidence.
+
 [Español](../es/primeros-pasos.md)
 
 ## Requirements

@@ -1,5 +1,7 @@
 # Probar el resort
 
+> **Estado 2026-10-27:** recorrido histórico v0.12 centrado en WhatsApp, con ejemplos fijos de octubre de 2026. Para el chat web actual, los escenarios y las fechas relativas a hoy, consulta la [guía de la demo](demo-guide.es.md).
+
 [English](resort-demo.en.md) · [Arquitectura](resort-booking-v0.12.es.md) · [Pruebas y límites](progress/resort-v0.12.md)
 
 Caribbean Horizon es un hotel inventado con una habitación Estándar, una Deluxe y una Suite. Los precios son 120, 180 y 280 USD por noche. La Suite admite cuatro huéspedes e incluye jacuzzi privado. No hay pagos ni conexión con un hotel real.

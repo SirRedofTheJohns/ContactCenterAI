@@ -14,9 +14,10 @@ requerir Meta/WhatsApp, túneles, modelos descargados ni cuentas pagadas. Los pe
 Hay dos superficies distintas que no conviene mezclar:
 - **Perfil original (v0.10, `/`)**: interfaz web de asistente con IA/RAG (modo simulado o modelo local
   fijado por digest).
-- **Resort (v0.12, `/resort.html`)**: catálogo, calendario y formularios web. La conversación del
-  resort existe hoy solo por WhatsApp y usa interpretación determinista (reglas y regex en
-  `ResortLanguage`), no un modelo. Falta un chat web del resort.
+- **Resort (v0.12–v0.13, `/resort.html`)**: chat web, catálogo, calendario, resumen de propuesta y
+  formularios. El chat y el puente de WhatsApp comparten `ResortConversation.RespondAsync`. La
+  interpretación por defecto es determinista (`ResortLanguage`); el adaptador de IA local
+  (`OllamaResortInterpreter`) es opcional y su inferencia real está pendiente.
 
 ## Instrucciones base
 
@@ -35,10 +36,14 @@ El último estado comprobado de cada comando está en la nota de progreso más r
   si no existe, usan `dotnet` del PATH; esa ruta no es un requisito. `Verify-Demo.ps1 -DotNetExe <ruta>`
   acepta un SDK en otra carpeta. Herramientas locales opcionales en `.local/` (ignorada por git):
   `.local/dotnet/dotnet.exe`, `.local/pwsh/pwsh.exe`.
+- Demo empaquetada (solo Docker): `start-demo.cmd` / `./demo.sh start`, `stop-demo.cmd`,
+  `reset-demo.cmd` (borra solo los volúmenes de `contactcenterai-demo`). Compose en `deploy/demo/`.
 - Verificación completa: `./eng/Verify-Demo.ps1 [-DotNetExe <ruta>]` (restore con lock y auditoría
-  NuGet, build Release, suites deterministas C#, evaluadores Python).
+  NuGet, build Release, suites deterministas C# incluida `ResortChatChecks`, evaluadores Python).
 - Pruebas del frontend del resort: `node --test "tests/web/*.test.mjs"` (runner integrado de Node,
   sin npm). Son evidencia aislada de UI, no pruebas de navegador ni de login.
+- Paquete local de entrega: `python eng/package_demo.py` (git archive del commit + SHA256SUMS en
+  `.local/release/`).
 - Primera vez:
   - `./eng/Initialize-LocalEnvironment.ps1` (crea `deploy/local/.env`, ignorado)
   - `docker compose --env-file deploy/local/.env -f deploy/local/compose.yaml up -d keycloak`
@@ -79,7 +84,9 @@ El último estado comprobado de cada comando está en la nota de progreso más r
   [docs/contracts/resort-v0.12.md](docs/contracts/resort-v0.12.md),
   [docs/architecture-freeze-v0.12-resort.md](docs/architecture-freeze-v0.12-resort.md), ADR-025 en [docs/adr/](docs/adr/)
 - Canales: [docs/architecture-freeze-v0.11-channels.md](docs/architecture-freeze-v0.11-channels.md), ADR-024
-- Arranque: [docs/en/getting-started.md](docs/en/getting-started.md), [docs/resort-demo.en.md](docs/resort-demo.en.md)
+- Guía vigente: [docs/demo-guide.es.md](docs/demo-guide.es.md) / [.en.md](docs/demo-guide.en.md);
+  contrato [docs/contracts/resort-v0.13.md](docs/contracts/resort-v0.13.md)
+- Perfil desde código (histórico): [docs/en/getting-started.md](docs/en/getting-started.md)
 - Evaluación: [docs/en/evaluation-and-limits.md](docs/en/evaluation-and-limits.md), [evaluation/README.md](evaluation/README.md)
 - Evidencia histórica: [docs/progress/](docs/progress/)
 

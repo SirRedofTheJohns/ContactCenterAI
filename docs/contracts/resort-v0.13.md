@@ -29,8 +29,8 @@
 
 `CCAI_DEMO_CONTAINER=true` (demo profile only):
 
-- Kestrel listens on the container interface. Docker publishes 7452 and 8080 only on the host loopback; that published binding is the outer network boundary. The in-process check now accepts loopback or private (RFC 1918 / ULA) peers. The Host must still be `127.0.0.1:7452`, and Origin and antiforgery are unchanged.
-- `CCAI_OIDC_METADATA_ADDRESS` may point discovery, token and key retrieval at the compose network. It must be an `http` URL ending in the `contactcenterai-local` realm discovery path. Issuer and audience validation still require the fixed browser issuer `http://localhost:8080/realms/contactcenterai-local`.
+- Kestrel listens on the container interface. Docker publishes 7452 and the sign-in port (18080 by default, `CCAI_DEMO_IDP_PORT`) only on the host loopback; that published binding is the outer network boundary. The in-process check now accepts loopback or private (RFC 1918 / ULA) peers. The Host must still be `127.0.0.1:7452`, and Origin and antiforgery are unchanged.
+- `CCAI_OIDC_METADATA_ADDRESS` may point discovery, token and key retrieval at the compose network. It must be an `http` URL ending in the `contactcenterai-local` realm discovery path. `CCAI_OIDC_ISSUER` may move the browser-facing port. It must be `http://localhost:<port>/realms/contactcenterai-local`, otherwise startup fails with `OIDC_ISSUER_INVALID`. Tokens are validated against that issuer and audience. Identity bindings keep the logical v0.12 issuer, so the synthetic users resolve to the same members, and the CSP `form-action` follows the issuer origin.
 - `/` redirects to `/resort.html` because the container has no legacy HTTP source (Simulator). The v0.10 assistant runs from source.
 
 ## Acceptance

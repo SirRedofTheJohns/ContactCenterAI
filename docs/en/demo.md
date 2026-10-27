@@ -1,5 +1,7 @@
 # A five-minute demo
 
+> **Status 2026-10-27:** historical v0.10 demo script (source profile). For the current resort demo, see the [demo guide](../demo-guide.en.md).
+
 [Español](../../DEMO.md) · [Setup](getting-started.md)
 
 Use the local browser at `http://127.0.0.1:7452`. Fictional users share `123456Aa!`.

@@ -1,122 +1,86 @@
 # ContactCenterAI
 
-### A fictional resort you can book through WhatsApp
+### Book a fictional resort from a chat, with server-side guarantees
 
-[Español](README.es.md) · [Try the demo](docs/resort-demo.en.md) · [How it works](docs/en/how-it-works.md) · [Architecture](docs/resort-booking-v0.12.en.md)
+[Español](README.es.md) · [Demo guide](docs/demo-guide.en.md) · [Scenarios](docs/demo-guide.en.md#six-scenarios) · [Architecture and decisions](docs/demo-guide.en.md#architecture)
 
-Ask for available dates, compare rooms, and confirm a fictional stay from a chat. You can then change the dates or cancel. The web calendar reads the same inventory and reflects each confirmed action.
+Ask about rooms and dates, get a priced proposal, confirm it, then change or cancel it. The chat is only the front door. A **C# / .NET** backend decides identity, ownership, availability, price and execution, and every confirmed action leaves a durable receipt.
 
-This **C# / .NET portfolio project** connects a conversation to a reliable business operation. WhatsApp transport and login are real. The hotel, prices and reservations are fictional. There are no payments.
+This is a **portfolio project**. The hotel, prices, guests and bookings are fictional, there are no payments, and the sign-in is a real local Keycloak with synthetic users.
 
-## The customer journey
+![Resort page with the booking chat, summary and calendar](docs/progress/screenshots/resort-v0.13-desktop.png)
 
-```mermaid
-flowchart TD
-    A[Customer asks for dates] --> B[Demo checks the calendar]
-    B --> C[Customer chooses a room]
-    C --> D[Demo shows dates and price]
-    D --> E[Customer explicitly confirms]
-    E --> F[Demo checks again and saves the booking]
-    F --> G[Calendar updates and customer gets a receipt]
-    G --> H[Customer can request a change or cancellation]
-    H --> D
+## Try it in five minutes
+
+Requirements: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine with Compose v2) and Internet access for the first build. You do **not** need the .NET SDK, Python, PowerShell, WhatsApp, a tunnel, a model download or a paid account.
+
+```text
+Windows:       start-demo.cmd
+macOS / Linux: ./demo.sh start
 ```
 
-**Asking and confirming are separate steps.** A proposal lasts five minutes and does not hold a room. The server checks availability, price and permissions again when the customer confirms.
+Open **http://127.0.0.1:7452** and sign in as `customer-a` or `customer-b` with password `123456Aa!`. Bookings persist across restarts. `stop-demo.cmd` / `./demo.sh stop` stops the demo, and `reset-demo.cmd` / `./demo.sh reset` deletes only this demo's data after you type `DELETE`.
 
-<details>
-<summary><strong>See the resort and calendar</strong></summary>
+The first run builds the image from source inside Docker, which takes a few minutes. Ports 7452 (app) and 18080 (sign-in) are published only on `127.0.0.1`; set `CCAI_DEMO_IDP_PORT` if 18080 is taken.
 
-![Resort page with room categories, prices, availability and booking controls](docs/progress/screenshots/resort-v0.12.png)
+## What to try
 
-Screenshot from the 2026-10-06 walkthrough, after creating a Suite stay. Later steps changed and cancelled it.
+| # | Scenario | What you see |
+|---|---|---|
+| 1 | Complete booking | Chat request → proposal with room, dates, guests, total and expiry → Confirm → calendar and *My bookings* update |
+| 2 | Rejected change | Moving a booking onto occupied nights returns `DATES_OCCUPIED`; the original booking is unchanged |
+| 3 | Repeated confirmation | Confirming twice returns the same receipt and no duplicate booking |
+| 4 | Another customer's booking | `customer-a` cannot cancel `customer-b`'s stay, even with its code |
+| 5 | Lost response | A browser-only lab switch drops one confirm response; *Check receipt* recovers the outcome of the same proposal |
+| 6 | Ambiguous or out of scope | "2 or 3 guests" is asked about, not assumed; unrelated questions are declined without inventing content |
 
-![The same fictional stay after cancellation](docs/progress/screenshots/resort-whatsapp-cancelled.png)
+The page has a *Scenarios* section with buttons that fill the chat for each one, using dates relative to today.
 
-</details>
+## What is real
 
-## What you can do
-
-| Customer request | What the demo does |
+| Part | Status |
 |---|---|
-| “What does the Suite include?” | Reads amenities, capacity and price from the catalog |
-| “Show available dates” | Checks current inventory, including occupied and maintenance nights |
-| “Book a Suite for two guests” | Prepares a proposal with complete dates and a fictional total |
-| “Confirm …” | Checks the proposal and records the operation once |
-| “My bookings” | Shows only the bookings owned by the linked account |
-| “Change my dates” | Keeps the old booking until confirmation of the change succeeds |
-| “Cancel my booking” | Checks the rule, asks for confirmation and releases the nights |
-| `/en`, `/es`, `/human` | Changes language or pauses the bot for a simulated human queue |
+| Bookings, ownership, offers, confirmation, transactions, idempotent receipts, recovery | **Implemented** in C# with SQLite and covered by deterministic checks |
+| Sign-in | **Real** local Keycloak OIDC (Authorization Code + PKCE) with synthetic users |
+| Chat interpretation (default) | **Deterministic** rules and regular expressions, no model |
+| Chat interpretation (optional) | **Local AI** adapter for the existing pinned Qwen model, closed schema, no fallback. Model not included; real inference **pending** on a host with the pinned model |
+| Original assistant with RAG (v0.10) | Implemented; runs from source, not in the Docker demo |
+| WhatsApp | Optional integration with its own Meta setup; outside the basic demo |
+| Telegram, Genesys, human agents | Adapter present or **simulated**; no live tenant |
+| Hotel, prices, payments | **Fictional**; no payments |
 
-Private actions require login and a temporary account link. A phone number or booking reference cannot grant access to another customer's stay.
-
-## The fictional property
-
-| Room | Guests | USD per night | Included amenities |
-|---|---:|---:|---|
-| Standard | 2 | 120 | Wi-Fi, breakfast, air conditioning |
-| Deluxe | 2 | 180 | Wi-Fi, breakfast, balcony, pool view |
-| Suite | 4 | 280 | Deluxe amenities, private jacuzzi, terrace |
-
-One room per category. Stays last 1–14 nights within a 90-day horizon. Two nights in a Suite cost **560 fictional USD**. Changes and cancellations use a 72-hour cutoff before the current arrival.
-
-## Under the hood
+## How it works
 
 ```mermaid
 flowchart LR
-    WA[WhatsApp] --> Meta[Official Meta test API]
-    Meta --> Channel[Dedicated channel adapter]
-    Channel --> Rules[C# booking rules and permission checks]
-    Web[Local resort website] --> Rules
-    Login[Keycloak login and verified account link] --> Rules
-    Rules --> DB[(Shared resort inventory and receipts)]
-    Rules --> Reply[Confirmed result for the customer]
+    U[Chat message] --> I{Interpreter}
+    I -->|default| R[Deterministic rules]
+    I -->|optional| M[Local model, closed schema]
+    R --> C[Conversation turn]
+    M --> C
+    S[Verified session] --> C
+    C -->|missing details| Q[Clarifying question]
+    C -->|complete| O[Priced proposal, 5 min, holds nothing]
+    O -->|Confirm button| X[Recheck + transaction + receipt]
+    X --> V[Calendar and bookings]
 ```
 
-Only the channel host uses a temporary HTTPS tunnel. Web login, administration and internal booking endpoints stay local. See the [architecture guide](docs/resort-booking-v0.12.en.md) for these boundaries and recovery.
+The text only **proposes**. Identity comes from the session cookie, never from the message. A proposal is executed only by an explicit confirmation bound to its ID, and execution rechecks availability, price and permissions inside one transaction. See the [demo guide](docs/demo-guide.en.md#architecture) for the deployed topology, the operation states and the design decisions.
 
-| Engineering area | Current implementation |
+## Evidence and limits
+
+- Deterministic C# checks: the original 402 plus 41 web-chat checks, and 28 browser-free UI checks with Node's built-in runner. Results with dates and commands are in [the latest progress note](docs/progress/portfolio-v0.13-2026-10-27.md). Earlier figures are historical.
+- CI: the workflow runs these checks and builds the demo image. Remote runs have not started since the GitHub account's billing lock, so there is no remote evidence yet.
+- Not claimed: production readiness, security certification, live Genesys, measured model quality for the new chat, or load/performance benchmarks.
+
+## More
+
+| If you want to… | Read |
 |---|---|
-| Backend | ASP.NET Core on .NET 10, layered C# and explicit integration contracts |
-| Identity | Keycloak Authorization Code + PKCE, roles, ownership checks and expiring sessions |
-| Calendar | Relational SQLite with one unique allocation per room/night |
-| Reliable actions | Expiring proposals, explicit confirmation, atomic changes and durable receipts |
-| Duplicates/restarts | Same command ID returns its recorded result; queued work can recover |
-| Channels | Real official WhatsApp test transport; Telegram adapter present, live bot not configured |
-| AI and knowledge | Bounded deterministic resort intents; separate local Qwen/BGE-M3 retrieval profile with approved ES/EN knowledge and citations |
-| Evaluation | Python offline tooling, deterministic C# checks and preserved inference results |
-| Operations | Sanitized audit/traces, local operations UI and historical backup/restore evidence |
+| Install, use and troubleshoot | [Demo guide](docs/demo-guide.en.md) |
+| Review contracts | [Resort v0.13](docs/contracts/resort-v0.13.md), [v0.12 baseline](docs/contracts/resort-v0.12.md) |
+| Present it in an interview | [Interview script](docs/interview-script.md) (Spanish) |
+| See what changed | [Changelog](CHANGELOG.md) |
+| Browse design history and earlier evidence | [Documentation index](docs/README.md) |
 
-Prices and dates come from structured data. Critical permissions and state changes remain in C#.
-
-## Evidence and honest limits
-
-On **2026-10-06**, the owner completed availability, account linking, booking, date change, cancellation and own-booking queries through real WhatsApp. The browser showed matching calendar changes. Creation/change replies were Spanish; cancellation and own-booking replies were also checked in English. [Recorded walkthrough](docs/progress/resort-whatsapp-2026-10-06.json).
-
-- **402 combined deterministic checks:** 332 original regression checks plus 70 resort checks, covering concurrency, rollback, recovery and permission boundaries.
-- **28/28 declared parser examples:** known ES/EN examples, not unrestricted language understanding.
-- **Local AI evaluation:** 300 original retrieval outputs. A scoped replay combines 13 current checks with 287 unchanged outputs. Eight quality errors remain. [Results and limits](docs/en/evaluation-and-limits.md).
-
-Human transfer and Genesys Cloud remain mocked. Telegram has no live bot configured. SQL Server product connectivity, Qdrant, Angular, independent review and remote CI remain open targets. A GitHub Actions workflow exists, without a claimed successful remote run. This is a local portfolio demo.
-
-## Run and explore
-
-After the [initial setup](docs/en/getting-started.md), start Docker Desktop and run:
-
-```powershell
-.\eng\Start-Resort.cmd
-```
-
-Open `http://127.0.0.1:7452/resort.html`. Synthetic users `customer-a`, `customer-b` and `operations-admin` use `123456Aa!`. Service credentials stay in ignored local files. WhatsApp requires your own Meta test setup and an active tunnel. Publishing the code on GitHub does not keep the bot running.
-
-| If you want to… | Read this |
-|---|---|
-| Understand it without a software background | [Plain-language explanation](docs/en/how-it-works.md) |
-| Reproduce the resort walkthrough | [Demo instructions](docs/resort-demo.en.md) |
-| Review booking rules and diagrams | [Resort architecture](docs/resort-booking-v0.12.en.md) |
-| Inspect the original local AI/RAG system | [Engineering guide](docs/en/engineering-guide.md) |
-| Connect messaging channels | [WhatsApp and Telegram setup](docs/integrations/setup.en.md) |
-| Discuss it in an interview | [Portfolio guide](docs/en/portfolio.md) |
-| Review requirements, ADRs and historical evidence | [Documentation index](docs/README.md) |
-
-Learning and portfolio project developed with AI-assisted tooling. Decisions, evidence and limitations are documented for review. Databases, model weights, tokens, account-link codes, backups and private logs stay out of Git. [Third-party notices](THIRD_PARTY_NOTICES.md).
+Built with AI-assisted tooling; decisions, evidence and limitations are documented for review. Licence: **not chosen yet**. Until the owner adds one, default copyright applies. [Third-party notices](THIRD_PARTY_NOTICES.md).
